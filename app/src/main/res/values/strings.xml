@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name">TrabajoSocialForm</string>
+    <string name="texto_seleccion">Seleccione los campos que considere necesarios para su formulario</string>
+
+    <!-- Strings para datos del solicitante -->
+    <string name="titulo_solicitante">Datos del solicitante</string>
+    <string name="nombres_solicitante">Nombres</string>
+    <string name="apellidos_solicitante">Apellidos</string>
+    <string name="cuil_solicitante">Cuil</string>
+    <string name="telefono_principal_solicitante">Telefono principal</string>
+    <string name="otro_telefono_solicitante">Otro telefono</string>
+
+    <!-- Strings para datos del apoderado -->
+    <string name="titulo_apoderado">Datos del apoderado</string>>
+    <string name="nombres_apoderado">Nombres</string>
+    <string name="apellidos_apoderado">Apellidos</string>
+    <string name="fecha_nac_apoderado">Fecha de nacimiento</string>
+    <string name="cuil_apoderado">Cuil</string>
+    <string name="telefono_apoderado">Teléfono</string>
+    <string name="motivos_de_poder">Motivos de poder</string>
+
+    <!-- Strings para características de la vivienda -->
+    <string name="titulo_caracteristicas_vivienda">Caracteristicas de la vivienda</string>>
+    <string name="baño_caracteristicas">Caracteristicas del baño</string>
+    <string name="paredes_caracteristicas">Características de las paredes</string>
+    <string name="pisos_caracteristicas">Caracteristicas de los pisos</string>
+    <string name="servicios_caracteristicas">Caracteristicas de los servicios básicos</string>
+    <string name="techo_caracteristicas">Caracteristicas del techo</string>
+
+    <!-- String para datos del domicilio -->
+    <string name="titulo_datos_domicilio">Datos del domicilio</string>
+    <string name="acc_int">Acc/int</string>
+    <string name="barrio">Barrio</string>
+    <string name="calle">Calle</string>
+    <string name="casa_dpto">Casa/dpto</string>
+    <string name="delegacion">Delegacion</string>
+    <string name="entre_calles">Entre calle y calle</string>
+    <string name="localidad">Localidad</string>
+    <string name="manzana">manzana</string>
+    <string name="monoblock_torre">Monoblock/torre</string>
+    <string name="numero">Numero</string>
+    <string name="piso">Piso</string>
+
+    <!-- Strings para datos del grupo familiar -->
+    <string name="titulo_datos_gf">Datos del grupo familiar</string>
+    <string name="nombres_gf">Nombres</string>
+    <string name="apellidos_gf">Apellidos</string>
+    <string name="cuil_gf">Cuil</string>
+    <string name="sexo_gf">Sexo</string>
+    <string name="fecha_nac_gf">Fecha de Nacimiento</string>
+    <string name="estado_civil_gf">Estado civil</string>
+    <string name="nacion_gf">Nacionalidad</string>
+    <string name="vinculo_gf">Vinculo</string>
+    <string name="educacion_gf">Educacion</string>
+    <string name="nucleo_gf">Nucleo</string>
+
+        <!-- Strings para datos de ingresos -->
+        <string name="ingresos_laborales">Ingresos laborales</string>
+        <string name="ingresos_no_laborales">Ingresos no laborales</string>
+        <string name="programas_sociales_sti">Porgramas sociales sin transferencia de ingresos</string>
+
+        <!-- String para datos de ocupacion -->
+        <string name="aporte_jubilatorio">Aporte jubilatorio</string>
+        <string name="calificacion">Calificacion</string>
+        <string name="condicion_de_actividad">Condicion de actividad</string>
+        <string name="duracion">Duracion</string>
+        <string name="puesto_de_trabajo">Puesto de trabajo</string>
+        <string name="tipo_de_actividad">Tipo de actividad</string>
+
+        <!-- Strings para datos de salud -->
+        <string name="cobertura">Cobertura</string>
+        <string name="discapacidad">Discapacidad</string>
+        <string name="embarazo">Embarazo</string>
+        <string name="enfermedad_cronica">Enfermedad cronica</string>
+        <string name="independencia_funcional">Independecia Funcional</string>
+
+
+    <!-- Strings datos de infraestructura barrial -->
+    <string name="titulo_infraestructura_barrial">Datos de la infraestructura barrial</string>
+    <string name="calles">Calles</string>
+    <string name="distancias">Distancias</string>
+    <string name="iluminacion">Iluminacion</string>
+    <string name="inundaciones">Inundaciones</string>
+    <string name="recoleccion_residuos">Recoleccion de residuos</string>
+
+    <!-- Strings datos de situacion habitacional -->
+    <string name="titulo_situacion_habitacional">Datos de la situacion habitacional</string>
+    <string name="cantidad_de_cuartos_UE">Cantidad de cuartos de uso exclusivo</string>
+    <string name="cantidad_de_hogares_en_vivienda">Cantidad de hogares en la vivienda</string>
+    <string name="tenencia_vivienda_terreno">Tenencia de la vivienda o terreno</string>
+    <string name="tiempo_de_ocupacion">Tiempo de ocupacion</string>
+    <string name="tipo_de_vivienda">Tipo de vivienda</string>
+
+
+
+</resources>
