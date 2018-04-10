@@ -7,25 +7,27 @@
     tools:context="ar.edu.uns.cs.trabajosocialform.MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/crearFormulario_button"
         android:layout_width="277dp"
         android:layout_height="136dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="configurarNuevoFormulario"
-        android:text="Configurar nuevo formulario"
+        android:text="@string/crearFormulario_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/seleccionarFormulario_button"
         android:layout_width="277dp"
         android:layout_height="134dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Seleccionar Formulario"
+        android:text="@string/seleccionarFormulario_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crearFormulario_button" />
 </android.support.constraint.ConstraintLayout>

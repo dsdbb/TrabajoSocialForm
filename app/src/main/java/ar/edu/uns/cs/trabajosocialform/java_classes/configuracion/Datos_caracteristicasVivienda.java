@@ -8,7 +8,7 @@ public class Datos_caracteristicasVivienda {
 
     private boolean techo;
     private boolean pisos;
-    private boolean baño;
+    private boolean banio;
     private boolean paredes;
     private boolean servicios;
 
@@ -31,12 +31,12 @@ public class Datos_caracteristicasVivienda {
         this.pisos = pisos;
     }
 
-    public boolean isBaño() {
-        return baño;
+    public boolean isBanio() {
+        return banio;
     }
 
-    public void setBaño(boolean baño) {
-        this.baño = baño;
+    public void setBanio(boolean banio) {
+        this.banio = banio;
     }
 
     public boolean isParedes() {

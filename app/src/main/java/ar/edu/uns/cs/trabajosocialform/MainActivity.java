@@ -25,42 +25,11 @@ public class MainActivity extends AppCompatActivity {
     public void configurarNuevoFormulario(View view){
         Intent intent = new Intent(this,configurarNuevoFormulario_Activity.class);
         startActivity(intent);
+    }
 
-
-
-        /* Configuracion config = new Configuracion();
-
-        String json = (new Gson()).toJson(config);
-
-        StringBuilder sb = new StringBuilder();
-
-        for(int i=0; i<json.length(); i++){
-            sb.append(json.charAt(i));
-            if((json.charAt(i))==',') {
-                sb.append('\n');
-
-            }
-
-        }
-
-        Log.i("JSON de CONFIGURACION: ",sb.toString());
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONObject(json);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JSONArray namesArray = jsonObject.names();
-
-        for(int i=0; i<namesArray.length();i++){
-            try {
-                Log.i("name: ",namesArray.getString(i));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }*/
-
+    public void seleccionarFormulario(View view){
+        Intent intent = new Intent(this,FormularioActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">TrabajoSocialForm</string>
     <string name="texto_seleccion">Seleccione los campos que considere necesarios para su formulario</string>
+    <string name="seleccionar_todo">Seleccionar todo</string>
+    <string name="crearFormulario_button">Crear nuevo formulario</string>
+    <string name="seleccionarFormulario_button">Nueva Entrada (antes seleccionar)</string>
 
     <!-- Strings para datos del solicitante -->
     <string name="titulo_solicitante">Datos del solicitante</string>
@@ -54,25 +57,25 @@
     <string name="educacion_gf">Educacion</string>
     <string name="nucleo_gf">Nucleo</string>
 
-        <!-- Strings para datos de ingresos -->
-        <string name="ingresos_laborales">Ingresos laborales</string>
-        <string name="ingresos_no_laborales">Ingresos no laborales</string>
-        <string name="programas_sociales_sti">Porgramas sociales sin transferencia de ingresos</string>
+    <!-- Strings para datos de ingresos -->
+    <string name="ingresos_laborales">Ingresos laborales</string>
+    <string name="ingresos_no_laborales">Ingresos no laborales</string>
+    <string name="programas_sociales_sti">Porgramas sociales sin transferencia de ingresos</string>
 
-        <!-- String para datos de ocupacion -->
-        <string name="aporte_jubilatorio">Aporte jubilatorio</string>
-        <string name="calificacion">Calificacion</string>
-        <string name="condicion_de_actividad">Condicion de actividad</string>
-        <string name="duracion">Duracion</string>
-        <string name="puesto_de_trabajo">Puesto de trabajo</string>
-        <string name="tipo_de_actividad">Tipo de actividad</string>
+    <!-- String para datos de ocupacion -->
+    <string name="aporte_jubilatorio">Aporte jubilatorio</string>
+    <string name="calificacion">Calificacion</string>
+    <string name="condicion_de_actividad">Condicion de actividad</string>
+    <string name="duracion">Duracion</string>
+    <string name="puesto_de_trabajo">Puesto de trabajo</string>
+    <string name="tipo_de_actividad">Tipo de actividad</string>
 
-        <!-- Strings para datos de salud -->
-        <string name="cobertura">Cobertura</string>
-        <string name="discapacidad">Discapacidad</string>
-        <string name="embarazo">Embarazo</string>
-        <string name="enfermedad_cronica">Enfermedad cronica</string>
-        <string name="independencia_funcional">Independecia Funcional</string>
+    <!-- Strings para datos de salud -->
+    <string name="cobertura">Cobertura</string>
+    <string name="discapacidad">Discapacidad</string>
+    <string name="embarazo">Embarazo</string>
+    <string name="enfermedad_cronica">Enfermedad cronica</string>
+    <string name="independencia_funcional">Independecia Funcional</string>
 
 
     <!-- Strings datos de infraestructura barrial -->
@@ -90,7 +93,6 @@
     <string name="tenencia_vivienda_terreno">Tenencia de la vivienda o terreno</string>
     <string name="tiempo_de_ocupacion">Tiempo de ocupacion</string>
     <string name="tipo_de_vivienda">Tipo de vivienda</string>
-
 
 
 </resources>

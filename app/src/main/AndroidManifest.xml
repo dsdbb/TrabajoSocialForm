@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".configurarNuevoFormulario_Activity"></activity>
+        <activity android:name=".configurarNuevoFormulario_Activity" />
+        <activity android:name=".FormularioActivity"></activity>
     </application>
 
 </manifest>

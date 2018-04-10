@@ -36,12 +36,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <CheckBox
+                android:id="@+id/seleccionar_todo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/seleccionar_todo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
             <include
                 android:id="@+id/layout1"
                 layout="@layout/checkboxes_solicitante"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/seleccionar_todo" />
 
             <include layout="@layout/checkboxes_apoderado"
                 android:id="@+id/layout2"
@@ -55,7 +64,41 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/layout2" />
 
+            <include layout="@layout/checkboxes_grupo_familiar"
+                android:id="@+id/layout4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/layout3" />
 
+            <include layout="@layout/checkboxes_caracteristicas_vivienda"
+                android:id="@+id/layout5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/layout4" />
+
+            <include layout="@layout/checkboxes_situacion_habitacional"
+                android:id="@+id/layout6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/layout5" />
+
+            <include layout="@layout/checkboxes_infraestructura_barrial"
+                android:id="@+id/layout7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/layout6" />
+
+
+            <Button
+                android:id="@+id/crear_formulario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:onClick="crearFormulario"
+                android:text="Crear Formulario"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout7" />
 
         </LinearLayout>
     </ScrollView>
