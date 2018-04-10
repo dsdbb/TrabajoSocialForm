@@ -1,5 +1,7 @@
 package ar.edu.uns.cs.trabajosocialform.java_classes.configuracion;
 
+import android.app.Activity;
+
 /**
  * Created by Kevin (User) on 5/4/2018.
  */

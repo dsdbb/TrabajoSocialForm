@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".configurarNuevoFormulario_Activity" />
-        <activity android:name=".FormularioActivity"></activity>
+        <activity android:name=".FormularioActivity" />
     </application>
 
 </manifest>

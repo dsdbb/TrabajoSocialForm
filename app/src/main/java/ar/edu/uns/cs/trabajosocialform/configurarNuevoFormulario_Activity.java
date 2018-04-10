@@ -94,7 +94,7 @@ public class configurarNuevoFormulario_Activity extends AppCompatActivity {
         }
 
         /*Desactivo el boton de crear formulario. Por ahora doy solo la posibilidad de crear solo uno*/
-        findViewById(R.id.crearFormulario_button).setEnabled(false);
+        //findViewById(R.id.crearFormulario_button).setEnabled(false);
 
        finish();
 

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/titulo_apoderadoForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/titulo_apoderado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- NOMBRE -->
+
+    <LinearLayout
+        android:id="@+id/panel_nombres_apoderado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_apoderadoForm">
+
+        <EditText
+            android:id="@+id/nombres_apoderado_form_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/nombres_apoderado_form_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/nombres_apoderado"
+            app:layout_constraintBaseline_toBaselineOf="@+id/nombres_apoderado_form_et"
+            app:layout_constraintEnd_toStartOf="@+id/nombres_apoderado_form_et"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+    <!-- APELLIDO -->
+
+    <LinearLayout
+        android:id="@+id/panel_apellidos_apoderado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/panel_nombres_apoderado">
+
+        <EditText
+            android:id="@+id/apellidos_apoderado_form_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/apellidos_apoderado_form_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apellidos_apoderado"
+            app:layout_constraintBaseline_toBaselineOf="@+id/apellidos_apoderado_form_et"
+            app:layout_constraintEnd_toStartOf="@+id/apellidos_apoderado_form_et"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+    <!-- CUIL -->
+
+    <LinearLayout
+        android:id="@+id/panel_cuil_apoderado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/panel_apellidos_apoderado">
+
+        <EditText
+            android:id="@+id/cuil_apoderado_form_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/cuil_apoderado_form_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cuil_solicitante"
+            app:layout_constraintBaseline_toBaselineOf="@+id/cuil_apoderado_form_et"
+            app:layout_constraintEnd_toStartOf="@+id/cuil_apoderado_form_et"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+    <!-- TELEFONO PRINCIPAL -->
+    <LinearLayout
+        android:id="@+id/panel_telefono_principal_apoderado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/panel_cuil_apoderado">
+
+        <EditText
+            android:id="@+id/telefonoPrincipal_apoderado_form_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/telefonoPrincipal_apoderado_form_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/telefono_apoderado"
+            app:layout_constraintBaseline_toBaselineOf="@+id/telefonoPrincipal_apoderado_form_et"
+            app:layout_constraintEnd_toStartOf="@+id/telefonoPrincipal_apoderado_form_et"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+    <!-- Fecha de Nacimiento -->
+    <LinearLayout
+        android:id="@+id/panel_fecha_nacimiento_apoderado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/panel_telefono_principal_apoderado">
+        <EditText
+            android:id="@+id/fechaNacimiento_apoderado_form_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/fechaNacimiento_apoderado_form_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fecha_nac_apoderado"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fechaNacimiento_apoderado_form_et"
+            app:layout_constraintEnd_toStartOf="@+id/fechaNacimiento_apoderado_form_et"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+    <!-- Motivos de poder -->
+    <LinearLayout
+        android:id="@+id/panel_motivos_de_poder_apoderado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/panel_fecha_nacimiento_apoderado">
+
+        <EditText
+            android:id="@+id/motivosDePoder_apoderado_form_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/motivosDePoder_apoderado_form_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/motivos_de_poder"
+            app:layout_constraintBaseline_toBaselineOf="@+id/motivosDePoder_apoderado_form_et"
+            app:layout_constraintEnd_toStartOf="@+id/motivosDePoder_apoderado_form_et"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
