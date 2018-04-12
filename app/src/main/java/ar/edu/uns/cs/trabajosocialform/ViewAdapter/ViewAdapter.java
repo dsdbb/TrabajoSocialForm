@@ -78,4 +78,56 @@ public class ViewAdapter {
         }
 
     }
+
+    public void adaptarDomicilio(){
+        boolean calle = config.getDatos_domicilio().isCalle();
+        boolean numero = config.getDatos_domicilio().isNumero();
+        boolean manzana = config.getDatos_domicilio().isManzana();
+        boolean monoblock_torre = config.getDatos_domicilio().isMonoblock_torre();
+        boolean piso = config.getDatos_domicilio().isPiso();
+        boolean acc_int = config.getDatos_domicilio().isAcc_int();
+        boolean casa_depto = config.getDatos_domicilio().isCasa_dpto();
+        boolean entre_calles = config.getDatos_domicilio().isEntre_calles();
+        boolean barrio = config.getDatos_domicilio().isBarrio();
+        boolean delegacion = config.getDatos_domicilio().isDelegacion();
+        boolean localidad = config.getDatos_domicilio().isLocalidad();
+
+        if(!calle){
+            act.findViewById(R.id.panel_calle).setVisibility(View.GONE);
+        }
+        if(!numero){
+            act.findViewById(R.id.panel_numero).setVisibility(View.GONE);
+        }
+        if(!manzana){
+            act.findViewById(R.id.panel_manzana).setVisibility(View.GONE);
+        }
+        if(!monoblock_torre){
+            act.findViewById(R.id.panel_monoblock_torre).setVisibility(View.GONE);
+        }
+        if(!piso){
+            act.findViewById(R.id.panel_piso).setVisibility(View.GONE);
+        }
+        if(!acc_int){
+            act.findViewById(R.id.panel_acc_int).setVisibility(View.GONE);
+        }
+        if(!casa_depto){
+            act.findViewById(R.id.panel_casa_depto).setVisibility(View.GONE);
+        }
+        if(!entre_calles){
+            act.findViewById(R.id.panel_entre_calles).setVisibility(View.GONE);
+        }
+        if(!barrio){
+            act.findViewById(R.id.panel_barrio).setVisibility(View.GONE);
+        }
+        if(!delegacion){
+            act.findViewById(R.id.panel_delegacion).setVisibility(View.GONE);
+        }
+        if(!localidad){
+            act.findViewById(R.id.panel_localidad).setVisibility(View.GONE);
+        }
+
+
+
+    }
+
 }

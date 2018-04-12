@@ -20,9 +20,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- NOMBRE -->
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_nombres_solicitante"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/titulo_solicitanteForm" >
 
@@ -46,13 +46,13 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/nombres_solicitante_form_et"
             app:layout_constraintEnd_toStartOf="@+id/nombres_solicitante_form_et"
             app:layout_constraintStart_toStartOf="parent" />
-    </LinearLayout >
+    </android.support.constraint.ConstraintLayout >
 
     <!-- APELLIDO -->
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_apellidos_solicitante"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/panel_nombres_solicitante" >
 
@@ -73,13 +73,13 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/apellidos_solicitante_form_et"
             app:layout_constraintEnd_toStartOf="@+id/apellidos_solicitante_form_et"
             app:layout_constraintStart_toStartOf="parent" />
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <!-- CUIL -->
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_cuil_solicitante"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/panel_apellidos_solicitante" >
 
@@ -101,12 +101,12 @@
             app:layout_constraintEnd_toStartOf="@+id/cuil_solicitante_form_et"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <!-- TELEFONO PRINCIPAL -->
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_telefono_principal_solicitante"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/panel_cuil_solicitante">
 
@@ -128,12 +128,12 @@
             app:layout_constraintEnd_toStartOf="@+id/telefonoPrincipal_solicitante_form_et"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <!-- OTRO TELEFONO -->
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_otro_telefono_solicitante"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/panel_telefono_principal_solicitante">
 
@@ -150,11 +150,11 @@
             android:id="@+id/otroTelefono_solicitante_form_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/telefono_principal_solicitante"
+            android:text="@string/otro_telefono_solicitante"
             app:layout_constraintBaseline_toBaselineOf="@+id/otroTelefono_solicitante_form_et"
             app:layout_constraintEnd_toStartOf="@+id/otroTelefono_solicitante_form_et"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

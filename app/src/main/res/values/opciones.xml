@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Strings para las opciones del tipo de vivienda-->
+
+    <string name="titulo_tv">Tipo de vivienda</string>
+    <string name="tv_casa">Casa</string>
+    <string name="tv_depto">Departamento</string>
+    <string name="tv_pieza_inquilinato">Pieza en inquilinato</string>
+    <string name="tv_hotel_pension">Hotel o Pensión</string>
+    <string name="tv_local">Local no construido para habitación</string>
+    <string name="tv_otros">Otros (vehiculos,etc)</string>
+    <string name="tv_calle">En la calle</string>
+
+
+    <!-- Strings para las opciones de la tenencia de vivienda o terreno -->
+
+    <string name="titulo_tvt">Tenencia de vivienda y terreno</string>
+    <string name="tvt_propietario_todo">Propietario de la vivienda y el terreno</string>
+    <string name="tvt_inquilino">Inquilino</string>
+    <string name="tvt_propietario_vivienda">Propietario de la vivienda solamente</string>
+    <string name="tvt_cedida_trabajo">Cedida por trabajo</string>
+    <string name="tvt_prestada">Cedida/Prestada</string>
+    <string name="tvt_ocupada_de_hecho">Ocupada de hecho</string>
+    <string name="tvt_calle">En la calle</string>
+
+
+    <!--Resto de Strings de Situacion habitacional-->
+    <string name="tiempo_ocupacion">Tiempo de ocupacion</string>
+    <string name="cantidad_hogares_vivienda">Cantidad de hogares en la vivienda</string>
+    <string name="cantidad_cuartos_UE">Cantidad de cuartos de uso exclusivo</string>
+
+    <!--Strings para CARACTERISTICAS DE LA VIVIENDA-->
+
+    <!--Techo-->
+    <string name="titulo_techo">La cubierta exterior del techo es de...</string>
+    <string name="opc1_techo">Membrana, cubierta asfáltica</string>
+    <string name="opc2_techo">Baldosa, losa, sin cubierta</string>
+    <string name="opc3_techo">Pizarra, teja</string>
+    <string name="opc4_techo">Chapa de metal sin cubierta</string>
+    <string name="opc5_techo">Chapa de fibrocemento, plastico</string>
+    <string name="opc6_techo">Chapa de cartón</string>
+    <string name="opc7_techo">Caña,tabla,paja con barro, paja sola, lona</string>
+    <string name="opc8_techo">No corresponde/dpto. en prop. horizontal</string>
+
+    <string name="titulo_revestimiento_techo">¿Tiene cielorrazo y/o revestimiento interior?</string>
+    <string name="opc1_revestimiento_techo">Si</string>
+    <string name="opc2_revestimiento_techo">No</string>
+
+    <!-- Paredes -->
+    <string name="titulo_paredes">Material predominante en paredes exteriores</string>
+    <string name="opc1_pared">Ladrillo, bloque u hormigon</string>
+    <string name="opc2_pared">Adobe</string>
+    <string name="opc3_pared">Madera</string>
+    <string name="opc4_pared">Chapa de metal o fibrocemento</string>
+    <string name="opc5_pared">Carton o material de desecho</string>
+    <string name="opc6_pared">No corresponde/otro</string>
+
+    <string name="titulo_revestimiento_pared">¿Las paredes tienen revestimiento o revoque?</string>
+    <string name="opc1_revestimiento_pared">Si</string>
+    <string name="opc2_revestimiento_pared">No</string>
+
+    <!-- Pisos -->
+    <string name="titulo_pisos">Material predominante en pisos (es el material mas frecuente)</string>
+    <string name="opc1_piso">Baldosa, cerámico, madera, marmol, alfombra</string>
+    <string name="opc2_piso">Cemento o ladrillo fijo</string>
+    <string name="opc3_piso">Tierra o ladrillos sueltos</string>
+    <string name="opc4_piso">No corresponde/ otro</string>
+
+    <!-- Agua -->
+    <string name="titulo_agua">Tiene agua...</string>
+    <string name="opc1_agua">Por cañería dentro de la vivienda</string>
+    <string name="opc2_agua">Fuera de la vivienda, dentro del terreno</string>
+    <string name="opc3_agua">Fuera del terreno</string>
+
+    <string name="titulo_fuente_agua">El agua es de...</string>
+    <string name="opc1_fuente_agua">Red pública con medidor</string>
+    <string name="opc2_fuente_agua">Red pública sin medidor</string>
+    <string name="opc3_fuente_agua">Pozo o perforación</string>
+    <string name="opc4_fuente_agua">Otro (Aguatero,etc)</string>
+
+    <!-- Baño -->
+    <string name="titulo_baño">El baño o letrina esta...</string>
+    <string name="opc1_baño">Dentro de la vivienda</string>
+    <string name="opc2_baño">Fuera de la vivienda, dentro del terreno</string>
+    <string name="opc3_baño">Fuera del terreno</string>
+    <string name="opc4_baño">No tiene</string>
+
+    <string name="titulo_baño_tiene">El baño tiene...</string>
+    <string name="opc1_baño_tiene">Inodoro con botón, mochila, cadena y arrastre de agua</string>
+    <string name="opc2_baño_tiene">Inodoro sin botón mochila, ni cadena y con arrastre de agua</string>
+    <string name="opc3_baño_tiene">Letrina (Sin arrastre de agua)</string>
+
+    <string name="titulo_desague">El desagüe del baño es...</string>
+    <string name="opc1_desague">A red pública (cloacas)</string>
+    <string name="opc2_desague">A cámara séptica y pozo ciego</string>
+    <string name="opc3_desague">Solo a pozo ciego</string>
+
+    <!--Cocina-->
+    <string name="titulo_cocina">¿Tiene cuarto de cocina instalado?</string>
+    <string name="opc1_cocina">Si</string>
+    <string name="opc2_cocina">No</string>
+
+    <!-- Electricidad -->
+    <string name="titulo_electricidad">¿Tiene electricidad?</string>
+    <string name="opc1_electricidad">Si, con medidor</string>
+    <string name="opc2_electricidad">Si, sin medidor</string>
+    <string name="opc3_electricidad">No tiene</string>
+
+    <!-- Combustible de cocina -->
+    <string name="titulo_combustible_cocina">Combustible para cocinar</string>
+    <string name="opc1_combustible_cocina">Gas de red</string>
+    <string name="opc2_combustible_cocina">Gas de tubo o garrafa</string>
+    <string name="opc3_combustible_cocina">Leña u otro</string>
+
+</resources>

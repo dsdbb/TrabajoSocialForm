@@ -20,7 +20,7 @@
 
     <!-- NOMBRE -->
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_nombres_apoderado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,11 +47,11 @@
             app:layout_constraintEnd_toStartOf="@+id/nombres_apoderado_form_et"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <!-- APELLIDO -->
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_apellidos_apoderado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,11 +75,11 @@
             app:layout_constraintEnd_toStartOf="@+id/apellidos_apoderado_form_et"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <!-- CUIL -->
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_cuil_apoderado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -103,10 +103,10 @@
             app:layout_constraintEnd_toStartOf="@+id/cuil_apoderado_form_et"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <!-- TELEFONO PRINCIPAL -->
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_telefono_principal_apoderado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -130,10 +130,10 @@
             app:layout_constraintEnd_toStartOf="@+id/telefonoPrincipal_apoderado_form_et"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <!-- Fecha de Nacimiento -->
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_fecha_nacimiento_apoderado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -156,10 +156,10 @@
             app:layout_constraintEnd_toStartOf="@+id/fechaNacimiento_apoderado_form_et"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <!-- Motivos de poder -->
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/panel_motivos_de_poder_apoderado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -183,5 +183,5 @@
             app:layout_constraintEnd_toStartOf="@+id/motivosDePoder_apoderado_form_et"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

@@ -35,6 +35,8 @@ public class FormularioActivity extends AppCompatActivity {
         formularios = new ArrayList<String>();
         formularios.add("form_solicitante");
         formularios.add("form_apoderado");
+        formularios.add("form_domicilio");
+        formularios.add("form_situacion_habitacional");
 
         contenedor = (LinearLayout) findViewById(R.id.content_formulario);
         inflater = LayoutInflater.from(this);
