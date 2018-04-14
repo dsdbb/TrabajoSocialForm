@@ -147,6 +147,7 @@ public class configurarNuevoFormulario_Activity extends AppCompatActivity {
                 case "pisos_caracteristicas":conf.getDatos_caracteristicas_vivienda().setPisos(true);break;
                 case "servicios_caracteristicas":conf.getDatos_caracteristicas_vivienda().setServicios(true);break;
                 case "techo_caracteristicas":conf.getDatos_caracteristicas_vivienda().setTecho(true);break;
+                case "cocina_caracteristicas":conf.getDatos_caracteristicas_vivienda().setCocina(true);break;
                 /*Checkboxes relacionados a la situacion habitacional*/
                 case "cantidad_de_cuartos_UE":conf.getDatos_situacion_habitacional().setCantidad_de_cuartos_UE(true);break;
                 case "cantidad_de_hogares_en_vivienda":conf.getDatos_situacion_habitacional().setCantidad_de_hogares_en_vivienda(true);break;

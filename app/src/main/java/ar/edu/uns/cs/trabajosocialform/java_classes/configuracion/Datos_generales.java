@@ -1,10 +1,12 @@
 package ar.edu.uns.cs.trabajosocialform.java_classes.configuracion;
 
+import java.io.Serializable;
+
 /**
  * Created by Kevin (User) on 5/4/2018.
  */
 
-public class Datos_generales {
+public class Datos_generales implements Serializable {
 
     /*Datos generales del formulario*/
     private boolean fecha_inscripcion;

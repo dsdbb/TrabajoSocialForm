@@ -112,4 +112,38 @@
     <string name="opc2_combustible_cocina">Gas de tubo o garrafa</string>
     <string name="opc3_combustible_cocina">Leña u otro</string>
 
+    <!-- OPCIONES INFRAESTRUCTURA BARRIAL -->
+
+    <!--Infraestructura en calles-->
+    <string name="titulo_infraestructura_calles">Infraestructura en calles</string>
+    <string name="opc1_infraestructura_calles">Con asfalto</string>
+    <string name="opc2_infraestructura_calles">Solo cordón cuneta</string>
+    <string name="opc3_infraestructura_calles">Sin cordón cuneta</string>
+
+    <!-- Iluminacion publica -->
+    <string name="titulo_iluminacion">Iluminación pública</string>
+    <string name="opc1_iluminacion">Alumbrado público en cuadra</string>
+    <string name="opc2_iluminacion">Alumbrado público en esquina</string>
+    <string name="opc3_iluminacion">Sin alumbrado público</string>
+
+    <!-- Inundacion -->
+    <string name="titulo_inundacion">¿Se inundó en los últimos 12 meses?</string>
+    <string name="opc1_inundacion">Si</string>
+    <string name="opc2_inundacion">No</string>
+
+    <!-- Recoleccion de basura -->
+    <string name="titulo_recoleccion">Recolección de residuos</string>
+    <string name="opc1_recoleccion">Si</string>
+    <string name="opc2_recoleccion">No</string>
+
+    <!-- Distancias -->
+    <string name="titulo_distancia">Distancia al...</string>
+    <string name="titulo_distancia_educacion">Establecimiento educativo más cercano</string>
+    <string name="titulo_distancia_salud">Centro de Salud o Unidad Sanitaria</string>
+    <string name="titulo_distancia_transporte">Transporte público</string>
+    <string name="opc1_distancia">Menos de 3 cuadras</string>
+    <string name="opc2_distancia">Entre 3 y 10 cuadras</string>
+    <string name="opc3_distancia">Más de 10 cuadras</string>
+
+
 </resources>

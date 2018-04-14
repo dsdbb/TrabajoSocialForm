@@ -1,10 +1,12 @@
 package ar.edu.uns.cs.trabajosocialform.java_classes.configuracion;
 
+import java.io.Serializable;
+
 /**
  * Created by Kevin (User) on 5/4/2018.
  */
 
-public class Datos_ingresos {
+public class Datos_ingresos implements Serializable {
 
     private boolean ingresos_laborales;
     /*ingresos no laborales o programas sociales con transferencia de ingresos*/

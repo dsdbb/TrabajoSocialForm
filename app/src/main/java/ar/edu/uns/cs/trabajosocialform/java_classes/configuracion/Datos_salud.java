@@ -1,10 +1,12 @@
 package ar.edu.uns.cs.trabajosocialform.java_classes.configuracion;
 
+import java.io.Serializable;
+
 /**
  * Created by Kevin (User) on 5/4/2018.
  */
 
-public class Datos_salud {
+public class Datos_salud implements Serializable {
 
     private boolean cobertura;
     private boolean embarazo;

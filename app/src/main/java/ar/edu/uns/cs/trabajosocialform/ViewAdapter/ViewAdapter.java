@@ -122,11 +122,98 @@ public class ViewAdapter {
         if(!delegacion){
             act.findViewById(R.id.panel_delegacion).setVisibility(View.GONE);
         }
+
         if(!localidad){
             act.findViewById(R.id.panel_localidad).setVisibility(View.GONE);
         }
 
+    }
 
+    public void adaptarCaracteristicas_vivienda(){
+
+        boolean techo = config.getDatos_caracteristicas_vivienda().isTecho();
+        boolean paredes = config.getDatos_caracteristicas_vivienda().isParedes();
+        boolean piso = config.getDatos_caracteristicas_vivienda().isPisos();
+        boolean servicios = config.getDatos_caracteristicas_vivienda().isServicios();
+        boolean banio = config.getDatos_caracteristicas_vivienda().isBanio();
+        boolean cocina = config.getDatos_caracteristicas_vivienda().isCocina();
+
+
+        if(!techo){
+            act.findViewById(R.id.panel_opciones_techo).setVisibility(View.GONE);
+        }
+        if(!paredes){
+            act.findViewById(R.id.panel_opciones_pared).setVisibility(View.GONE);
+        }
+        if(!piso){
+            act.findViewById(R.id.panel_opciones_piso).setVisibility(View.GONE);
+        }
+        if(!servicios){
+            act.findViewById(R.id.panel_opciones_agua).setVisibility(View.GONE);
+            act.findViewById(R.id.panel_opciones_fuente_agua).setVisibility(View.GONE);
+            act.findViewById(R.id.panel_opciones_desague).setVisibility(View.GONE);
+            act.findViewById(R.id.panel_opciones_electricidad).setVisibility(View.GONE);
+            act.findViewById(R.id.panel_opciones_combustible_cocina).setVisibility(View.GONE);
+        }
+        if(!banio){
+            act.findViewById(R.id.panel_opciones_banio).setVisibility(View.GONE);
+            act.findViewById(R.id.panel_opciones_banio_tiene).setVisibility(View.GONE);
+
+        }
+        if(!cocina){
+            act.findViewById(R.id.panel_opciones_cocina).setVisibility(View.GONE);
+        }
+
+    }
+
+    public void adaptarSituacion_habitacional() {
+
+        boolean tipo_vivienda = config.getDatos_situacion_habitacional().isTipo_de_vivienda();
+        boolean tenencia_terreno_vivienda = config.getDatos_situacion_habitacional().isTenencia_vivienda_terreno();
+        boolean tiempo_ocupacion = config.getDatos_situacion_habitacional().isTiempo_de_ocupacion();
+        boolean cantidad_de_hogares = config.getDatos_situacion_habitacional().isCantidad_de_hogares_en_vivienda();
+        boolean cantidad_de_cuartos_UE = config.getDatos_situacion_habitacional().isCantidad_de_cuartos_UE();
+
+        if(!tipo_vivienda){
+            act.findViewById(R.id.panel_opciones_tipo_vivienda).setVisibility(View.GONE);
+        }
+
+        if(!tenencia_terreno_vivienda){
+            act.findViewById(R.id.panel_opciones_tenencia_vivienda_terreno).setVisibility(View.GONE);
+        }
+        if(!tiempo_ocupacion){
+            act.findViewById(R.id.panel_opciones_tiempo_ocupacion).setVisibility(View.GONE);
+        }
+        if(!cantidad_de_hogares){
+            act.findViewById(R.id.panel_opciones_cantidad_hogares_vivienda).setVisibility(View.GONE);
+        }
+        if(!cantidad_de_cuartos_UE){
+            act.findViewById(R.id.panel_opciones_cantidad_cuartos_ue).setVisibility(View.GONE);
+        }
+    }
+
+    public void adaptarInfraestructura_barrial(){
+        boolean infraestructura_calles = config.getDatos_infraestructura_barrial().isCalles();
+        boolean iluminacion = config.getDatos_infraestructura_barrial().isIluminacion();
+        boolean inundacion = config.getDatos_infraestructura_barrial().isInundacion();
+        boolean recoleccion = config.getDatos_infraestructura_barrial().isRecoleccion_basura();
+        boolean distancias = config.getDatos_infraestructura_barrial().isDistancias();
+
+        if(!infraestructura_calles){
+            act.findViewById(R.id.panel_infraestructura_calles).setVisibility(View.GONE);
+        }
+        if(!iluminacion){
+            act.findViewById(R.id.panel_iluminacion).setVisibility(View.GONE);
+        }
+        if(!inundacion){
+            act.findViewById(R.id.panel_inundacion).setVisibility(View.GONE);
+        }
+        if(!recoleccion){
+            act.findViewById(R.id.panel_recoleccion).setVisibility(View.GONE);
+        }
+        if(!distancias){
+            act.findViewById(R.id.panel_distancias).setVisibility(View.GONE);
+        }
 
     }
 

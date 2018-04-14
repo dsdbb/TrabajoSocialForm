@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ar.edu.uns.cs.trabajosocialform.FormCaracteristicasViviendaActivity">
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <include
+                android:id="@+id/panel_opciones_techo"
+                layout="@layout/opciones_techo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/panel_opciones_pared"
+                layout="@layout/opciones_pared"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_opciones_techo" />
+
+            <include
+                android:id="@+id/panel_opciones_piso"
+                layout="@layout/opciones_piso"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_opciones_pared" />
+
+            <include
+                android:id="@+id/panel_opciones_agua"
+                layout="@layout/opciones_agua"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_opciones_piso" />
+
+            <include
+                android:id="@+id/panel_opciones_fuente_agua"
+                layout="@layout/opciones_fuente_agua"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_opciones_agua" />
+
+            <include
+                android:id="@+id/panel_opciones_banio"
+                layout="@layout/opciones_banio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_opciones_fuente_agua" />
+
+            <include
+                android:id="@+id/panel_opciones_banio_tiene"
+                layout="@layout/opciones_banio_tiene"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_opciones_banio" />
+
+            <include
+                android:id="@+id/panel_opciones_desague"
+                layout="@layout/opciones_desague"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_opciones_banio_tiene" />
+
+            <include
+                android:id="@+id/panel_opciones_cocina"
+                layout="@layout/opciones_cocina"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_opciones_desague" />
+
+            <include
+                android:id="@+id/panel_opciones_electricidad"
+                layout="@layout/opciones_electricidad"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_opciones_cocina" />
+
+            <include
+                android:id="@+id/panel_opciones_combustible_cocina"
+                layout="@layout/opciones_combustible_cocina"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_opciones_electricidad" />
+
+            <Button
+                android:id="@+id/siguiente_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:onClick="continuar"
+                android:text="Siguiente"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</android.support.constraint.ConstraintLayout>

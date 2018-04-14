@@ -1,16 +1,19 @@
 package ar.edu.uns.cs.trabajosocialform.java_classes.configuracion;
 
+import java.io.Serializable;
+
 /**
  * Created by Kevin (User) on 5/4/2018.
  */
 
-public class Datos_caracteristicasVivienda {
+public class Datos_caracteristicasVivienda implements Serializable {
 
     private boolean techo;
     private boolean pisos;
     private boolean banio;
     private boolean paredes;
     private boolean servicios;
+    private boolean cocina;
 
     public Datos_caracteristicasVivienda() {
     }
@@ -54,4 +57,8 @@ public class Datos_caracteristicasVivienda {
     public void setServicios(boolean servicios) {
         this.servicios = servicios;
     }
+
+    public boolean isCocina() {return cocina;}
+
+    public void setCocina(boolean cocina) {this.cocina = cocina; }
 }

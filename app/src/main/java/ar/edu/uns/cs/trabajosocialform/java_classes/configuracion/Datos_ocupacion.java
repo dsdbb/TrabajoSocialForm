@@ -1,10 +1,12 @@
 package ar.edu.uns.cs.trabajosocialform.java_classes.configuracion;
 
+import java.io.Serializable;
+
 /**
  * Created by Kevin (User) on 5/4/2018.
  */
 
-public class Datos_ocupacion {
+public class Datos_ocupacion implements Serializable {
 
     private boolean condicion_de_actividad;
     private boolean puesto_de_trabajo;

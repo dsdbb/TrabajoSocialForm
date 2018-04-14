@@ -18,6 +18,12 @@
         </activity>
         <activity android:name=".configurarNuevoFormulario_Activity" />
         <activity android:name=".FormularioActivity" />
+        <activity android:name=".FormSolicitanteActivity" />
+        <activity android:name=".FormApoderadoActivity" />
+        <activity android:name=".FormDomicilioActivity" />
+        <activity android:name=".FormSituacionHabitacionalActivity" />
+        <activity android:name=".FormCaracteristicasViviendaActivity" />
+        <activity android:name=".FormInfraestructuraBarrialActivity"></activity>
     </application>
 
 </manifest>

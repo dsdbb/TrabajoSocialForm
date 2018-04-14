@@ -37,13 +37,15 @@ public class FormularioActivity extends AppCompatActivity {
         formularios.add("form_apoderado");
         formularios.add("form_domicilio");
         formularios.add("form_situacion_habitacional");
+        formularios.add("form_caracteristicas_vivienda");
+        formularios.add("form_infraestructura_barrial");
 
         contenedor = (LinearLayout) findViewById(R.id.content_formulario);
         inflater = LayoutInflater.from(this);
 
         /*Agrego a la pantalla de la actividad el primer set del formulario a completar*/
-        View laViewInflada = inflater.inflate(R.layout.form_solicitante, contenedor, false);
-        contenedor.addView(laViewInflada);
+        //View laViewInflada = inflater.inflate(R.layout.form_solicitante, contenedor, false);
+        //contenedor.addView(laViewInflada);
         contador_formularios++;
 
          /*Adapto el la seccion*/
@@ -100,6 +102,8 @@ public class FormularioActivity extends AppCompatActivity {
            switch(seccion){
                 case "form_solicitante":va.adaptarSolicitante();break;
                 case "form_apoderado":va.adaptarApoderado();break;
+               case "form_domicilio": va.adaptarDomicilio();
+               case "form_caracteristicas_vivienda":va.adaptarCaracteristicas_vivienda();break;
            }
 
             //fin.close();

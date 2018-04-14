@@ -29,6 +29,7 @@
     <string name="pisos_caracteristicas">Caracteristicas de los pisos</string>
     <string name="servicios_caracteristicas">Caracteristicas de los servicios básicos</string>
     <string name="techo_caracteristicas">Caracteristicas del techo</string>
+    <string name="cocina_caracteristicas">Características de la cocina</string>
 
     <!-- String para datos del domicilio -->
     <string name="titulo_datos_domicilio">Datos del domicilio</string>

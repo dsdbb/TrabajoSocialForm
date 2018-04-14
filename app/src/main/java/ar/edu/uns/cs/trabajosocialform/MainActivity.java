@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void seleccionarFormulario(View view){
-        Intent intent = new Intent(this,FormularioActivity.class);
+        Intent intent = new Intent(this,FormSolicitanteActivity.class);
         startActivity(intent);
     }
 

@@ -2,11 +2,13 @@ package ar.edu.uns.cs.trabajosocialform.java_classes.configuracion;
 
 import android.app.Activity;
 
+import java.io.Serializable;
+
 /**
  * Created by Kevin (User) on 5/4/2018.
  */
 
-public class Datos_situacionHabitacional {
+public class Datos_situacionHabitacional implements Serializable {
 
     private boolean tipo_de_vivienda;
     private boolean tenencia_vivienda_terreno;

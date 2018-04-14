@@ -1,10 +1,12 @@
 package ar.edu.uns.cs.trabajosocialform.java_classes.configuracion;
 
+import java.io.Serializable;
+
 /**
  * Created by Kevin (User) on 5/4/2018.
  */
 
-public class Datos_apoderado {
+public class Datos_apoderado  implements Serializable {
 
     /*Datos para el apoderado*/
     private boolean apellidos_apoderado;
