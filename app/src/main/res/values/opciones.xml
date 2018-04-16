@@ -146,4 +146,18 @@
     <string name="opc3_distancia">Más de 10 cuadras</string>
 
 
+    <!-- OPCIONES GRUPO FAMILIAR CONVIVIENTE -->
+    <string name="titulo_grupo_familiar">Grupo familiar conviviente</string>
+    <string name="titulo_nuevo_familiar">Nuevo Familiar</string>
+    <string name="nombre_familiar">Nombre</string>
+    <string name="apellido_familiar">Apellido</string>
+    <string name="sexo_familiar">Sexo</string>
+    <string name="nacion_familiar">Nacion</string>
+    <string name="cuil_familiar">Cuil</string>
+    <string name="tipo_doc_familiar">Tipo de Documento</string>
+    <string name="fecha_nac_familiar">Fecha de Nacimiento</string>
+    <string name="estado_civil_familiar">Estado Civil</string>
+    <string name="vinculo_familiar">Vinculo</string>
+    <string name="nucleo_familiar">Núcleo</string>
+
 </resources>
