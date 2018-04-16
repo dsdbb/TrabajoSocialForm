@@ -70,11 +70,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/layout3" />
 
+            <include layout="@layout/checkboxes_ocupacion"
+                android:id="@+id/panel_ocupacion_cb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/layout3" />
+
+            <include layout="@layout/checkboxes_ingresos"
+                android:id="@+id/panel_ingresos_cb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/panel_ocupacion_cb" />
+
+            <include layout="@layout/checkboxes_salud"
+                android:id="@+id/panel_salud_cb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/panel_ingresos_cb" />
+
             <include layout="@layout/checkboxes_caracteristicas_vivienda"
                 android:id="@+id/layout5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/layout4" />
+                app:layout_constraintTop_toTopOf="@id/panel_salud_cb" />
 
             <include layout="@layout/checkboxes_situacion_habitacional"
                 android:id="@+id/layout6"

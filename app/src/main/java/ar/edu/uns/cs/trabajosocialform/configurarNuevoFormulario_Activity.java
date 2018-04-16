@@ -81,6 +81,7 @@ public class configurarNuevoFormulario_Activity extends AppCompatActivity {
 
         /*Almaceno el archivo JSON de configuracion en el almacenamiento interno de la aplicación*/
         String json = (new Gson()).toJson(conf);
+        Log.i("JSON: ",json);
         String filename = "config.txt";
         File file = new File(this.getFilesDir(), filename);
         FileOutputStream outputStream;
@@ -141,6 +142,23 @@ public class configurarNuevoFormulario_Activity extends AppCompatActivity {
                 case "vinculo_gf":conf.getDatos_grupo_familiar().setVinculo(true);break;
                 case "educacion_gf":conf.getDatos_grupo_familiar().setEducacion(true);break;
                 case "nucleo_gf":conf.getDatos_grupo_familiar().setNucleo(true);break;
+                    /*Ocupacion*/
+                    case "condicion_actividad_cb":conf.getDatos_grupo_familiar().getDatos_ocupacion().setCondicion_de_actividad(true);
+                    case "puesto_trabajo_cb":conf.getDatos_grupo_familiar().getDatos_ocupacion().setPuesto_de_trabajo(true);
+                    case "aporte_jubilatorio_cb":conf.getDatos_grupo_familiar().getDatos_ocupacion().setAporte_jubilatorio(true);
+                    case "duracion_empleo_cb":conf.getDatos_grupo_familiar().getDatos_ocupacion().setDuracion(true);
+                    case "tipo_actividad_cb":conf.getDatos_grupo_familiar().getDatos_ocupacion().setTipo_de_actividad(true);
+                    case "calificacion_cb":conf.getDatos_grupo_familiar().getDatos_ocupacion().setCalificacion(true);
+                    /*Ingresos*/
+                    case "ingresos_laborales_cb":conf.getDatos_grupo_familiar().getDatos_ingresos().setIngresos_laborales(true);
+                    case "ingresos_no_laborales_cb":conf.getDatos_grupo_familiar().getDatos_ingresos().setIngresos_no_laborales(true);
+                    case "programas_sociales_sti_cb":conf.getDatos_grupo_familiar().getDatos_ingresos().setPrograma_sociales_sti(true);
+                    /*Salud*/
+                    case "cobertura_cb":conf.getDatos_grupo_familiar().getDatos_salud().setCobertura(true);
+                    case "embarazo_cb":conf.getDatos_grupo_familiar().getDatos_salud().setEmbarazo(true);
+                    case "discapacidad_cb":conf.getDatos_grupo_familiar().getDatos_salud().setDiscapacidad(true);
+                    case "enfermedad_cronica_cb":conf.getDatos_grupo_familiar().getDatos_salud().setEnfermedad_cronica(true);
+                    case "independencia_funcional_cb":conf.getDatos_grupo_familiar().getDatos_salud().setIndependencia_funcional(true);
                 /*Checkboxes relacionados a la vivienda*/
                 case "banio_caracteristicas":conf.getDatos_caracteristicas_vivienda().setBanio(true);break;
                 case "paredes_caracteristicas":conf.getDatos_caracteristicas_vivienda().setParedes(true);break;

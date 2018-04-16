@@ -36,9 +36,22 @@
 
             <include
                 android:id="@+id/panel_datos_generales_familiar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 layout="@layout/gf_datos_generales"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_ocupacion_familiar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                layout="@layout/gf_ocupacion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/panel_datos_generales_familiar" />
 
             <Button
                 android:id="@+id/siguiente_button"

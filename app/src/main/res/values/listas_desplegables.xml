@@ -1,9 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="sexo_familiar">
+    <string-array name="sexo_familiar_opciones">
         <item>Masculino</item>
         <item>Femenino</item>
     </string-array>
+    <string-array name="nacionalidad_familiar_opciones">
+        <item>Argentino</item>
+        <item>Extranjero</item>
+    </string-array>
+    <string-array name="tipo_doc_opciones">
+        <item>DNI</item>
+        <item>LE</item>
+        <item>LC</item>
+        <item>CI</item>
+        <item>PAS</item>
+        <item>Otro</item>
+        <item>RUN</item>
+        <item>Indocumentado</item>
+        <item>En trámite</item>
+    </string-array>
+    <string-array name="condicion_actividad_opciones">
+        <item>Ocupado</item>
+        <item>Desocupado</item>
+        <item>Inactivo</item>
+    </string-array>
     
+    <string-array name="puesto_trabajo_opciones">
+        <item>Beneficiario de programa de empleo</item>
+        <item>Patrón o empleador</item>
+        <item>Trabajador por cuenta propia</item>
+        <item>Obrero o Empleado del Sector Privado</item>
+        <item>Obrero o Empleado del Sector Público</item>
+        <item>Trabajador sin salario o pago en Especie</item>
+    </string-array>
+    
+    <string-array name="aportes_jubilatorios_opciones">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="duracion_empleo_opciones">
+        <item>Permanente/fijo</item>
+        <item>Temporario</item>
+        <item>Changas</item>
+        <item>Duracion desconocida</item>
+    </string-array>
+    
+    <string-array name="tipo_actividad_opciones">
+        <item>No trabajé</item>
+        <item>Comercialización directa</item>
+        <item>Comercialización ambulante</item>
+        <item>Transporte</item>
+        <item>Telecomunicaciones</item>
+        <item>Salud</item>
+        <item>Servicios político, gremiales y religiosos</item>
+        <item>Servicios de vigilancia y seguiridad civil</item>
+        <item>Servicios policiales y de las Fuerzas Armadas</item>
+        <item>Servicio del Arte/Deporte/Turismo/Recreación</item>
+        <item>Servicio Doméstico</item>
+        <item>Limpieza no domésticos</item>
+        <item>Servicios del cuidado de personas</item>
+        <item>Producción agrícola-ganadera</item>
+        <item>Producción pesquera</item>
+        <item>Construcción</item>
+        <item>Servicios gastronómicos</item>
+        <item>Educación</item>
+        <item>Producción industrial</item>
+        <item>Instalación y mantenimiento de maquinarias, equipos y sistemas de producción de bienes</item>
+        <item>Reparación de bienes de consumos</item>
+        <item>Administrativo</item>
+    </string-array>
+    
+    <string-array name="calificacion_opciones">
+        <item>No calificada</item>
+        <item>Calificación profesional</item>
+        <item>Calificación técnica</item>
+        <item>Calificación operativa</item>
+    </string-array>
+
+    <string-array name="ingresos_no_laborales_opciones">
+        <item></item>
+
+
+    </string-array>
+
+
     
 </resources>

@@ -147,8 +147,11 @@
 
 
     <!-- OPCIONES GRUPO FAMILIAR CONVIVIENTE -->
+
+    <!-- Datos generales-->
     <string name="titulo_grupo_familiar">Grupo familiar conviviente</string>
     <string name="titulo_nuevo_familiar">Nuevo Familiar</string>
+    <string name="titulo_datos_generales_familiar">Datos Generales</string>
     <string name="nombre_familiar">Nombre</string>
     <string name="apellido_familiar">Apellido</string>
     <string name="sexo_familiar">Sexo</string>
@@ -159,5 +162,12 @@
     <string name="estado_civil_familiar">Estado Civil</string>
     <string name="vinculo_familiar">Vinculo</string>
     <string name="nucleo_familiar">Núcleo</string>
+
+    <string name="titulo_ocupacion_familiar">Datos de la ocupación</string>
+    <string name="titulo_ingresos_familiar">Datos de Ingresos</string>
+    <string name="titulo_salud_familiar">Datos de Salud</string>
+
+
+
 
 </resources>

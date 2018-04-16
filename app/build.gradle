@@ -19,7 +19,24 @@ android {
     lintOptions {
         disable "ResourceType"
     }
-
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layouts/activity_layouts',
+                            'src/main/res/layouts/apoderado',
+                            'src/main/res/layouts/caracteristicas_vivienda',
+                            'src/main/res/layouts/domicilio',
+                            'src/main/res/layouts/extras',
+                            'src/main/res/layouts/grupo_familiar',
+                            'src/main/res/layouts/infraestructura_barrial',
+                            'src/main/res/layouts/situacion_habitacional',
+                            'src/main/res/layouts/solicitante',
+                            'src/main/res/layouts',
+                            'src/main/res'
+                    ]
+        }
+    }
 }
 
 dependencies {
