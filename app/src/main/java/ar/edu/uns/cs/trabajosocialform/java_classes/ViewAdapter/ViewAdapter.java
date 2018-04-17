@@ -1,8 +1,6 @@
-package ar.edu.uns.cs.trabajosocialform.ViewAdapter;
+package ar.edu.uns.cs.trabajosocialform.java_classes.ViewAdapter;
 
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
 import android.view.View;
 
 import ar.edu.uns.cs.trabajosocialform.R;

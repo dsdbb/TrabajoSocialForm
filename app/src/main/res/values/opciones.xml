@@ -167,7 +167,10 @@
     <string name="titulo_ingresos_familiar">Datos de Ingresos</string>
     <string name="titulo_salud_familiar">Datos de Salud</string>
 
-
+    <!-- Ingresos no laborales-->
+    <string name="titulo_ingreso_no_laboral">Ingresos no laborales</string>
+    <string name="origen_ingreso_no_laboral">Origen</string>
+    <string name="monto_ingreso_no_laboral">Monto</string>
 
 
 </resources>

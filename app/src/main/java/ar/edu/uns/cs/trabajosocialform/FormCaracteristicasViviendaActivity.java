@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
+import ar.edu.uns.cs.trabajosocialform.java_classes.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Configuracion;
 
 public class FormCaracteristicasViviendaActivity extends AppCompatActivity {

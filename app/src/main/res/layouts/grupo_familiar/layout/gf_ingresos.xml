@@ -10,10 +10,11 @@
         android:id="@+id/titulo_ingresos_familiar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/titulo_ingresos_familiar"/>
+        android:text="@string/titulo_ingresos_familiar"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_ingresos_laborales_familiar"
+        android:id="@+id/panel_ingresos_laborales"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -40,5 +41,49 @@
             app:layout_constraintEnd_toStartOf="@+id/ingresos_laborales_et"
             app:layout_constraintStart_toStartOf="parent" />
     </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/panel_ingresos_no_laborales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/panel_ingresos_laborales">
+
+        <ImageButton
+            android:id="@+id/nuevo_ingreso_no_laboral_btn"
+            android:layout_width="19dp"
+            android:layout_height="23dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/rounded_button"
+            android:contentDescription="plus_button"
+            android:onClick="nuevoIngresoNoLaboral"
+            android:scaleType="fitCenter"
+            android:src="@drawable/plus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ingresos_no_laborales_tv" />
+
+        <TextView
+            android:id="@+id/ingresos_no_laborales_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/ingresos_no_laborales"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/panel_nuevo_ingreso_no_laboral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/ingresos_no_laborales_tv">
+
+
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

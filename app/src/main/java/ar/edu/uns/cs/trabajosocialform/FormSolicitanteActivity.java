@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
+import ar.edu.uns.cs.trabajosocialform.java_classes.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Configuracion;
 
 public class FormSolicitanteActivity extends AppCompatActivity {
@@ -38,6 +38,11 @@ public class FormSolicitanteActivity extends AppCompatActivity {
         intent.putExtra("CONFIG",bundle);
         startActivity(intent);
     }
+
+    private void tomarDatos(){
+
+    }
+
 
     private Configuracion getConfigurationFile(){
         try
