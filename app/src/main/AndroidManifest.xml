@@ -24,7 +24,8 @@
         <activity android:name=".FormCaracteristicasViviendaActivity" />
         <activity android:name=".FormInfraestructuraBarrialActivity" />
         <activity android:name=".FormGrupoFamiliarActivity" />
-        <activity android:name=".NuevoFamiliarActivity"></activity>
+        <activity android:name=".NuevoFamiliarActivity" />
+        <activity android:name=".FormularioActivity"></activity>
     </application>
 
 </manifest>

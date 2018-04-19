@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,43 +7,86 @@
     tools:context="ar.edu.uns.cs.trabajosocialform.FormularioActivity">
 
 
-  <android.support.constraint.ConstraintLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/titulo_formulario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/titulo_formulario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
+    <!-- NOMBRE -->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/panel_nombre_entrevistador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_formulario" >
+
+        <EditText
+            android:id="@+id/nombre_entrevistador_et"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:fillViewport="true"
-            android:scrollbarStyle="outsideInset">
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-            <LinearLayout
-                android:id="@+id/content_formulario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/nombre_etrevistador_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/nombre_entrevistador"
+            app:layout_constraintBaseline_toBaselineOf="@+id/nombre_entrevistador_et"
+            app:layout_constraintEnd_toStartOf="@+id/nombre_entrevistador_et"
+            app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout >
 
+    <!-- APELLIDO -->
 
-            </LinearLayout>
-        </ScrollView>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/panel_apellido_entrevistador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/panel_nombre_entrevistador" >
 
-      <Button
-          android:id="@+id/siguiente_button"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="8dp"
-          android:onClick="continuar"
-          android:text="Siguiente"
-          app:layout_constraintEnd_toEndOf="parent" />
+        <EditText
+            android:id="@+id/apellido_entrevistador_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-  </android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/apellido_entrevistador_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apellido_entrevistador"
+            app:layout_constraintBaseline_toBaselineOf="@+id/apellido_entrevistador_et"
+            app:layout_constraintEnd_toStartOf="@+id/apellido_entrevistador_et"
+            app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
-
-
+    <Button
+        android:id="@+id/siguiente_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:onClick="continuar"
+        android:text="Siguiente"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

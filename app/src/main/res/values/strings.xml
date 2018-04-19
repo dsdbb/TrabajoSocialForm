@@ -5,6 +5,12 @@
     <string name="crearFormulario_button">Crear nuevo formulario</string>
     <string name="seleccionarFormulario_button">Nueva Entrada (antes seleccionar)</string>
 
+    <!-- String para datos generales -->
+    <string name="titulo_formulario">Nuevo Formulario</string>
+    <string name="nombre_entrevistador">Nombre Entrevistador</string>
+    <string name="apellido_entrevistador">Apellido Entrevistador</string>
+
+
     <!-- Strings para datos del solicitante -->
     <string name="titulo_solicitante">Datos del solicitante</string>
     <string name="nombres_solicitante">Nombres</string>
