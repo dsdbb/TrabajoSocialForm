@@ -1,38 +1,40 @@
 package ar.edu.uns.cs.trabajosocialform;
 
-import android.app.DatePickerDialog;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import ar.edu.uns.cs.trabajosocialform.fragments.DatePickerFragment;
-import ar.edu.uns.cs.trabajosocialform.java_classes.DataModel.Apoderado;
-import ar.edu.uns.cs.trabajosocialform.java_classes.DataModel.Solicitante;
-import ar.edu.uns.cs.trabajosocialform.java_classes.ViewAdapter.ViewAdapter;
-import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Configuracion;
-import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Datos_apoderado;
-import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Datos_solicitante;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Apoderado;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
+import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
+import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
+import ar.edu.uns.cs.trabajosocialform.configuracion.Datos_apoderado;
 
 public class FormApoderadoActivity extends AppCompatActivity {
 
     private Bundle bundle;
+    private Formulario form;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_apoderado);
 
+        inicializarGui();
+
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
-        this.bundle = bundle;
+        form = (Formulario)intent.getSerializableExtra("FORM");
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
 
         ViewAdapter va = new ViewAdapter(config,this);
@@ -42,32 +44,30 @@ public class FormApoderadoActivity extends AppCompatActivity {
 
     public void continuar(View view){
         Intent intent = new Intent(this,FormDomicilioActivity.class);
-        tomarDatos();
+        Apoderado apoderado = tomarDatos();
+        form.setApoderado(apoderado);
         intent.putExtra("CONFIG",bundle);
+        intent.putExtra("FORM",form);
         startActivity(intent);
+        finish();
     }
 
-    private void tomarDatos(){
+    private Apoderado tomarDatos(){
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
         Datos_apoderado datos = config.getDatos_apoderado();
+        Utils utils = new Utils(this);
 
-        EditText nombreEt = (EditText) findViewById(R.id.nombres_apoderado_form_et);
-        EditText apellidoEt = (EditText) findViewById(R.id.apellidos_apoderado_form_et);
-        EditText cuilEt = (EditText) findViewById(R.id.cuil_apoderado_form_et);
-        EditText telefonoEt = (EditText) findViewById(R.id.telefonoPrincipal_apoderado_form_et);
-        EditText fechaNacEt = (EditText) findViewById(R.id.fecha_nac_apoderado_form_et);
-        EditText motivosPoderEt = (EditText) findViewById(R.id.motivosDePoder_apoderado_form_et);
+        String nombre = utils.getDataTvEt(R.id.panel_nombres_apoderado);
+        String apellido = utils.getDataTvEt(R.id.panel_apellidos_apoderado);
+        String cuilS = utils.getDataTvEt(R.id.panel_cuil_apoderado);
+        String telefono = utils.getDataTvEt(R.id.panel_telefono_principal_apoderado);
+        String fechaNacimiento = utils.getDataTvEt(R.id.panel_fecha_nacimiento_apoderado);
+        String motivosPoder = utils.getDataTvEt(R.id.panel_motivos_poder_apoderado);
 
-        String nombre = nombreEt.getText().toString();
-        String apellido = apellidoEt.getText().toString();
         Integer cuil=null;
+        if(!cuilS.equals(""))
+            cuil = Integer.parseInt(cuilS);
 
-        if(!cuilEt.getText().toString().equals(""))
-            cuil = Integer.parseInt(cuilEt.getText().toString());
-
-
-        String telefono = telefonoEt.getText().toString();
-        String fechaNacimiento = fechaNacEt.getText().toString();
         Date fecha=null;
         if(!fechaNacimiento.equals("")){
             SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
@@ -78,24 +78,28 @@ public class FormApoderadoActivity extends AppCompatActivity {
             }
 
         }
-        String motivosPoder = motivosPoderEt.getText().toString();
 
         Apoderado apoderado = new Apoderado(nombre,apellido,cuil,telefono,fecha,motivosPoder);
 
+        return apoderado;
 
     }
 
     public void elegirFecha(View view){
-        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                String mes = String.format("%02d",month+1);
-                String dia = String.format("%02d",day);
-                // +1 because january is zero
-                final String selectedDate = dia + " / " + mes + " / " + year;
-                ((EditText)findViewById(R.id.fecha_nac_apoderado_form_et)).setText(selectedDate);
-            }
-        });
-        newFragment.show(getFragmentManager(), "datePicker");
+        Utils.getFecha(this);
     }
+
+    private void inicializarGui(){
+        Utils utils = new Utils(this);
+        utils.setValuesTvEt(R.string.nombres_apoderado,R.id.panel_nombres_apoderado);
+        utils.setValuesTvEt(R.string.apellidos_apoderado,R.id.panel_apellidos_apoderado);
+        utils.setValuesTvEt(R.string.cuil_apoderado,R.id.panel_cuil_apoderado);
+        utils.setValuesTvEt(R.string.telefono_apoderado,R.id.panel_telefono_principal_apoderado);
+        utils.setValuesTvEt(R.string.fecha_nac_apoderado,R.id.panel_fecha_nacimiento_apoderado);
+        utils.setValuesTvEt(R.string.motivos_de_poder, R.id.panel_motivos_poder_apoderado);
+
+        utils.addDateListener(R.id.panel_fecha_nacimiento_apoderado);
+
+    }
+
 }

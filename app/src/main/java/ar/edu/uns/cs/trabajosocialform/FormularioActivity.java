@@ -5,14 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import ar.edu.uns.cs.trabajosocialform.java_classes.ViewAdapter.ViewAdapter;
-import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Configuracion;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
 public class FormularioActivity extends AppCompatActivity {
 
@@ -33,9 +34,23 @@ public class FormularioActivity extends AppCompatActivity {
     }
 
     public void continuar(View view){
+        Formulario form = tomarDatos();
         Intent intent = new Intent(this,FormSolicitanteActivity.class);
         intent.putExtra("CONFIG",bundle);
+        intent.putExtra("FORM",form);
         startActivity(intent);
+        finish();
+    }
+
+    public Formulario tomarDatos(){
+        String nombre = ((EditText)findViewById(R.id.nombre_entrevistador_et)).getText().toString();
+        String apellido = ((EditText)findViewById(R.id.apellido_entrevistador_et)).getText().toString();
+
+        Formulario form = new Formulario();
+        form.setNombreEntrevistador(nombre);
+        form.setApellidoEntrevistador(apellido);
+
+        return form;
     }
 
     private Configuracion getConfigurationFile(){

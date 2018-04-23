@@ -11,12 +11,10 @@ import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStreamReader;
 
-import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Configuracion;
+import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
 public class configurarNuevoFormulario_Activity extends AppCompatActivity {
 
@@ -126,6 +124,7 @@ public class configurarNuevoFormulario_Activity extends AppCompatActivity {
                 case "manzana":conf.getDatos_domicilio().setManzana(true);break;
                 case "monoblock_torre":conf.getDatos_domicilio().setMonoblock_torre(true);break;
                 case "piso":conf.getDatos_domicilio().setPiso(true);break;
+                case "casa_depto":conf.getDatos_domicilio().setCasa_dpto(true);
                 case "entre_calles":conf.getDatos_domicilio().setEntre_calles(true);break;
                 case "barrio":conf.getDatos_domicilio().setBarrio(true);break;
                 case "localidad":conf.getDatos_domicilio().setLocalidad(true);break;

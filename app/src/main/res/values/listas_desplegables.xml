@@ -4,10 +4,12 @@
         <item>Masculino</item>
         <item>Femenino</item>
     </string-array>
+
     <string-array name="nacionalidad_familiar_opciones">
         <item>Argentino</item>
         <item>Extranjero</item>
     </string-array>
+
     <string-array name="tipo_doc_opciones">
         <item>DNI</item>
         <item>LE</item>
@@ -19,6 +21,42 @@
         <item>Indocumentado</item>
         <item>En trámite</item>
     </string-array>
+
+    <string-array name="estado_civil_opciones">
+        <item>Soltero/a</item>
+        <item>Casado/a</item>
+        <item>Divorciado/a</item>
+        <item>Viudo/a</item>
+        <item>Unido/a de derecho</item>
+        <item>Separado/a</item>
+    </string-array>
+    
+    <string-array name="vinculo_opciones">
+        <item>Titular</item>
+        <item>Cónyugue/Pareja</item>
+        <item>Hijo/a</item>
+        <item>Padre/Madre</item>
+        <item>Hermano/a</item>
+        <item>Hijastro/a</item>
+        <item>Padrastro/Madrastra</item>
+        <item>Nieto/a</item>
+        <item>Abuelo/a</item>
+        <item>Suegro/a</item>
+        <item>Yerno/Nuera</item>
+        <item>Cuñado/a</item>
+        <item>Sobrino/a</item>
+        <item>Tio/a</item>
+        <item>Primo/a</item>
+        <item>Otro pariente</item>
+        <item>Otro no pariente</item>
+    </string-array>
+
+    <string-array name="nucleo_opciones">
+        <item>Principal</item>
+        <item>Secundario</item>
+        <item>Terciario</item>
+    </string-array>
+    
     <string-array name="condicion_actividad_opciones">
         <item>Ocupado</item>
         <item>Desocupado</item>
@@ -79,11 +117,134 @@
     </string-array>
 
     <string-array name="ingresos_no_laborales_opciones">
-        <item></item>
+        <item>Plan más vida</item>
+        <item>Protegiendo la niñez</item>
+        <item>PRENOM</item>
+        <item>SATE (Vale 3° edad)</item>
+        <item>Seguro de capacitación y empleo</item>
+        <item>Becas de estudio</item>
+        <item>Pensión Grabable/No contributiva</item>
+        <item>Seguro de Desempleo</item>
+        <item>Jubilación/Pensión contributiva</item>
+        <item>Cuota alimentaria</item>
+        <item>Tarjeta Social</item>
+        <item>Ayuda económica de Servicio Social</item>
+        <item>Ayuda económica de niñez</item>
+        <item>Ayuda económica de salud</item>
+        <item>Pensión de Ex-Combatientes</item>
+        <item>Subsidio por unica vez</item>
+        <item>Asignación Universal por hijo</item>
+        <item>Programa Envión</item>
+        <item>Voluntariado Social</item>
+        <item>Microcreditos Economía Social</item>
+        <item>Programa jóvenes con más y mejor trabajo</item>
+        <item>Alquiler/Rentas/Intereses</item>
+        <item>Aportes habituales de otras personas</item>
+        <item>Tarjetas de celíacos (Visa Vale)</item>
+        <item>Ayuda económica PAMI</item>
+        <item>Tarjeta Nación</item>
+        <item>Otro programa con transferencia de ingresos</item>
+    </string-array>
 
+    <string-array name="programas_sociales_sti_opciones">
+        <item>Garrafa Social</item>
+        <item>Pro-Bienestar</item>
+        <item>Comedor Escolar</item>
+        <item>Servicios Alimentarios Comunitarios</item>
+        <item>Jardín maternal municipal</item>
+        <item>Bolsón de emergencia</item>
+        <item>Tarifa de interés social</item>
+        <item>Fondo rotativo de materiales</item>
+        <item>Plan viviendas y Tierras</item>
+        <item>Plan Sumar (Ex-Nacer)</item>
+        <item>Bienes de usos y servicios</item>
+        <item>Mamás cuidadoras</item>
+        <item>Centro de día/tránsito</item>
+        <item>Servicio de prevención de la violencia familair</item>
+        <item>Servicio local de protección de derechos</item>
+        <item>Centro de Prevención de Adicciones (CPA)</item>
+        <item>Cáritas, ABC u organización de carácter religioso</item>
+        <item>Organización barrial</item>
+        <item>Otro programa sin transferencia de ingresos</item>
+    </string-array>
 
+    <string-array name="cobertura_opciones">
+        <item>Obra social</item>
+        <item>Mutual o prepaga</item>
+        <item>Planes o seguros sociales</item>
+        <item>Servicio de emergencia</item>
+        <item>Ninguna</item>
+    </string-array>
+
+    <string-array name="independencia_funcional_opciones">
+        <item>Independiente</item>
+        <item>Dependencia parcial</item>
+        <item>Dependencia total</item>
+    </string-array>
+
+    <string-array name="discapacidad_opciones">
+        <item>Mental</item>
+        <item>Motora</item>
+        <item>Sensorial (ciego,sordo,mudo)</item>
+        <item>Visceral (renal,cardíaca)</item>
+        <item>No tiene discapacidad</item>
+    </string-array>
+
+    <string-array name="enfermedad_cronica_opciones">
+        <item>Artrosis</item>
+        <item>Osteoporosis</item>
+        <item>Reuma</item>
+        <item>Celiaquía</item>
+        <item>Respiratoria</item>
+        <item>Renal</item>
+        <item>Diabetes</item>
+        <item>Cardíaca</item>
+        <item>Hipertensión</item>
+        <item>Cáncer</item>
+        <item>Enf. Autoinmunes</item>
+        <item>Mentales</item>
+        <item>Inmunodeficiencia</item>
+        <item>Infecciosas/Parasitarias</item>
+        <item>Obesidad mórbida</item>
+        <item>Alergia</item>
+        <item>Otras</item>
+    </string-array>
+
+    <string-array name="nivel_educativo_opciones">
+        <item>Nivel Inicial: Jardín o preescolar (Completo)</item>
+        <item>Nivel Inicial: Jardín o preescolar (Incompleto)</item>
+        <item>Nivel Inicial: Jardín o preescolar (Cursando)</item>
+        <item>Nivel Primario: Primariia, EGB 1 y 2 o Escuela Primaria Básica(Completo)</item>
+        <item>Nivel Primario: Primariia, EGB 1 y 2 o Escuela Primaria Básica(Incompleto)</item>
+        <item>Nivel Primario: Primariia, EGB 1 y 2 o Escuela Primaria Básica(Cursando)</item>
+        <item>Nivel Secundario, EGB 3 y polimodal o Escuela Secundaria número(Completo)</item>
+        <item>Nivel Secundario, EGB 3 y polimodal o Escuela Secundaria número(Incompleto)</item>
+        <item>Nivel Secundario, EGB 3 y polimodal o Escuela Secundaria número(Cursando)</item>
+        <item>Nivel terciario, educación superior no universitaria (Completo)</item>
+        <item>Nivel terciario, educacion superior no universitaria (Incompleto)</item>
+        <item>Nivel terciario, educacion superior no universitaria (Cursando)</item>
+        <item>Nivel universitario, educación superior universitaria(Completo)</item>
+        <item>Nivel universitario, educación superior universitaria(Incompleto)</item>
+        <item>Nivel universitario, educación superior universitaria(Cursando)</item>
+        <item>Centro de Alfabetización</item>
+        <item>Centro de atención temprana</item>
+        <item>Escuela especial</item>
+        <item>Analfabeto</item>
+        <item>Nunca asistió</item>
+    </string-array>
+
+    <string-array name="capacitacion_opciones">
+        <item>Nunca asistió</item>
+        <item>Capacidades básicas(PC,Inglés,Administración,Secretariados)</item>
+        <item>Oficios varios(Carpintería, albañilería, automóviles)</item>
+        <item>Oficios con Matrícula (Gasista, Electricista)</item>
+    </string-array>
+
+    <string-array name="asistencia_capacitacion_opciones">
+        <item>Nunca asistió</item>
+        <item>Asistió</item>
+        <item>No asiste pero asistió</item>
     </string-array>
 
 
-    
 </resources>

@@ -75,6 +75,28 @@
         app:layout_constraintTop_toBottomOf="@+id/monoblock_torre" />
 
     <CheckBox
+        android:id="@+id/acc_int"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/acc_int"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/piso" />
+
+    <CheckBox
+        android:id="@+id/casa_depto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/casa_dpto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acc_int" />
+
+    <CheckBox
         android:id="@+id/entre_calles"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -83,7 +105,7 @@
         android:text="@string/entre_calles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/piso" />
+        app:layout_constraintTop_toBottomOf="@+id/casa_depto" />
 
     <CheckBox
         android:id="@+id/barrio"
@@ -118,15 +140,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/localidad" />
 
-    <CheckBox
-        android:id="@+id/acc_int"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/acc_int"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delegacion" />
+
 
 </android.support.constraint.ConstraintLayout>

@@ -3,23 +3,19 @@ package ar.edu.uns.cs.trabajosocialform;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
-import ar.edu.uns.cs.trabajosocialform.java_classes.DataModel.Solicitante;
-import ar.edu.uns.cs.trabajosocialform.java_classes.ViewAdapter.ViewAdapter;
-import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Configuracion;
-import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Datos_solicitante;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
+import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
+import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
+import ar.edu.uns.cs.trabajosocialform.configuracion.Datos_solicitante;
 
 public class FormSolicitanteActivity extends AppCompatActivity {
 
     private Bundle bundle;
+    private Formulario form;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +24,7 @@ public class FormSolicitanteActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
-        this.bundle = bundle;
+        form = (Formulario)intent.getSerializableExtra("FORM");
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
 
         ViewAdapter va = new ViewAdapter(config,this);
@@ -38,13 +34,16 @@ public class FormSolicitanteActivity extends AppCompatActivity {
 
 
     public void continuar(View view){
-        tomarDatos();
+        Solicitante solicitante = tomarDatos();
+        form.setSolicitante(solicitante);
         Intent intent = new Intent(this,FormApoderadoActivity.class);
         intent.putExtra("CONFIG",bundle);
+        intent.putExtra("FORM",form);
         startActivity(intent);
+        finish();
     }
 
-    private void tomarDatos(){
+    private Solicitante tomarDatos(){
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
         Datos_solicitante datos = config.getDatos_solicitante();
 
@@ -66,7 +65,12 @@ public class FormSolicitanteActivity extends AppCompatActivity {
         String otroTelefono = otroTelefonoEt.getText().toString();
 
         Solicitante solicitante = new Solicitante(nombre,apellido,cuil,telefono,otroTelefono);
+
+        return solicitante;
+
     }
+
+
 
 
 

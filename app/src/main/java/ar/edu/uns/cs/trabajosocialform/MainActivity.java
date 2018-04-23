@@ -3,16 +3,7 @@ package ar.edu.uns.cs.trabajosocialform;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Configuracion;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,5 +22,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,FormularioActivity.class);
         startActivity(intent);
     }
-
 }

@@ -28,7 +28,7 @@
 
         <EditText
             android:id="@+id/nombre_entrevistador_et"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="15dp"
@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/nombre_etrevistador_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -58,7 +58,7 @@
 
         <EditText
             android:id="@+id/apellido_entrevistador_et"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:ems="10"
@@ -67,8 +67,10 @@
 
         <TextView
             android:id="@+id/apellido_entrevistador_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:text="@string/apellido_entrevistador"
             app:layout_constraintBaseline_toBaselineOf="@+id/apellido_entrevistador_et"
             app:layout_constraintEnd_toStartOf="@+id/apellido_entrevistador_et"

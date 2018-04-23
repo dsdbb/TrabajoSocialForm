@@ -1,149 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Strings para las opciones del tipo de vivienda-->
-
-    <string name="titulo_tv">Tipo de vivienda</string>
-    <string name="tv_casa">Casa</string>
-    <string name="tv_depto">Departamento</string>
-    <string name="tv_pieza_inquilinato">Pieza en inquilinato</string>
-    <string name="tv_hotel_pension">Hotel o Pensión</string>
-    <string name="tv_local">Local no construido para habitación</string>
-    <string name="tv_otros">Otros (vehiculos,etc)</string>
-    <string name="tv_calle">En la calle</string>
-
+    <string name="titulo_tipo_vivienda">Tipo de vivienda</string>
+    <string-array name="tipo_vivienda_opciones">
+        <item>Casa</item>
+        <item>Departamento</item>
+        <item>Pieza en inquilinato</item>
+        <item>Hotel o Pensión</item>
+        <item>Local no construido para habitación</item>
+        <item>Otros (vehículos, etc)</item>
+        <item>En la calle</item>
+    </string-array>
 
     <!-- Strings para las opciones de la tenencia de vivienda o terreno -->
-
-    <string name="titulo_tvt">Tenencia de vivienda y terreno</string>
-    <string name="tvt_propietario_todo">Propietario de la vivienda y el terreno</string>
-    <string name="tvt_inquilino">Inquilino</string>
-    <string name="tvt_propietario_vivienda">Propietario de la vivienda solamente</string>
-    <string name="tvt_cedida_trabajo">Cedida por trabajo</string>
-    <string name="tvt_prestada">Cedida/Prestada</string>
-    <string name="tvt_ocupada_de_hecho">Ocupada de hecho</string>
-    <string name="tvt_calle">En la calle</string>
-
+    <string name="titulo_tenencia_vivienda_terreno">Tenencia de vivienda y terreno</string>
+    <string-array name="tenencia_vivienda_terreno_opciones">
+        <item>Propietario de la vivienda y el terreno</item>
+        <item>Inquilino</item>
+        <item>Propietario de la vivienda solamente</item>
+        <item>Cedida por trabajo</item>
+        <item>Prestada</item>
+        <item>Ocupada de hecho</item>
+        <item>En la calle</item>
+    </string-array>
 
     <!--Resto de Strings de Situacion habitacional-->
-    <string name="tiempo_ocupacion">Tiempo de ocupacion</string>
-    <string name="cantidad_hogares_vivienda">Cantidad de hogares en la vivienda</string>
-    <string name="cantidad_cuartos_UE">Cantidad de cuartos de uso exclusivo</string>
+    <string name="titulo_tiempo_ocupacion">Tiempo de ocupacion</string>
+    <string name="titulo_cantidad_hogares_vivienda">Cantidad de hogares en la vivienda</string>
+    <string name="titulo_cantidad_cuartos_UE">Cantidad de cuartos de uso exclusivo</string>
 
     <!--Strings para CARACTERISTICAS DE LA VIVIENDA-->
 
     <!--Techo-->
     <string name="titulo_techo">La cubierta exterior del techo es de...</string>
-    <string name="opc1_techo">Membrana, cubierta asfáltica</string>
-    <string name="opc2_techo">Baldosa, losa, sin cubierta</string>
-    <string name="opc3_techo">Pizarra, teja</string>
-    <string name="opc4_techo">Chapa de metal sin cubierta</string>
-    <string name="opc5_techo">Chapa de fibrocemento, plastico</string>
-    <string name="opc6_techo">Chapa de cartón</string>
-    <string name="opc7_techo">Caña,tabla,paja con barro, paja sola, lona</string>
-    <string name="opc8_techo">No corresponde/dpto. en prop. horizontal</string>
+
+    <string-array name="techo_opciones">
+        <item>Membrana, cubierta asfáltica</item>
+        <item>Baldosa, losa, sin cubierta</item>
+        <item>Pizarra, teja</item>
+        <item>Chapa de metal sin cubierta</item>
+        <item>Chapa de fibrocemento, plastico</item>
+        <item>Chapa de cartón</item>
+        <item>Caña,tabla,paja con barro, paja sola, lona</item>
+        <item>No corresponde/dpto. en prop. horizontal</item>
+    </string-array>
+
 
     <string name="titulo_revestimiento_techo">¿Tiene cielorrazo y/o revestimiento interior?</string>
-    <string name="opc1_revestimiento_techo">Si</string>
-    <string name="opc2_revestimiento_techo">No</string>
+    <string-array name="revestimiento_techo_opciones">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
 
     <!-- Paredes -->
     <string name="titulo_paredes">Material predominante en paredes exteriores</string>
-    <string name="opc1_pared">Ladrillo, bloque u hormigon</string>
-    <string name="opc2_pared">Adobe</string>
-    <string name="opc3_pared">Madera</string>
-    <string name="opc4_pared">Chapa de metal o fibrocemento</string>
-    <string name="opc5_pared">Carton o material de desecho</string>
-    <string name="opc6_pared">No corresponde/otro</string>
+    <string-array name="paredes_opciones">
+        <item>Ladrillo, bloque u hormigón</item>
+        <item>Adobe</item>
+        <item>Madera</item>
+        <item>Chapa de metal o fibrocemento</item>
+        <item>Cartón o material de desecho</item>
+        <item>No corresponde/otro</item>
+    </string-array>
+
 
     <string name="titulo_revestimiento_pared">¿Las paredes tienen revestimiento o revoque?</string>
-    <string name="opc1_revestimiento_pared">Si</string>
-    <string name="opc2_revestimiento_pared">No</string>
+    <string-array name="revestimiento_pared_opciones">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
 
     <!-- Pisos -->
     <string name="titulo_pisos">Material predominante en pisos (es el material mas frecuente)</string>
-    <string name="opc1_piso">Baldosa, cerámico, madera, marmol, alfombra</string>
-    <string name="opc2_piso">Cemento o ladrillo fijo</string>
-    <string name="opc3_piso">Tierra o ladrillos sueltos</string>
-    <string name="opc4_piso">No corresponde/ otro</string>
+    <string-array name="pisos_opciones">
+        <item>Baldosa, cerámico, madera, marmol, alfombra</item>
+        <item>Cemento o ladrillo fijo</item>
+        <item>Tierra o ladrillos sueltos</item>
+        <item>No corresponde/ otro</item>
+    </string-array>
+
 
     <!-- Agua -->
     <string name="titulo_agua">Tiene agua...</string>
-    <string name="opc1_agua">Por cañería dentro de la vivienda</string>
-    <string name="opc2_agua">Fuera de la vivienda, dentro del terreno</string>
-    <string name="opc3_agua">Fuera del terreno</string>
+    <string-array name="agua_opciones">
+        <item>Por cañería dentro de la vivienda</item>
+        <item>Fuera de la vivienda, dentro del terreno</item>
+        <item>Fuera del terreno</item>
+    </string-array>
+
 
     <string name="titulo_fuente_agua">El agua es de...</string>
-    <string name="opc1_fuente_agua">Red pública con medidor</string>
-    <string name="opc2_fuente_agua">Red pública sin medidor</string>
-    <string name="opc3_fuente_agua">Pozo o perforación</string>
-    <string name="opc4_fuente_agua">Otro (Aguatero,etc)</string>
+    <string-array name="fuente_agua_opciones">
+        <item>Red pública con medidor </item>
+        <item>Red pública sin medidor</item>
+        <item>Pozo o perforación</item>
+        <item>Otro (Aguatero,etc)</item>
+    </string-array>
 
     <!-- Baño -->
     <string name="titulo_baño">El baño o letrina esta...</string>
-    <string name="opc1_baño">Dentro de la vivienda</string>
-    <string name="opc2_baño">Fuera de la vivienda, dentro del terreno</string>
-    <string name="opc3_baño">Fuera del terreno</string>
-    <string name="opc4_baño">No tiene</string>
+    <string-array name="baño_opciones">
+        <item>Dentro de la vivienda</item>
+        <item>Fuera de la vivienda, dentro del terreno</item>
+        <item>Fuera del terreno</item>
+        <item>No tiene</item>
+    </string-array>
+
 
     <string name="titulo_baño_tiene">El baño tiene...</string>
-    <string name="opc1_baño_tiene">Inodoro con botón, mochila, cadena y arrastre de agua</string>
-    <string name="opc2_baño_tiene">Inodoro sin botón mochila, ni cadena y con arrastre de agua</string>
-    <string name="opc3_baño_tiene">Letrina (Sin arrastre de agua)</string>
+    <string-array name="baño_tiene_opciones">
+        <item>Inodoro con botón, mochila, cadena y arrastre de agua</item>
+        <item>Inodoro sin botón mochila, ni cadena y con arrastre de agua</item>
+        <item>Letrina (Sin arrastre de agua)</item>
+    </string-array>
 
+    <!-- Desagüe -->
     <string name="titulo_desague">El desagüe del baño es...</string>
-    <string name="opc1_desague">A red pública (cloacas)</string>
-    <string name="opc2_desague">A cámara séptica y pozo ciego</string>
-    <string name="opc3_desague">Solo a pozo ciego</string>
+    <string-array name="desague_opciones">
+        <item>A red pública (cloacas)</item>
+        <item>A cámara séptica y pozo ciego</item>
+        <item>Solo a pozo ciego</item>
+    </string-array>
+
 
     <!--Cocina-->
     <string name="titulo_cocina">¿Tiene cuarto de cocina instalado?</string>
-    <string name="opc1_cocina">Si</string>
-    <string name="opc2_cocina">No</string>
+    <string-array name="cocina_opciones">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
 
     <!-- Electricidad -->
     <string name="titulo_electricidad">¿Tiene electricidad?</string>
-    <string name="opc1_electricidad">Si, con medidor</string>
-    <string name="opc2_electricidad">Si, sin medidor</string>
-    <string name="opc3_electricidad">No tiene</string>
+    <string-array name="electricidad_opciones">
+        <item>Si, con medidor</item>
+        <item>Si, sin medidor</item>
+        <item>No tiene</item>
+    </string-array>
+
 
     <!-- Combustible de cocina -->
     <string name="titulo_combustible_cocina">Combustible para cocinar</string>
-    <string name="opc1_combustible_cocina">Gas de red</string>
-    <string name="opc2_combustible_cocina">Gas de tubo o garrafa</string>
-    <string name="opc3_combustible_cocina">Leña u otro</string>
+    <string-array name="combustible_cocina_opciones">
+        <item>Gas de red</item>
+        <item>Gas de tubo o garrafa</item>
+        <item>Leña u otro</item>
+    </string-array>
+
 
     <!-- OPCIONES INFRAESTRUCTURA BARRIAL -->
 
     <!--Infraestructura en calles-->
     <string name="titulo_infraestructura_calles">Infraestructura en calles</string>
-    <string name="opc1_infraestructura_calles">Con asfalto</string>
-    <string name="opc2_infraestructura_calles">Solo cordón cuneta</string>
-    <string name="opc3_infraestructura_calles">Sin cordón cuneta</string>
+    <string-array name="infraestructura_calles_opciones">
+        <item>Con asfalto</item>
+        <item>Solo cordón cuneta</item>
+        <item>Sin cordón cuneta</item>
+    </string-array>
 
     <!-- Iluminacion publica -->
     <string name="titulo_iluminacion">Iluminación pública</string>
-    <string name="opc1_iluminacion">Alumbrado público en cuadra</string>
-    <string name="opc2_iluminacion">Alumbrado público en esquina</string>
-    <string name="opc3_iluminacion">Sin alumbrado público</string>
+    <string-array name="iluminacion_opciones">
+        <item>Alumbrado público en cuadra</item>
+        <item>Alumbrado público en esquina</item>
+        <item>Sin alumbrado público</item>
+    </string-array>
 
     <!-- Inundacion -->
     <string name="titulo_inundacion">¿Se inundó en los últimos 12 meses?</string>
-    <string name="opc1_inundacion">Si</string>
-    <string name="opc2_inundacion">No</string>
+    <string-array name="inundacion_opciones">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
 
     <!-- Recoleccion de basura -->
     <string name="titulo_recoleccion">Recolección de residuos</string>
-    <string name="opc1_recoleccion">Si</string>
-    <string name="opc2_recoleccion">No</string>
+    <string-array name="recoleccion_opciones">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
 
     <!-- Distancias -->
     <string name="titulo_distancia">Distancia al...</string>
     <string name="titulo_distancia_educacion">Establecimiento educativo más cercano</string>
     <string name="titulo_distancia_salud">Centro de Salud o Unidad Sanitaria</string>
     <string name="titulo_distancia_transporte">Transporte público</string>
-    <string name="opc1_distancia">Menos de 3 cuadras</string>
-    <string name="opc2_distancia">Entre 3 y 10 cuadras</string>
-    <string name="opc3_distancia">Más de 10 cuadras</string>
+    <string-array name="distancia_opciones">
+        <item>Menos de 3 cuadras</item>
+        <item>Entre 3 y 10 cuadras</item>
+        <item>Más de 10 cuadras</item>
+    </string-array>
+
 
 
     <!-- OPCIONES GRUPO FAMILIAR CONVIVIENTE -->
@@ -172,5 +219,12 @@
     <string name="origen_ingreso_no_laboral">Origen</string>
     <string name="monto_ingreso_no_laboral">Monto</string>
 
+    <!-- Salud -->
+    <string name="fecha_parto">Fecha estimada de parto</string>
+
+    <!--Educacion-->
+    <string name="titulo_educacion">Datos Educacion</string>
+    <string name="nivel_educativo">Nivel educativo</string>
+    <string name="capacitacion">Capacitacion</string>
 
 </resources>

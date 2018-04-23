@@ -22,8 +22,8 @@
             android:layout_width="212dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:entries="@array/aportes_jubilatorios_opciones"
+            android:layout_marginTop="20dp"
+            android:entries="@array/ingresos_no_laborales_opciones"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/origen_ingreso_no_laboral_tv"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/aporte_jubilatorio"
+            android:text="@string/origen_ingreso_no_laboral"
             app:layout_constraintBaseline_toBaselineOf="@+id/spinner_origen_ingreso_no_laboral"
             app:layout_constraintEnd_toStartOf="@+id/spinner_origen_ingreso_no_laboral"
             app:layout_constraintStart_toStartOf="parent" />

@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import ar.edu.uns.cs.trabajosocialform.java_classes.configuracion.Configuracion;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
 public class FormGrupoFamiliarActivity extends AppCompatActivity {
 
     private Bundle bundle;
+    private Formulario form;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +20,7 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
-        this.bundle = bundle;
+        form = (Formulario)intent.getSerializableExtra("FORM");
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
 
         //ViewAdapter va = new ViewAdapter(config,this);
@@ -27,12 +29,18 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
 
     public void nuevoFamiliar(View viewnuev){
         Intent intent = new Intent(this,NuevoFamiliarActivity.class);
+        intent.putExtra("CONFIG",bundle);
+        intent.putExtra("FORM",form);
         startActivity(intent);
+        /*Reemplazo el formulario por el que devolvio la actividad (que tendrá el nuevo familiar agregado)*/
+        form = (Formulario)intent.getSerializableExtra("FORM");
     }
 
     public void siguiente(View view){
         Intent intent = new Intent(this,FormSituacionHabitacionalActivity.class);
         intent.putExtra("CONFIG",bundle);
+        intent.putExtra("FORM",form);
         startActivity(intent);
+        finish();
     }
 }

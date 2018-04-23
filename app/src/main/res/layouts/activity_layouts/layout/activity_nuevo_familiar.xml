@@ -44,6 +44,16 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <include
+                android:id="@+id/panel_educacion_familiar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                layout="@layout/gf_educacion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/panel_datos_generales_familiar"/>
+
+            <include
                 android:id="@+id/panel_ocupacion_familiar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,7 +61,7 @@
                 layout="@layout/gf_ocupacion"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/panel_datos_generales_familiar" />
+                app:layout_constraintTop_toBottomOf="@+id/panel_educacion_familiar" />
 
             <include
                 android:id="@+id/panel_ingresos_laborales_familiar"
@@ -62,6 +72,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/panel_ocupacion_familiar" />
+
+            <include
+                android:id="@+id/panel_salud_familiar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                layout="@layout/gf_salud"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/panel_ingresos_laborales_familiar" />
 
             <Button
                 android:id="@+id/siguiente_button"
