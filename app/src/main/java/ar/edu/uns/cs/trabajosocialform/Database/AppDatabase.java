@@ -12,6 +12,7 @@ import ar.edu.uns.cs.trabajosocialform.Daos.CaracteristicasViviendaDao;
 import ar.edu.uns.cs.trabajosocialform.Daos.DomicilioDao;
 import ar.edu.uns.cs.trabajosocialform.Daos.FamiliarDao;
 import ar.edu.uns.cs.trabajosocialform.Daos.FormularioDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.FormularioFamiliarDao;
 import ar.edu.uns.cs.trabajosocialform.Daos.InfraestructuraBarrialDao;
 import ar.edu.uns.cs.trabajosocialform.Daos.IngresoDao;
 import ar.edu.uns.cs.trabajosocialform.Daos.OcupacionDao;
@@ -23,6 +24,7 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.CaracteristicasVivienda;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Domicilio;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.DataModel.FormularioFamiliarJoin;
 import ar.edu.uns.cs.trabajosocialform.DataModel.InfraestructuraBarrial;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Ingreso;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Ocupacion;
@@ -35,7 +37,7 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
  */
 @Database(entities={Formulario.class,Solicitante.class,Apoderado.class, SituacionHabitacional.class, Domicilio.class,
 Familiar.class, InfraestructuraBarrial.class, CaracteristicasVivienda.class, Ocupacion.class,Ingreso.class,
-        Salud.class,},version=1)
+        Salud.class, FormularioFamiliarJoin.class},version=1)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase{
 
@@ -52,6 +54,7 @@ public abstract class AppDatabase extends RoomDatabase{
     public abstract SituacionHabitacionalDao situacionHabitacionalDao();
     public abstract CaracteristicasViviendaDao caracteristicasViviendaDao();
     public abstract InfraestructuraBarrialDao infraestructuraBarrialDao();
+    public abstract FormularioFamiliarDao formularioFamiliarDao();
 
 
 

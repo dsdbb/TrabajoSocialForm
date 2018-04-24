@@ -18,7 +18,7 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 public interface FormularioDao {
 
     @Insert
-    void insert(Formulario... forms);
+    long insert(Formulario form);
 
     @Update
     void update(Formulario... forms);

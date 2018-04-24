@@ -3,6 +3,7 @@ package ar.edu.uns.cs.trabajosocialform.Daos;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
@@ -16,8 +17,8 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 @Dao
 public interface SolicitanteDao {
 
-    @Insert
-    void insert(Solicitante... solicitantes);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insert(Solicitante solicitante);
 
     @Update
     void update(Solicitante... solicitantes);
@@ -27,4 +28,7 @@ public interface SolicitanteDao {
 
     @Query("SELECT * FROM solicitante")
     List<Solicitante> getAllSolicitantes();
+
+    @Query("SELECT * FROM solicitante WHERE id = :solicitanteId")
+    Solicitante getSolicitante(int solicitanteId);
 }

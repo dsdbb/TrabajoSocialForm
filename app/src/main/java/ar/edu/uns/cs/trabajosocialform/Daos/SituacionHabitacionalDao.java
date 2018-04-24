@@ -15,7 +15,7 @@ public interface SituacionHabitacionalDao {
 
 
     @Insert
-    void insert(SituacionHabitacional... situaciones);
+    long insert(SituacionHabitacional situacion);
 
     @Update
     void update(SituacionHabitacional... situaciones);

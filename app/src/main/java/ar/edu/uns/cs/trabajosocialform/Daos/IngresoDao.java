@@ -15,7 +15,7 @@ public interface IngresoDao {
 
 
     @Insert
-    void insert(Ingreso... ingresos);
+    long insert(Ingreso ingreso);
 
     @Update
     void update(Ingreso... ingresos);

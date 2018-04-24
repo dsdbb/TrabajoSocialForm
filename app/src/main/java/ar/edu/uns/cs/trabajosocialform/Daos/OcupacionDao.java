@@ -15,7 +15,7 @@ public interface OcupacionDao {
 
 
     @Insert
-    void insert(Ocupacion... ocupaciones);
+    long insert(Ocupacion ocupacion);
 
     @Update
     void update(Ocupacion... ocupaciones);

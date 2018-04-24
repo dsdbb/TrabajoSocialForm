@@ -7,7 +7,7 @@ import android.view.View;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.InfraestructuraBarrial;
-import ar.edu.uns.cs.trabajosocialform.Database.DatabaseSave;
+import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
@@ -36,7 +36,7 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
     public void continuar(View view){
         InfraestructuraBarrial infraestructura = tomarDatos();
         form.setInfraestructuraBarrial(infraestructura);
-        (new DatabaseSave()).saveInDatabase(this,form);
+        (new DatabaseAcces()).saveInDatabase(this,form);
         finish();
 
     }

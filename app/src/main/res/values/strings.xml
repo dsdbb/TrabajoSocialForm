@@ -102,4 +102,6 @@
     <string name="tipo_de_vivienda">Tipo de vivienda</string>
 
 
+    <!-- Strings para los detalles -->
+    <string name="titulo_detalles">Detalles del formulario</string>
 </resources>

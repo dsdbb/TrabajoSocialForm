@@ -15,7 +15,7 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
 public interface FamiliarDao {
 
     @Insert
-    void insert(Familiar... familiares);
+    long insert(Familiar familiar);
 
     @Update
     void update(Familiar... familiares);

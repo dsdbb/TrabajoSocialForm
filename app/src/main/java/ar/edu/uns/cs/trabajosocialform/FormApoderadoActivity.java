@@ -85,10 +85,6 @@ public class FormApoderadoActivity extends AppCompatActivity {
 
     }
 
-    public void elegirFecha(View view){
-        Utils.getFecha(this);
-    }
-
     private void inicializarGui(){
         Utils utils = new Utils(this);
         utils.setValuesTvEt(R.string.nombres_apoderado,R.id.panel_nombres_apoderado);

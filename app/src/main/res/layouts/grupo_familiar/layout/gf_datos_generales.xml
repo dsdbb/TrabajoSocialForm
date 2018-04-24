@@ -11,287 +11,98 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/titulo_datos_generales_familiar"
-        app:layout_constraintBottom_toTopOf="@+id/panel_nombres_familiar"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!-- NOMBRE -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_nombres_familiar"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_datos_generales_familiar">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
+        app:layout_constraintTop_toBottomOf="@id/titulo_datos_generales_familiar">
 
-        <EditText
-            android:id="@+id/nombres_familiar_et"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/nombres_familiar_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/nombre_familiar"
-            app:layout_constraintBaseline_toBaselineOf="@+id/nombres_familiar_et"
-            app:layout_constraintEnd_toStartOf="@+id/nombres_familiar_et"
-            app:layout_constraintStart_toStartOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+            <!-- NOMBRE -->
+            <include
+                android:id="@+id/panel_nombres_familiar"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- APELLIDO -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_apellidos_familiar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_nombres_familiar" >
-
-        <EditText
-            android:id="@+id/apellidos_familiar_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/apellidos_familiar_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/apellido_familiar"
-            app:layout_constraintBaseline_toBaselineOf="@+id/apellidos_familiar_et"
-            app:layout_constraintEnd_toStartOf="@+id/apellidos_familiar_et"
-            app:layout_constraintStart_toStartOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+            <!-- APELLIDO -->
+            <include
+                android:id="@+id/panel_apellidos_familiar"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
-    <!-- TIPO DOCUMENTO -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_tipo_doc_familiar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_apellidos_familiar">
+            <!-- TIPO DE DOCUMENTO -->
+            <include
+                android:id="@+id/panel_tipo_doc_familiar"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <Spinner
-            android:id="@+id/spinner_tipo_doc_familiar"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/tipo_doc_opciones"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <!-- CUIL -->
+            <include
+                android:id="@+id/panel_cuil_familiar"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
+            <!-- SEXO -->
+            <include
+                android:id="@+id/panel_sexo_familiar"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/tipo_doc_familiar_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tipo_doc_familiar"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_tipo_doc_familiar"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_tipo_doc_familiar"
-            app:layout_constraintStart_toStartOf="parent" />
+            <!-- NACIONALIDAD -->
+            <include
+                android:id="@+id/panel_nacion_familiar"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+            <!-- FECHA NACIMIENTO -->
+            <include
+                android:id="@+id/panel_fecha_nac_familiar"
+                layout="@layout/tv_et_fecha"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
+            <!-- ESTADO CIVIL -->
+            <include
+                android:id="@+id/panel_estado_civil_familiar"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- CUIL -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_cuil_familiar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_tipo_doc_familiar" >
+            <!-- VINCULO -->
+            <include
+                android:id="@+id/panel_vinculo_familiar"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/cuil_familiar_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/cuil_familiar_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cuil_familiar"
-            app:layout_constraintBaseline_toBaselineOf="@+id/cuil_familiar_et"
-            app:layout_constraintEnd_toStartOf="@+id/cuil_familiar_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- SEXO -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_sexo_familiar"
-        android:layout_width="match_parent"
-        android:layout_height="26dp"
-        app:layout_constraintTop_toBottomOf="@+id/panel_cuil_familiar"
-        tools:layout_editor_absoluteX="0dp">
-
-        <Spinner
-            android:id="@+id/spinner_sexo_familiar"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:entries="@array/sexo_familiar_opciones"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/sexo_familiar_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/sexo_familiar"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_sexo_familiar"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_sexo_familiar"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- NACIONALIDAD -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_nacion_familiar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_sexo_familiar">
-
-        <Spinner
-            android:id="@+id/spinner_nacion_familiar"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/nacionalidad_familiar_opciones"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/nacion_familiar_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nacion_familiar"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_nacion_familiar"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_nacion_familiar"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
+            <!-- NUCLEO -->
+            <include
+                android:id="@+id/panel_nucleo_familiar"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
-    <!-- FECHA DE NACIMIENTO -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_fecha_nac_familiar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_nacion_familiar">
-
-        <EditText
-            android:id="@+id/fecha_nac_familiar_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:focusable="false"
-            android:clickable="true"
-            android:onClick="elegirFecha"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/fecha_nac_familiar_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fecha_nac_familiar"
-            app:layout_constraintBaseline_toBaselineOf="@+id/fecha_nac_familiar_et"
-            app:layout_constraintEnd_toStartOf="@+id/fecha_nac_familiar_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-
-    <!-- ESTADO CIVIL -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_estado_civil_familiar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_fecha_nac_familiar">
-
-        <Spinner
-            android:id="@+id/spinner_estado_civil_familiar"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/estado_civil_opciones"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/estado_civil_familiar_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/estado_civil_familiar"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_estado_civil_familiar"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_estado_civil_familiar"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- VINCULO -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_vinculo_familiar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_estado_civil_familiar">
-
-        <Spinner
-            android:id="@+id/spinner_vinculo_familiar"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/vinculo_opciones"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/vinculo_familiar_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/vinculo_familiar"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_vinculo_familiar"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_vinculo_familiar"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- NUCLEO -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_nucleo_familiar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_vinculo_familiar">
-
-        <Spinner
-            android:id="@+id/spinner_nucleo_familiar"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:entries="@array/nucleo_opciones"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-
-        <TextView
-            android:id="@+id/nucleo_familiar_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nucleo_familiar"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_nucleo_familiar"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_nucleo_familiar"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

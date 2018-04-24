@@ -16,7 +16,7 @@ public interface CaracteristicasViviendaDao {
 
 
     @Insert
-    void insert(CaracteristicasVivienda caracteristicas);
+    long insert(CaracteristicasVivienda caracteristicas);
 
     @Update
     void update(CaracteristicasVivienda caracteristicas);

@@ -13,209 +13,66 @@
         android:layout_height="wrap_content"
         android:text="@string/titulo_ocupacion_familiar"/>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_condicion_actividad"
+
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_ocupacion_familiar">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
+        app:layout_constraintTop_toBottomOf="@id/titulo_ocupacion_familiar">
 
-        <Spinner
-            android:id="@+id/spinner_condicion_actividad"
-            android:layout_width="212dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:entries="@array/condicion_actividad_opciones"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/condicion_actividad_tv"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/condicion_actividad_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/condicion_actividad"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_condicion_actividad"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_condicion_actividad"
-            app:layout_constraintStart_toStartOf="parent" />
+            <!-- CONDICION DE ACTIVIDAD -->
+            <include
+                android:id="@+id/panel_condicion_actividad"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+            <!-- PUESTO DE TRABAJO -->
+            <include
+                android:id="@+id/panel_puesto_trabajo"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_puesto_trabajo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/panel_condicion_actividad">
+            <!-- APORTE JUBILATORIO -->
+            <include
+                android:id="@+id/panel_aporte_jubilatorio"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <Spinner
-            android:id="@+id/spinner_puesto_trabajo"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:entries="@array/puesto_trabajo_opciones"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/puesto_trabajo_tv"
-            app:layout_constraintTop_toTopOf="parent" />
+            <!-- DURACIÓN -->
+            <include
+                android:id="@+id/panel_duracion_empleo"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/puesto_trabajo_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/puesto_trabajo"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_puesto_trabajo"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_puesto_trabajo"
-            app:layout_constraintStart_toStartOf="parent" />
+            <!-- TIPO DE ACTIVIDAD-->
+            <include
+                android:id="@+id/panel_tipo_actividad"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+            <!-- CALIFICACION-->
+            <include
+                android:id="@+id/panel_calificacion"
+                layout="@layout/tv_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_aporte_jubilatorio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/panel_puesto_trabajo">
-
-        <Spinner
-            android:id="@+id/spinner_aporte_jubilatorio"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:entries="@array/aportes_jubilatorios_opciones"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/aporte_jubilatorio_tv"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/aporte_jubilatorio_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/aporte_jubilatorio"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_aporte_jubilatorio"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_aporte_jubilatorio"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_duracion_empleo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/panel_aporte_jubilatorio">
-
-        <Spinner
-            android:id="@+id/spinner_duracion_empleo"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:entries="@array/duracion_empleo_opciones"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/duracion_empleo_tv"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/duracion_empleo_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/duracion"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_duracion_empleo"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_duracion_empleo"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_tipo_actividad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/panel_duracion_empleo">
-
-        <Spinner
-            android:id="@+id/spinner_tipo_actividad"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:entries="@array/tipo_actividad_opciones"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tipo_actividad_tv"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tipo_actividad_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/tipo_actividad"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_tipo_actividad"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_tipo_actividad"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_calificacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/panel_tipo_actividad">
-
-        <Spinner
-            android:id="@+id/spinner_calificacion"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:entries="@array/calificacion_opciones"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/calificacion_tv"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/calificacion_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/calificacion"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spinner_calificacion"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_calificacion"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

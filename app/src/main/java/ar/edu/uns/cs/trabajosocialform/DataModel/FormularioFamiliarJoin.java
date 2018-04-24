@@ -27,4 +27,20 @@ public class FormularioFamiliarJoin implements Serializable {
         this.formularioId = formularioId;
         this.familiarId = familiarId;
     }
+
+    public int getFormularioId() {
+        return formularioId;
+    }
+
+    public void setFormularioId(int formularioId) {
+        this.formularioId = formularioId;
+    }
+
+    public int getFamiliarId() {
+        return familiarId;
+    }
+
+    public void setFamiliarId(int familiarId) {
+        this.familiarId = familiarId;
+    }
 }

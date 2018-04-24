@@ -1,0 +1,169 @@
+package ar.edu.uns.cs.trabajosocialform.Database;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Paint;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.edu.uns.cs.trabajosocialform.Daos.ApoderadoDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.CaracteristicasViviendaDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.DomicilioDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.FamiliarDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.FormularioDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.FormularioFamiliarDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.InfraestructuraBarrialDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.IngresoDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.OcupacionDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.SaludDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.SituacionHabitacionalDao;
+import ar.edu.uns.cs.trabajosocialform.Daos.SolicitanteDao;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Domicilio;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.DataModel.FormularioFamiliarJoin;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
+
+public class DatabaseAcces {
+
+    public void saveInDatabase(Activity act, final Formulario form){
+        final Context context = act;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("Estado: ","Ejecutando el run");
+                AppDatabase mDb = AppDatabase.getAppDatabase(context); // Get an Instance of Database class
+                /*Guardo cada seccion del formulario en su correspondiente tabla para luego guardar el formuarlio con todos
+                * los respectivos ID*/
+
+                /*Solicitante*/
+                SolicitanteDao solDao = mDb.solicitanteDao();
+                long solicitanteId = solDao.insert(form.getSolicitante());
+                /*Apoderado*/
+                ApoderadoDao apoderadoDao = mDb.apoderadoDao();
+                long apoderadoId = apoderadoDao.insert(form.getApoderado());
+                /*Domicilio*/
+                DomicilioDao domicilioDao = mDb.domicilioDao();
+                long domicilioId = domicilioDao.insert(form.getDomicilio());
+                /*Situacion habitacional*/
+                SituacionHabitacionalDao situacionHabitacionalDao = mDb.situacionHabitacionalDao();
+                long situacionHabitacionalId = situacionHabitacionalDao.insert(form.getSituacionHabitacional());
+                /*Características vivienda*/
+                CaracteristicasViviendaDao caracteristicasViviendaDao = mDb.caracteristicasViviendaDao();
+                long caracteristicasViviendaId = caracteristicasViviendaDao.insert(form.getCaracteristicasVivienda());
+                /*Infraestructura barrial*/
+                InfraestructuraBarrialDao infraestructuraBarrialDao = mDb.infraestructuraBarrialDao();
+                long infraestructuraBarrialId = infraestructuraBarrialDao.insert(form.getInfraestructuraBarrial());
+
+                /*Agrego al objeto Formulario todos los id de las secciones guardardas en la base de datos recientemente*/
+                form.setSolicitanteId((int)solicitanteId);
+                form.setApoderadoId((int)apoderadoId);
+                form.setDomicilioId((int)domicilioId);
+                form.setSituacionHabitacionalId((int)situacionHabitacionalId);
+                form.setCaracteristicasViviendaId((int)caracteristicasViviendaId);
+                form.setInfraestructuraBarrialId((int)infraestructuraBarrialId);
+
+                /*Ahora que el objeto formulario está completo puedo agregarlo a la base de datos (Familiares va despues)*/
+                FormularioDao formularioDao = mDb.formularioDao();
+                long formularioId = formularioDao.insert(form);
+
+                /*Ahora debo guardar todos los familiares con sus respectivos ingresos, ocupaciones y salud*/
+                List<Familiar> familiares = form.getFamiliares();
+                for(int i=0; i<familiares.size(); i++){
+                    Familiar familiar = familiares.get(i);
+                    /*Ocupacion*/
+                    OcupacionDao ocupacionDao = mDb.ocupacionDao();
+                    long ocupacionId = ocupacionDao.insert(familiar.getOcupacion());
+                    /*Ingresos*/
+                    IngresoDao ingresoDao = mDb.ingresoDao();
+                    long ingresoId = ingresoDao.insert(familiar.getIngreso());
+                    /*Salud*/
+                    SaludDao saludDao = mDb.saludDao();
+                    long saludId = saludDao.insert(familiar.getSalud());
+
+                    /*Ahora completo el familiar con los id de las entidades creadas recientemente*/
+                    familiar.setOcupacionId((int)ocupacionId);
+                    familiar.setIngresoId((int)ingresoId);
+                    familiar.setSaludId((int)saludId);
+
+                    /*Una vez completo el familiar lo inserto en la BD y luego hago la inserción de la tabla que une el
+                    * formulario con el familiar*/
+                    FamiliarDao familiarDao = mDb.familiarDao();
+                    long familiarId = familiarDao.insert(familiar);
+
+                    /*Creo la tabla Join con los id y la inserto*/
+                    FormularioFamiliarJoin ffj = new FormularioFamiliarJoin((int)formularioId,(int)familiarId);
+                    FormularioFamiliarDao formularioFamiliarDao = mDb.formularioFamiliarDao();
+                    formularioFamiliarDao.insert(ffj);
+                }
+
+
+            }
+        }) .start();
+    }
+
+    public List<String> getNombresSolicitantes(final Activity act){
+
+        final List<String> nombres = new ArrayList<String>();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                SolicitanteDao solDao = mDb.solicitanteDao();
+                List<Solicitante> lista = solDao.getAllSolicitantes();
+
+                Log.i("SIZE: ",""+lista.size());
+                for(int i =0; i<lista.size();i++){
+                    Log.i("Nombre "+i,lista.get(i).getNombres());
+                    Log.i("ID SOLICITANTE: ",lista.get(i).getId()+"");
+                    nombres.add(lista.get(i).getNombres());
+                }
+            }
+        }).start();
+
+        return nombres;
+    }
+
+    public List<Formulario> getFormularios(final Activity act){
+        final List<Formulario> forms = new ArrayList<Formulario>();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                FormularioDao formDao = mDb.formularioDao();
+                List<Formulario> lista = formDao.getAllForms();
+                for(int i =0; i<lista.size();i++){
+                    forms.add(lista.get(i));
+                }
+            }
+        }).start();
+
+        return forms;
+    }
+
+    public Solicitante getSolicitante(final Activity act, final int solicitanteId){
+        final List<Solicitante> solicitante = new ArrayList<Solicitante>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                SolicitanteDao solDao = mDb.solicitanteDao();
+                Solicitante sol  = solDao.getSolicitante(solicitanteId);
+                Log.i("SOL",sol.toString());
+                solicitante.add(sol);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return solicitante.get(0);
+    }
+}

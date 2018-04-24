@@ -16,7 +16,7 @@ public interface DomicilioDao {
 
 
     @Insert
-    void insert(Domicilio... domicilios);
+    long insert(Domicilio domicilio);
 
     @Update
     void update(Domicilio... domicilios);

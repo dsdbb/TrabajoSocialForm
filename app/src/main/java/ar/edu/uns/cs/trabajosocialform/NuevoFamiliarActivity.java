@@ -1,11 +1,15 @@
 package ar.edu.uns.cs.trabajosocialform;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -41,61 +45,62 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         discapacidades = new ArrayList<View>();
         enfermedadesCronicas = new ArrayList<View>();
         form = (Formulario)getIntent().getSerializableExtra("FORM");
+
+        inicializarGui();
     }
 
     public void guardar(View view){
         Familiar familiar = tomarDatos();
         form.getFamiliares().add(familiar);
-        getIntent().putExtra("FORM",form);
+        //getIntent().putExtra("FORM",form);
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("RETURN_FORM",form);
+        setResult(Activity.RESULT_OK,resultIntent);
         finish();
     }
 
     private Familiar tomarDatos(){
-        /*Tomo los datos generales*/
-        String nombre = ((EditText)findViewById(R.id.nombres_familiar_et)).getText().toString();
-        String apellido = ((EditText)findViewById(R.id.apellidos_familiar_et)).getText().toString();
-        String sexo = ((Spinner)findViewById(R.id.spinner_sexo_familiar)).getSelectedItem().toString();
-        String nacion = ((Spinner)findViewById(R.id.spinner_nacion_familiar)).getSelectedItem().toString();
-        String tipoDoc = ((Spinner)findViewById(R.id.spinner_tipo_doc_familiar)).getSelectedItem().toString();
-        String cuilS = ((EditText)findViewById(R.id.cuil_familiar_et)).getText().toString();
-        String estadoCivil = ((Spinner)findViewById(R.id.spinner_estado_civil_familiar)).getSelectedItem().toString();
-        String vinculo = ((Spinner)findViewById(R.id.spinner_vinculo_familiar)).getSelectedItem().toString();
-        String nucleo = ((Spinner)findViewById(R.id.spinner_nucleo_familiar)).getSelectedItem().toString();
-        String fechaNacS = ((EditText)findViewById(R.id.fecha_nac_familiar_et)).getText().toString();
-        String nivelEducativo = ((Spinner)findViewById(R.id.spinner_nivel_educativo)).getSelectedItem().toString();
-        String capacitacion = ((Spinner)findViewById(R.id.spinner_capacitacion)).getSelectedItem().toString();
+        Utils utils = new Utils(this);
 
-        Date fechaNac=null;
-        if(!fechaNacS.equals("")){
-            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                fechaNac = formatoDelTexto.parse(fechaNacS);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        /*Tomo los datos generales del familiar*/
+        String nombre = utils.getDataTvEt(R.id.panel_nombres_familiar);
+        String apellido = utils.getDataTvEt(R.id.panel_apellidos_familiar);
+        String tipoDoc = utils.getDataTvSpinner(R.id.panel_tipo_doc_familiar);
+        String cuilS = utils.getDataTvEt(R.id.panel_cuil_familiar);
+        String sexo = utils.getDataTvSpinner(R.id.panel_sexo_familiar);
+        String nacion = utils.getDataTvSpinner(R.id.panel_nacion_familiar);
+        String fechaNacS = utils.getDataTvEt(R.id.panel_fecha_nac_familiar);
+        String estadoCivil = utils.getDataTvSpinner(R.id.panel_estado_civil_familiar);
+        String vinculo = utils.getDataTvSpinner(R.id.panel_vinculo_familiar);
+        String nucleo = utils.getDataTvSpinner(R.id.panel_nucleo_familiar);
+        String nivelEducativo = utils.getDataTvSpinner(R.id.panel_nivel_educativo);
+        List<String> stringsCapacitacion = utils.getDataTvSpinner2(R.id.panel_capacitacion);
+        String capacitacion = stringsCapacitacion.get(0);
+        String asistenciaCapacitacion = stringsCapacitacion.get(1);
 
-        }
-        Integer cuil = null;
-        if(!cuilS.equals(""))
-            cuil = Integer.parseInt(cuilS);
+        /*Convierto datos*/
+        Integer cuil = utils.getIntegerFromString(cuilS);
+        Date fechaNac = utils.getDateFromString(fechaNacS);
 
-        /*Tomo datos de la Ocupacion y creo el objeto correspondiente*/
-        String condicionActividad = ((Spinner)findViewById(R.id.spinner_condicion_actividad)).getSelectedItem().toString();
-        String puestoTrabajo = ((Spinner)findViewById(R.id.spinner_puesto_trabajo)).getSelectedItem().toString();
-        String aporteJubilatorio = ((Spinner)findViewById(R.id.spinner_aporte_jubilatorio)).getSelectedItem().toString();
-        String duracionEmpleo = ((Spinner)findViewById(R.id.spinner_duracion_empleo)).getSelectedItem().toString();
-        String tipoActividad = ((Spinner)findViewById(R.id.spinner_tipo_actividad)).getSelectedItem().toString();
-        String calificacion = ((Spinner)findViewById(R.id.spinner_calificacion)).getSelectedItem().toString();
+        /*Tomo los datos de la ocupacion*/
+        String condicionActividad = utils.getDataTvSpinner(R.id.panel_condicion_actividad);
+        String puestoTrabajo = utils.getDataTvSpinner(R.id.panel_puesto_trabajo);
+        String aporteJubilatorio = utils.getDataTvSpinner(R.id.panel_aporte_jubilatorio);
+        String duracion = utils.getDataTvSpinner(R.id.panel_duracion_empleo);
+        String tipoActividad = utils.getDataTvSpinner(R.id.panel_tipo_actividad);
+        String calificacion = utils.getDataTvSpinner(R.id.panel_calificacion);
 
-        Ocupacion ocupacion = new Ocupacion(condicionActividad,puestoTrabajo,aporteJubilatorio,duracionEmpleo,tipoActividad,calificacion);
+        /*Creo el objeto correspondiente*/
+        Ocupacion ocupacion = new Ocupacion(condicionActividad, puestoTrabajo, aporteJubilatorio, duracion,
+                tipoActividad, calificacion);
 
-        /*Tomo datos del Ingreso y creo el objeto correspondiente*/
+
+        /*Tomo los datos de ingreso y creo el objeto correspondiente*/
         Ingreso ingreso = new Ingreso();
-        String ingresoLaboralS = ((EditText)findViewById(R.id.ingresos_laborales_et)).getText().toString();
-        Integer ingresoLaboral = null;
-        if(!ingresoLaboralS.equals(""))
-            ingresoLaboral = Integer.parseInt(ingresoLaboralS);
-        ingreso.setIngresos_laborales(ingresoLaboral);
+        String ingresosLaboralesS = utils.getDataTvEt(R.id.panel_ingresos_laborales);
+        Integer ingresosLaborales = utils.getIntegerFromString(ingresosLaboralesS);
+        ingreso.setIngresos_laborales(ingresosLaborales);
+
         for (View vista: ingresosNoLaborales) {
             String origen = ((Spinner)vista.findViewById(R.id.spinner_origen_ingreso_no_laboral)).getSelectedItem().toString();
             String montoS = ((EditText)findViewById(R.id.monto_ingreso_no_laboral_et)).getText().toString();
@@ -110,22 +115,17 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
             ingreso.getProgramas_sociales_sti().add(programa);
         }
 
-
-        /*Tomo los datos de Salud y creo el objeto correspondiente*/
+        /*Tomo los datos de salud y creo el objeto correspondiente*/
         Salud salud = new Salud();
-        String cobertura = ((Spinner)findViewById(R.id.spinner_cobertura)).getSelectedItem().toString();
-        String fechaPartoS = ((EditText)findViewById(R.id.fecha_parto_et)).getText().toString();
-        Date fechaParto=null;
-        if(!fechaPartoS.equals("")){
-            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                fechaParto = formatoDelTexto.parse(fechaPartoS);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
+
+        String cobertura = utils.getDataTvSpinner(R.id.panel_cobertura);
+        String fechaPartoS = utils.getDataTvEt(R.id.panel_embarazo);
+        Date fechaParto = utils.getDateFromString(fechaPartoS);
+        String independenciaFuncional = utils.getDataTvSpinner(R.id.panel_independecia_funcional);
+
         salud.setCobertura(cobertura);
         salud.setFecha_estimada_embarazo(fechaParto);
+        salud.setIndependencia_funcional(independenciaFuncional);
 
         for (View vista:discapacidades) {
             String discapacidad = ((Spinner)vista.findViewById(R.id.spinner_nueva_discapacidad)).getSelectedItem().toString();
@@ -138,56 +138,63 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
 
         /*Tenemos todos los datos necesario para crear al familiar por lo tanto pasamos a la instanciacion de la clase Familiar*/
         return new Familiar(nombre,apellido,sexo,nacion,cuil,fechaNac,estadoCivil,vinculo,nucleo,
-                nivelEducativo,capacitacion,ocupacion,ingreso,salud);
+                nivelEducativo,capacitacion,asistenciaCapacitacion,ocupacion,ingreso,salud);
     }
 
-    private void rellenarListasDesplegables(){
-        Spinner spinner = (Spinner)findViewById(R.id.spinner_sexo_familiar);
-        String[] values = getResources().getStringArray(R.array.sexo_familiar_opciones);
-        for (String valor: values) {
-            Log.i("Valor: ",valor);
-
-        }
-        spinner.setAdapter(new ArrayAdapter<String>(this,R.layout.spinner_row,values));
+    private void inicializarGui(){
+        Utils utils = new Utils(this);
+        inicializarDatosGenerales(utils);
+        inicializarOcupacion(utils);
+        inicializarIngresos(utils);
+        inicializarSalud(utils);
     }
 
-    public void nuevoIngresoNoLaboral(View view){
-        LinearLayout contenedor = (LinearLayout) findViewById(R.id.panel_nuevo_ingreso_no_laboral);
-        LayoutInflater inflater = LayoutInflater.from(this);
+    private void inicializarDatosGenerales(Utils utils){
+        utils.setValuesTvEt(R.string.nombre_familiar,R.id.panel_nombres_familiar);
+        utils.setValuesTvEt(R.string.apellido_familiar,R.id.panel_apellidos_familiar);
+        utils.setValuesTvSpinner(R.array.tipo_doc_opciones, R.string.tipo_doc_familiar, R.id.panel_tipo_doc_familiar);
+        utils.setValuesTvEt(R.string.cuil_familiar,R.id.panel_cuil_familiar);
+        utils.setValuesTvSpinner(R.array.sexo_opciones,R.string.sexo_familiar,R.id.panel_sexo_familiar);
+        utils.setValuesTvSpinner(R.array.nacionalidad_familiar_opciones,R.string.nacion_familiar,R.id.panel_nacion_familiar);
+        utils.setValuesTvEt(R.string.fecha_nac_familiar,R.id.panel_fecha_nac_familiar);
+        utils.addDateListener(R.id.panel_fecha_nac_familiar);
+        utils.setValuesTvSpinner(R.array.estado_civil_opciones,R.string.estado_civil_familiar,R.id.panel_estado_civil_familiar);
+        utils.setValuesTvSpinner(R.array.vinculo_opciones, R.string.vinculo_familiar, R.id.panel_vinculo_familiar);
+        utils.setValuesTvSpinner(R.array.nucleo_opciones, R.string.nucleo_familiar, R.id.panel_nucleo_familiar);
 
-        View inflatedView = inflater.inflate(R.layout.panel_ingreso_no_laboral, contenedor, false);
-        ingresosNoLaborales.add(inflatedView);
-        contenedor.addView(inflatedView);
+        /*EDUCACION*/
+        utils.setValuesTvSpinner(R.array.nivel_educativo_opciones,R.string.nivel_educativo,R.id.panel_nivel_educativo);
+        utils.setValuesTvSpinner2(R.array.capacitacion_opciones,R.array.asistencia_capacitacion_opciones,R.string.capacitacion,R.id.panel_capacitacion);
     }
 
-    public void nuevoProgramaSocialSti(View view){
-        LinearLayout contenedor = (LinearLayout) findViewById(R.id.panel_nuevo_programa_social_sti);
-        LayoutInflater inflater = LayoutInflater.from(this);
-
-        View inflatedView = inflater.inflate(R.layout.panel_nuevo_programa_social_sti, contenedor, false);
-        programasSocialesSti.add(inflatedView);
-        contenedor.addView(inflatedView);
+    private void inicializarOcupacion(Utils utils){
+        utils.setValuesTvSpinner(R.array.condicion_actividad_opciones, R.string.condicion_actividad, R.id.panel_condicion_actividad);
+        utils.setValuesTvSpinner(R.array.puesto_trabajo_opciones, R.string.puesto_trabajo, R.id.panel_puesto_trabajo);
+        utils.setValuesTvSpinner(R.array.aportes_jubilatorios_opciones, R.string.aporte_jubilatorio, R.id.panel_aporte_jubilatorio);
+        utils.setValuesTvSpinner(R.array.duracion_empleo_opciones, R.string.duracion, R.id.panel_duracion_empleo);
+        utils.setValuesTvSpinner(R.array.tipo_actividad_opciones, R.string.tipo_actividad, R.id.panel_tipo_actividad);
+        utils.setValuesTvSpinner(R.array.calificacion_opciones, R.string.calificacion, R.id.panel_calificacion);
     }
 
-    public void elegirFecha(View view){
-        Utils.getFecha(this);
+    private void inicializarIngresos(Utils utils){
+        utils.setValuesTvEt(R.string.ingresos_laborales, R.id.panel_ingresos_laborales);
+        utils.setValuesTvEt(R.string.ingresos_no_laborales, R.id.panel_ingresos_no_laborales);
+        utils.addAddingButtonListener(R.id.panel_ingresos_no_laborales, R.layout.panel_ingreso_no_laboral, ingresosNoLaborales);
+        utils.setValuesTvEt(R.string.programas_sociales_sti, R.id.panel_programas_sociales_sti);
+        utils.addAddingButtonListener(R.id.panel_programas_sociales_sti,R.layout.panel_nuevo_programa_social_sti,programasSocialesSti);
+
     }
 
-    public void nuevaDiscapacidad(View view){
-        LinearLayout contenedor = (LinearLayout) findViewById(R.id.panel_nueva_discapacidad);
-        LayoutInflater inflater = LayoutInflater.from(this);
+    private void inicializarSalud(Utils utils){
+        utils.setValuesTvSpinner(R.array.cobertura_opciones, R.string.cobertura, R.id.panel_cobertura);
+        utils.setValuesTvEt(R.string.fecha_parto, R.id.panel_embarazo);
+        utils.setValuesTvEt(R.string.discapacidad, R.id.panel_discapacidad);
+        utils.addAddingButtonListener(R.id.panel_discapacidad,R.layout.panel_nueva_discapacidad,discapacidades);
+        utils.setValuesTvEt(R.string.enfermedad_cronica, R.id.panel_enfermedad_cronica);
+        utils.addAddingButtonListener(R.id.panel_enfermedad_cronica,R.layout.panel_nueva_enfermedad_cronica,enfermedadesCronicas);
+        utils.setValuesTvSpinner(R.array.independencia_funcional_opciones, R.string.independencia_funcional, R.id.panel_independecia_funcional);
 
-        View inflatedView = inflater.inflate(R.layout.panel_nueva_discapacidad, contenedor, false);
-        discapacidades.add(inflatedView);
-        contenedor.addView(inflatedView);
     }
 
-    public void nuevaEnfermedadCronica(View view){
-        LinearLayout contenedor = (LinearLayout) findViewById(R.id.panel_nueva_enfermedad_cronica);
-        LayoutInflater inflater = LayoutInflater.from(this);
 
-        View inflatedView = inflater.inflate(R.layout.panel_nueva_enfermedad_cronica, contenedor, false);
-        enfermedadesCronicas.add(inflatedView);
-        contenedor.addView(inflatedView);
-    }
 }

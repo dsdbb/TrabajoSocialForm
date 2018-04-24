@@ -20,7 +20,7 @@ public class Converters{
     public static Date toDate(String fecha){
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            if(!fecha.equals(""))
+            if(fecha != null)
                 return formato.parse(fecha);
         } catch (ParseException e) {
             e.printStackTrace();

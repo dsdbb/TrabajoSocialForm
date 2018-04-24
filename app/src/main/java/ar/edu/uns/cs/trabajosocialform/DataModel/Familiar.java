@@ -52,6 +52,8 @@ public class Familiar  implements Serializable {
     private String nivel_educativo;
     @ColumnInfo(name = "capacitacion")
     private String capacitacion;
+    @ColumnInfo(name = "asistencia_capacitacion")
+    private String asistenciaCapacitacion;
     @ColumnInfo(name = "ocupacion_id")
     private int ocupacionId;
     @ColumnInfo(name = "ingreso_id")
@@ -70,8 +72,9 @@ public class Familiar  implements Serializable {
     @Ignore
     public Familiar() {
     }
+
     @Ignore
-    public Familiar(String nombres, String apellidos, String sexo, String nacion, Integer cuil, Date fecha_nacimiento, String estado_civil, String vinculo, String nucleo, String nivel_educativo, String capacitacion, Ocupacion ocupacion, Ingreso ingreso, Salud salud) {
+    public Familiar(String nombres, String apellidos, String sexo, String nacion, Integer cuil, Date fecha_nacimiento, String estado_civil, String vinculo, String nucleo, String nivel_educativo, String capacitacion, String asistenciaCapacitacion, Ocupacion ocupacion, Ingreso ingreso, Salud salud) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.sexo = sexo;
@@ -83,10 +86,13 @@ public class Familiar  implements Serializable {
         this.nucleo = nucleo;
         this.nivel_educativo = nivel_educativo;
         this.capacitacion = capacitacion;
+        this.asistenciaCapacitacion = asistenciaCapacitacion;
         this.ocupacion = ocupacion;
         this.ingreso = ingreso;
         this.salud = salud;
     }
+
+
 
 
     public Familiar(String nombres, String apellidos, String sexo, String nacion, Integer cuil, Date fecha_nacimiento, String estado_civil, String vinculo, String nucleo, String nivel_educativo, String capacitacion, int ocupacionId, int ingresoId, int saludId) {
@@ -224,5 +230,37 @@ public class Familiar  implements Serializable {
 
     public void setSaludId(int saludId) {
         this.saludId = saludId;
+    }
+
+    public Ocupacion getOcupacion() {
+        return ocupacion;
+    }
+
+    public void setOcupacion(Ocupacion ocupacion) {
+        this.ocupacion = ocupacion;
+    }
+
+    public Ingreso getIngreso() {
+        return ingreso;
+    }
+
+    public void setIngreso(Ingreso ingreso) {
+        this.ingreso = ingreso;
+    }
+
+    public Salud getSalud() {
+        return salud;
+    }
+
+    public void setSalud(Salud salud) {
+        this.salud = salud;
+    }
+
+    public String getAsistenciaCapacitacion() {
+        return asistenciaCapacitacion;
+    }
+
+    public void setAsistenciaCapacitacion(String asistenciaCapacitacion) {
+        this.asistenciaCapacitacion = asistenciaCapacitacion;
     }
 }

@@ -16,7 +16,7 @@ public interface ApoderadoDao {
 
 
     @Insert
-    void insert(Apoderado... apoderados);
+    long insert(Apoderado apoderado);
 
     @Update
     void update(Apoderado... apoderados);

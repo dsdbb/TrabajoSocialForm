@@ -14,7 +14,7 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Salud;
 public interface SaludDao {
 
     @Insert
-    void insert(Salud... salud);
+    long insert(Salud salud);
 
     @Update
     void update(Salud... salud);

@@ -17,7 +17,7 @@ public interface InfraestructuraBarrialDao {
 
 
     @Insert
-    void insert(InfraestructuraBarrial... infraestructuras);
+    long insert(InfraestructuraBarrial infraestructura);
 
     @Update
     void update(InfraestructuraBarrial... infraestructuras);
