@@ -102,6 +102,15 @@ public class Utils {
         }
     }
 
+    public String getStringFromBoolean(Boolean b){
+        if(b){
+            return "Si";
+        }
+        else{
+            return "No";
+        }
+    }
+
     public void addDateListener(int panelId){
         final ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
         ((EditText)panel.findViewById(R.id.editText)).setOnClickListener(new View.OnClickListener() {
@@ -148,5 +157,21 @@ public class Utils {
             num = Integer.parseInt(intS);
 
         return num;
+    }
+
+    public void setDetailValues(int panelId, int tituloId, String dato){
+        ConstraintLayout panel = act.findViewById(panelId);
+        String titulo = act.getResources().getString(tituloId);
+        ((TextView)panel.findViewById(R.id.textViewTitulo)).setText(titulo);
+        ((TextView)panel.findViewById(R.id.textViewDato)).setText(dato);
+    }
+
+    public String getStringFromDate(Date fecha){
+        String fechaString = null;
+        if(fecha!=null){
+            fechaString = fecha.toString();
+        }
+
+        return fechaString;
     }
 }

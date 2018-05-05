@@ -1,12 +1,19 @@
 package ar.edu.uns.cs.trabajosocialform;
 
+import android.arch.persistence.room.Database;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +36,8 @@ import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
 public class EntradasActivity extends AppCompatActivity {
 
 
+    private List<Formulario> forms;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,27 +45,67 @@ public class EntradasActivity extends AppCompatActivity {
         final Context context = this;
 
 
-        List<Formulario> forms = (new DatabaseAcces()).getFormularios(this);
+        forms = (new DatabaseAcces()).getFormularios(this);
 
-        ListView listview = (ListView) findViewById(R.id.list_view);
+        final ListView listview = (ListView) findViewById(R.id.list_view);
         listview.setAdapter(new customAdapter(this,forms));
-       // GridView grid = (GridView) findViewById(R.id.gridview);
-        //grid.setAdapter(new customAdapter(this,nombres));
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 Intent intent = new Intent(context,DetallesFormActivity.class);
+                Formulario form = forms.get(arg2);
+                intent.putExtra("FORM",form);
                 startActivity(intent);
             }
         });
 
+        /*Para el menu al mantener presionado*/
+        registerForContextMenu(listview);
+
+
+    }
+
+    /**
+     * MENU
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if (v.getId()==R.id.list_view) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_list, menu);
+        }
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch(item.getItemId()) {
+            case R.id.edit:
+                // edit stuff here
+                return true;
+            case R.id.delete:
+                ContextMenu.ContextMenuInfo menuInfo = item.getMenuInfo();
+                int pos = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
+                int formId = forms.get(pos).getId();
+                DatabaseAcces db = new DatabaseAcces();
+                db.deleteJoins(this,formId);
+                db.deleteFormulario(this,formId);
+                int solId = forms.get(pos).getSolicitanteId();
+                (new DatabaseAcces()).deleteSolicitante(this,solId);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     public class customAdapter extends BaseAdapter {
 
         private Context context;
         private List<Formulario> forms;
+        private int position;
 
         public customAdapter(Context context, List<Formulario> forms){
             this.context = context;
@@ -64,18 +113,13 @@ public class EntradasActivity extends AppCompatActivity {
         }
 
         public View getView(int position, View convertView, ViewGroup container) {
+            this.position = position;
 
             if (convertView == null) {
                 convertView = getLayoutInflater().inflate(R.layout.list_item, container, false);
             }
 
             int solicitanteId = forms.get(position).getSolicitanteId();
-            String json = (new Gson()).toJson(forms.get(position));
-            Log.i("JSON",json);
-            List<String> nombres = (new DatabaseAcces()).getNombresSolicitantes(EntradasActivity.this);
-            for(int i=0;i<nombres.size();i++){
-                Log.i("NOMBRE "+i,nombres.get(i));
-            }
             Solicitante solicitante = (new DatabaseAcces()).getSolicitante(EntradasActivity.this,solicitanteId);
             ((TextView) convertView.findViewById(R.id.label)).setText(solicitante.getNombres());
             return convertView;
@@ -84,6 +128,9 @@ public class EntradasActivity extends AppCompatActivity {
 
         }
 
+        public int getPosition(){
+            return position;
+        }
         public final int getCount() {
             return forms.size();
         }

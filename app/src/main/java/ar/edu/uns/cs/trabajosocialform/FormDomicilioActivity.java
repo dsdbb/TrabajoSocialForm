@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Domicilio;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Datos_domicilio;
@@ -21,6 +22,8 @@ public class FormDomicilioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_domicilio);
+
+        inicializarGui();
 
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
@@ -42,48 +45,46 @@ public class FormDomicilioActivity extends AppCompatActivity {
     }
 
 
+    private void inicializarGui(){
+        Utils utils = new Utils(this);
+
+        utils.setValuesTvEt(R.string.calle,R.id.panel_calle);
+        utils.setValuesTvEt(R.string.numero, R.id.panel_numero);
+        utils.setValuesTvEt(R.string.manzana, R.id.panel_manzana);
+        utils.setValuesTvEt(R.string.monoblock_torre, R.id.panel_monoblock_torre);
+        utils.setValuesTvEt(R.string.piso, R.id.panel_piso);
+        utils.setValuesTvEt(R.string.acc_int, R.id.panel_acc_int);
+        utils.setValuesTvEt(R.string.casa_dpto, R.id.panel_casa_depto);
+        utils.setValuesTvEt(R.string.entre_calle1,R.id.panel_entre_calles1);
+        utils.setValuesTvEt(R.string.entre_calle2,R.id.panel_entre_calles2);
+        utils.setValuesTvEt(R.string.barrio, R.id.panel_barrio);
+        utils.setValuesTvEt(R.string.localidad, R.id.panel_localidad);
+        utils.setValuesTvEt(R.string.delegacion, R.id.panel_delegacion);
+    }
+
     private Domicilio tomarDatos(){
-        Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
-        Datos_domicilio datos = config.getDatos_domicilio();
+        Utils utils = new Utils(this);
+        String calle = utils.getDataTvEt(R.id.panel_calle);
+        String numeroS = utils.getDataTvEt(R.id.panel_numero);
+        String manzanaS = utils.getDataTvEt(R.id.panel_manzana);
+        String monoblockTorreS = utils.getDataTvEt(R.id.panel_monoblock_torre);
+        String pisoS = utils.getDataTvEt(R.id.panel_piso);
+        String accIntS = utils.getDataTvEt(R.id.panel_acc_int);
+        String casaDptoS = utils.getDataTvEt(R.id.panel_casa_depto);
+        String entreCalle1 = utils.getDataTvEt(R.id.panel_entre_calles1);
+        String entreCalle2 = utils.getDataTvEt(R.id.panel_entre_calles2);
+        String barrio = utils.getDataTvEt(R.id.panel_barrio);
+        String localidad = utils.getDataTvEt(R.id.panel_localidad);
+        String delegacion = utils.getDataTvEt(R.id.panel_delegacion);
 
-        String calle = ((EditText)findViewById(R.id.calle_et)).getText().toString();
-        String numeroS = ((EditText)findViewById(R.id.numero_et)).getText().toString();
-        String manzanaS = ((EditText)findViewById(R.id.manzana_et)).getText().toString();
-        String monoblockS = ((EditText)findViewById(R.id.monoblock_torre_et)).getText().toString();
-        String pisoS = ((EditText)findViewById(R.id.piso_et)).getText().toString();
-        String accintS = ((EditText)findViewById(R.id.acc_int_et)).getText().toString();
-        String deptoS = ((EditText)findViewById(R.id.acc_int_et)).getText().toString();
-        String calle1 = ((EditText)findViewById(R.id.entre_calles1_et)).getText().toString();
-        String calle2 = ((EditText)findViewById(R.id.entre_calles2_et)).getText().toString();
-        String barrio = ((EditText)findViewById(R.id.barrio_et)).getText().toString();
-        String delegacion = ((EditText)findViewById(R.id.delegacion_et)).getText().toString();
-        String localidad = ((EditText)findViewById(R.id.localidad_et)).getText().toString();
+        Integer numero = utils.getIntegerFromString(numeroS);
+        Integer manzana = utils.getIntegerFromString(manzanaS);
+        Integer monoblockTorre = utils.getIntegerFromString(monoblockTorreS);
+        Integer piso = utils.getIntegerFromString(pisoS);
+        Integer accInt = utils.getIntegerFromString(accIntS);
+        Integer casaDpto = utils.getIntegerFromString(casaDptoS);
 
-        Integer numero = null;
-        if(!numeroS.equals(""))
-           numero = Integer.parseInt(numeroS);
-
-        Integer manzana = null;
-        if(!manzanaS.equals(""))
-            manzana = Integer.parseInt(manzanaS);
-
-        Integer monoblock = null;
-        if(!monoblockS.equals(""))
-            monoblock = Integer.parseInt(monoblockS);
-
-        Integer piso = null;
-        if(!pisoS.equals(""))
-            piso = Integer.parseInt(pisoS);
-
-        Integer accint = null;
-        if(!accintS.equals(""))
-            accint = Integer.parseInt(accintS);
-
-        Integer depto = null;
-        if(!deptoS.equals(""))
-            depto = Integer.parseInt(deptoS);
-
-       return new Domicilio(calle,numero,manzana,monoblock,piso,accint,depto,calle1,calle2,barrio,delegacion,localidad);
+       return new Domicilio(calle,numero,manzana,monoblockTorre,piso,accInt,casaDpto,entreCalle1,entreCalle2,barrio,delegacion,localidad);
 
     }
 }

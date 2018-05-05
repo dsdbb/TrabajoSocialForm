@@ -34,8 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <!-- NOMBRE -->
 
+            <!-- NOMBRE -->
             <include
                 android:id="@+id/panel_nombres_apoderado"
                 layout="@layout/tv_et"
@@ -44,15 +44,14 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <!-- APELLIDO -->
-
             <include
                 android:id="@+id/panel_apellidos_apoderado"
                 layout="@layout/tv_et"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent" />
-            <!-- CUIL -->
 
+            <!-- CUIL -->
             <include
                 android:id="@+id/panel_cuil_apoderado"
                 layout="@layout/tv_et"
@@ -69,7 +68,6 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <!-- Fecha de Nacimiento -->
-
             <include
                 android:id="@+id/panel_fecha_nacimiento_apoderado"
                 layout="@layout/tv_et_fecha"

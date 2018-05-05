@@ -31,4 +31,7 @@ public interface SolicitanteDao {
 
     @Query("SELECT * FROM solicitante WHERE id = :solicitanteId")
     Solicitante getSolicitante(int solicitanteId);
+
+    @Query("DELETE FROM solicitante WHERE id = :solicitanteId")
+    void deleteSolicitante(int solicitanteId);
 }

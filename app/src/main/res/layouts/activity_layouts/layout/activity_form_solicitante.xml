@@ -18,143 +18,66 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- NOMBRE -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_nombres_solicitante"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_solicitanteForm" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
+        app:layout_constraintTop_toBottomOf="@id/titulo_solicitanteForm">
 
-        <EditText
-            android:id="@+id/nombres_solicitante_form_et"
-            android:layout_width="250dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/nombres_solicitante_form_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/nombres_solicitante"
-            app:layout_constraintBaseline_toBaselineOf="@+id/nombres_solicitante_form_et"
-            app:layout_constraintEnd_toStartOf="@+id/nombres_solicitante_form_et"
-            app:layout_constraintStart_toStartOf="parent" />
-    </android.support.constraint.ConstraintLayout >
+            <!-- NOMBRE -->
+            <include
+                android:id="@+id/panel_nombres_solicitante"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- APELLIDO -->
+            <!-- APELLIDO -->
+            <include
+                android:id="@+id/panel_apellidos_solicitante"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_apellidos_solicitante"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_nombres_solicitante" >
+            <!-- CUIL -->
+            <include
+                android:id="@+id/panel_cuil_solicitante"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/apellidos_solicitante_form_et"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <!-- TELEFONO PRINCIPAL -->
+            <include
+                android:id="@+id/panel_telefono_principal_solicitante"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/apellidos_solicitante_form_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/apellidos_solicitante"
-            app:layout_constraintBaseline_toBaselineOf="@+id/apellidos_solicitante_form_et"
-            app:layout_constraintEnd_toStartOf="@+id/apellidos_solicitante_form_et"
-            app:layout_constraintStart_toStartOf="parent" />
-    </android.support.constraint.ConstraintLayout>
 
-    <!-- CUIL -->
+            <!-- OTRO TELEFONO -->
+            <include
+                android:id="@+id/panel_otro_telefono_solicitante"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_cuil_solicitante"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_apellidos_solicitante" >
+        </LinearLayout>
+    </ScrollView>
 
-        <EditText
-            android:id="@+id/cuil_solicitante_form_et"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/cuil_solicitante_form_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cuil_solicitante"
-            app:layout_constraintBaseline_toBaselineOf="@+id/cuil_solicitante_form_et"
-            app:layout_constraintEnd_toStartOf="@+id/cuil_solicitante_form_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- TELEFONO PRINCIPAL -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_telefono_principal_solicitante"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_cuil_solicitante">
-
-        <EditText
-            android:id="@+id/telefonoPrincipal_solicitante_form_et"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/telefonoPrincipal_solicitante_form_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/telefono_principal_solicitante"
-            app:layout_constraintBaseline_toBaselineOf="@+id/telefonoPrincipal_solicitante_form_et"
-            app:layout_constraintEnd_toStartOf="@+id/telefonoPrincipal_solicitante_form_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- OTRO TELEFONO -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_otro_telefono_solicitante"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_telefono_principal_solicitante">
-
-        <EditText
-            android:id="@+id/otroTelefono_solicitante_form_et"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/otroTelefono_solicitante_form_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/otro_telefono_solicitante"
-            app:layout_constraintBaseline_toBaselineOf="@+id/otroTelefono_solicitante_form_et"
-            app:layout_constraintEnd_toStartOf="@+id/otroTelefono_solicitante_form_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
 
     <Button
         android:id="@+id/siguiente_button"

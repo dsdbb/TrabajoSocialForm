@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <TextView
-        android:id="@+id/titulo_detalles"
+        android:id="@+id/titulo_detalles_situacion_habitacional"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/titulo_detalles"
+        android:text="@string/titulo_detalles_situacion_habitacional"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
@@ -22,62 +23,49 @@
         android:layout_alignParentTop="true"
         android:fillViewport="true"
         android:scrollbarStyle="outsideInset"
-        app:layout_constraintTop_toBottomOf="@id/titulo_detalles">
+        app:layout_constraintTop_toBottomOf="@id/titulo_detalles_situacion_habitacional">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- SOLICITANTE -->
+            <!-- TIPO DE VIVIENDA -->
             <include
-                android:id="@+id/detalles_solicitante"
-                layout="@layout/detalles_solicitante"
+                android:id="@+id/detalle_tipo_vivienda"
+                layout="@layout/detalles_item"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- APODERADO -->
+            <!-- TENENCIA DE LA VIVIENDA Y EL TERRENO -->
             <include
-                android:id="@+id/detalles_apoderado"
-                layout="@layout/detalles_apoderado"
+                android:id="@+id/detalle_tenencia_vivienda_terreno"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- TIEMPO DE OCUPACIÓN -->
+            <include
+                android:id="@+id/detalle_tiempo_ocupacion"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- CANTIDAD DE HOGARES EN LA VIVIENDA -->
+            <include
+                android:id="@+id/detalle_cantidad_hogares_vivienda"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- CANTIDAD DE CUARTOS DE USO EXCLUSIVO -->
+            <include
+                android:id="@+id/detalle_cantidad_cuartos_ue"
+                layout="@layout/detalles_item"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
 
-            <!--DOMICILIO-->
-            <include
-                android:id="@+id/detalles_domicilio"
-                layout="@layout/detalles_domicilio"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- FAMILIARES -->
-            <include
-                android:id="@+id/detalles_familiares"
-                layout="@layout/detalles_familiares"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- SITUACION HABITACIONAL -->
-            <include
-                android:id="@+id/detalles_situacion_habitacional"
-                layout="@layout/detalles_situacion_habitacional"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- CARACTERISTICAS VIVIENDA -->
-            <include
-                android:id="@+id/detalles_caracteristicas_vivienda"
-                layout="@layout/detalles_caracteristicas_vivienda"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- INFRAESTRUCTURA BARRIAL -->
-            <include
-                android:id="@+id/detalles_infraestructura_barrial"
-                layout="@layout/detalles_infraestructura_barrial"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
         </LinearLayout>
     </ScrollView>

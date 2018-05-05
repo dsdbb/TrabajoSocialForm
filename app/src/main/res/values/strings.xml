@@ -44,7 +44,9 @@
     <string name="calle">Calle</string>
     <string name="casa_dpto">Casa/dpto</string>
     <string name="delegacion">Delegacion</string>
-    <string name="entre_calles">Entre calle y calle</string>
+    <string name="entre_calles">Entre calles</string>
+    <string name="entre_calle1">Entre calle</string>
+    <string name="entre_calle2">Y calle</string>
     <string name="localidad">Localidad</string>
     <string name="manzana">manzana</string>
     <string name="monoblock_torre">Monoblock/torre</string>

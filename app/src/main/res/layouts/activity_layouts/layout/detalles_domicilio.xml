@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/titulo_detalles_domicilio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo_detalles_domicilio"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
+        app:layout_constraintTop_toBottomOf="@id/titulo_detalles_domicilio">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- CALLE -->
+            <include
+                android:id="@+id/detalle_calle"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- NÚMERO -->
+            <include
+                android:id="@+id/detalle_numero"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- MANZANA -->
+            <include
+                android:id="@+id/detalle_manzana"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- MONOBLOCK/TORRE -->
+            <include
+                android:id="@+id/detalle_monoblock_torre"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- PISO -->
+            <include
+                android:id="@+id/detalle_piso"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- ACC/INT -->
+            <include
+                android:id="@+id/detalle_acc_int"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- CASA/DPTO -->
+            <include
+                android:id="@+id/detalle_casa_dpto"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- ENTRE CALLE 1 -->
+            <include
+                android:id="@+id/detalle_entre_calle1"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- ENTRE CALLE 2 -->
+            <include
+                android:id="@+id/detalle_entre_calle2"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- BARRIO -->
+            <include
+                android:id="@+id/detalle_barrio"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- LOCALIDAD -->
+            <include
+                android:id="@+id/detalle_localidad"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- DELEGACIÓN -->
+            <include
+                android:id="@+id/detalle_delegacion"
+                layout="@layout/detalles_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

@@ -29,374 +29,107 @@
         app:layout_constraintTop_toBottomOf="@+id/titulo_domicilioForm">
 
 
-    <LinearLayout
-        android:id="@+id/content_domicilio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-
-    <!-- CALLE -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_calle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView">
-
-        <TextView
-            android:id="@+id/calle_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/calle"
-            app:layout_constraintBaseline_toBaselineOf="@+id/calle_et"
-            app:layout_constraintEnd_toStartOf="@+id/calle_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/calle_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- NUMERO -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_numero"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_calle">
-
-        <EditText
-            android:id="@+id/numero_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/numero_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/numero"
-            app:layout_constraintBaseline_toBaselineOf="@+id/numero_et"
-            app:layout_constraintEnd_toStartOf="@+id/numero_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!--MANZANA-->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_manzana"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_numero">
-
-        <EditText
-            android:id="@+id/manzana_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/manzana_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/manzana"
-            app:layout_constraintBaseline_toBaselineOf="@+id/manzana_et"
-            app:layout_constraintEnd_toStartOf="@+id/manzana_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- MONOBLOCK/TORRE -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_monoblock_torre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_manzana">
-
-        <EditText
-            android:id="@+id/monoblock_torre_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/monoblock_torre_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/monoblock_torre"
-            app:layout_constraintBaseline_toBaselineOf="@+id/monoblock_torre_et"
-            app:layout_constraintEnd_toStartOf="@+id/monoblock_torre_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- PISO -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_piso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_monoblock_torre">
-
-        <EditText
-            android:id="@+id/piso_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/piso_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/piso"
-            app:layout_constraintBaseline_toBaselineOf="@+id/piso_et"
-            app:layout_constraintEnd_toStartOf="@+id/piso_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- ACC/INT -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_acc_int"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_piso">
-
-
-        <EditText
-            android:id="@+id/acc_int_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/acc_int_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/acc_int"
-            app:layout_constraintBaseline_toBaselineOf="@+id/acc_int_et"
-            app:layout_constraintEnd_toStartOf="@+id/acc_int_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- CASA/DEPTO-->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_casa_depto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_casa_depto">
-
-
-        <EditText
-            android:id="@+id/casa_depto_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/casa_depto_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/casa_dpto"
-            app:layout_constraintBaseline_toBaselineOf="@+id/casa_depto_et"
-            app:layout_constraintEnd_toStartOf="@+id/casa_depto_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- ENTRE CALLES -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_entre_calles"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_casa_depto">
-
-        <EditText
-            android:id="@+id/entre_calles1_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <EditText
-            android:id="@+id/entre_calles2_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/entre_calles1_et" />
-
-        <TextView
-            android:id="@+id/entre_calles_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/entre_calles"
-            app:layout_constraintBaseline_toBaselineOf="@+id/entre_calles1_et"
-            app:layout_constraintEnd_toStartOf="@+id/entre_calles1_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-
-    <!-- BARRIO -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_barrio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_entre_calles">
-
-        <EditText
-            android:id="@+id/barrio_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/barrio_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/barrio"
-            app:layout_constraintBaseline_toBaselineOf="@+id/barrio_et"
-            app:layout_constraintEnd_toStartOf="@+id/barrio_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- LOCALIDAD-->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_localidad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_barrio">
-
-        <EditText
-            android:id="@+id/localidad_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/localidad_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/localidad"
-            app:layout_constraintBaseline_toBaselineOf="@+id/localidad_et"
-            app:layout_constraintEnd_toStartOf="@+id/localidad_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!-- DELEGACION -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/panel_delegacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/panel_localidad">
-
-        <EditText
-            android:id="@+id/delegacion_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/delegacion_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/delegacion"
-            app:layout_constraintBaseline_toBaselineOf="@+id/delegacion_et"
-            app:layout_constraintEnd_toStartOf="@+id/delegacion_et"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-        <Button
-            android:id="@+id/siguiente_button"
+        <LinearLayout
+            android:id="@+id/content_domicilio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:onClick="continuar"
-            android:text="Siguiente"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/panel_delegacion" />
+            android:orientation="vertical" >
 
-    </LinearLayout>
+            <include
+                android:id="@+id/panel_calle"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_numero"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_manzana"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_monoblock_torre"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_piso"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_acc_int"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_casa_depto"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_entre_calles1"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_entre_calles2"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_barrio"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_localidad"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <include
+                android:id="@+id/panel_delegacion"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
     </ScrollView>
 
-
-
+    <Button
+        android:id="@+id/siguiente_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="continuar"
+        android:text="Siguiente"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

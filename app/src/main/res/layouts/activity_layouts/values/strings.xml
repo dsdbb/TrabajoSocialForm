@@ -1,5 +1,15 @@
 <resources>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+   <!-- DETALLES -->
+    <string name="titulo_detalles_solicitante">Detalles del Solicitante</string>
+    <string name="titulo_detalles_apoderado">Detalles del Apoderado</string>
+    <string name="titulo_detalles_domicilio">Detalles del Domicilio</string>
+    <string name="titulo_detalles_familiares">Grupo familiar</string>
+    <string name="titulo_detalles_situacion_habitacional">Detalles de la situación habitacional</string>
+    <string name="titulo_detalles_caracteristicas_vivienda">Detalles de la vivienda</string>
+    <string name="titulo_detalles_infraestructura_barrial">Detalles de la infraestructura barrial</string>
+
+   <!--MENU-->
+   <string name="menu_edit">Editar</string>
+   <string name="menu_delete">Eliminar</string>
 </resources>

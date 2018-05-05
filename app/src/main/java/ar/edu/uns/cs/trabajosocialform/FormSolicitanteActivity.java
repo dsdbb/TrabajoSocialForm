@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
+import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Datos_solicitante;
@@ -21,6 +22,8 @@ public class FormSolicitanteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_solicitante);
+
+        inicializarGui();
 
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
@@ -43,26 +46,24 @@ public class FormSolicitanteActivity extends AppCompatActivity {
         finish();
     }
 
+    private void inicializarGui(){
+        Utils utils = new Utils(this);
+        utils.setValuesTvEt(R.string.nombres_solicitante,R.id.panel_nombres_solicitante);
+        utils.setValuesTvEt(R.string.apellidos_solicitante,R.id.panel_apellidos_solicitante);
+        utils.setValuesTvEt(R.string.cuil_solicitante,R.id.panel_cuil_solicitante);
+        utils.setValuesTvEt(R.string.telefono_principal_solicitante,R.id.panel_telefono_principal_solicitante);
+        utils.setValuesTvEt(R.string.otro_telefono_solicitante,R.id.panel_otro_telefono_solicitante);
+    }
+
     private Solicitante tomarDatos(){
-        Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
-        Datos_solicitante datos = config.getDatos_solicitante();
+        Utils utils = new Utils(this);
+        String nombre = utils.getDataTvEt(R.id.panel_nombres_solicitante);
+        String apellido = utils.getDataTvEt(R.id.panel_apellidos_solicitante);
+        String cuilS = utils.getDataTvEt(R.id.panel_cuil_solicitante);
+        String telefono = utils.getDataTvEt(R.id.panel_telefono_principal_solicitante);
+        String otroTelefono = utils.getDataTvEt(R.id.panel_otro_telefono_solicitante);
 
-        EditText nombreEt = (EditText) findViewById(R.id.nombres_solicitante_form_et);
-        EditText apellidoEt = (EditText) findViewById(R.id.apellidos_solicitante_form_et);
-        EditText cuilEt = (EditText) findViewById(R.id.cuil_solicitante_form_et);
-        EditText telefonoEt = (EditText) findViewById(R.id.telefonoPrincipal_solicitante_form_et);
-        EditText otroTelefonoEt = (EditText) findViewById(R.id.otroTelefono_solicitante_form_et);
-
-        String nombre = nombreEt.getText().toString();
-        String apellido = apellidoEt.getText().toString();
-        Integer cuil=null;
-
-        if(!cuilEt.getText().toString().equals(""))
-            cuil = Integer.parseInt(cuilEt.getText().toString());
-
-
-        String telefono = telefonoEt.getText().toString();
-        String otroTelefono = otroTelefonoEt.getText().toString();
+        Integer cuil = utils.getIntegerFromString(cuilS);
 
         Solicitante solicitante = new Solicitante(nombre,apellido,cuil,telefono,otroTelefono);
 

@@ -3,6 +3,7 @@ package ar.edu.uns.cs.trabajosocialform.Daos;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.InfraestructuraBarrial;
@@ -24,4 +25,7 @@ public interface InfraestructuraBarrialDao {
 
     @Delete
     void delete(InfraestructuraBarrial... infraestructuras);
+
+    @Query("SELECT * FROM infraestructura_barrial WHERE id = :infraestructuraBarrialId")
+    InfraestructuraBarrial getInfraestructuraBarrial(int infraestructuraBarrialId);
 }

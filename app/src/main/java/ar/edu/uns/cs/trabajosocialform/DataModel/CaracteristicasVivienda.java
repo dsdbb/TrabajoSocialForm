@@ -21,7 +21,7 @@ public class CaracteristicasVivienda implements Serializable{
     @ColumnInfo(name = "revestimiento_techo")
     private boolean revestimiento_techo;
     @ColumnInfo(name = "material_pared")
-    private String material_pareded;
+    private String material_paredes;
     @ColumnInfo(name = "revestimiento_pared")
     private boolean revestimiento_paredes;
     @ColumnInfo(name = "material_pisos")
@@ -47,10 +47,10 @@ public class CaracteristicasVivienda implements Serializable{
     public CaracteristicasVivienda() {
     }
 
-    public CaracteristicasVivienda(String material_techo, boolean revestimiento_techo, String material_pareded, boolean revestimiento_paredes, String material_pisos, String agua, String fuente_agua, String banio, String banio_tiene, String desague, boolean cocina, String electricidad, String combustible_cocina) {
+    public CaracteristicasVivienda(String material_techo, boolean revestimiento_techo, String material_paredes, boolean revestimiento_paredes, String material_pisos, String agua, String fuente_agua, String banio, String banio_tiene, String desague, boolean cocina, String electricidad, String combustible_cocina) {
         this.material_techo = material_techo;
         this.revestimiento_techo = revestimiento_techo;
-        this.material_pareded = material_pareded;
+        this.material_paredes = material_paredes;
         this.revestimiento_paredes = revestimiento_paredes;
         this.material_pisos = material_pisos;
         this.agua = agua;
@@ -87,12 +87,12 @@ public class CaracteristicasVivienda implements Serializable{
         this.revestimiento_techo = revestimiento_techo;
     }
 
-    public String getMaterial_pareded() {
-        return material_pareded;
+    public String getMaterial_paredes() {
+        return material_paredes;
     }
 
-    public void setMaterial_pareded(String material_pareded) {
-        this.material_pareded = material_pareded;
+    public void setMaterial_paredes(String material_pareded) {
+        this.material_paredes = material_pareded;
     }
 
     public boolean isRevestimiento_paredes() {
@@ -174,4 +174,6 @@ public class CaracteristicasVivienda implements Serializable{
     public void setCombustible_cocina(String combustible_cocina) {
         this.combustible_cocina = combustible_cocina;
     }
+
+
 }

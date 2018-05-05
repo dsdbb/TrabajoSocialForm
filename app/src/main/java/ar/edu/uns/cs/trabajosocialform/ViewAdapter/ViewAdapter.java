@@ -112,7 +112,8 @@ public class ViewAdapter {
             act.findViewById(R.id.panel_casa_depto).setVisibility(View.GONE);
         }
         if(!entre_calles){
-            act.findViewById(R.id.panel_entre_calles).setVisibility(View.GONE);
+            act.findViewById(R.id.panel_entre_calles1).setVisibility(View.GONE);
+            act.findViewById(R.id.panel_entre_calles2).setVisibility(View.GONE);
         }
         if(!barrio){
             act.findViewById(R.id.panel_barrio).setVisibility(View.GONE);

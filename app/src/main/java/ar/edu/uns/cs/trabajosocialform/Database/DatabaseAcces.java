@@ -20,10 +20,14 @@ import ar.edu.uns.cs.trabajosocialform.Daos.OcupacionDao;
 import ar.edu.uns.cs.trabajosocialform.Daos.SaludDao;
 import ar.edu.uns.cs.trabajosocialform.Daos.SituacionHabitacionalDao;
 import ar.edu.uns.cs.trabajosocialform.Daos.SolicitanteDao;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Apoderado;
+import ar.edu.uns.cs.trabajosocialform.DataModel.CaracteristicasVivienda;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Domicilio;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.FormularioFamiliarJoin;
+import ar.edu.uns.cs.trabajosocialform.DataModel.InfraestructuraBarrial;
+import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 
 public class DatabaseAcces {
@@ -153,7 +157,6 @@ public class DatabaseAcces {
                 AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
                 SolicitanteDao solDao = mDb.solicitanteDao();
                 Solicitante sol  = solDao.getSolicitante(solicitanteId);
-                Log.i("SOL",sol.toString());
                 solicitante.add(sol);
             }
         });
@@ -165,5 +168,178 @@ public class DatabaseAcces {
             e.printStackTrace();
         }
         return solicitante.get(0);
+    }
+
+    public Apoderado getApoderado(final Activity act, final int apoderadoId){
+        final List<Apoderado> apoderadoList = new ArrayList<Apoderado>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                ApoderadoDao apoderadoDao = mDb.apoderadoDao();
+                Apoderado apoderado  = apoderadoDao.getApoderado(apoderadoId);
+                apoderadoList.add(apoderado);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return apoderadoList.get(0);
+    }
+
+    public Domicilio getDomicilio(final Activity act, final int domicilioId){
+        final List<Domicilio> domicilioList = new ArrayList<Domicilio>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                DomicilioDao domicilioDao = mDb.domicilioDao();
+                Domicilio domicilio  = domicilioDao.getDomicilio(domicilioId);
+                domicilioList.add(domicilio);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return domicilioList.get(0);
+    }
+
+    public List<Familiar> getFamiliares(final Activity act, final int formId){
+        final List<Familiar> familiares = new ArrayList<Familiar>();
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                FormularioFamiliarDao formDao = mDb.formularioFamiliarDao();
+                FamiliarDao familiarDao = mDb.familiarDao();
+                List<Integer> listaId = formDao.getFamiliaresIdJoin(formId);
+                Log.i("CANTIADAD DE IDS: ",listaId.size()+"");
+                for(int i =0; i<listaId.size();i++){
+                    Familiar familiar = familiarDao.getFamiliar(listaId.get(i));
+                    familiares.add(familiar);
+                }
+            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Log.i("SIZE DENTRO: ",familiares.size()+"");
+        return familiares;
+    }
+
+    public SituacionHabitacional getSituacionHabitacional(final Activity act, final int situacionHabitacionalId){
+        final List<SituacionHabitacional> situacionList = new ArrayList<SituacionHabitacional>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                SituacionHabitacionalDao situacionHabitacionalDao = mDb.situacionHabitacionalDao();
+                SituacionHabitacional situacionHabitacional  = situacionHabitacionalDao.getSituacionHabitacional(situacionHabitacionalId);
+                situacionList.add(situacionHabitacional);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return situacionList.get(0);
+    }
+
+    public CaracteristicasVivienda getCaracteristicasVivienda(final Activity act, final int caracteristicasViviendaId){
+        final List<CaracteristicasVivienda> caracteristicasList = new ArrayList<CaracteristicasVivienda>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                CaracteristicasViviendaDao caracteristicasViviendaDao = mDb.caracteristicasViviendaDao();
+                CaracteristicasVivienda caracteristicasVivienda  = caracteristicasViviendaDao.getCaracteristicasVivienda(caracteristicasViviendaId);
+                caracteristicasList.add(caracteristicasVivienda);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return caracteristicasList.get(0);
+    }
+
+    public InfraestructuraBarrial getInfraestructuraBarrial(final Activity act, final int infraestructuraBarrialId){
+        final List<InfraestructuraBarrial> infraestructuraList = new ArrayList<InfraestructuraBarrial>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                InfraestructuraBarrialDao infraestructuraBarrialDao = mDb.infraestructuraBarrialDao();
+                InfraestructuraBarrial infraestructuraBarrial  = infraestructuraBarrialDao.getInfraestructuraBarrial(infraestructuraBarrialId);
+                infraestructuraList.add(infraestructuraBarrial);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return infraestructuraList.get(0);
+    }
+
+    public void deleteFormulario(final Activity act ,final int formId) {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                FormularioDao formularioDao = mDb.formularioDao();
+                formularioDao.deleteForm(formId);
+            }
+        });
+
+        t.start();
+
+    }
+    public void deleteSolicitante(final Activity act ,final int solId) {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                SolicitanteDao solicitanteDao = mDb.solicitanteDao();
+                solicitanteDao.deleteSolicitante(solId);
+            }
+        });
+
+        t.start();
+
+    }
+
+    public void deleteJoins(final Activity act, final int formId){
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                FormularioFamiliarDao formularioFamiliarDao = mDb.formularioFamiliarDao();
+                formularioFamiliarDao.deleteJoinsWithForm(formId);
+            }
+        });
+
+        t.start();
     }
 }
