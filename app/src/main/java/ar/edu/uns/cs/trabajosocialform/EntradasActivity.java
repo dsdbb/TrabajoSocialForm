@@ -85,7 +85,18 @@ public class EntradasActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()) {
             case R.id.edit:
-
+                /*Inicio la misma actividad de alta pero con un parámetro que especifique que se refiere a una modificación*/
+                Intent intent = new Intent(EntradasActivity.this,FormularioActivity.class);
+                intent.putExtra("UPDATE",true);
+                ContextMenu.ContextMenuInfo menuInfo = item.getMenuInfo();
+                int pos = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
+                Formulario form = forms.get(pos);
+                DatabaseAcces db = new DatabaseAcces();
+                Log.i("JSON: ",(new Gson()).toJson(form));
+                db.getCompleteForm(this,form);
+                Log.i("JSON2: ",(new Gson()).toJson(form));
+                intent.putExtra("UPDATE_FORM",form);
+                startActivity(intent);
                 return true;
             case R.id.delete:
                 Utils utils = new Utils(this);

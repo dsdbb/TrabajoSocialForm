@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,6 +36,8 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
     private List<View> discapacidades;
     private List<View> enfermedadesCronicas;
     private Formulario form;
+    private boolean update;
+    private Familiar updateFamiliar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,13 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         form = (Formulario)getIntent().getSerializableExtra("FORM");
 
         inicializarGui();
+
+        /*Chequeo si es un update y en ese caso relleno los campos*/
+        update = getIntent().getBooleanExtra("UPDATE",false);
+        if(update){
+            updateFamiliar = (Familiar)getIntent().getSerializableExtra("UPDATE_FAMILIAR");
+            rellenarCampos();
+        }
     }
 
     public void guardar(View view){
@@ -196,5 +206,84 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
 
     }
 
+    private void rellenarCampos(){
+        Utils utils = new Utils(this);
+
+        /*Datos generales del familiar*/
+        utils.setValueToEditText(R.id.panel_nombres_familiar, updateFamiliar.getNombres());
+        utils.setValueToEditText(R.id.panel_apellidos_familiar, updateFamiliar.getApellidos());
+        utils.setValueToSpinner(R.id.panel_tipo_doc_familiar,R.array.tipo_doc_opciones ,updateFamiliar.getTipoDocumento());
+        utils.setValueToEditText(R.id.panel_cuil_familiar, updateFamiliar.getCuil());
+        utils.setValueToSpinner(R.id.panel_sexo_familiar, R.array.sexo_opciones, updateFamiliar.getSexo());
+        utils.setValueToSpinner(R.id.panel_nacion_familiar, R.array.nacionalidad_familiar_opciones,updateFamiliar.getNacion());
+        String fecha = utils.getStringFromDate(updateFamiliar.getFecha_nacimiento());
+        utils.setValueToEditText(R.id.panel_fecha_nac_familiar, fecha);
+        utils.setValueToSpinner(R.id.panel_estado_civil_familiar, R.array.estado_civil_opciones, updateFamiliar.getEstado_civil());
+        utils.setValueToSpinner(R.id.panel_vinculo_familiar, R.array.vinculo_opciones, updateFamiliar.getVinculo());
+        utils.setValueToSpinner(R.id.panel_nucleo_familiar, R.array.nucleo_opciones, updateFamiliar.getNucleo());
+        utils.setValueToSpinner(R.id.panel_nivel_educativo, R.array.nivel_educativo_opciones, updateFamiliar.getNivel_educativo());
+        utils.setValueToSpinner2(R.id.panel_capacitacion, R.array.capacitacion_opciones, updateFamiliar.getCapacitacion(),
+                R.array.asistencia_capacitacion_opciones, updateFamiliar.getAsistenciaCapacitacion());
+
+        /*Datos de la ocupacion*/
+        Ocupacion ocupacion = updateFamiliar.getOcupacion();
+        utils.setValueToSpinner(R.id.panel_condicion_actividad, R.array.capacitacion_opciones, ocupacion.getCondicion_actividad());
+        utils.setValueToSpinner(R.id.panel_puesto_trabajo, R.array.puesto_trabajo_opciones, ocupacion.getPuesto_trabajo());
+        utils.setValueToSpinner(R.id.panel_aporte_jubilatorio, R.array.aportes_jubilatorios_opciones, ocupacion.getAporte_jubilatorio());
+        utils.setValueToSpinner(R.id.panel_duracion_empleo, R.array.duracion_empleo_opciones, ocupacion.getDuracion());
+        utils.setValueToSpinner(R.id.panel_tipo_actividad, R.array.tipo_actividad_opciones, ocupacion.getTipo_actividad());
+        utils.setValueToSpinner(R.id.panel_calificacion, R.array.calificacion_opciones, ocupacion.getCalificacion());
+
+        /*Datos de los Ingresos*/
+        Ingreso ingreso = updateFamiliar.getIngreso();
+        utils.setValueToEditText(R.id.panel_ingresos_laborales, ingreso.getIngresos_laborales());
+        List<IngresoNoLaboral> noLaborales = ingreso.getIngresosNoLaborales();
+        for(int i=0;i<noLaborales.size();i++){
+           View view = utils.inflarEnUpdate(R.id.panel_ingresos_no_laborales,R.layout.panel_ingreso_no_laboral);
+           Spinner origen = view.findViewById(R.id.spinner_origen_ingreso_no_laboral);
+           TextView monto = view.findViewById(R.id.monto_ingreso_no_laboral_et);
+
+           ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.ingresos_no_laborales_opciones, android.R.layout.simple_spinner_item);
+            origen.setAdapter(adapter);
+            String compareValue = noLaborales.get(i).getOrigen();
+            if (compareValue != null) {
+                int spinnerPosition = adapter.getPosition(compareValue);
+                origen.setSelection(spinnerPosition);
+            }
+
+            monto.setText(noLaborales.get(i).getMonto());
+        }
+
+        List<String> programasSocialesSti = ingreso.getProgramas_sociales_sti();
+        for(int i=0; i<programasSocialesSti.size();i++){
+            View view = utils.inflarEnUpdate(R.id.panel_programas_sociales_sti,R.layout.panel_nuevo_programa_social_sti);
+            Spinner spinner = view.findViewById(R.id.spinner_nuevo_programa_social_sti);
+            utils.setValueToSpinner(spinner, R.array.programas_sociales_sti_opciones, programasSocialesSti.get(i));
+        }
+
+        /*Salud*/
+        Salud salud = updateFamiliar.getSalud();
+        utils.setValueToSpinner(R.id.panel_cobertura, R.array.cobertura_opciones, salud.getCobertura());
+        String fechaParto = utils.getStringFromDate(salud.getFecha_estimada_embarazo());
+        utils.setValueToEditText(R.id.panel_embarazo, fechaParto);
+
+        List<String> discapacidades = salud.getDiscapacidades();
+        for(int i=0; i<discapacidades.size();i++){
+            View view = utils.inflarEnUpdate(R.id.panel_discapacidad,R.layout.panel_nueva_discapacidad);
+            Spinner spinner = view.findViewById(R.id.spinner_nueva_discapacidad);
+            utils.setValueToSpinner(spinner, R.array.discapacidad_opciones,discapacidades.get(i));
+        }
+
+        List<String> enfermedades = salud.getEnfermedadesCronicas();
+        for(int i=0;i<enfermedades.size();i++){
+            View view = utils.inflarEnUpdate(R.id.panel_enfermedad_cronica, R.layout.panel_nueva_enfermedad_cronica);
+            Spinner spinner = view.findViewById(R.id.spinner_nueva_enfermedad_cronica);
+            utils.setValueToSpinner(spinner, R.array.enfermedad_cronica_opciones, enfermedades.get(i));
+        }
+
+        utils.setValueToSpinner(R.id.panel_independecia_funcional, R.array.independencia_funcional_opciones, salud.getIndependencia_funcional());
+
+
+    }
 
 }

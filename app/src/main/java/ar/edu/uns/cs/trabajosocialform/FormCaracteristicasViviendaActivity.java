@@ -15,6 +15,8 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
 
     private Bundle bundle;
     private Formulario form;
+    private boolean update;
+    private Formulario updateForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,13 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
         form = (Formulario)intent.getSerializableExtra("FORM");
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
 
+        /*Chequeo si es un update y en ese caso relleno los campos*/
+        update = getIntent().getBooleanExtra("UPDATE",false);
+        if(update){
+            updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+            rellenarCampos();
+        }
+
           ViewAdapter va = new ViewAdapter(config,this);
           va.adaptarCaracteristicas_vivienda();
     }
@@ -37,6 +46,9 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
         Intent intent = new Intent(this,FormInfraestructuraBarrialActivity.class);
         intent.putExtra("CONFIG",bundle);
         intent.putExtra("FORM",form);
+        intent.putExtra("UPDATE", update);
+        if(update)
+            intent.putExtra("UPDATE_FORM",updateForm);
         startActivity(intent);
         finish();
     }
@@ -84,6 +96,28 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
     }
 
 
+    private void rellenarCampos(){
+        Utils utils = new Utils(this);
+
+        CaracteristicasVivienda caracteristicas = updateForm.getCaracteristicasVivienda();
+        utils.setValueToSpinner(R.id.panel_techo, R.array.techo_opciones, caracteristicas.getMaterial_techo());
+        String revestTecho = utils.getStringFromBoolean(caracteristicas.isRevestimiento_techo());
+        utils.setValueToSpinner(R.id.panel_revestimiento_techo, R.array.revestimiento_techo_opciones, revestTecho);
+        utils.setValueToSpinner(R.id.panel_paredes, R.array.paredes_opciones, caracteristicas.getMaterial_paredes());
+        String revestPared = utils.getStringFromBoolean(caracteristicas.isRevestimiento_paredes());
+        utils.setValueToSpinner(R.id.panel_revestimiento_paredes, R.array.revestimiento_pared_opciones, revestPared);
+        utils.setValueToSpinner(R.id.panel_pisos, R.array.pisos_opciones, caracteristicas.getMaterial_pisos());
+        utils.setValueToSpinner(R.id.panel_agua, R.array.agua_opciones, caracteristicas.getAgua());
+        utils.setValueToSpinner(R.id.panel_fuente_agua, R.array.fuente_agua_opciones, caracteristicas.getFuente_agua());
+        utils.setValueToSpinner(R.id.panel_baño, R.array.baño_opciones, caracteristicas.getBanio());
+        utils.setValueToSpinner(R.id.panel_baño_tiene, R.array.baño_tiene_opciones, caracteristicas.getBanio_tiene());
+        utils.setValueToSpinner(R.id.panel_desague, R.array.desague_opciones, caracteristicas.getDesague());
+        String cocina = utils.getStringFromBoolean(caracteristicas.isCocina());
+        utils.setValueToSpinner(R.id.panel_cocina, R.array.cocina_opciones, cocina);
+        utils.setValueToSpinner(R.id.panel_electricidad, R.array.electricidad_opciones, caracteristicas.getElectricidad());
+        utils.setValueToSpinner(R.id.panel_combustible_cocina, R.array.combustible_cocina_opciones, caracteristicas.getCombustible_cocina());
+
+    }
 
 
 }

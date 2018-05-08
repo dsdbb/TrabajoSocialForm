@@ -24,6 +24,8 @@ public class FormApoderadoActivity extends AppCompatActivity {
 
     private Bundle bundle;
     private Formulario form;
+    private boolean update;
+    private Formulario updateForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,13 @@ public class FormApoderadoActivity extends AppCompatActivity {
         form = (Formulario)intent.getSerializableExtra("FORM");
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
 
+        /*Chequeo si es un update y en ese caso relleno los campos*/
+        update = getIntent().getBooleanExtra("UPDATE",false);
+        if(update){
+            updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+            rellenarCampos();
+        }
+
         ViewAdapter va = new ViewAdapter(config,this);
         va.adaptarApoderado();
 
@@ -48,6 +57,9 @@ public class FormApoderadoActivity extends AppCompatActivity {
         form.setApoderado(apoderado);
         intent.putExtra("CONFIG",bundle);
         intent.putExtra("FORM",form);
+        intent.putExtra("UPDATE",update);
+        if(update)
+            intent.putExtra("UPDATE_FORM", updateForm);
         startActivity(intent);
         finish();
     }
@@ -85,6 +97,19 @@ public class FormApoderadoActivity extends AppCompatActivity {
 
         utils.addDateListener(R.id.panel_fecha_nacimiento_apoderado);
 
+    }
+
+    private void rellenarCampos(){
+        Utils utils = new Utils(this);
+
+        Apoderado apoderado = updateForm.getApoderado();
+        utils.setValueToEditText(R.id.panel_nombres_apoderado, apoderado.getNombres() );
+        utils.setValueToEditText(R.id.panel_apellidos_apoderado, apoderado.getApellidos());
+        utils.setValueToEditText(R.id.panel_cuil_apoderado, apoderado.getCuil());
+        utils.setValueToEditText(R.id.panel_telefono_principal_apoderado, apoderado.getTelefono());
+        String fecha = utils.getStringFromDate(apoderado.getFecha_nacimiento());
+        utils.setValueToEditText(R.id.panel_fecha_nacimiento_apoderado, fecha);
+        utils.setValueToEditText(R.id.panel_motivos_poder_apoderado, apoderado.getMotivos_poder());
     }
 
 }

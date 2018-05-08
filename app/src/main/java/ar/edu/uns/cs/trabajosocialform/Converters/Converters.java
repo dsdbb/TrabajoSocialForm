@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.IngresoNoLaboral;
 
@@ -18,7 +19,7 @@ public class Converters{
 
     @TypeConverter
     public static Date toDate(String fecha){
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         try {
             if(fecha != null)
                 return formato.parse(fecha);
@@ -30,7 +31,7 @@ public class Converters{
 
     @TypeConverter
     public static String toString(Date fecha){
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         if(fecha!=null)
             return formato.format(fecha);
 
@@ -44,7 +45,7 @@ public class Converters{
 
     @TypeConverter
     public static List<String> toList(String json){
-       return (new Gson()).fromJson(json, List.class);
+       return (new Gson()).fromJson(json, new TypeToken<List<String>>(){}.getType());
     }
 
     @TypeConverter

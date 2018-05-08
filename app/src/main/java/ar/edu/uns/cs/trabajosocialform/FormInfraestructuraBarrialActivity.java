@@ -16,6 +16,8 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
 
     private Bundle bundle;
     private Formulario form;
+    private boolean update;
+    private Formulario updateForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,13 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
         bundle = intent.getBundleExtra("CONFIG");
         form = (Formulario)intent.getSerializableExtra("FORM");
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
+
+        /*Chequeo si es un update y en ese caso relleno los campos*/
+        update = getIntent().getBooleanExtra("UPDATE",false);
+        if(update){
+            updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+            rellenarCampos();
+        }
 
         ViewAdapter va = new ViewAdapter(config,this);
         va.adaptarInfraestructura_barrial();
@@ -66,5 +75,20 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
         utils.setValuesTvSpinner(R.array.distancia_opciones,R.string.titulo_distancia_educacion,R.id.panel_distancia_educacion);
         utils.setValuesTvSpinner(R.array.distancia_opciones,R.string.titulo_distancia_salud,R.id.panel_distancia_salud);
         utils.setValuesTvSpinner(R.array.distancia_opciones,R.string.titulo_distancia_transporte,R.id.panel_distancia_transporte);
+    }
+
+    private void rellenarCampos(){
+        Utils utils = new Utils(this);
+
+        InfraestructuraBarrial infraestructura = updateForm.getInfraestructuraBarrial();
+        utils.setValueToSpinner(R.id.panel_infraestructura_calles, R.array.infraestructura_calles_opciones, infraestructura.getInfraestructura_calles());
+        utils.setValueToSpinner(R.id.panel_iluminacion, R.array.iluminacion_opciones, infraestructura.getIluminacion());
+        String inundacion = utils.getStringFromBoolean(infraestructura.isInundacion());
+        utils.setValueToSpinner(R.id.panel_inundacion, R.array.inundacion_opciones, inundacion);
+        String recoleccion = utils.getStringFromBoolean(infraestructura.isRecoleccion_residuos());
+        utils.setValueToSpinner(R.id.panel_recoleccion, R.array.recoleccion_opciones, recoleccion);
+        utils.setValueToSpinner(R.id.panel_distancia_educacion, R.array.distancia_opciones, infraestructura.getDistancia_educacion());
+        utils.setValueToSpinner(R.id.panel_distancia_salud, R.array.distancia_opciones, infraestructura.getDistancia_salud());
+        utils.setValueToSpinner(R.id.panel_distancia_transporte, R.array.distancia_opciones, infraestructura.getDistancia_transporte());
     }
 }

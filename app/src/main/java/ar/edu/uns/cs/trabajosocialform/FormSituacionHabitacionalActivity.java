@@ -3,7 +3,11 @@ package ar.edu.uns.cs.trabajosocialform;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
@@ -15,6 +19,8 @@ public class FormSituacionHabitacionalActivity extends AppCompatActivity {
 
     private Bundle bundle;
     private Formulario form;
+    private boolean update;
+    private Formulario updateForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,13 @@ public class FormSituacionHabitacionalActivity extends AppCompatActivity {
         form = (Formulario)intent.getSerializableExtra("FORM");
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
 
+        /*Chequeo si es un update y en ese caso relleno los campos*/
+        update = getIntent().getBooleanExtra("UPDATE",false);
+        if(update){
+            updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+            rellenarCampos();
+        }
+
         ViewAdapter va = new ViewAdapter(config,this);
         va.adaptarSituacion_habitacional();
     }
@@ -38,6 +51,9 @@ public class FormSituacionHabitacionalActivity extends AppCompatActivity {
         Intent intent = new Intent(this,FormCaracteristicasViviendaActivity.class);
         intent.putExtra("CONFIG",bundle);
         intent.putExtra("FORM",form);
+        intent.putExtra("UPDATE",update);
+        if(update)
+            intent.putExtra("UPDATE_FORM",updateForm);
         startActivity(intent);
         finish();
     }
@@ -72,5 +88,17 @@ public class FormSituacionHabitacionalActivity extends AppCompatActivity {
         utils.setValuesTvEt(R.string.titulo_tiempo_ocupacion,R.id.panel_tiempo_ocupacion);
         utils.setValuesTvEt(R.string.titulo_cantidad_hogares_vivienda,R.id.panel_cantidad_hogares_vivienda);
         utils.setValuesTvEt(R.string.titulo_cantidad_cuartos_UE,R.id.panel_cantidad_cuartos_ue);
+    }
+
+    private void rellenarCampos(){
+        Utils utils = new Utils(this);
+
+        SituacionHabitacional situacionHabitacional = updateForm.getSituacionHabitacional();
+        utils.setValueToSpinner(R.id.panel_tipo_vivienda, R.array.tipo_vivienda_opciones, situacionHabitacional.getTipo_vivienda());
+        utils.setValueToSpinner(R.id.panel_tenencia_vivienda_terreno, R.array.tenencia_vivienda_terreno_opciones, situacionHabitacional.getTenencia_vivienda_terreno());
+        utils.setValueToEditText(R.id.panel_tiempo_ocupacion, situacionHabitacional.getTiempo_ocupacion());
+        utils.setValueToEditText(R.id.panel_cantidad_hogares_vivienda, situacionHabitacional.getCantidad_hogares_vivienda());
+        utils.setValueToEditText(R.id.panel_cantidad_cuartos_ue, situacionHabitacional.getCantidad_cuartos_ue());
+
     }
 }

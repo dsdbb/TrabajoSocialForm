@@ -5,14 +5,18 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.support.constraint.ConstraintLayout;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -216,6 +220,101 @@ public class Utils {
 
         View inflatedView = inflater.inflate(R.layout.detalles_item, contenedor, false);
         contenedor.addView(inflatedView);
+        return inflatedView;
+    }
+
+    public void setValueToEditText(int panelId, String valor){
+        ConstraintLayout panel = act.findViewById(panelId);
+        ((EditText)panel.findViewById(R.id.editText)).setText(valor);
+    }
+
+    public void setValueToEditText(int panelId, Long valor){
+        ConstraintLayout panel = act.findViewById(panelId);
+        if(valor!=null)
+            ((EditText)panel.findViewById(R.id.editText)).setText(valor+"");
+        else
+            ((EditText)panel.findViewById(R.id.editText)).setText("");
+    }
+
+    public void setValueToEditText(int panelId, Integer valor){
+        ConstraintLayout panel = act.findViewById(panelId);
+        if(valor!=null)
+            ((EditText)panel.findViewById(R.id.editText)).setText(valor+"");
+        else
+            ((EditText)panel.findViewById(R.id.editText)).setText("");
+    }
+
+    public void setValueToSpinner(int panelId,int opcionesId,String compareValue){
+        Spinner spinner = (Spinner)act.findViewById(panelId).findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(act, opcionesId, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        if (compareValue != null) {
+            int spinnerPosition = adapter.getPosition(compareValue);
+            spinner.setSelection(spinnerPosition);
+        }
+    }
+
+    public void setValueToSpinner(Spinner spinner, int opcionesId, String compareValue){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(act, opcionesId, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        if (compareValue != null) {
+            int spinnerPosition = adapter.getPosition(compareValue);
+            spinner.setSelection(spinnerPosition);
+        }
+    }
+
+    public void setValueToSpinner2(int panelId,int opcionesId,String compareValue, int opcionesId2, String compareValue2){
+        Spinner spinner1 = (Spinner)act.findViewById(panelId).findViewById(R.id.spinner1);
+        Spinner spinner2 = (Spinner)act.findViewById(panelId).findViewById(R.id.spinner2);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(act, opcionesId, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(adapter);
+        if (compareValue != null) {
+            int spinnerPosition = adapter.getPosition(compareValue);
+            spinner1.setSelection(spinnerPosition);
+        }
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(act, opcionesId2, android.R.layout.simple_spinner_item);
+        spinner2.setAdapter(adapter2);
+        if(compareValue2 != null){
+            int spinner2Position = adapter.getPosition(compareValue2);
+            spinner2.setSelection(spinner2Position);
+        }
+    }
+
+    /**** Method for Setting the Height of the ListView dynamically.
+     **** Hack to fix the issue of not showing all the items of the ListView
+     **** when placed inside a ScrollView  ****/
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
+
+    public View inflarEnUpdate(int panelId, int newLayoutId ){
+        ConstraintLayout panel = act.findViewById(panelId);
+        LinearLayout contenedor = (LinearLayout)panel.findViewById(R.id.contenedor);
+        LayoutInflater inflater = LayoutInflater.from(act);
+
+        View inflatedView = inflater.inflate(newLayoutId, contenedor, false);
+        contenedor.addView(inflatedView);
+
         return inflatedView;
     }
 

@@ -18,6 +18,8 @@ import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 public class FormularioActivity extends AppCompatActivity {
 
     private Bundle bundle;
+    private boolean update;
+    private Formulario updateForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +28,14 @@ public class FormularioActivity extends AppCompatActivity {
 
         Configuracion config = getConfigurationFile();
 
-      //  ViewAdapter va = new ViewAdapter(config,this);
-       // va.adaptarSolicitante();
-
         bundle = new Bundle();
         bundle.putSerializable("CONFIG",config);
+
+        update = getIntent().getBooleanExtra("UPDATE",false);
+        if(update){
+            updateForm =(Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+            rellenarCampos(updateForm);
+        }
     }
 
     public void continuar(View view){
@@ -38,6 +43,11 @@ public class FormularioActivity extends AppCompatActivity {
         Intent intent = new Intent(this,FormSolicitanteActivity.class);
         intent.putExtra("CONFIG",bundle);
         intent.putExtra("FORM",form);
+        intent.putExtra("UPDATE",update);
+        if(update){
+            intent.putExtra("UPDATE_FORM", updateForm);
+        }
+
         startActivity(intent);
         finish();
     }
@@ -73,5 +83,9 @@ public class FormularioActivity extends AppCompatActivity {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    private void rellenarCampos(Formulario updateForm){
+
     }
 }

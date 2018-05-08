@@ -17,6 +17,8 @@ public class FormDomicilioActivity extends AppCompatActivity {
 
     private Bundle bundle;
     private Formulario form;
+    private boolean update;
+    private Formulario updateForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,13 @@ public class FormDomicilioActivity extends AppCompatActivity {
         form = (Formulario)intent.getSerializableExtra("FORM");
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
 
+        /*Chequeo si es un update y en ese caso relleno los campos*/
+        update = getIntent().getBooleanExtra("UPDATE",false);
+        if(update){
+            updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+            rellenarCampos();
+        }
+
         ViewAdapter va = new ViewAdapter(config,this);
         va.adaptarDomicilio();
     }
@@ -40,6 +49,10 @@ public class FormDomicilioActivity extends AppCompatActivity {
         Intent intent = new Intent(this,FormGrupoFamiliarActivity.class);
         intent.putExtra("CONFIG",bundle);
         intent.putExtra("FORM",form);
+        intent.putExtra("UPDATE", update);
+        if(update){
+            intent.putExtra("UPDATE_FORM", updateForm);
+        }
         startActivity(intent);
         finish();
     }
@@ -85,6 +98,25 @@ public class FormDomicilioActivity extends AppCompatActivity {
         Integer casaDpto = utils.getIntegerFromString(casaDptoS);
 
        return new Domicilio(calle,numero,manzana,monoblockTorre,piso,accInt,casaDpto,entreCalle1,entreCalle2,barrio,delegacion,localidad);
+
+    }
+
+    private void rellenarCampos(){
+        Utils utils = new Utils(this);
+
+        Domicilio domicilio = updateForm.getDomicilio();
+        utils.setValueToEditText(R.id.panel_calle, domicilio.getCalle());
+        utils.setValueToEditText(R.id.panel_numero, domicilio.getNumero());
+        utils.setValueToEditText(R.id.panel_manzana, domicilio.getManzana());
+        utils.setValueToEditText(R.id.panel_monoblock_torre, domicilio.getMonoblock_torre());
+        utils.setValueToEditText(R.id.panel_piso, domicilio.getPiso());
+        utils.setValueToEditText(R.id.panel_acc_int, domicilio.getAcc_int());
+        utils.setValueToEditText(R.id.panel_casa_depto, domicilio.getCasa_dpto());
+        utils.setValueToEditText(R.id.panel_entre_calles1, domicilio.getEntre_calle1());
+        utils.setValueToEditText(R.id.panel_entre_calles2, domicilio.getEntre_calle2());
+        utils.setValueToEditText(R.id.panel_barrio, domicilio.getBarrio());
+        utils.setValueToEditText(R.id.panel_localidad, domicilio.getLocalidad());
+        utils.setValueToEditText(R.id.panel_delegacion, domicilio.getDelegacion());
 
     }
 }

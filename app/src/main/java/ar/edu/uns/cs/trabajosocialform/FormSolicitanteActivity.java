@@ -17,6 +17,8 @@ public class FormSolicitanteActivity extends AppCompatActivity {
 
     private Bundle bundle;
     private Formulario form;
+    private Formulario updateForm;
+    private boolean update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,13 @@ public class FormSolicitanteActivity extends AppCompatActivity {
         form = (Formulario)intent.getSerializableExtra("FORM");
         Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
 
+        /*Chequeo si es un update y en ese caso relleno los campos*/
+        update = getIntent().getBooleanExtra("UPDATE",false);
+        if(update){
+            updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+            rellenarCampos();
+        }
+
         ViewAdapter va = new ViewAdapter(config,this);
         va.adaptarSolicitante();
 
@@ -42,6 +51,10 @@ public class FormSolicitanteActivity extends AppCompatActivity {
         Intent intent = new Intent(this,FormApoderadoActivity.class);
         intent.putExtra("CONFIG",bundle);
         intent.putExtra("FORM",form);
+        intent.putExtra("UPDATE",update);
+        if(update){
+            intent.putExtra("UPDATE_FORM",updateForm);
+        }
         startActivity(intent);
         finish();
     }
@@ -71,6 +84,16 @@ public class FormSolicitanteActivity extends AppCompatActivity {
 
     }
 
+    private void rellenarCampos(){
+        Utils utils = new Utils(this);
+
+        Solicitante solicitante = updateForm.getSolicitante();
+        utils.setValueToEditText(R.id.panel_nombres_solicitante,solicitante.getNombres());
+        utils.setValueToEditText(R.id.panel_apellidos_solicitante, solicitante.getApellidos());
+        utils.setValueToEditText(R.id.panel_cuil_solicitante,solicitante.getCuil());
+        utils.setValueToEditText(R.id.panel_telefono_principal_solicitante, solicitante.getTelefono());
+        utils.setValueToEditText(R.id.panel_otro_telefono_solicitante, solicitante.getOtro_telefono());
+    }
 
 
 

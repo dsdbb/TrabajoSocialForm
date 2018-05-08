@@ -4,16 +4,20 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import ar.edu.uns.cs.trabajosocialform.Converters.Converters;
 
 /**
  * Created by Kevin (User) on 17/4/2018.
  */
 
 @Entity(tableName = "ingreso")
+@TypeConverters({Converters.class})
 public class Ingreso implements Serializable {
 
     @PrimaryKey(autoGenerate = true)

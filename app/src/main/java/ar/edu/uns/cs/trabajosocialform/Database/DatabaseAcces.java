@@ -111,6 +111,27 @@ public class DatabaseAcces {
         }) .start();
     }
 
+    public Formulario getCompleteForm(final Activity act, Formulario form){
+        form.setSolicitante(getSolicitante(act,form.getSolicitanteId()));
+        form.setApoderado(getApoderado(act,form.getApoderadoId()));
+        form.setDomicilio(getDomicilio(act,form.getDomicilioId()));
+        form.setSituacionHabitacional(getSituacionHabitacional(act,form.getSituacionHabitacionalId()));
+        form.setCaracteristicasVivienda(getCaracteristicasVivienda(act, form.getCaracteristicasViviendaId()));
+        form.setInfraestructuraBarrial(getInfraestructuraBarrial(act,form.getInfraestructuraBarrialId()));
+
+        List<Familiar> familiares = getFamiliares(act, form.getId());
+        for(int i=0; i<familiares.size();i++){
+            Familiar familiar = familiares.get(i);
+            familiar.setOcupacion(getOcupacion(act,familiar.getOcupacionId()));
+            familiar.setIngreso(getIngreso(act,familiar.getIngresoId()));
+            familiar.setSalud(getSalud(act,familiar.getSaludId()));
+        }
+
+        form.setFamiliares(familiares);
+
+        return form;
+    }
+
     public List<String> getNombresSolicitantes(final Activity act){
 
         final List<String> nombres = new ArrayList<String>();
