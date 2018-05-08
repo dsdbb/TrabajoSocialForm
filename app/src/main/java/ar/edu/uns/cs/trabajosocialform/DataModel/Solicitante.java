@@ -21,7 +21,7 @@ public class Solicitante implements Serializable {
     @ColumnInfo(name = "apellidos")
     private String apellidos;
     @ColumnInfo(name = "cuil")
-    private Integer cuil;
+    private Long cuil;
     @ColumnInfo(name = "telefono")
     private String telefono;
     @ColumnInfo(name = "otro_telefono")
@@ -30,7 +30,7 @@ public class Solicitante implements Serializable {
     @Ignore
     public Solicitante(){}
 
-    public Solicitante(String nombres, String apellidos, Integer cuil, String telefono, String otro_telefono) {
+    public Solicitante(String nombres, String apellidos, Long cuil, String telefono, String otro_telefono) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.cuil = cuil;
@@ -62,11 +62,11 @@ public class Solicitante implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public Integer getCuil() {
+    public Long getCuil() {
         return cuil;
     }
 
-    public void setCuil(Integer cuil) {
+    public void setCuil(Long cuil) {
         this.cuil = cuil;
     }
 

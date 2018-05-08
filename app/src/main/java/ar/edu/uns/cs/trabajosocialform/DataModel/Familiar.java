@@ -38,8 +38,10 @@ public class Familiar  implements Serializable {
     private String sexo;
     @ColumnInfo(name = "nacion")
     private String nacion;
+    @ColumnInfo(name="tipo_doc")
+    private String tipoDocumento;
     @ColumnInfo(name = "cuil")
-    private Integer cuil;
+    private Long cuil;
     @ColumnInfo(name = "fecha_nacimiento")
     private Date fecha_nacimiento;
     @ColumnInfo(name = "estado_civil")
@@ -74,12 +76,13 @@ public class Familiar  implements Serializable {
     }
 
     @Ignore
-    public Familiar(String nombres, String apellidos, String sexo, String nacion, Integer cuil, Date fecha_nacimiento, String estado_civil, String vinculo, String nucleo, String nivel_educativo, String capacitacion, String asistenciaCapacitacion, Ocupacion ocupacion, Ingreso ingreso, Salud salud) {
+    public Familiar(String nombres, String apellidos, String sexo, String nacion, String tipoDocumento ,Long cuil, Date fecha_nacimiento, String estado_civil, String vinculo, String nucleo, String nivel_educativo, String capacitacion, String asistenciaCapacitacion, Ocupacion ocupacion, Ingreso ingreso, Salud salud) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.sexo = sexo;
         this.nacion = nacion;
         this.cuil = cuil;
+        this.tipoDocumento = tipoDocumento;
         this.fecha_nacimiento = fecha_nacimiento;
         this.estado_civil = estado_civil;
         this.vinculo = vinculo;
@@ -95,11 +98,12 @@ public class Familiar  implements Serializable {
 
 
 
-    public Familiar(String nombres, String apellidos, String sexo, String nacion, Integer cuil, Date fecha_nacimiento, String estado_civil, String vinculo, String nucleo, String nivel_educativo, String capacitacion, int ocupacionId, int ingresoId, int saludId) {
+    public Familiar(String nombres, String apellidos, String sexo, String nacion, String tipoDocumento, Long cuil, Date fecha_nacimiento, String estado_civil, String vinculo, String nucleo, String nivel_educativo, String capacitacion, int ocupacionId, int ingresoId, int saludId) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.sexo = sexo;
         this.nacion = nacion;
+        this.tipoDocumento = tipoDocumento;
         this.cuil = cuil;
         this.fecha_nacimiento = fecha_nacimiento;
         this.estado_civil = estado_civil;
@@ -152,11 +156,11 @@ public class Familiar  implements Serializable {
         this.nacion = nacion;
     }
 
-    public Integer getCuil() {
+    public Long getCuil() {
         return cuil;
     }
 
-    public void setCuil(Integer cuil) {
+    public void setCuil(Long cuil) {
         this.cuil = cuil;
     }
 
@@ -262,5 +266,13 @@ public class Familiar  implements Serializable {
 
     public void setAsistenciaCapacitacion(String asistenciaCapacitacion) {
         this.asistenciaCapacitacion = asistenciaCapacitacion;
+    }
+
+    public String getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 }

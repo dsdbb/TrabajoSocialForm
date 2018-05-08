@@ -79,7 +79,7 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         String asistenciaCapacitacion = stringsCapacitacion.get(1);
 
         /*Convierto datos*/
-        Integer cuil = utils.getIntegerFromString(cuilS);
+        Long cuil = utils.getLongFromString(cuilS);
         Date fechaNac = utils.getDateFromString(fechaNacS);
 
         /*Tomo los datos de la ocupacion*/
@@ -137,7 +137,7 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         }
 
         /*Tenemos todos los datos necesario para crear al familiar por lo tanto pasamos a la instanciacion de la clase Familiar*/
-        return new Familiar(nombre,apellido,sexo,nacion,cuil,fechaNac,estadoCivil,vinculo,nucleo,
+        return new Familiar(nombre,apellido,sexo,nacion,tipoDoc,cuil,fechaNac,estadoCivil,vinculo,nucleo,
                 nivelEducativo,capacitacion,asistenciaCapacitacion,ocupacion,ingreso,salud);
     }
 

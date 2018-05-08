@@ -1,11 +1,13 @@
 package ar.edu.uns.cs.trabajosocialform;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -99,7 +101,7 @@ public class DetallesFormActivity extends AppCompatActivity {
         utils.setDetailValues(R.id.detalle_revestimiento_techo, R.string.titulo_revestimiento_techo, revestTecho);
         utils.setDetailValues(R.id.detalle_paredes, R.string.paredes_caracteristicas, caracteristicasVivienda.getMaterial_paredes());
         String revestParedes = utils.getStringFromBoolean(caracteristicasVivienda.isRevestimiento_paredes());
-        utils.setDetailValues(R.id.detalle_piso, R.string.pisos_caracteristicas, caracteristicasVivienda.getMaterial_pisos());
+        utils.setDetailValues(R.id.detalle_pisos, R.string.pisos_caracteristicas, caracteristicasVivienda.getMaterial_pisos());
         utils.setDetailValues(R.id.detalle_agua, R.string.titulo_agua, caracteristicasVivienda.getAgua());
         utils.setDetailValues(R.id.detalle_fuente_agua, R.string.titulo_fuente_agua, caracteristicasVivienda.getFuente_agua());
         utils.setDetailValues(R.id.detalle_baño, R.string.titulo_baño, caracteristicasVivienda.getBanio());
@@ -123,10 +125,20 @@ public class DetallesFormActivity extends AppCompatActivity {
 
     }
 
-    private void addFamiliares(List<Familiar> familiares){
+    private void addFamiliares(final List<Familiar> familiares){
         final ListView listview = (ListView) findViewById(R.id.familiares_list_view);
         listview.setAdapter(new customAdapter(this,familiares));
         setListViewHeightBasedOnChildren(listview);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                Intent intent = new Intent(DetallesFormActivity.this,DetallesFamiliarActivity.class);
+                Familiar familiar = familiares.get(arg2);
+                intent.putExtra("FAMILIAR",familiar);
+                startActivity(intent);
+            }
+        });
     }
 
     public class customAdapter extends BaseAdapter {

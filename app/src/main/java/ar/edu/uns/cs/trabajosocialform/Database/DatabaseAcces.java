@@ -27,6 +27,9 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.FormularioFamiliarJoin;
 import ar.edu.uns.cs.trabajosocialform.DataModel.InfraestructuraBarrial;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Ingreso;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Ocupacion;
+import ar.edu.uns.cs.trabajosocialform.DataModel.Salud;
 import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 
@@ -341,5 +344,71 @@ public class DatabaseAcces {
         });
 
         t.start();
+    }
+
+    public Ocupacion getOcupacion(final Activity act, final int ocupacionId){
+        final List<Ocupacion> ocupaciones = new ArrayList<Ocupacion>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                OcupacionDao ocupacionDao = mDb.ocupacionDao();
+                Ocupacion ocupacion = ocupacionDao.getOcupacion(ocupacionId);
+                ocupaciones.add(ocupacion);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return ocupaciones.get(0);
+    }
+
+    public Ingreso getIngreso(final Activity act, final int ingresoId){
+        final List<Ingreso> ingresos = new ArrayList<Ingreso>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                IngresoDao ingresoDao = mDb.ingresoDao();
+                Ingreso ingreso = ingresoDao.getIngreso(ingresoId);
+                ingresos.add(ingreso);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return ingresos.get(0);
+    }
+
+    public Salud getSalud(final Activity act, final int saludId){
+        final List<Salud> salud = new ArrayList<Salud>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                SaludDao saludDao = mDb.saludDao();
+                Salud saludAux = saludDao.getSalud(saludId);
+                salud.add(saludAux);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return salud.get(0);
     }
 }

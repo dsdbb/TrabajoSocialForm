@@ -63,7 +63,7 @@ public class FormSolicitanteActivity extends AppCompatActivity {
         String telefono = utils.getDataTvEt(R.id.panel_telefono_principal_solicitante);
         String otroTelefono = utils.getDataTvEt(R.id.panel_otro_telefono_solicitante);
 
-        Integer cuil = utils.getIntegerFromString(cuilS);
+        Long cuil = utils.getLongFromString(cuilS);
 
         Solicitante solicitante = new Solicitante(nombre,apellido,cuil,telefono,otroTelefono);
 

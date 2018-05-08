@@ -22,7 +22,7 @@ public class Apoderado implements Serializable {
     @ColumnInfo(name = "apellidos")
     private String apellidos;
     @ColumnInfo(name = "cuil")
-    private Integer cuil;
+    private Long cuil;
     @ColumnInfo(name = "telefono")
     private String telefono;
     @ColumnInfo(name = "fecha_nacimiento")
@@ -34,7 +34,7 @@ public class Apoderado implements Serializable {
     public Apoderado() {
     }
 
-    public Apoderado(String nombres, String apellidos, Integer cuil, String telefono, Date fecha_nacimiento, String motivos_poder) {
+    public Apoderado(String nombres, String apellidos, Long cuil, String telefono, Date fecha_nacimiento, String motivos_poder) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.cuil = cuil;
@@ -67,11 +67,11 @@ public class Apoderado implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public Integer getCuil() {
+    public Long getCuil() {
         return cuil;
     }
 
-    public void setCuil(Integer cuil) {
+    public void setCuil(Long cuil) {
         this.cuil = cuil;
     }
 

@@ -1,7 +1,9 @@
 package ar.edu.uns.cs.trabajosocialform.Utils;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -159,11 +161,25 @@ public class Utils {
         return num;
     }
 
+    public Long getLongFromString(String s){
+        Long num = null;
+        if(!s.equals(""))
+            num = Long.parseLong(s);
+
+        return num;
+    }
+
     public void setDetailValues(int panelId, int tituloId, String dato){
         ConstraintLayout panel = act.findViewById(panelId);
         String titulo = act.getResources().getString(tituloId);
         ((TextView)panel.findViewById(R.id.textViewTitulo)).setText(titulo);
         ((TextView)panel.findViewById(R.id.textViewDato)).setText(dato);
+    }
+
+    public void setDetailValues(View view, int tituloId, String dato){
+        String titulo = act.getResources().getString(tituloId);
+        ((TextView)view.findViewById(R.id.textViewTitulo)).setText(titulo);
+        ((TextView)view.findViewById(R.id.textViewTitulo)).setText(dato);
     }
 
     public String getStringFromDate(Date fecha){
@@ -174,4 +190,33 @@ public class Utils {
 
         return fechaString;
     }
+
+    public void showAlertDialog(int titulo, int mensaje, final Runnable runnable){
+        final List<Boolean> result = new ArrayList<Boolean>();
+        new AlertDialog.Builder(act)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(titulo)
+                .setMessage(mensaje)
+                .setPositiveButton(R.string.boton_si, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        runnable.run();
+                    }
+
+                })
+                .setNegativeButton(R.string.boton_no, null)
+                .show();
+
+    }
+
+    public View inflarDetalles(int panelId){
+        LinearLayout contenedor = act.findViewById(panelId);
+        LayoutInflater inflater = LayoutInflater.from(act);
+
+        View inflatedView = inflater.inflate(R.layout.detalles_item, contenedor, false);
+        contenedor.addView(inflatedView);
+        return inflatedView;
+    }
+
 }

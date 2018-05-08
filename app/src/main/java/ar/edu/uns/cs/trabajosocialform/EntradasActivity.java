@@ -32,6 +32,7 @@ import java.util.List;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
+import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 
 public class EntradasActivity extends AppCompatActivity {
 
@@ -80,21 +81,31 @@ public class EntradasActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(final MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()) {
             case R.id.edit:
-                // edit stuff here
+
                 return true;
             case R.id.delete:
-                ContextMenu.ContextMenuInfo menuInfo = item.getMenuInfo();
-                int pos = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
-                int formId = forms.get(pos).getId();
-                DatabaseAcces db = new DatabaseAcces();
-                db.deleteJoins(this,formId);
-                db.deleteFormulario(this,formId);
-                int solId = forms.get(pos).getSolicitanteId();
-                (new DatabaseAcces()).deleteSolicitante(this,solId);
+                Utils utils = new Utils(this);
+
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        ContextMenu.ContextMenuInfo menuInfo = item.getMenuInfo();
+                        int pos = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
+                        int formId = forms.get(pos).getId();
+                        DatabaseAcces db = new DatabaseAcces();
+                        db.deleteJoins(EntradasActivity.this,formId);
+                        db.deleteFormulario(EntradasActivity.this,formId);
+                        int solId = forms.get(pos).getSolicitanteId();
+                        (new DatabaseAcces()).deleteSolicitante(EntradasActivity.this,solId);
+                    }
+                };
+
+                utils.showAlertDialog(R.string.titulo_confirmacion_eliminar, R.string.texto_confirmacion_eliminar,runnable);
+
                 return true;
             default:
                 return super.onContextItemSelected(item);

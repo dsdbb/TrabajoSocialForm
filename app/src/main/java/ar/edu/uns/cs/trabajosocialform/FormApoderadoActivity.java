@@ -64,20 +64,9 @@ public class FormApoderadoActivity extends AppCompatActivity {
         String fechaNacimiento = utils.getDataTvEt(R.id.panel_fecha_nacimiento_apoderado);
         String motivosPoder = utils.getDataTvEt(R.id.panel_motivos_poder_apoderado);
 
-        Integer cuil=null;
-        if(!cuilS.equals(""))
-            cuil = Integer.parseInt(cuilS);
+       Long cuil = utils.getLongFromString(cuilS);
 
-        Date fecha=null;
-        if(!fechaNacimiento.equals("")){
-            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                fecha = formatoDelTexto.parse(fechaNacimiento);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-        }
+       Date fecha = utils.getDateFromString(fechaNacimiento);
 
         Apoderado apoderado = new Apoderado(nombre,apellido,cuil,telefono,fecha,motivosPoder);
 

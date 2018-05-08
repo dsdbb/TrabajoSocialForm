@@ -3,6 +3,7 @@ package ar.edu.uns.cs.trabajosocialform.Daos;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Ocupacion;
@@ -22,4 +23,7 @@ public interface OcupacionDao {
 
     @Delete
     void delete(Ocupacion... ocupaciones);
+
+    @Query("SELECT * FROM ocupacion WHERE id = :ocupacionId")
+    Ocupacion getOcupacion(int ocupacionId);
 }
