@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,10 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +32,7 @@ import java.util.Date;
 import java.util.List;
 
 import ar.edu.uns.cs.trabajosocialform.R;
+import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.fragments.DatePickerFragment;
 
 public class Utils {
@@ -143,6 +149,22 @@ public class Utils {
 
     }
 
+    public void addRemovingButtonListener(int panelId, final List<View> list){
+        final ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
+        ((ImageButton)panel.findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(list.size()>0){
+                    //Tomo el ultimo elemento de la lista, lo escondo y lo elimino de la lista
+                    View vista = list.get(list.size()-1);
+                    vista.setVisibility(View.GONE);
+                    list.remove(list.size()-1);
+                }
+
+            }
+        });
+    }
+
     public Date getDateFromString(String fechaS){
         Date fecha=null;
         if(!fechaS.equals("")){
@@ -184,6 +206,12 @@ public class Utils {
         String titulo = act.getResources().getString(tituloId);
         ((TextView)view.findViewById(R.id.textViewTitulo)).setText(titulo);
         ((TextView)view.findViewById(R.id.textViewTitulo)).setText(dato);
+    }
+
+    public void setTitleValue(int panelId, int tituloId){
+        ConstraintLayout panel = act.findViewById(panelId);
+        String titulo = act.getResources().getString(tituloId);
+        ((TextView)panel.findViewById(R.id.titulo)).setText(titulo);
     }
 
     public String getStringFromDate(Date fecha){
@@ -316,6 +344,33 @@ public class Utils {
         contenedor.addView(inflatedView);
 
         return inflatedView;
+    }
+
+    public Configuracion getConfigurationFile(){
+        try
+        {
+            BufferedReader fin =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    act.openFileInput("config.txt")));
+
+            /*Leo el String json del archivo de configuracion y hago la deserializacion en la clase configuracion con la
+             librería GSON*/
+            String json = fin.readLine();
+            if(json !=null){
+                Configuracion config = (new Gson()).fromJson(json, Configuracion.class);
+                return config;
+            }
+            else{
+                return null;
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.e("Ficheros", "Error al leer fichero desde memoria interna");
+            ex.printStackTrace();
+        }
+        return null;
     }
 
 }

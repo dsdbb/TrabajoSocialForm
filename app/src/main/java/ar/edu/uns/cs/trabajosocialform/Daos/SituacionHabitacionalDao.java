@@ -24,6 +24,9 @@ public interface SituacionHabitacionalDao {
     @Delete
     void delete(SituacionHabitacional... situaciones);
 
+    @Query("DELETE FROM situacion_habitacional WHERE id = :id")
+    void delete(int id);
+
     @Query("SELECT * FROM situacion_habitacional WHERE id = :situacionHabitacionalId")
     SituacionHabitacional getSituacionHabitacional(int situacionHabitacionalId);
 }

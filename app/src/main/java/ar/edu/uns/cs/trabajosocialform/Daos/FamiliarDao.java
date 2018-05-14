@@ -25,7 +25,11 @@ public interface FamiliarDao {
     @Delete
     void delete(Familiar... familiares);
 
+    @Query("DELETE FROM familiar WHERE id = :id")
+    void delete(int id);
+
     @Query("SELECT * FROM familiar WHERE id = :familiarId")
     Familiar getFamiliar(int familiarId);
+
 
 }

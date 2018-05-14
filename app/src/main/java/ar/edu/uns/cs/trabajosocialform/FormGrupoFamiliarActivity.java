@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,10 +18,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
@@ -54,7 +60,6 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
         intent.putExtra("CONFIG",bundle);
         intent.putExtra("FORM",form);
         startActivityForResult(intent,1);
-        /*Reemplazo el formulario por el que devolvio la actividad (que tendrá el nuevo familiar agregado)*/
 
     }
 
@@ -62,8 +67,25 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        form = (Formulario)data.getSerializableExtra("RETURN_FORM");
-        refreshContenedorFamiliares();
+        /*Reemplazo el formulario por el que devolvio la actividad (que tendrá el nuevo familiar agregado)*/
+        if(data!=null){
+            form = (Formulario)data.getSerializableExtra("RETURN_FORM");
+            boolean familiarActualizado = data.getBooleanExtra("UPDATED_FAMILIAR",false);
+
+            if(familiarActualizado){
+                Familiar oldFamiliar = (Familiar)data.getSerializableExtra("OLD_FAMILIAR");
+                //form.getFamiliares().remove(oldFamiliar);
+                for(int i=0;i<form.getFamiliares().size();i++){
+                    if(form.getFamiliares().get(i).equals(oldFamiliar)){
+                        form.getFamiliares().remove(i);
+                    }
+                }
+
+            }
+
+            refreshContenedorFamiliares();
+        }
+
 
     }
 
@@ -83,8 +105,10 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
         Log.i("FAMILIARES SIZE: ",familiares.size()+"");
         ListView listview = (ListView)findViewById(R.id.list_view_familiares);
         listview.setAdapter(new FormGrupoFamiliarActivity.customAdapter(this,familiares));
-        Utils.setListViewHeightBasedOnChildren(listview);
+        //Utils.setListViewHeightBasedOnChildren(listview);
 
+        /*Para el menu al mantener presionado*/
+        registerForContextMenu(listview);
 
     }
 
@@ -92,17 +116,22 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
         ListView listview = (ListView)findViewById(R.id.list_view_familiares);
         List<Familiar> familiares = updateForm.getFamiliares();
         listview.setAdapter(new FormGrupoFamiliarActivity.customAdapter(this,familiares));
-        Utils.setListViewHeightBasedOnChildren(listview);
+        //Utils.setListViewHeightBasedOnChildren(listview);
+
+        /*Copio todos los familiares al nuevo form*/
+        for(int i=0; i<familiares.size();i++){
+            form.getFamiliares().add(familiares.get(i));
+        }
+
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Intent intent = new Intent(FormGrupoFamiliarActivity.this,NuevoFamiliarActivity.class);
-                intent.putExtra("UPDATE",update);
-                Familiar familiar = updateForm.getFamiliares().get(arg2);
-                intent.putExtra("UPDATE_FAMILIAR", familiar);
-                startActivity(intent);
+
             }
         });
+
+        /*Para el menu al mantener presionado*/
+        registerForContextMenu(listview);
     }
 
 
@@ -144,5 +173,54 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
             return familiares.get(position).getId();
         }
 
+    }
+
+    /**
+     * MENU
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if (v.getId()==R.id.list_view_familiares) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_list, menu);
+        }
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(final MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        final ContextMenu.ContextMenuInfo menuInfo = item.getMenuInfo();
+        switch(item.getItemId()) {
+            case R.id.edit:
+                Intent intent = new Intent(FormGrupoFamiliarActivity.this,NuevoFamiliarActivity.class);
+                intent.putExtra("CONFIG",bundle);
+                intent.putExtra("FORM",form);
+                intent.putExtra("UPDATE",update);
+                int pos = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
+                Familiar familiar = form.getFamiliares().get(pos);
+                intent.putExtra("UPDATE_FAMILIAR", familiar);
+                startActivityForResult(intent,1);
+                return true;
+            case R.id.delete:
+                Utils utils = new Utils(this);
+
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        int position = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
+                        form.getFamiliares().remove(position);
+                        refreshContenedorFamiliares();
+
+                    }
+                };
+
+                utils.showAlertDialog(R.string.titulo_confirmacion_eliminar, R.string.texto_confirmacion_eliminar,run);
+
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

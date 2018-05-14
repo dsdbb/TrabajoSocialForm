@@ -9,6 +9,8 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.google.gson.Gson;
+
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
@@ -38,6 +40,8 @@ public class FormSituacionHabitacionalActivity extends AppCompatActivity {
         update = getIntent().getBooleanExtra("UPDATE",false);
         if(update){
             updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+            Log.i("JSON uForm EN SITHAB: ", (new Gson()).toJson(updateForm));
+            Log.i("JSON form EN SITHAB: ", (new Gson()).toJson(form));
             rellenarCampos();
         }
 

@@ -74,7 +74,9 @@ public class FormularioActivity extends AppCompatActivity {
             /*Leo el String json del archivo de configuracion y hago la deserializacion en la clase configuracion con la
              librería GSON*/
             String json = fin.readLine();
+            Log.i("EL JSON QUE VA CONFIG",json);
             Configuracion config = (new Gson()).fromJson(json, Configuracion.class);
+            Log.i("archivo configuracion",json);
             return config;
         }
         catch (Exception ex)

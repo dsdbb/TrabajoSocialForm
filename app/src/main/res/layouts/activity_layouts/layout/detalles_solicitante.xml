@@ -7,12 +7,15 @@
     android:layout_height="match_parent">
 
 
-    <TextView
+    <!-- NOMBRE -->
+    <include
         android:id="@+id/titulo_detalles_solicitante"
+        layout="@layout/titulo_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/titulo_detalles_solicitante"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"  />
+
+
 
     <ScrollView
         android:id="@+id/scrollView"

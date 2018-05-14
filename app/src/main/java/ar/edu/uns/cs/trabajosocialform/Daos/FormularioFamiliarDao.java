@@ -21,4 +21,7 @@ public interface FormularioFamiliarDao {
 
     @Query("DELETE FROM formulario_familiar_join WHERE formulario_id = :formId")
     void deleteJoinsWithForm(int formId);
+
+    @Query("SELECT familiar_id FROM formulario_familiar_join WHERE formulario_id=:id")
+    List<Integer> getFamiliares(int id);
 }

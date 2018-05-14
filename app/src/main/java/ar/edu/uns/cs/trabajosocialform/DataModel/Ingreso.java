@@ -17,7 +17,6 @@ import ar.edu.uns.cs.trabajosocialform.Converters.Converters;
  */
 
 @Entity(tableName = "ingreso")
-@TypeConverters({Converters.class})
 public class Ingreso implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
@@ -25,8 +24,10 @@ public class Ingreso implements Serializable {
     @ColumnInfo(name = "ingresos_laborales")
     private Integer ingresos_laborales;
     @ColumnInfo(name = "programas_sociales")
+    @TypeConverters({Converters.class})
     private List<String> programas_sociales_sti;
     @ColumnInfo(name = "ingresos_no_laborales")
+    @TypeConverters({Converters.class})
     private List<IngresoNoLaboral> ingresosNoLaborales;
 
     @Ignore
@@ -35,18 +36,10 @@ public class Ingreso implements Serializable {
         ingresosNoLaborales = new ArrayList<IngresoNoLaboral>();
     }
 
-    public Ingreso(int ingresos_laborales, List<String> programas_sociales_sti, List<IngresoNoLaboral> ingresosNoLaborales) {
+    public Ingreso(Integer ingresos_laborales, List<String> programas_sociales_sti, List<IngresoNoLaboral> ingresosNoLaborales) {
         this.ingresos_laborales = ingresos_laborales;
-        this.programas_sociales_sti = new ArrayList<String>();
-        this.ingresosNoLaborales = new ArrayList<IngresoNoLaboral>();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.programas_sociales_sti = programas_sociales_sti;
+        this.ingresosNoLaborales = ingresosNoLaborales;
     }
 
     public Integer getIngresos_laborales() {
@@ -57,18 +50,31 @@ public class Ingreso implements Serializable {
         this.ingresos_laborales = ingresos_laborales;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    @TypeConverters({Converters.class})
     public List<String> getProgramas_sociales_sti() {
         return programas_sociales_sti;
     }
 
+    @TypeConverters({Converters.class})
     public void setProgramas_sociales_sti(List<String> programas_sociales_sti) {
         this.programas_sociales_sti = programas_sociales_sti;
     }
 
+    @TypeConverters({Converters.class})
     public List<IngresoNoLaboral> getIngresosNoLaborales() {
         return ingresosNoLaborales;
     }
 
+    @TypeConverters({Converters.class})
     public void setIngresosNoLaborales(List<IngresoNoLaboral> ingresosNoLaborales) {
         this.ingresosNoLaborales = ingresosNoLaborales;
     }

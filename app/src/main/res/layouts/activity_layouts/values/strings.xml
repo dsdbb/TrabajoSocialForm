@@ -19,4 +19,13 @@
     <string name="texto_confirmacion_eliminar">¿Está seguro que desea eliminar?</string>
     <string name="boton_si">Si</string>
     <string name="boton_no">No</string>
+
+    <!-- MENSAJES -->
+    <string name="insert_correcto">Correctamente guardado</string>
+    <string name="update_correcto">Correctamente actualizado</string>
+    <string name="delete_correcto">Se ha eliminado correctamente</string>
+    <string name="error_servidor">Ha ocurrido un error conectadose al servidor</string>
+    <string name="error_fichero">No se ha encontrado el archivo de configuracion</string>
+    <string name="nueva_configuracion">Se ha encontrado una nueva configuracion</string>
+
 </resources>

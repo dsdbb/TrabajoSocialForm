@@ -2,8 +2,8 @@
     <string name="app_name">TrabajoSocialForm</string>
     <string name="texto_seleccion">Seleccione los campos que considere necesarios para su formulario</string>
     <string name="seleccionar_todo">Seleccionar todo</string>
-    <string name="crearFormulario_button">Crear nuevo formulario</string>
-    <string name="seleccionarFormulario_button">Nueva Entrada (antes seleccionar)</string>
+    <string name="ver_formularios">Ver formularios creados</string>
+    <string name="nueva_entrada">Nueva Entrada</string>
 
     <!-- String para datos generales -->
     <string name="titulo_formulario">Nuevo Formulario</string>

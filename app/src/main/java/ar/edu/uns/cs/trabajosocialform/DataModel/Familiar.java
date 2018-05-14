@@ -8,6 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
@@ -275,4 +276,29 @@ public class Familiar  implements Serializable {
     public void setTipoDocumento(String tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Familiar familiar = (Familiar) o;
+        return id == familiar.id &&
+                ocupacionId == familiar.ocupacionId &&
+                ingresoId == familiar.ingresoId &&
+                saludId == familiar.saludId &&
+                Objects.equals(nombres, familiar.nombres) &&
+                Objects.equals(apellidos, familiar.apellidos) &&
+                Objects.equals(sexo, familiar.sexo) &&
+                Objects.equals(nacion, familiar.nacion) &&
+                Objects.equals(tipoDocumento, familiar.tipoDocumento) &&
+                Objects.equals(cuil, familiar.cuil) &&
+                Objects.equals(fecha_nacimiento, familiar.fecha_nacimiento) &&
+                Objects.equals(estado_civil, familiar.estado_civil) &&
+                Objects.equals(vinculo, familiar.vinculo) &&
+                Objects.equals(nucleo, familiar.nucleo) &&
+                Objects.equals(nivel_educativo, familiar.nivel_educativo) &&
+                Objects.equals(capacitacion, familiar.capacitacion) &&
+                Objects.equals(asistenciaCapacitacion, familiar.asistenciaCapacitacion);
+    }
+
 }

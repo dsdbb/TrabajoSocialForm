@@ -47,8 +47,14 @@ public class DetallesFormActivity extends AppCompatActivity {
     private void inicializarGui(){
         DatabaseAcces db = new DatabaseAcces();
         Utils utils = new Utils(this);
+
+        /*Titulo detalles*/
+        utils.setTitleValue(R.id.titulo_detalles, R.string.titulo_detalles);
+
+
         /*Datos del solicitante*/
         Solicitante solicitante = db.getSolicitante(this,form.getSolicitanteId());
+        utils.setTitleValue(R.id.titulo_detalles_solicitante, R.string.titulo_detalles_solicitante);
         utils.setDetailValues(R.id.detalle_nombre_solicitante, R.string.nombres_solicitante, solicitante.getNombres());
         utils.setDetailValues(R.id.detalle_apellido_solicitante, R.string.apellidos_solicitante,solicitante.getApellidos());
         utils.setDetailValues(R.id.detalle_cuil_solicitante,R.string.cuil_solicitante, solicitante.getCuil()+"");
@@ -57,6 +63,7 @@ public class DetallesFormActivity extends AppCompatActivity {
 
         /*Datos del apoderado*/
         Apoderado apoderado = db.getApoderado(this,form.getApoderadoId());
+        utils.setTitleValue(R.id.titulo_detalles_apoderado, R.string.titulo_detalles_apoderado);
         utils.setDetailValues(R.id.detalle_nombre_apoderado, R.string.nombres_apoderado, apoderado.getNombres());
         utils.setDetailValues(R.id.detalle_apellido_apoderado, R.string.apellidos_apoderado, apoderado.getApellidos());
         utils.setDetailValues(R.id.detalle_cuil_apoderado, R.string.cuil_apoderado, apoderado.getCuil()+"");
@@ -68,6 +75,7 @@ public class DetallesFormActivity extends AppCompatActivity {
 
         /*Datos del domicilio*/
         Domicilio domicilio = db.getDomicilio(this,form.getDomicilioId());
+        utils.setTitleValue(R.id.titulo_detalles_domicilio, R.string.titulo_detalles_domicilio);
         utils.setDetailValues(R.id.detalle_calle, R.string.calle, domicilio.getCalle());
         utils.setDetailValues(R.id.detalle_numero, R.string.numero, domicilio.getNumero()+"");
         utils.setDetailValues(R.id.detalle_manzana, R.string.manzana, domicilio.getManzana()+"");
@@ -82,12 +90,14 @@ public class DetallesFormActivity extends AppCompatActivity {
         utils.setDetailValues(R.id.detalle_delegacion, R.string.delegacion, domicilio.getDelegacion());
 
         /*Familiares*/
+        utils.setTitleValue(R.id.titulo_familiares, R.string.titulo_detalles_familiares);
         List<Familiar> familiares = db.getFamiliares(this, form.getId());
         Log.i("FAMILIARES SIZE: ",familiares.size()+"");
         addFamiliares(familiares);
 
         /*Situacion Habitacional*/
         SituacionHabitacional situacionHabitacional = db.getSituacionHabitacional(this, form.getSituacionHabitacionalId());
+        utils.setTitleValue(R.id.titulo_detalles_situacion_habitacional, R.string.titulo_detalles_situacion_habitacional);
         utils.setDetailValues(R.id.detalle_tipo_vivienda,R.string.tipo_de_vivienda,situacionHabitacional.getTipo_vivienda());
         utils.setDetailValues(R.id.detalle_tenencia_vivienda_terreno, R.string.tenencia_vivienda_terreno, situacionHabitacional.getTenencia_vivienda_terreno());
         utils.setDetailValues(R.id.detalle_tiempo_ocupacion, R.string.tiempo_de_ocupacion, situacionHabitacional.getTiempo_ocupacion()+"");
@@ -96,6 +106,7 @@ public class DetallesFormActivity extends AppCompatActivity {
 
         /*Caracteristicas de la vivienda*/
         CaracteristicasVivienda caracteristicasVivienda = db.getCaracteristicasVivienda(this, form.getCaracteristicasViviendaId());
+        utils.setTitleValue(R.id.titulo_detalles_caracteristicas_vivienda, R.string.titulo_detalles_caracteristicas_vivienda);
         utils.setDetailValues(R.id.detalle_techo, R.string.techo_caracteristicas, caracteristicasVivienda.getMaterial_techo());
         String revestTecho = utils.getStringFromBoolean(caracteristicasVivienda.isRevestimiento_techo());
         utils.setDetailValues(R.id.detalle_revestimiento_techo, R.string.titulo_revestimiento_techo, revestTecho);
@@ -113,6 +124,7 @@ public class DetallesFormActivity extends AppCompatActivity {
 
         /*Infraestructura barrial*/
         InfraestructuraBarrial infraestructuraBarrial = db.getInfraestructuraBarrial(this,form.getInfraestructuraBarrialId());
+        utils.setTitleValue(R.id.titulo_detalles_infraestructura_barrial, R.string.titulo_detalles_infraestructura_barrial);
         utils.setDetailValues(R.id.detalle_infraestructura_calles,R.string.titulo_infraestructura_calles, infraestructuraBarrial.getInfraestructura_calles());
         utils.setDetailValues(R.id.detalle_iluminacion_publica, R.string.titulo_iluminacion, infraestructuraBarrial.getIluminacion());
         String recoleccion = utils.getStringFromBoolean(infraestructuraBarrial.isRecoleccion_residuos());

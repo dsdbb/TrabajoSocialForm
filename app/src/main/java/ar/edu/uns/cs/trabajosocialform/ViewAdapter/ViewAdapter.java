@@ -167,11 +167,11 @@ public class ViewAdapter {
 
     public void adaptarSituacion_habitacional() {
 
-        boolean tipo_vivienda = config.getDatos_situacion_habitacional().isTipo_de_vivienda();
+        boolean tipo_vivienda = config.getDatos_situacion_habitacional().isTipo_vivienda();
         boolean tenencia_terreno_vivienda = config.getDatos_situacion_habitacional().isTenencia_vivienda_terreno();
-        boolean tiempo_ocupacion = config.getDatos_situacion_habitacional().isTiempo_de_ocupacion();
-        boolean cantidad_de_hogares = config.getDatos_situacion_habitacional().isCantidad_de_hogares_en_vivienda();
-        boolean cantidad_de_cuartos_UE = config.getDatos_situacion_habitacional().isCantidad_de_cuartos_UE();
+        boolean tiempo_ocupacion = config.getDatos_situacion_habitacional().isTiempo_ocupacion();
+        boolean cantidad_de_hogares = config.getDatos_situacion_habitacional().isCantidad_hogares_vivienda();
+        boolean cantidad_de_cuartos_UE = config.getDatos_situacion_habitacional().isCantidad_cuartos_ue();
 
         if(!tipo_vivienda){
             act.findViewById(R.id.panel_tipo_vivienda).setVisibility(View.GONE);

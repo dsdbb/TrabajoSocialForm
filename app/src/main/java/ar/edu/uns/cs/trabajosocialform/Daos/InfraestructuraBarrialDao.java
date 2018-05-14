@@ -26,6 +26,9 @@ public interface InfraestructuraBarrialDao {
     @Delete
     void delete(InfraestructuraBarrial... infraestructuras);
 
+    @Query("DELETE FROM infraestructura_barrial WHERE id = :id")
+    void delete(int id);
+
     @Query("SELECT * FROM infraestructura_barrial WHERE id = :infraestructuraBarrialId")
     InfraestructuraBarrial getInfraestructuraBarrial(int infraestructuraBarrialId);
 }

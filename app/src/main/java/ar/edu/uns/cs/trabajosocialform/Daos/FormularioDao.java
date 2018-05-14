@@ -26,6 +26,10 @@ public interface FormularioDao {
     @Delete
     void delete(Formulario... forms);
 
+    @Query("DELETE FROM formularios WHERE id = :id")
+    void delete(int id);
+
+
     @Query("SELECT * FROM formularios")
     List<Formulario> getAllForms();
 

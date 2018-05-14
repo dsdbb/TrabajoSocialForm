@@ -7,18 +7,13 @@
     android:layout_height="match_parent">
 
 
-    <!-- TITULO -->
-    <include
-        android:id="@+id/titulo_familiares"
-        layout="@layout/titulo_item"
+    <TextView
+        android:id="@+id/titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/familiares_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/titulo_familiares"/>
+        android:textAlignment="center"
+        android:textSize="22dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"/>
 
 </android.support.constraint.ConstraintLayout>

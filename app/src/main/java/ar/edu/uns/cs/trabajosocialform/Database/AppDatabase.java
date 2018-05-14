@@ -45,12 +45,14 @@ public abstract class AppDatabase extends RoomDatabase{
 
     public abstract FormularioDao formularioDao();
     public abstract SolicitanteDao solicitanteDao();
+    @TypeConverters({Converters.class})
     public abstract ApoderadoDao apoderadoDao();
     public abstract DomicilioDao domicilioDao();
     public abstract FamiliarDao familiarDao();
     public abstract OcupacionDao ocupacionDao();
     @TypeConverters({Converters.class})
     public abstract IngresoDao ingresoDao();
+    @TypeConverters({Converters.class})
     public abstract SaludDao saludDao();
     public abstract SituacionHabitacionalDao situacionHabitacionalDao();
     public abstract CaracteristicasViviendaDao caracteristicasViviendaDao();

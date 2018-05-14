@@ -25,6 +25,9 @@ public interface CaracteristicasViviendaDao {
     @Delete
     void delete(CaracteristicasVivienda caracteristicas);
 
+    @Query("DELETE FROM caracteristicas_vivienda WHERE id = :id")
+    void delete(int id);
+
     @Query("SELECT * FROM caracteristicas_vivienda WHERE id = :caracteristicasViviendaId")
     CaracteristicasVivienda getCaracteristicasVivienda(int caracteristicasViviendaId);
 }

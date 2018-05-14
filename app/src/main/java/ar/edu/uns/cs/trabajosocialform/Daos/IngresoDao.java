@@ -27,6 +27,9 @@ public interface IngresoDao {
     @Delete
     void delete(Ingreso... ingresos);
 
+    @Query("DELETE FROM ingreso WHERE id = :id")
+    void delete(int id);
+
     @Query("SELECT * FROM ingreso WHERE id = :ingresoId")
     Ingreso getIngreso(int ingresoId);
 }

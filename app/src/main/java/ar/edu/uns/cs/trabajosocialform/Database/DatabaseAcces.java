@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Paint;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +35,14 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Ocupacion;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Salud;
 import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
+import ar.edu.uns.cs.trabajosocialform.R;
 
 public class DatabaseAcces {
 
-    public void saveInDatabase(Activity act, final Formulario form){
+    public void saveInDatabase(Activity act, final Formulario form, boolean showMessage){
+        Log.i("FORMULARIO ANTES INSERT",(new Gson()).toJson(form));
         final Context context = act;
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 Log.i("Estado: ","Ejecutando el run");
@@ -76,6 +81,7 @@ public class DatabaseAcces {
                 FormularioDao formularioDao = mDb.formularioDao();
                 long formularioId = formularioDao.insert(form);
 
+                Log.i("FORM JSON:",(new Gson()).toJson(form));
                 /*Ahora debo guardar todos los familiares con sus respectivos ingresos, ocupaciones y salud*/
                 List<Familiar> familiares = form.getFamiliares();
                 for(int i=0; i<familiares.size(); i++){
@@ -108,8 +114,32 @@ public class DatabaseAcces {
 
 
             }
-        }) .start();
+        });
+        t.start();
+
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if(showMessage){
+            Toast toast = Toast.makeText(act, R.string.insert_correcto,Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
+
+    public void updateDatabase(final Activity act, Formulario newForm,Formulario oldForm, boolean showMessage){
+        /*Update se toma como eliminar lo viejo y agregar un nuevo formulario*/
+        delete(act,oldForm,false);
+        saveInDatabase(act,newForm,false);
+
+        if(showMessage){
+            Toast toast = Toast.makeText(act,R.string.update_correcto,Toast.LENGTH_LONG);
+            toast.show();
+        }
+    }
+
 
     public Formulario getCompleteForm(final Activity act, Formulario form){
         form.setSolicitante(getSolicitante(act,form.getSolicitanteId()));
@@ -120,9 +150,11 @@ public class DatabaseAcces {
         form.setInfraestructuraBarrial(getInfraestructuraBarrial(act,form.getInfraestructuraBarrialId()));
 
         List<Familiar> familiares = getFamiliares(act, form.getId());
+        Log.i("FAMILIARES ANTES :",familiares.size() +"");
         for(int i=0; i<familiares.size();i++){
             Familiar familiar = familiares.get(i);
             familiar.setOcupacion(getOcupacion(act,familiar.getOcupacionId()));
+            Log.i("INGRESO ID: ",familiar.getIngresoId()+"");
             familiar.setIngreso(getIngreso(act,familiar.getIngresoId()));
             familiar.setSalud(getSalud(act,familiar.getSaludId()));
         }
@@ -136,7 +168,7 @@ public class DatabaseAcces {
 
         final List<String> nombres = new ArrayList<String>();
 
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
@@ -150,7 +182,14 @@ public class DatabaseAcces {
                     nombres.add(lista.get(i).getNombres());
                 }
             }
-        }).start();
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return nombres;
     }
@@ -158,7 +197,7 @@ public class DatabaseAcces {
     public List<Formulario> getFormularios(final Activity act){
         final List<Formulario> forms = new ArrayList<Formulario>();
 
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
@@ -168,8 +207,13 @@ public class DatabaseAcces {
                     forms.add(lista.get(i));
                 }
             }
-        }).start();
-
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return forms;
     }
 
@@ -325,6 +369,70 @@ public class DatabaseAcces {
             e.printStackTrace();
         }
         return infraestructuraList.get(0);
+    }
+
+    public void delete(final Activity act, final Formulario form, boolean showMessage){
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                /*Elimino joins*/
+
+                FormularioFamiliarDao formularioFamiliarDao = mDb.formularioFamiliarDao();
+                List<Integer> familiaresId = formularioFamiliarDao.getFamiliares(form.getId());
+                formularioFamiliarDao.deleteJoinsWithForm(form.getId());
+
+                FamiliarDao familiarDao = mDb.familiarDao();
+                /*Elimino los familiares*/
+                for(int i=0;i<familiaresId.size();i++){
+                    Familiar familiar = familiarDao.getFamiliar(familiaresId.get(i));
+
+                    OcupacionDao ocupacionDao = mDb.ocupacionDao();
+                    ocupacionDao.delete(familiar.getOcupacionId());
+
+                    IngresoDao ingresoDao = mDb.ingresoDao();
+                    ingresoDao.delete(familiar.getIngresoId());
+
+                    SaludDao saludDao = mDb.saludDao();
+                    saludDao.delete(familiar.getSaludId());
+
+                    familiarDao.delete(familiar.getId());
+                }
+
+                /*Solicitante*/
+                SolicitanteDao solDao = mDb.solicitanteDao();
+                solDao.delete(form.getSolicitanteId());
+                /*Apoderado*/
+                ApoderadoDao apoderadoDao = mDb.apoderadoDao();
+                apoderadoDao.delete(form.getApoderadoId());
+                /*Domicilio*/
+                DomicilioDao domicilioDao = mDb.domicilioDao();
+                domicilioDao.delete(form.getDomicilioId());
+                /*Situacion habitacional*/
+                SituacionHabitacionalDao situacionHabitacionalDao = mDb.situacionHabitacionalDao();
+                situacionHabitacionalDao.delete(form.getSituacionHabitacionalId());
+                /*Características vivienda*/
+                CaracteristicasViviendaDao caracteristicasViviendaDao = mDb.caracteristicasViviendaDao();
+                caracteristicasViviendaDao.delete(form.getCaracteristicasViviendaId());
+                /*Infraestructura barrial*/
+                InfraestructuraBarrialDao infraestructuraBarrialDao = mDb.infraestructuraBarrialDao();
+                infraestructuraBarrialDao.delete(form.getInfraestructuraBarrialId());
+
+            }
+        });
+
+        t.start();
+
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if(showMessage){
+            Toast toast = Toast.makeText(act,R.string.delete_correcto,Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     public void deleteFormulario(final Activity act ,final int formId) {

@@ -26,6 +26,9 @@ public interface SolicitanteDao {
     @Delete
     void delete(Solicitante... solicitantes);
 
+    @Query("DELETE FROM solicitante WHERE id = :solId")
+    void delete(int solId);
+
     @Query("SELECT * FROM solicitante")
     List<Solicitante> getAllSolicitantes();
 

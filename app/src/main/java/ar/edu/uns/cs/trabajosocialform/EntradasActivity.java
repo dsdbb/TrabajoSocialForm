@@ -29,6 +29,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
+import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
@@ -92,11 +93,9 @@ public class EntradasActivity extends AppCompatActivity {
                 int pos = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
                 Formulario form = forms.get(pos);
                 DatabaseAcces db = new DatabaseAcces();
-                Log.i("JSON: ",(new Gson()).toJson(form));
                 db.getCompleteForm(this,form);
-                Log.i("JSON2: ",(new Gson()).toJson(form));
                 intent.putExtra("UPDATE_FORM",form);
-                startActivity(intent);
+                startActivityForResult(intent,1);
                 return true;
             case R.id.delete:
                 Utils utils = new Utils(this);
@@ -108,10 +107,12 @@ public class EntradasActivity extends AppCompatActivity {
                         int pos = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
                         int formId = forms.get(pos).getId();
                         DatabaseAcces db = new DatabaseAcces();
-                        db.deleteJoins(EntradasActivity.this,formId);
-                        db.deleteFormulario(EntradasActivity.this,formId);
-                        int solId = forms.get(pos).getSolicitanteId();
-                        (new DatabaseAcces()).deleteSolicitante(EntradasActivity.this,solId);
+                        db.delete(EntradasActivity.this,forms.get(pos),true);
+                        forms.remove(pos);
+                        ListView listview = findViewById(R.id.list_view);
+                        BaseAdapter ba = (BaseAdapter) listview.getAdapter();
+                        ba.notifyDataSetChanged();
+
                     }
                 };
 
@@ -121,6 +122,17 @@ public class EntradasActivity extends AppCompatActivity {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+
     }
 
     public class customAdapter extends BaseAdapter {

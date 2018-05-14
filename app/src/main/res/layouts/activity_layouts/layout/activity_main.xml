@@ -7,19 +7,6 @@
     tools:context="ar.edu.uns.cs.trabajosocialform.MainActivity">
 
     <Button
-        android:id="@+id/crearFormulario_button"
-        android:layout_width="277dp"
-        android:layout_height="136dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:onClick="configurarNuevoFormulario"
-        android:text="@string/crearFormulario_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/seleccionarFormulario_button"
         android:layout_width="277dp"
         android:layout_height="134dp"
@@ -27,22 +14,20 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="seleccionarFormulario"
-        android:text="@string/seleccionarFormulario_button"
+        android:text="@string/nueva_entrada"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crearFormulario_button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="270dp"
+        android:layout_height="119dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="verEntradas"
-        android:text="Button"
+        android:text="@string/ver_formularios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seleccionarFormulario_button" />

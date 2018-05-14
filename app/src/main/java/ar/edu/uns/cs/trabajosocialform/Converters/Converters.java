@@ -1,6 +1,7 @@
 package ar.edu.uns.cs.trabajosocialform.Converters;
 
 import android.arch.persistence.room.TypeConverter;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -61,6 +62,7 @@ public class Converters{
 
     @TypeConverter
     public static String someObjectListToString(List<IngresoNoLaboral> ingresosNoLaborales) {
+        Log.i("IngresosNLaboralesJson:", (new Gson()).toJson(ingresosNoLaborales));
         return (new Gson()).toJson(ingresosNoLaborales);
     }
 

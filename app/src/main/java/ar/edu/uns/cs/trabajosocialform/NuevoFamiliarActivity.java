@@ -62,8 +62,11 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
     public void guardar(View view){
         Familiar familiar = tomarDatos();
         form.getFamiliares().add(familiar);
-        //getIntent().putExtra("FORM",form);
         Intent resultIntent = new Intent();
+        if(update){
+            resultIntent.putExtra("UPDATED_FAMILIAR",true);
+            resultIntent.putExtra("OLD_FAMILIAR",updateFamiliar);
+        }
         resultIntent.putExtra("RETURN_FORM",form);
         setResult(Activity.RESULT_OK,resultIntent);
         finish();
@@ -121,7 +124,7 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
             ingreso.getIngresosNoLaborales().add(inl);
         }
         for(View vista: programasSocialesSti){
-            String programa = ((Spinner)findViewById(R.id.spinner_nuevo_programa_social_sti)).getSelectedItem().toString();
+            String programa = ((Spinner)vista.findViewById(R.id.spinner_nuevo_programa_social_sti)).getSelectedItem().toString();
             ingreso.getProgramas_sociales_sti().add(programa);
         }
 
@@ -190,9 +193,10 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         utils.setValuesTvEt(R.string.ingresos_laborales, R.id.panel_ingresos_laborales);
         utils.setValuesTvEt(R.string.ingresos_no_laborales, R.id.panel_ingresos_no_laborales);
         utils.addAddingButtonListener(R.id.panel_ingresos_no_laborales, R.layout.panel_ingreso_no_laboral, ingresosNoLaborales);
+        utils.addRemovingButtonListener(R.id.panel_ingresos_no_laborales, ingresosNoLaborales);
         utils.setValuesTvEt(R.string.programas_sociales_sti, R.id.panel_programas_sociales_sti);
         utils.addAddingButtonListener(R.id.panel_programas_sociales_sti,R.layout.panel_nuevo_programa_social_sti,programasSocialesSti);
-
+        utils.addRemovingButtonListener(R.id.panel_programas_sociales_sti,programasSocialesSti);
     }
 
     private void inicializarSalud(Utils utils){
@@ -200,8 +204,10 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         utils.setValuesTvEt(R.string.fecha_parto, R.id.panel_embarazo);
         utils.setValuesTvEt(R.string.discapacidad, R.id.panel_discapacidad);
         utils.addAddingButtonListener(R.id.panel_discapacidad,R.layout.panel_nueva_discapacidad,discapacidades);
+        utils.addRemovingButtonListener(R.id.panel_discapacidad, discapacidades);
         utils.setValuesTvEt(R.string.enfermedad_cronica, R.id.panel_enfermedad_cronica);
         utils.addAddingButtonListener(R.id.panel_enfermedad_cronica,R.layout.panel_nueva_enfermedad_cronica,enfermedadesCronicas);
+        utils.addRemovingButtonListener(R.id.panel_enfermedad_cronica, enfermedadesCronicas);
         utils.setValuesTvSpinner(R.array.independencia_funcional_opciones, R.string.independencia_funcional, R.id.panel_independecia_funcional);
 
     }
@@ -240,8 +246,9 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         List<IngresoNoLaboral> noLaborales = ingreso.getIngresosNoLaborales();
         for(int i=0;i<noLaborales.size();i++){
            View view = utils.inflarEnUpdate(R.id.panel_ingresos_no_laborales,R.layout.panel_ingreso_no_laboral);
+           ingresosNoLaborales.add(view);
            Spinner origen = view.findViewById(R.id.spinner_origen_ingreso_no_laboral);
-           TextView monto = view.findViewById(R.id.monto_ingreso_no_laboral_et);
+           EditText monto = view.findViewById(R.id.monto_ingreso_no_laboral_et);
 
            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.ingresos_no_laborales_opciones, android.R.layout.simple_spinner_item);
             origen.setAdapter(adapter);
@@ -251,14 +258,17 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
                 origen.setSelection(spinnerPosition);
             }
 
-            monto.setText(noLaborales.get(i).getMonto());
+            Integer valor = noLaborales.get(i).getMonto();
+            Log.i("Valor",valor+"");
+            monto.setText(valor+"");
         }
 
-        List<String> programasSocialesSti = ingreso.getProgramas_sociales_sti();
-        for(int i=0; i<programasSocialesSti.size();i++){
+        List<String> programasSocialesStiString = ingreso.getProgramas_sociales_sti();
+        for(int i=0; i<programasSocialesStiString.size();i++){
             View view = utils.inflarEnUpdate(R.id.panel_programas_sociales_sti,R.layout.panel_nuevo_programa_social_sti);
+            programasSocialesSti.add(view);
             Spinner spinner = view.findViewById(R.id.spinner_nuevo_programa_social_sti);
-            utils.setValueToSpinner(spinner, R.array.programas_sociales_sti_opciones, programasSocialesSti.get(i));
+            utils.setValueToSpinner(spinner, R.array.programas_sociales_sti_opciones, programasSocialesStiString.get(i));
         }
 
         /*Salud*/
@@ -267,18 +277,20 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         String fechaParto = utils.getStringFromDate(salud.getFecha_estimada_embarazo());
         utils.setValueToEditText(R.id.panel_embarazo, fechaParto);
 
-        List<String> discapacidades = salud.getDiscapacidades();
-        for(int i=0; i<discapacidades.size();i++){
+        List<String> discapacidadesString = salud.getDiscapacidades();
+        for(int i=0; i<discapacidadesString.size();i++){
             View view = utils.inflarEnUpdate(R.id.panel_discapacidad,R.layout.panel_nueva_discapacidad);
+            discapacidades.add(view);
             Spinner spinner = view.findViewById(R.id.spinner_nueva_discapacidad);
-            utils.setValueToSpinner(spinner, R.array.discapacidad_opciones,discapacidades.get(i));
+            utils.setValueToSpinner(spinner, R.array.discapacidad_opciones,discapacidadesString.get(i));
         }
 
-        List<String> enfermedades = salud.getEnfermedadesCronicas();
-        for(int i=0;i<enfermedades.size();i++){
+        List<String> enfermedadesString = salud.getEnfermedadesCronicas();
+        for(int i=0;i<enfermedadesString.size();i++){
             View view = utils.inflarEnUpdate(R.id.panel_enfermedad_cronica, R.layout.panel_nueva_enfermedad_cronica);
+            enfermedadesCronicas.add(view);
             Spinner spinner = view.findViewById(R.id.spinner_nueva_enfermedad_cronica);
-            utils.setValueToSpinner(spinner, R.array.enfermedad_cronica_opciones, enfermedades.get(i));
+            utils.setValueToSpinner(spinner, R.array.enfermedad_cronica_opciones, enfermedadesString.get(i));
         }
 
         utils.setValueToSpinner(R.id.panel_independecia_funcional, R.array.independencia_funcional_opciones, salud.getIndependencia_funcional());

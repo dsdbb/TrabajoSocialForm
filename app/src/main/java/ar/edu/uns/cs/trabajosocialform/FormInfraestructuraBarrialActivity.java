@@ -45,7 +45,13 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
     public void continuar(View view){
         InfraestructuraBarrial infraestructura = tomarDatos();
         form.setInfraestructuraBarrial(infraestructura);
-        (new DatabaseAcces()).saveInDatabase(this,form);
+        DatabaseAcces db = new DatabaseAcces();
+        if(update){
+            db.updateDatabase(this,form,updateForm,true);
+        }
+        else{
+            db.saveInDatabase(this,form,true);
+        }
         finish();
 
     }

@@ -26,6 +26,9 @@ public interface DomicilioDao {
     @Delete
     void delete(Domicilio... domicilios);
 
+    @Query("DELETE FROM domicilio WHERE id = :id")
+    void delete(int id);
+
     @Query("SELECT * FROM domicilio WHERE id = :domicilioId")
     Domicilio getDomicilio(int domicilioId);
 }

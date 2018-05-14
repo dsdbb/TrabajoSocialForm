@@ -24,6 +24,9 @@ public interface OcupacionDao {
     @Delete
     void delete(Ocupacion... ocupaciones);
 
+    @Query("DELETE FROM ocupacion WHERE id = :id")
+    void delete(int id);
+
     @Query("SELECT * FROM ocupacion WHERE id = :ocupacionId")
     Ocupacion getOcupacion(int ocupacionId);
 }

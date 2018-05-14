@@ -2,9 +2,11 @@ package ar.edu.uns.cs.trabajosocialform;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,10 +16,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.Map;
 
 import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
+import ar.edu.uns.cs.trabajosocialform.ServerConnection.ServerAccess;
 import ar.edu.uns.cs.trabajosocialform.ServerConnection.ServerSingleton;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,12 +34,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ServerAccess sa = new ServerAccess();
+        sa.getConfigurationFromServer(this);
     }
 
-    public void configurarNuevoFormulario(View view){
-        Intent intent = new Intent(this,configurarNuevoFormulario_Activity.class);
-        startActivity(intent);
-    }
 
     public void seleccionarFormulario(View view){
         Intent intent = new Intent(this,FormularioActivity.class);
@@ -43,4 +50,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
+
 }

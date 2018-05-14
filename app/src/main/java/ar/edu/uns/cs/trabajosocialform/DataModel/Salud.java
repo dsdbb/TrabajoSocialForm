@@ -4,11 +4,14 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import ar.edu.uns.cs.trabajosocialform.Converters.Converters;
 
 /**
  * Created by Kevin (User) on 17/4/2018.
@@ -26,8 +29,10 @@ public class Salud implements Serializable {
     @ColumnInfo(name="fecha_estimada_embarazo")
     private Date fecha_estimada_embarazo;
     @ColumnInfo(name="discapacidades")
+    @TypeConverters({Converters.class})
     private List<String> discapacidades;
     @ColumnInfo(name="enfermedades_cronicas")
+    @TypeConverters({Converters.class})
     private List<String> enfermedadesCronicas;
     @ColumnInfo(name="independencia_funcional")
     private String independencia_funcional;
@@ -81,18 +86,22 @@ public class Salud implements Serializable {
         this.fecha_estimada_embarazo = fecha_estimada_embarazo;
     }
 
+    @TypeConverters({Converters.class})
     public List<String> getDiscapacidades() {
         return discapacidades;
     }
 
+    @TypeConverters({Converters.class})
     public void setDiscapacidades(List<String> discapacidades) {
         this.discapacidades = discapacidades;
     }
 
+    @TypeConverters({Converters.class})
     public List<String> getEnfermedadesCronicas() {
         return enfermedadesCronicas;
     }
 
+    @TypeConverters({Converters.class})
     public void setEnfermedadesCronicas(List<String> enfermedadesCronicas) {
         this.enfermedadesCronicas = enfermedadesCronicas;
     }
