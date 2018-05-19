@@ -27,6 +27,7 @@ import java.util.Map;
 import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
 import ar.edu.uns.cs.trabajosocialform.ServerConnection.ServerAccess;
 import ar.edu.uns.cs.trabajosocialform.ServerConnection.ServerSingleton;
+import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,14 +36,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ServerAccess sa = new ServerAccess();
-        sa.getConfigurationFromServer(this);
+        ServerAccess sa = new ServerAccess(this);
+        sa.getConfigurationFileFromServer();
     }
 
 
-    public void seleccionarFormulario(View view){
-        Intent intent = new Intent(this,FormularioActivity.class);
-        startActivity(intent);
+    public void nuevaEntrada(View view){
+        /*Compruebo si hay un archivo de configuracion para iniciar la actividads*/
+        Utils utils = new Utils(this);
+
+        if(utils.existsConfigurationFile()){
+            Intent intent = new Intent(this,FormularioActivity.class);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this,R.string.error_fichero,Toast.LENGTH_SHORT);
+        }
+
+
     }
 
     public void verEntradas(View view) {

@@ -13,6 +13,7 @@
     <!--MENU-->
     <string name="menu_edit">Editar</string>
     <string name="menu_delete">Eliminar</string>
+    <string name="menu_upload">Subir</string>
 
     <!-- ALERT DIALOG -->
     <string name="titulo_confirmacion_eliminar">Eliminar</string>

@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -33,6 +34,7 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
+import ar.edu.uns.cs.trabajosocialform.ServerConnection.ServerAccess;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 
 public class EntradasActivity extends AppCompatActivity {
@@ -76,7 +78,7 @@ public class EntradasActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
         if (v.getId()==R.id.list_view) {
             MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_list, menu);
+            inflater.inflate(R.menu.menu_list_2, menu);
         }
 
     }
@@ -84,12 +86,12 @@ public class EntradasActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(final MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        ContextMenu.ContextMenuInfo menuInfo = item.getMenuInfo();
         switch(item.getItemId()) {
             case R.id.edit:
                 /*Inicio la misma actividad de alta pero con un parámetro que especifique que se refiere a una modificación*/
                 Intent intent = new Intent(EntradasActivity.this,FormularioActivity.class);
                 intent.putExtra("UPDATE",true);
-                ContextMenu.ContextMenuInfo menuInfo = item.getMenuInfo();
                 int pos = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
                 Formulario form = forms.get(pos);
                 DatabaseAcces db = new DatabaseAcces();
@@ -118,6 +120,15 @@ public class EntradasActivity extends AppCompatActivity {
 
                 utils.showAlertDialog(R.string.titulo_confirmacion_eliminar, R.string.texto_confirmacion_eliminar,runnable);
 
+                return true;
+            case R.id.upload:
+                int position = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
+                Formulario formulario = forms.get(position);
+                DatabaseAcces dbAccess = new DatabaseAcces();
+                dbAccess.getCompleteForm(this,formulario);
+                Log.i("Formulario upload",(new Gson()).toJson(formulario));
+                ServerAccess sa = new ServerAccess(this);
+                sa.uploadForm(formulario);
                 return true;
             default:
                 return super.onContextItemSelected(item);

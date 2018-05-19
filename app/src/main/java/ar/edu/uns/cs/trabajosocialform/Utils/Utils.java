@@ -373,4 +373,20 @@ public class Utils {
         return null;
     }
 
+    public boolean existsConfigurationFile(){
+        try
+        {
+            BufferedReader fin =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    act.openFileInput("config.txt")));
+        }
+        catch (Exception ex)
+        {
+            Log.e("Ficheros", "Error al leer fichero desde memoria interna");
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }
