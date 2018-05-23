@@ -28,5 +28,6 @@
     <string name="error_servidor">Ha ocurrido un error conectadose al servidor</string>
     <string name="error_fichero">No se ha encontrado el archivo de configuracion</string>
     <string name="nueva_configuracion">Se ha encontrado una nueva configuracion</string>
+    <string name="sin_actualizaciones">No hay actualizaciones pendientes</string>
 
 </resources>

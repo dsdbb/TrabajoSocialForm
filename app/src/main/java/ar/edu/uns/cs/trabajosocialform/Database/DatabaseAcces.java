@@ -2,11 +2,8 @@ package ar.edu.uns.cs.trabajosocialform.Database;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Paint;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +33,13 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Salud;
 import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 import ar.edu.uns.cs.trabajosocialform.R;
+import ar.edu.uns.cs.trabajosocialform.Transactions.Transaction;
+import ar.edu.uns.cs.trabajosocialform.Transactions.TransactionDao;
+import ar.edu.uns.cs.trabajosocialform.Transactions.TransactionOptions;
 
 public class DatabaseAcces {
 
     public void saveInDatabase(Activity act, final Formulario form, boolean showMessage){
-        Log.i("FORMULARIO ANTES INSERT",(new Gson()).toJson(form));
         final Context context = act;
         Thread t = new Thread(new Runnable() {
             @Override
@@ -81,7 +80,6 @@ public class DatabaseAcces {
                 FormularioDao formularioDao = mDb.formularioDao();
                 long formularioId = formularioDao.insert(form);
 
-                Log.i("FORM JSON:",(new Gson()).toJson(form));
                 /*Ahora debo guardar todos los familiares con sus respectivos ingresos, ocupaciones y salud*/
                 List<Familiar> familiares = form.getFamiliares();
                 for(int i=0; i<familiares.size(); i++){
@@ -112,6 +110,8 @@ public class DatabaseAcces {
                     formularioFamiliarDao.insert(ffj);
                 }
 
+                Transaction transaction = new Transaction(TransactionOptions.INSERT.getValue(),(int)formularioId);
+                mDb.transactionDao().insert(transaction);
 
             }
         });
@@ -418,6 +418,23 @@ public class DatabaseAcces {
                 InfraestructuraBarrialDao infraestructuraBarrialDao = mDb.infraestructuraBarrialDao();
                 infraestructuraBarrialDao.delete(form.getInfraestructuraBarrialId());
 
+                FormularioDao formularioDao = mDb.formularioDao();
+                formularioDao.delete(form.getId());
+
+                /*Busco si hay un insert en el log y si existe lo elimino y no agrego el delete*/
+                TransactionDao transactionDao = mDb.transactionDao();
+                Transaction transaction = transactionDao.findTransaction(TransactionOptions.INSERT.getValue(), form.getId());
+
+                if(transaction!=null){
+                    transactionDao.delete(transaction);
+                }
+                else{
+                    /*Si no existia un insert en el log quiere decir que ya esta subido a internet el form asi
+                    * que debo agregar el delete*/
+                    transactionDao.insert(new Transaction(TransactionOptions.DELETE.getValue(),form.getId()));
+                }
+
+
             }
         });
 
@@ -540,4 +557,89 @@ public class DatabaseAcces {
 
         return salud.get(0);
     }
+
+    public List<Transaction> getTransactions(final Activity act){
+        final List<Transaction> transactions = new ArrayList<Transaction>();
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                TransactionDao transactionDao = mDb.transactionDao();
+                List<Transaction> list = transactionDao.getTransactions();
+                for(int i =0; i<list.size();i++){
+                    transactions.add(list.get(i));
+                }
+            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return transactions;
+    }
+
+    public Formulario getFormulario(final Activity act, final int id){
+        final List<Formulario> form = new ArrayList<Formulario>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                FormularioDao formularioDao = mDb.formularioDao();
+                Formulario formulario = formularioDao.getForm(id);
+                form.add(formulario);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Formulario formulario = getCompleteForm(act,form.get(0));
+        return formulario;
+    }
+
+    public void deleteAllTransactions(final Activity act, final List<Transaction> transactions){
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                TransactionDao transactionDao = mDb.transactionDao();
+                transactionDao.delete(transactions.toArray(new Transaction[transactions.size()]));
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteTransaction(final Activity act, final Transaction transaction){
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
+                TransactionDao transactionDao = mDb.transactionDao();
+                transactionDao.delete(transaction);
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

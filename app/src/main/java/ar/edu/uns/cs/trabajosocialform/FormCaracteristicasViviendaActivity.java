@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.CaracteristicasVivienda;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
@@ -24,6 +25,9 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_caracteristicas_vivienda);
         inicializarValores();
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
         form = (Formulario)intent.getSerializableExtra("FORM");
@@ -40,7 +44,7 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
           va.adaptarCaracteristicas_vivienda();
     }
 
-    public void continuar(View view){
+    public void continuar(){
         CaracteristicasVivienda caracteristicas = tomarDatos();
         form.setCaracteristicasVivienda(caracteristicas);
         Intent intent = new Intent(this,FormInfraestructuraBarrialActivity.class);
@@ -50,11 +54,11 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
         if(update)
             intent.putExtra("UPDATE_FORM",updateForm);
         startActivity(intent);
-        finish();
     }
 
     private CaracteristicasVivienda tomarDatos(){
         Utils utils = new Utils(this);
+
         String techo = utils.getDataTvSpinner(R.id.panel_techo);
         String revestimientoTechoS = utils.getDataTvSpinner(R.id.panel_revestimiento_techo);
         String paredes = utils.getDataTvSpinner(R.id.panel_paredes);
@@ -79,6 +83,10 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
 
     private void inicializarValores(){
         Utils utils = new Utils(this);
+
+        utils.addContentToTemplate(R.layout.form_caracteristicas_vivienda);
+
+        utils.setTitleValue(R.id.titulo_caracteristicas_vivienda, R.string.titulo_caracteristicas_vivienda);
         utils.setValuesTvSpinner(R.array.techo_opciones,R.string.titulo_techo,R.id.panel_techo);
         utils.setValuesTvSpinner(R.array.revestimiento_techo_opciones,R.string.titulo_revestimiento_techo,R.id.panel_revestimiento_techo);
         utils.setValuesTvSpinner(R.array.paredes_opciones,R.string.titulo_paredes,R.id.panel_paredes);
@@ -93,6 +101,13 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
         utils.setValuesTvSpinner(R.array.electricidad_opciones,R.string.titulo_electricidad,R.id.panel_electricidad);
         utils.setValuesTvSpinner(R.array.combustible_cocina_opciones,R.string.titulo_combustible_cocina,R.id.panel_combustible_cocina);
 
+
+        utils.addNextButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                continuar();
+            }
+        });
     }
 
 

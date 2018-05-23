@@ -40,6 +40,8 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_grupo_familiar);
 
+        inicializarGui();
+
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
         form = (Formulario)intent.getSerializableExtra("FORM");
@@ -60,7 +62,6 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
         intent.putExtra("CONFIG",bundle);
         intent.putExtra("FORM",form);
         startActivityForResult(intent,1);
-
     }
 
     @Override
@@ -89,7 +90,18 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
 
     }
 
-    public void siguiente(View view){
+    public void inicializarGui(){
+        Utils utils = new Utils(this);
+
+        utils.addContentToTemplate(R.layout.form_grupo_familiar);
+        utils.addNextButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                siguiente();
+            }
+        });
+    }
+    public void siguiente(){
         Intent intent = new Intent(this,FormSituacionHabitacionalActivity.class);
         intent.putExtra("CONFIG",bundle);
         intent.putExtra("FORM",form);
@@ -97,7 +109,6 @@ public class FormGrupoFamiliarActivity extends AppCompatActivity {
         if(update)
             intent.putExtra("UPDATE_FORM",updateForm);
         startActivity(intent);
-        finish();
     }
 
     private void refreshContenedorFamiliares(){

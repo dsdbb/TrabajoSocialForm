@@ -3,8 +3,12 @@ package ar.edu.uns.cs.trabajosocialform;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Domicilio;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
@@ -26,6 +30,8 @@ public class FormDomicilioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_domicilio);
 
         inicializarGui();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
 
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
@@ -43,7 +49,7 @@ public class FormDomicilioActivity extends AppCompatActivity {
         va.adaptarDomicilio();
     }
 
-    public void continuar(View view){
+    public void continuar(){
         Domicilio domicilio = tomarDatos();
         form.setDomicilio(domicilio);
         Intent intent = new Intent(this,FormGrupoFamiliarActivity.class);
@@ -54,13 +60,17 @@ public class FormDomicilioActivity extends AppCompatActivity {
             intent.putExtra("UPDATE_FORM", updateForm);
         }
         startActivity(intent);
-        finish();
     }
 
 
     private void inicializarGui(){
         Utils utils = new Utils(this);
 
+        /*Agrego al layout general los campos de Domicilio*/
+        utils.addContentToTemplate(R.layout.form_domicilio);
+
+        /*Datos de los campos*/
+        utils.setTitleValue(R.id.titulo_domicilio,R.string.titulo_datos_domicilio);
         utils.setValuesTvEt(R.string.calle,R.id.panel_calle);
         utils.setValuesTvEt(R.string.numero, R.id.panel_numero);
         utils.setValuesTvEt(R.string.manzana, R.id.panel_manzana);
@@ -73,6 +83,15 @@ public class FormDomicilioActivity extends AppCompatActivity {
         utils.setValuesTvEt(R.string.barrio, R.id.panel_barrio);
         utils.setValuesTvEt(R.string.localidad, R.id.panel_localidad);
         utils.setValuesTvEt(R.string.delegacion, R.id.panel_delegacion);
+
+        /*Boton*/
+        utils.addNextButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                continuar();
+            }
+        });
+
     }
 
     private Domicilio tomarDatos(){

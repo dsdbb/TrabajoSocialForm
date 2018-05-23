@@ -31,13 +31,15 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Ocupacion;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Salud;
 import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
+import ar.edu.uns.cs.trabajosocialform.Transactions.Transaction;
+import ar.edu.uns.cs.trabajosocialform.Transactions.TransactionDao;
 
 /**
  * Created by Kevin (User) on 18/4/2018.
  */
 @Database(entities={Formulario.class,Solicitante.class,Apoderado.class, SituacionHabitacional.class, Domicilio.class,
 Familiar.class, InfraestructuraBarrial.class, CaracteristicasVivienda.class, Ocupacion.class,Ingreso.class,
-        Salud.class, FormularioFamiliarJoin.class},version=1)
+        Salud.class, FormularioFamiliarJoin.class, Transaction.class},version=1)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase{
 
@@ -58,6 +60,8 @@ public abstract class AppDatabase extends RoomDatabase{
     public abstract CaracteristicasViviendaDao caracteristicasViviendaDao();
     public abstract InfraestructuraBarrialDao infraestructuraBarrialDao();
     public abstract FormularioFamiliarDao formularioFamiliarDao();
+
+    public abstract TransactionDao transactionDao();
 
 
 

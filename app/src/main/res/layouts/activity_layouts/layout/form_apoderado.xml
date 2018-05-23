@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="20dp"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- TITULO -->
+            <include
+                android:id="@+id/titulo_apoderado"
+                layout="@layout/titulo_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- NOMBRE -->
+            <include
+                android:id="@+id/panel_nombres_apoderado"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- APELLIDO -->
+            <include
+                android:id="@+id/panel_apellidos_apoderado"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- CUIL -->
+            <include
+                android:id="@+id/panel_cuil_apoderado"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- TELEFONO PRINCIPAL -->
+            <include
+                android:id="@+id/panel_telefono_principal_apoderado"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Fecha de Nacimiento -->
+            <include
+                android:id="@+id/panel_fecha_nacimiento_apoderado"
+                layout="@layout/tv_et_fecha"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel_telefono_principal_apoderado" />
+
+
+            <!-- Motivos de poder -->
+            <include
+                android:id="@+id/panel_motivos_poder_apoderado"
+                layout="@layout/tv_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

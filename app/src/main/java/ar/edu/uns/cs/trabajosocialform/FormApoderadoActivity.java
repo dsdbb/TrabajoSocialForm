@@ -7,6 +7,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import java.text.ParseException;
@@ -33,6 +34,8 @@ public class FormApoderadoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_apoderado);
 
         inicializarGui();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
 
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
@@ -51,7 +54,7 @@ public class FormApoderadoActivity extends AppCompatActivity {
 
     }
 
-    public void continuar(View view){
+    public void continuar(){
         Intent intent = new Intent(this,FormDomicilioActivity.class);
         Apoderado apoderado = tomarDatos();
         form.setApoderado(apoderado);
@@ -61,7 +64,6 @@ public class FormApoderadoActivity extends AppCompatActivity {
         if(update)
             intent.putExtra("UPDATE_FORM", updateForm);
         startActivity(intent);
-        finish();
     }
 
     private Apoderado tomarDatos(){
@@ -88,6 +90,11 @@ public class FormApoderadoActivity extends AppCompatActivity {
 
     private void inicializarGui(){
         Utils utils = new Utils(this);
+        /*Agrego formulario al template*/
+        utils.addContentToTemplate(R.layout.form_apoderado);
+
+        /*Datos*/
+        utils.setTitleValue(R.id.titulo_apoderado,R.string.titulo_apoderado);
         utils.setValuesTvEt(R.string.nombres_apoderado,R.id.panel_nombres_apoderado);
         utils.setValuesTvEt(R.string.apellidos_apoderado,R.id.panel_apellidos_apoderado);
         utils.setValuesTvEt(R.string.cuil_apoderado,R.id.panel_cuil_apoderado);
@@ -96,6 +103,13 @@ public class FormApoderadoActivity extends AppCompatActivity {
         utils.setValuesTvEt(R.string.motivos_de_poder, R.id.panel_motivos_poder_apoderado);
 
         utils.addDateListener(R.id.panel_fecha_nacimiento_apoderado);
+
+        utils.addNextButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                continuar();
+            }
+        });
 
     }
 

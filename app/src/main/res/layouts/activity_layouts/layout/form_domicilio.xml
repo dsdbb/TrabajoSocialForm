@@ -1,92 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="ar.edu.uns.cs.trabajosocialform.FormDomicilioActivity">
-
-    <include
-        android:id="@+id/template"
-        layout="@layout/content_alta"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <LinearLayout
-            android:id="@+id/contenedor"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight = "1"
-            android:orientation="vertical">
-
-
-        </LinearLayout>
-
-
-        <Button
-            android:id="@+id/siguiente_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight = "0"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:onClick="continuar"
-            android:text="Siguiente"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-    </LinearLayout>-->
-
-<!--    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/titulo_domicilioForm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/titulo_datos_domicilio"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:paddingBottom="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/titulo_domicilioForm">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/content_domicilio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/titulo_domicilioForm">
+            android:orientation="vertical">
+
+
+            <include
+                android:id="@+id/titulo_domicilio"
+                layout="@layout/titulo_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <include
                 android:id="@+id/panel_calle"
@@ -172,18 +107,8 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:id="@+id/siguiente_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:onClick="continuar"
-                android:text="Siguiente"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
 
-    </ScrollView>-->
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

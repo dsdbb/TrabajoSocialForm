@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
@@ -26,6 +27,7 @@ public class FormSolicitanteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_solicitante);
 
         inicializarGui();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
@@ -45,7 +47,7 @@ public class FormSolicitanteActivity extends AppCompatActivity {
     }
 
 
-    public void continuar(View view){
+    public void continuar(){
         Solicitante solicitante = tomarDatos();
         form.setSolicitante(solicitante);
         Intent intent = new Intent(this,FormApoderadoActivity.class);
@@ -56,16 +58,28 @@ public class FormSolicitanteActivity extends AppCompatActivity {
             intent.putExtra("UPDATE_FORM",updateForm);
         }
         startActivity(intent);
-        finish();
+
     }
 
     private void inicializarGui(){
         Utils utils = new Utils(this);
+        /*Agrego contenido al template general*/
+        utils.addContentToTemplate(R.layout.form_solicitante);
+
+        /*Datos*/
+        utils.setTitleValue(R.id.titulo_solicitante,R.string.titulo_solicitante);
         utils.setValuesTvEt(R.string.nombres_solicitante,R.id.panel_nombres_solicitante);
         utils.setValuesTvEt(R.string.apellidos_solicitante,R.id.panel_apellidos_solicitante);
         utils.setValuesTvEt(R.string.cuil_solicitante,R.id.panel_cuil_solicitante);
         utils.setValuesTvEt(R.string.telefono_principal_solicitante,R.id.panel_telefono_principal_solicitante);
         utils.setValuesTvEt(R.string.otro_telefono_solicitante,R.id.panel_otro_telefono_solicitante);
+
+        utils.addNextButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                continuar();
+            }
+        });
     }
 
     private Solicitante tomarDatos(){

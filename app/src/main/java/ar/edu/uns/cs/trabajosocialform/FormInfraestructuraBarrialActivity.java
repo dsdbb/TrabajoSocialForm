@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.InfraestructuraBarrial;
@@ -42,7 +43,7 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
         va.adaptarInfraestructura_barrial();
     }
 
-    public void continuar(View view){
+    public void continuar(){
         InfraestructuraBarrial infraestructura = tomarDatos();
         form.setInfraestructuraBarrial(infraestructura);
         DatabaseAcces db = new DatabaseAcces();
@@ -52,7 +53,11 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
         else{
             db.saveInDatabase(this,form,true);
         }
-        finish();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
 
     }
 
@@ -74,6 +79,10 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
 
     private void inicializarValores(){
         Utils utils = new Utils(this);
+
+        utils.addContentToTemplate(R.layout.form_infraestructura_barrial);
+
+        utils.setTitleValue(R.id.titulo_infraestructura_barrial,R.string.titulo_infraestructura_barrial);
         utils.setValuesTvSpinner(R.array.infraestructura_calles_opciones,R.string.titulo_infraestructura_calles,R.id.panel_infraestructura_calles);
         utils.setValuesTvSpinner(R.array.iluminacion_opciones,R.string.titulo_iluminacion,R.id.panel_iluminacion);
         utils.setValuesTvSpinner(R.array.inundacion_opciones,R.string.titulo_inundacion,R.id.panel_inundacion);
@@ -81,6 +90,15 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
         utils.setValuesTvSpinner(R.array.distancia_opciones,R.string.titulo_distancia_educacion,R.id.panel_distancia_educacion);
         utils.setValuesTvSpinner(R.array.distancia_opciones,R.string.titulo_distancia_salud,R.id.panel_distancia_salud);
         utils.setValuesTvSpinner(R.array.distancia_opciones,R.string.titulo_distancia_transporte,R.id.panel_distancia_transporte);
+
+        /*Boton*/
+        ((Button)findViewById(R.id.siguiente_button)).setText("Guardar");
+        utils.addNextButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                continuar();
+            }
+        });
     }
 
     private void rellenarCampos(){

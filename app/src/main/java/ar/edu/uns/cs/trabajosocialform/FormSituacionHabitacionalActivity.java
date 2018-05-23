@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -30,6 +31,8 @@ public class FormSituacionHabitacionalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_situacion_habitacional);
 
         inicializarValores();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
 
         Intent intent = getIntent();
         bundle = intent.getBundleExtra("CONFIG");
@@ -49,7 +52,7 @@ public class FormSituacionHabitacionalActivity extends AppCompatActivity {
         va.adaptarSituacion_habitacional();
     }
 
-    public void continuar(View view){
+    public void continuar(){
         SituacionHabitacional situacion = tomarDatos();
         form.setSituacionHabitacional(situacion);
         Intent intent = new Intent(this,FormCaracteristicasViviendaActivity.class);
@@ -59,7 +62,6 @@ public class FormSituacionHabitacionalActivity extends AppCompatActivity {
         if(update)
             intent.putExtra("UPDATE_FORM",updateForm);
         startActivity(intent);
-        finish();
     }
 
     private SituacionHabitacional tomarDatos(){
@@ -87,11 +89,22 @@ public class FormSituacionHabitacionalActivity extends AppCompatActivity {
 
     private void inicializarValores(){
         Utils utils = new Utils(this);
+
+        utils.addContentToTemplate(R.layout.form_situacion_habitacional);
+
+        utils.setTitleValue(R.id.titulo_situacion_habitacional, R.string.titulo_situacion_habitacional);
         utils.setValuesTvSpinner(R.array.tipo_vivienda_opciones,R.string.titulo_tipo_vivienda,R.id.panel_tipo_vivienda);
         utils.setValuesTvSpinner(R.array.tenencia_vivienda_terreno_opciones,R.string.titulo_tenencia_vivienda_terreno,R.id.panel_tenencia_vivienda_terreno);
         utils.setValuesTvEt(R.string.titulo_tiempo_ocupacion,R.id.panel_tiempo_ocupacion);
         utils.setValuesTvEt(R.string.titulo_cantidad_hogares_vivienda,R.id.panel_cantidad_hogares_vivienda);
         utils.setValuesTvEt(R.string.titulo_cantidad_cuartos_UE,R.id.panel_cantidad_cuartos_ue);
+
+        utils.addNextButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                continuar();
+            }
+        });
     }
 
     private void rellenarCampos(){

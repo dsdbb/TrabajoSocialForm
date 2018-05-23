@@ -165,6 +165,19 @@ public class Utils {
         });
     }
 
+    public void addNextButtonListener(View.OnClickListener listener){
+        ((Button)act.findViewById(R.id.siguiente_button)).setOnClickListener(listener);
+    }
+
+    public void addContentToTemplate(int layoutId){
+        LinearLayout contenedor = (LinearLayout) act.findViewById(R.id.contenedor);
+        LayoutInflater inflater = LayoutInflater.from(act);
+
+        View inflatedView = inflater.inflate(layoutId, contenedor, false);
+        contenedor.addView(inflatedView);
+
+    }
+
     public Date getDateFromString(String fechaS){
         Date fecha=null;
         if(!fechaS.equals("")){

@@ -49,7 +49,7 @@ public class FormularioActivity extends AppCompatActivity {
         }
 
         startActivity(intent);
-        finish();
+
     }
 
     public Formulario tomarDatos(){

@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Apoderado;
@@ -31,8 +32,10 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.InfraestructuraBarrial;
 import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
+import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
 import ar.edu.uns.cs.trabajosocialform.MainActivity;
 import ar.edu.uns.cs.trabajosocialform.R;
+import ar.edu.uns.cs.trabajosocialform.Transactions.Transaction;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
@@ -108,7 +111,7 @@ public class ServerAccess {
 
     }
 
-    public void uploadForm(final Formulario form){
+    public void uploadForm(final Formulario form, final Transaction transaction){
         String server_url = "http://192.168.43.45:80/example/uploadform.php";
 
 
@@ -128,6 +131,12 @@ public class ServerAccess {
                         });
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
+
+                        /*Si la respuesta es correcta elimino la transaccion de la lista de pendientes*/
+                        if(response.equals("true")){
+                            DatabaseAcces db = new DatabaseAcces();
+                            db.deleteTransaction(act,transaction);
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -135,6 +144,7 @@ public class ServerAccess {
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(act,"ERROR",Toast.LENGTH_SHORT).show();
                         error.printStackTrace();
+
                     }
                 }){
 
@@ -240,5 +250,52 @@ public class ServerAccess {
         params.put("id_formulario",form.getId()+"");
 
         return params;
+    }
+
+    public void deleteForm(final int formId,final Transaction transaction){
+        String server_url = "http://192.168.43.45:80/example/deleteform.php";
+
+        final AlertDialog.Builder builder =  new AlertDialog.Builder(act);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        builder.setTitle("SERVER RESPONSE");
+                        builder.setMessage("Response: "+response);
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+
+                        /*Si se elimino correctamente en el servidor, elimino la transaccion de la lista de pendientes*/
+                        if(response.equals("true")){
+                            DatabaseAcces db = new DatabaseAcces();
+                            db.deleteTransaction(act,transaction);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(act,"ERROR",Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                    }
+                }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("id_formulario",formId+"");
+
+                return params;
+            }
+        };
+
+        ServerSingleton.getInstance(act).addToRequestQueue(stringRequest);
     }
 }

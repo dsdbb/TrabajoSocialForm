@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +51,8 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         form = (Formulario)getIntent().getSerializableExtra("FORM");
 
         inicializarGui();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
 
         /*Chequeo si es un update y en ese caso relleno los campos*/
         update = getIntent().getBooleanExtra("UPDATE",false);
@@ -59,7 +62,7 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         }
     }
 
-    public void guardar(View view){
+    public void guardar(){
         Familiar familiar = tomarDatos();
         form.getFamiliares().add(familiar);
         Intent resultIntent = new Intent();
@@ -156,6 +159,14 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
 
     private void inicializarGui(){
         Utils utils = new Utils(this);
+        utils.setTitleValue(R.id.titulo_nuevo_familiar,R.string.titulo_nuevo_familiar);
+        utils.addNextButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guardar();
+            }
+        });
+
         inicializarDatosGenerales(utils);
         inicializarOcupacion(utils);
         inicializarIngresos(utils);

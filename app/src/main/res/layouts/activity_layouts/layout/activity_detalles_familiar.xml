@@ -6,222 +6,247 @@
     android:layout_height="match_parent"
     tools:context=".DetallesFamiliarActivity">
 
-
-    <TextView
-        android:id="@+id/titulo_detalles_familiar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/titulo_detalles_familiar"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:fillViewport="true"
-        android:paddingBottom="20dp"
-        android:scrollbarStyle="outsideInset"
-        app:layout_constraintTop_toBottomOf="@id/titulo_detalles_familiar">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <LinearLayout
+            android:id="@+id/contenedor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight = "1"
             android:orientation="vertical">
 
-            <!-- NOMBRE -->
-            <include
-                android:id="@+id/detalle_nombre_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- APELLIDO -->
-            <include
-                android:id="@+id/detalle_apellido_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- TIPO DOC -->
-            <include
-                android:id="@+id/detalle_tipo_doc_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- CUIL -->
-            <include
-                android:id="@+id/detalle_cuil_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- SEXO -->
-            <include
-                android:id="@+id/detalle_sexo_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- NACION -->
-            <include
-                android:id="@+id/detalle_nacion_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- FECHA NACIMIENTO -->
-            <include
-                android:id="@+id/detalle_fecha_nacimiento_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- ESTADO CIVIL -->
-            <include
-                android:id="@+id/detalle_estado_civil_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- VINCULO -->
-            <include
-                android:id="@+id/detalle_vinculo_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- NUCLEO -->
-            <include
-                android:id="@+id/detalle_nucleo_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- DE LA EDUCACION-->
-
-            <!-- NIVEL EDUCATIVO -->
-            <include
-                android:id="@+id/detalle_nivel_educativo_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- CAPACITACION -->
-            <include
-                android:id="@+id/detalle_capacitacion_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- DE LA OCUPACION -->
-
-            <!-- CONDICION DE ACTIVIDAD -->
-            <include
-                android:id="@+id/detalle_condicion_actividad_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- PUESTO DE TRABAJO -->
-            <include
-                android:id="@+id/detalle_puesto_trabajo_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- APORTE JUBILATORIO -->
-            <include
-                android:id="@+id/detalle_aporte_jubilatorio_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- DURACION EMPLEO -->
-            <include
-                android:id="@+id/detalle_duracion_empleo_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- TIPÖ DE ACTIVIDAD -->
-            <include
-                android:id="@+id/detalle_tipo_actividad_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- CALIFICACION -->
-            <include
-                android:id="@+id/detalle_calificacion_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- DE LOS INGRESOS -->
-
-            <!-- INGRESOS LABORALES -->
-            <include
-                android:id="@+id/detalle_ingresos_laborales_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- INGRESOS NO LABORALES -->
-            <LinearLayout
-                android:id="@+id/detalles_ingresos_no_laborales"
+            <TextView
+                android:id="@+id/titulo_detalles_familiar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"></LinearLayout>
+                android:text="@string/titulo_detalles_familiar"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <!-- PROGRAMAS SOCIALES STI -->
-            <LinearLayout
-                android:id="@+id/detalles_programas_sociales_sti"
+            <ScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"></LinearLayout>
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:fillViewport="true"
+                android:paddingBottom="20dp"
+                android:scrollbarStyle="outsideInset"
+                app:layout_constraintTop_toBottomOf="@id/titulo_detalles_familiar">
 
-            <!-- DE LA SALUD -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <!-- OBRA SOCIAL -->
-            <include
-                android:id="@+id/detalle_cobertura_salud_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                    <!-- NOMBRE -->
+                    <include
+                        android:id="@+id/detalle_nombre_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- FECHA ESTIMADA DE PARTO -->
-            <include
-                android:id="@+id/detalle_fecha_parto_familiar"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                    <!-- APELLIDO -->
+                    <include
+                        android:id="@+id/detalle_apellido_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- DISCAPACIDAD -->
-            <LinearLayout
-                android:id="@+id/detalles_discapacidad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"></LinearLayout>
+                    <!-- TIPO DOC -->
+                    <include
+                        android:id="@+id/detalle_tipo_doc_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- ENFERMEDAD CRONICA -->
-            <LinearLayout
-                android:id="@+id/detalles_enfermedad_cronica"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"></LinearLayout>
+                    <!-- CUIL -->
+                    <include
+                        android:id="@+id/detalle_cuil_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- INDEPENDENCIA FUNCIONAL -->
-            <include
-                android:id="@+id/detalle_independencia_funcional"
-                layout="@layout/detalles_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                    <!-- SEXO -->
+                    <include
+                        android:id="@+id/detalle_sexo_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- NACION -->
+                    <include
+                        android:id="@+id/detalle_nacion_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- FECHA NACIMIENTO -->
+                    <include
+                        android:id="@+id/detalle_fecha_nacimiento_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- ESTADO CIVIL -->
+                    <include
+                        android:id="@+id/detalle_estado_civil_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- VINCULO -->
+                    <include
+                        android:id="@+id/detalle_vinculo_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- NUCLEO -->
+                    <include
+                        android:id="@+id/detalle_nucleo_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- DE LA EDUCACION-->
+
+                    <!-- NIVEL EDUCATIVO -->
+                    <include
+                        android:id="@+id/detalle_nivel_educativo_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- CAPACITACION -->
+                    <include
+                        android:id="@+id/detalle_capacitacion_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- DE LA OCUPACION -->
+
+                    <!-- CONDICION DE ACTIVIDAD -->
+                    <include
+                        android:id="@+id/detalle_condicion_actividad_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- PUESTO DE TRABAJO -->
+                    <include
+                        android:id="@+id/detalle_puesto_trabajo_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- APORTE JUBILATORIO -->
+                    <include
+                        android:id="@+id/detalle_aporte_jubilatorio_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- DURACION EMPLEO -->
+                    <include
+                        android:id="@+id/detalle_duracion_empleo_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- TIPÖ DE ACTIVIDAD -->
+                    <include
+                        android:id="@+id/detalle_tipo_actividad_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- CALIFICACION -->
+                    <include
+                        android:id="@+id/detalle_calificacion_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- DE LOS INGRESOS -->
+
+                    <!-- INGRESOS LABORALES -->
+                    <include
+                        android:id="@+id/detalle_ingresos_laborales_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- INGRESOS NO LABORALES -->
+                    <LinearLayout
+                        android:id="@+id/detalles_ingresos_no_laborales"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></LinearLayout>
+
+                    <!-- PROGRAMAS SOCIALES STI -->
+                    <LinearLayout
+                        android:id="@+id/detalles_programas_sociales_sti"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></LinearLayout>
+
+                    <!-- DE LA SALUD -->
+
+                    <!-- OBRA SOCIAL -->
+                    <include
+                        android:id="@+id/detalle_cobertura_salud_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- FECHA ESTIMADA DE PARTO -->
+                    <include
+                        android:id="@+id/detalle_fecha_parto_familiar"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- DISCAPACIDAD -->
+                    <LinearLayout
+                        android:id="@+id/detalles_discapacidad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></LinearLayout>
+
+                    <!-- ENFERMEDAD CRONICA -->
+                    <LinearLayout
+                        android:id="@+id/detalles_enfermedad_cronica"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></LinearLayout>
+
+                    <!-- INDEPENDENCIA FUNCIONAL -->
+                    <include
+                        android:id="@+id/detalle_independencia_funcional"
+                        layout="@layout/detalles_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </LinearLayout>
+            </ScrollView>
+
 
         </LinearLayout>
-    </ScrollView>
+
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

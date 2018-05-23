@@ -6,101 +6,14 @@
     android:layout_height="match_parent"
     tools:context="ar.edu.uns.cs.trabajosocialform.FormApoderadoActivity">
 
-    <TextView
-        android:id="@+id/titulo_apoderadoForm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/titulo_apoderado"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/template"
+        layout="@layout/content_alta"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:paddingBottom="20dp"
-        android:fillViewport="true"
-        android:scrollbarStyle="outsideInset"
-        app:layout_constraintTop_toBottomOf="@id/titulo_apoderadoForm">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- NOMBRE -->
-            <include
-                android:id="@+id/panel_nombres_apoderado"
-                layout="@layout/tv_et"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- APELLIDO -->
-            <include
-                android:id="@+id/panel_apellidos_apoderado"
-                layout="@layout/tv_et"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- CUIL -->
-            <include
-                android:id="@+id/panel_cuil_apoderado"
-                layout="@layout/tv_et"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- TELEFONO PRINCIPAL -->
-            <include
-                android:id="@+id/panel_telefono_principal_apoderado"
-                layout="@layout/tv_et"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <!-- Fecha de Nacimiento -->
-            <include
-                android:id="@+id/panel_fecha_nacimiento_apoderado"
-                layout="@layout/tv_et_fecha"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/panel_telefono_principal_apoderado" />
-
-
-            <!-- Motivos de poder -->
-            <include
-                android:id="@+id/panel_motivos_poder_apoderado"
-                layout="@layout/tv_et"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </LinearLayout>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/siguiente_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:onClick="continuar"
-        android:text="Siguiente"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

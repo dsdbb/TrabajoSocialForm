@@ -4,11 +4,14 @@ import android.arch.persistence.room.Database;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -35,6 +38,9 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
 import ar.edu.uns.cs.trabajosocialform.ServerConnection.ServerAccess;
+import ar.edu.uns.cs.trabajosocialform.Transactions.Transaction;
+import ar.edu.uns.cs.trabajosocialform.Transactions.TransactionDao;
+import ar.edu.uns.cs.trabajosocialform.Transactions.TransactionOptions;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 
 public class EntradasActivity extends AppCompatActivity {
@@ -49,7 +55,12 @@ public class EntradasActivity extends AppCompatActivity {
         final Context context = this;
 
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         forms = (new DatabaseAcces()).getFormularios(this);
+        Log.i("FORMS", (new Gson()).toJson(forms));
+
 
         final ListView listview = (ListView) findViewById(R.id.list_view);
         listview.setAdapter(new customAdapter(this,forms));
@@ -81,6 +92,13 @@ public class EntradasActivity extends AppCompatActivity {
             inflater.inflate(R.menu.menu_list_2, menu);
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        return true;
     }
 
     @Override
@@ -128,7 +146,7 @@ public class EntradasActivity extends AppCompatActivity {
                 dbAccess.getCompleteForm(this,formulario);
                 Log.i("Formulario upload",(new Gson()).toJson(formulario));
                 ServerAccess sa = new ServerAccess(this);
-                sa.uploadForm(formulario);
+                //sa.uploadForm(formulario);
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -144,6 +162,43 @@ public class EntradasActivity extends AppCompatActivity {
         finish();
         startActivity(intent);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+       switch (item.getItemId()){
+           case R.id.action_refresh:
+               refreshInternetDatabase();
+               return true;
+           default:
+               return true;
+       }
+
+    }
+
+
+    public void refreshInternetDatabase(){
+        DatabaseAcces db = new DatabaseAcces();
+        List<Transaction> transactions = db.getTransactions(this);
+        ServerAccess sa = new ServerAccess(this);
+        Log.i("TRANSACTIONS",(new Gson()).toJson(transactions));
+        
+        if(transactions.size()==0){
+            Toast.makeText(this, R.string.sin_actualizaciones, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            for (int i = 0; i < transactions.size(); i++) {
+                Transaction transaction = transactions.get(i);
+                if (transaction.getTransactionId() == TransactionOptions.INSERT.getValue()) {
+                    Formulario form = db.getFormulario(this, transaction.getFormId());
+                    sa.uploadForm(form, transaction);
+                }
+                if (transaction.getTransactionId() == TransactionOptions.DELETE.getValue()) {
+                    sa.deleteForm(transaction.getFormId(), transaction);
+                }
+
+            }
+        }
     }
 
     public class customAdapter extends BaseAdapter {
@@ -166,7 +221,7 @@ public class EntradasActivity extends AppCompatActivity {
 
             int solicitanteId = forms.get(position).getSolicitanteId();
             Solicitante solicitante = (new DatabaseAcces()).getSolicitante(EntradasActivity.this,solicitanteId);
-            ((TextView) convertView.findViewById(R.id.label)).setText(solicitante.getNombres());
+            ((TextView) convertView.findViewById(R.id.label)).setText(solicitante.getNombres()+" "+solicitante.getApellidos());
             return convertView;
 
 
