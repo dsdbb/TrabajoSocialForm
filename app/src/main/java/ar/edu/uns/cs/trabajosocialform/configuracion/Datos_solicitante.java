@@ -57,4 +57,9 @@ public class Datos_solicitante implements Serializable {
     public void setOtro_telefono(boolean otro_telefono) {
         this.otro_telefono = otro_telefono;
     }
+
+    public boolean required(){
+        return isNombres_solicitante() || isApellidos_solicitante() || isCuil_solicitante() ||
+                isTelefono_principal_solicitante() || isOtro_telefono();
+    }
 }

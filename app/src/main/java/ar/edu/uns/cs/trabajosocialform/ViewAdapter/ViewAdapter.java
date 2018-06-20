@@ -218,4 +218,138 @@ public class ViewAdapter {
 
     }
 
+    public void adaptarNuevoFamiliar(){
+        /*Datos generales*/
+        boolean nombres = config.getDatos_grupo_familiar().isNombres();
+        boolean apellidos = config.getDatos_grupo_familiar().isApellidos();
+        boolean cuil = config.getDatos_grupo_familiar().isCuil();
+        boolean sexo = config.getDatos_grupo_familiar().isSexo();
+        boolean fechaNacimiento = config.getDatos_grupo_familiar().isFecha_nac();
+        boolean estadoCivil = config.getDatos_grupo_familiar().isEstado_civil();
+        boolean nacion = config.getDatos_grupo_familiar().isNacion();
+        boolean vinculo = config.getDatos_grupo_familiar().isVinculo();
+        boolean educacion = config.getDatos_grupo_familiar().isEducacion();
+        boolean nucleo = config.getDatos_grupo_familiar().isNucleo();
+
+        /*Datos de la ocupacion*/
+        boolean condicionActividad = config.getDatos_grupo_familiar().getDatos_ocupacion().isCondicion_de_actividad();
+        boolean puestoTrabajo = config.getDatos_grupo_familiar().getDatos_ocupacion().isPuesto_de_trabajo();
+        boolean aporteJubilatorio = config.getDatos_grupo_familiar().getDatos_ocupacion().isAporte_jubilatorio();
+        boolean duracion = config.getDatos_grupo_familiar().getDatos_ocupacion().isDuracion();
+        boolean tipoActividad = config.getDatos_grupo_familiar().getDatos_ocupacion().isTipo_de_actividad();
+        boolean calificacion = config.getDatos_grupo_familiar().getDatos_ocupacion().isCalificacion();
+
+        /*Datos de los ingresos*/
+        boolean ingresosLaborales = config.getDatos_grupo_familiar().getDatos_ingresos().isIngresos_laborales();
+        boolean programasSocialesSti = config.getDatos_grupo_familiar().getDatos_ingresos().isPrograma_sociales_sti();
+        boolean ingresosNoLaborales = config.getDatos_grupo_familiar().getDatos_ingresos().isIngresos_no_laborales();
+
+        /*Datos de la salud*/
+        boolean cobertura = config.getDatos_grupo_familiar().getDatos_salud().isCobertura();
+        boolean embarazo = config.getDatos_grupo_familiar().getDatos_salud().isEmbarazo();
+        boolean discapacidad = config.getDatos_grupo_familiar().getDatos_salud().isDiscapacidad();
+        boolean enfermedadCronica = config.getDatos_grupo_familiar().getDatos_salud().isEnfermedad_cronica();
+        boolean independenciaFuncional = config.getDatos_grupo_familiar().getDatos_salud().isIndependencia_funcional();
+
+        if(!config.getDatos_grupo_familiar().requiredGeneral()){
+            act.findViewById(R.id.panel_datos_generales_familiar).setVisibility(View.GONE);
+        }
+        else{
+            if(!nombres){
+                act.findViewById(R.id.panel_nombres_familiar).setVisibility(View.GONE);
+            }
+            if(!apellidos){
+                act.findViewById(R.id.panel_apellidos_familiar).setVisibility(View.GONE);
+            }
+            if(!cuil){
+                act.findViewById(R.id.panel_cuil_familiar).setVisibility(View.GONE);
+                act.findViewById(R.id.panel_tipo_doc_familiar).setVisibility(View.GONE);
+            }
+            if(!sexo){
+                act.findViewById(R.id.panel_sexo_familiar).setVisibility(View.GONE);
+            }
+            if(!fechaNacimiento){
+                act.findViewById(R.id.panel_fecha_nac_familiar).setVisibility(View.GONE);
+            }
+            if(!estadoCivil){
+                act.findViewById(R.id.panel_estado_civil_familiar).setVisibility(View.GONE);
+            }
+            if(!nacion){
+                act.findViewById(R.id.panel_nacion_familiar).setVisibility(View.GONE);
+            }
+            if(!vinculo){
+                act.findViewById(R.id.panel_vinculo_familiar).setVisibility(View.GONE);
+            }
+            if(!educacion){
+                act.findViewById(R.id.panel_educacion_familiar).setVisibility(View.GONE);
+            }
+            if(!nucleo){
+                act.findViewById(R.id.panel_nucleo_familiar).setVisibility(View.GONE);
+            }
+        }
+
+        if(!config.getDatos_grupo_familiar().getDatos_ocupacion().required()){
+            act.findViewById(R.id.panel_ocupacion_familiar).setVisibility(View.GONE);
+        }
+        else{
+            if(!condicionActividad){
+                act.findViewById(R.id.panel_condicion_actividad).setVisibility(View.GONE);
+            }
+            if(!puestoTrabajo){
+                act.findViewById(R.id.panel_puesto_trabajo).setVisibility(View.GONE);
+            }
+            if(!aporteJubilatorio){
+                act.findViewById(R.id.panel_aporte_jubilatorio).setVisibility(View.GONE);
+            }
+            if(!duracion){
+                act.findViewById(R.id.panel_duracion_empleo).setVisibility(View.GONE);
+            }
+            if(!tipoActividad){
+                act.findViewById(R.id.panel_tipo_actividad).setVisibility(View.GONE);
+            }
+            if(!calificacion){
+                act.findViewById(R.id.panel_calificacion).setVisibility(View.GONE);
+            }
+        }
+
+        if(!config.getDatos_grupo_familiar().getDatos_ingresos().required()){
+            act.findViewById(R.id.panel_ingresos_laborales_familiar).setVisibility(View.GONE);
+        }
+        else{
+            if(!ingresosLaborales){
+                act.findViewById(R.id.panel_ingresos_laborales).setVisibility(View.GONE);
+            }
+            if(!ingresosNoLaborales){
+                act.findViewById(R.id.panel_ingresos_no_laborales).setVisibility(View.GONE);
+            }
+            if(!programasSocialesSti){
+                act.findViewById(R.id.panel_programas_sociales_sti).setVisibility(View.GONE);
+            }
+        }
+
+        if(!config.getDatos_grupo_familiar().getDatos_salud().required()){
+            act.findViewById(R.id.panel_salud_familiar).setVisibility(View.GONE);
+        }
+        else{
+            if(!cobertura){
+                act.findViewById(R.id.panel_cobertura).setVisibility(View.GONE);
+            }
+            if(!embarazo){
+                act.findViewById(R.id.panel_embarazo).setVisibility(View.GONE);
+            }
+            if(!discapacidad){
+                act.findViewById(R.id.panel_discapacidad).setVisibility(View.GONE);
+            }
+            if(!enfermedadCronica){
+                act.findViewById(R.id.panel_enfermedad_cronica).setVisibility(View.GONE);
+            }
+            if(!independenciaFuncional){
+                act.findViewById(R.id.panel_independecia_funcional).setVisibility(View.GONE);
+            }
+        }
+
+
+
+    }
+
 }

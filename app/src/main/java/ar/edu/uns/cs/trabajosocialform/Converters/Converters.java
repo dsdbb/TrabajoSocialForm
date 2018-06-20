@@ -1,11 +1,15 @@
 package ar.edu.uns.cs.trabajosocialform.Converters;
 
 import android.arch.persistence.room.TypeConverter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,8 +66,9 @@ public class Converters{
 
     @TypeConverter
     public static String someObjectListToString(List<IngresoNoLaboral> ingresosNoLaborales) {
-        Log.i("IngresosNLaboralesJson:", (new Gson()).toJson(ingresosNoLaborales));
         return (new Gson()).toJson(ingresosNoLaborales);
     }
+
+
 
 }

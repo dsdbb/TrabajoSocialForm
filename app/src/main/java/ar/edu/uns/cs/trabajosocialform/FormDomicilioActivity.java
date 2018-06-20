@@ -3,74 +3,103 @@ package ar.edu.uns.cs.trabajosocialform;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Domicilio;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.Utils.FieldsValidator;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Datos_domicilio;
 
-public class FormDomicilioActivity extends AppCompatActivity {
+public class FormDomicilioActivity extends GeneralActivity {
 
-    private Bundle bundle;
-    private Formulario form;
-    private boolean update;
-    private Formulario updateForm;
+
+    private EditText calleEt;
+    private EditText numeroEt;
+    private EditText localidadEt;
+    private EditText delegacionEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_domicilio);
 
-        inicializarGui();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-
         Intent intent = getIntent();
-        bundle = intent.getBundleExtra("CONFIG");
         form = (Formulario)intent.getSerializableExtra("FORM");
-        Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
+        config = (Configuracion)intent.getSerializableExtra("CONFIG");
 
-        /*Chequeo si es un update y en ese caso relleno los campos*/
-        update = getIntent().getBooleanExtra("UPDATE",false);
-        if(update){
-            updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
-            rellenarCampos();
+        if(!config.getDatos_domicilio().required()){
+            continuar();
+        }
+        else{
+            inicializarGui();
+
+            calleEt = findViewById(R.id.panel_calle).findViewById(R.id.editText);
+            numeroEt = findViewById(R.id.panel_numero).findViewById(R.id.editText);
+            localidadEt = findViewById(R.id.panel_localidad).findViewById(R.id.editText);
+            delegacionEt = findViewById(R.id.panel_delegacion).findViewById(R.id.editText);
+
+            /*Chequeo si es un update y en ese caso relleno los campos*/
+            update = getIntent().getBooleanExtra("UPDATE",false);
+            if(update){
+                updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+                rellenarCampos();
+            }
+
+            ViewAdapter va = new ViewAdapter(config,this);
+            va.adaptarDomicilio();
         }
 
-        ViewAdapter va = new ViewAdapter(config,this);
-        va.adaptarDomicilio();
     }
 
+    @Override
     public void continuar(){
         Domicilio domicilio = tomarDatos();
-        form.setDomicilio(domicilio);
-        Intent intent = new Intent(this,FormGrupoFamiliarActivity.class);
-        intent.putExtra("CONFIG",bundle);
-        intent.putExtra("FORM",form);
-        intent.putExtra("UPDATE", update);
-        if(update){
-            intent.putExtra("UPDATE_FORM", updateForm);
+
+        if(validate(domicilio)){
+            form.setDomicilio(domicilio);
+            Intent intent = new Intent(this,FormGrupoFamiliarActivity.class);
+            intent.putExtra("CONFIG",config);
+            intent.putExtra("FORM",form);
+            intent.putExtra("UPDATE", update);
+            if(update){
+                intent.putExtra("UPDATE_FORM", updateForm);
+            }
+            startActivity(intent);
+
+            if(!config.getDatos_domicilio().required()){
+                finish();
+            }
         }
-        startActivity(intent);
+        else{
+            Toast.makeText( this,R.string.datos_invalidos, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
-
-    private void inicializarGui(){
+    @Override
+    protected void inicializarGui(){
         Utils utils = new Utils(this);
 
         /*Agrego al layout general los campos de Domicilio*/
         utils.addContentToTemplate(R.layout.form_domicilio);
 
+        /*Titulo toolbar*/
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.titulo_datos_domicilio);
+
         /*Datos de los campos*/
-        utils.setTitleValue(R.id.titulo_domicilio,R.string.titulo_datos_domicilio);
         utils.setValuesTvEt(R.string.calle,R.id.panel_calle);
         utils.setValuesTvEt(R.string.numero, R.id.panel_numero);
         utils.setValuesTvEt(R.string.manzana, R.id.panel_manzana);
@@ -94,7 +123,8 @@ public class FormDomicilioActivity extends AppCompatActivity {
 
     }
 
-    private Domicilio tomarDatos(){
+    @Override
+    protected Domicilio tomarDatos(){
         Utils utils = new Utils(this);
         String calle = utils.getDataTvEt(R.id.panel_calle);
         String numeroS = utils.getDataTvEt(R.id.panel_numero);
@@ -120,7 +150,8 @@ public class FormDomicilioActivity extends AppCompatActivity {
 
     }
 
-    private void rellenarCampos(){
+    @Override
+    protected void rellenarCampos(){
         Utils utils = new Utils(this);
 
         Domicilio domicilio = updateForm.getDomicilio();
@@ -137,5 +168,46 @@ public class FormDomicilioActivity extends AppCompatActivity {
         utils.setValueToEditText(R.id.panel_localidad, domicilio.getLocalidad());
         utils.setValueToEditText(R.id.panel_delegacion, domicilio.getDelegacion());
 
+    }
+
+    @Override
+    protected boolean validate(Object obj){
+        boolean result = true;
+
+        FieldsValidator validator = new FieldsValidator();
+        Domicilio domicilio = (Domicilio)obj;
+
+        if(!validator.validateLongString(domicilio.getCalle())){
+            calleEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            result = false;
+        }
+        else{
+            calleEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+        }
+        if(!validator.validateNumber(domicilio.getNumero())){
+            numeroEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            result = false;
+        }
+        else{
+            numeroEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+        }
+        if(!validator.validateShortString(domicilio.getLocalidad())){
+            localidadEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            result = false;
+        }
+        else{
+            localidadEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+        }
+        if(!validator.validateShortString(domicilio.getDelegacion())){
+            delegacionEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            result = false;
+        }
+        else{
+            delegacionEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+        }
+
+
+
+        return result;
     }
 }

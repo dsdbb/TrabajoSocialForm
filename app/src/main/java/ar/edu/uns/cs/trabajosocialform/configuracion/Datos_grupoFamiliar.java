@@ -160,4 +160,13 @@ public class Datos_grupoFamiliar implements Serializable {
     public void setDatos_salud(Datos_salud datos_salud) {
         this.datos_salud = datos_salud;
     }
+
+    public boolean requiredGeneral(){
+        return isNombres() || isApellidos() || isCuil() || isEducacion() || isEstado_civil() || isFecha_nac() ||
+                isNacion() || isNucleo() || isSexo() || isVinculo();
+    }
+
+    public boolean required(){
+        return requiredGeneral() || datos_ingresos.required() || datos_ocupacion.required() || datos_salud.required();
+    }
 }

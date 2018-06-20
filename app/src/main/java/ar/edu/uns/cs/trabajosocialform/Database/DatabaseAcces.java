@@ -5,6 +5,8 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,6 @@ public class DatabaseAcces {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.i("Estado: ","Ejecutando el run");
                 AppDatabase mDb = AppDatabase.getAppDatabase(context); // Get an Instance of Database class
                 /*Guardo cada seccion del formulario en su correspondiente tabla para luego guardar el formuarlio con todos
                 * los respectivos ID*/
@@ -84,6 +85,7 @@ public class DatabaseAcces {
                 List<Familiar> familiares = form.getFamiliares();
                 for(int i=0; i<familiares.size(); i++){
                     Familiar familiar = familiares.get(i);
+
                     /*Ocupacion*/
                     OcupacionDao ocupacionDao = mDb.ocupacionDao();
                     long ocupacionId = ocupacionDao.insert(familiar.getOcupacion());

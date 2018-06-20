@@ -56,4 +56,8 @@ public class Datos_salud implements Serializable {
     public void setIndependencia_funcional(boolean independencia_funcional) {
         this.independencia_funcional = independencia_funcional;
     }
+
+    public boolean required(){
+        return isCobertura() || isEmbarazo() || isDiscapacidad() || isEnfermedad_cronica() || isIndependencia_funcional();
+    }
 }

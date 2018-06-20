@@ -57,4 +57,8 @@ public class Datos_InfraestructuraBarrial implements Serializable {
     public void setDistancias(boolean distancias) {
         this.distancias = distancias;
     }
+
+    public boolean required(){
+        return isCalles() || isDistancias() || isIluminacion() || isInundacion() || isRecoleccion_basura();
+    }
 }

@@ -22,14 +22,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- TITULO -->
-            <include
-                android:id="@+id/titulo_solicitante"
-                layout="@layout/titulo_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
             <!-- NOMBRE -->
             <include
                 android:id="@+id/panel_nombres_solicitante"
@@ -70,6 +62,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- INSERTAR IMAGEN -->
+            <include
+                android:id="@+id/panel_agregar_imagen"
+                layout="@layout/add_button_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- PREVIEW IMAGEN -->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
 
         </LinearLayout>
     </ScrollView>

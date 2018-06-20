@@ -66,4 +66,9 @@ public class Datos_apoderado  implements Serializable {
     public void setMotivos_del_poder(boolean motivos_del_poder) {
         this.motivos_del_poder = motivos_del_poder;
     }
+
+    public boolean required(){
+        return isNombres_apoderado() || isApellidos_apoderado() || isCuil_apoderado() || isFecha_nac_apoderado() ||
+                isTelefono_principal_apoderado() || isMotivos_del_poder();
+    }
 }

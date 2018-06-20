@@ -89,7 +89,7 @@ public class EntradasActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
         if (v.getId()==R.id.list_view) {
             MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_list_2, menu);
+            inflater.inflate(R.menu.menu_list, menu);
         }
 
     }
@@ -139,15 +139,6 @@ public class EntradasActivity extends AppCompatActivity {
                 utils.showAlertDialog(R.string.titulo_confirmacion_eliminar, R.string.texto_confirmacion_eliminar,runnable);
 
                 return true;
-            case R.id.upload:
-                int position = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
-                Formulario formulario = forms.get(position);
-                DatabaseAcces dbAccess = new DatabaseAcces();
-                dbAccess.getCompleteForm(this,formulario);
-                Log.i("Formulario upload",(new Gson()).toJson(formulario));
-                ServerAccess sa = new ServerAccess(this);
-                //sa.uploadForm(formulario);
-                return true;
             default:
                 return super.onContextItemSelected(item);
         }
@@ -181,8 +172,7 @@ public class EntradasActivity extends AppCompatActivity {
         DatabaseAcces db = new DatabaseAcces();
         List<Transaction> transactions = db.getTransactions(this);
         ServerAccess sa = new ServerAccess(this);
-        Log.i("TRANSACTIONS",(new Gson()).toJson(transactions));
-        
+
         if(transactions.size()==0){
             Toast.makeText(this, R.string.sin_actualizaciones, Toast.LENGTH_SHORT).show();
         }

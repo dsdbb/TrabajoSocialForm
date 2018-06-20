@@ -11,48 +11,66 @@ import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
+import ar.edu.uns.cs.trabajosocialform.presenter.initFormPresenter;
 
-public class FormularioActivity extends AppCompatActivity {
+public class FormularioActivity extends GeneralActivity {
 
-    private Bundle bundle;
-    private boolean update;
-    private Formulario updateForm;
+
+    private initFormPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
 
-        Configuracion config = getConfigurationFile();
+        /*Set the presenter*/
+        presenter = new initFormPresenter(this);
 
-        bundle = new Bundle();
-        bundle.putSerializable("CONFIG",config);
+        /*I need to get the configuration file to show the corresponding fields*/
+        config = presenter.getConfigurationFile();
 
+        /*If the action is an update the fields must be filled with corresponding information*/
         update = getIntent().getBooleanExtra("UPDATE",false);
         if(update){
             updateForm =(Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
-            rellenarCampos(updateForm);
+            rellenarCampos();
         }
+
+        findViewById(R.id.siguiente_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                continuar();
+            }
+        });
     }
 
-    public void continuar(View view){
-        Formulario form = tomarDatos();
+
+    @Override
+    public void continuar(){
+        form = tomarDatos();
         Intent intent = new Intent(this,FormSolicitanteActivity.class);
-        intent.putExtra("CONFIG",bundle);
+
+        putExtras(intent);
+       /* intent.putExtra("CONFIG",config);
         intent.putExtra("FORM",form);
         intent.putExtra("UPDATE",update);
         if(update){
             intent.putExtra("UPDATE_FORM", updateForm);
-        }
+        }*/
 
         startActivity(intent);
 
     }
 
-    public Formulario tomarDatos(){
+    @Override
+    protected Formulario tomarDatos(){
         String nombre = ((EditText)findViewById(R.id.nombre_entrevistador_et)).getText().toString();
         String apellido = ((EditText)findViewById(R.id.apellido_entrevistador_et)).getText().toString();
 
@@ -63,31 +81,19 @@ public class FormularioActivity extends AppCompatActivity {
         return form;
     }
 
-    private Configuracion getConfigurationFile(){
-        try
-        {
-            BufferedReader fin =
-                    new BufferedReader(
-                            new InputStreamReader(
-                                    openFileInput("config.txt")));
 
-            /*Leo el String json del archivo de configuracion y hago la deserializacion en la clase configuracion con la
-             librería GSON*/
-            String json = fin.readLine();
-            Log.i("EL JSON QUE VA CONFIG",json);
-            Configuracion config = (new Gson()).fromJson(json, Configuracion.class);
-            Log.i("archivo configuracion",json);
-            return config;
-        }
-        catch (Exception ex)
-        {
-            Log.e("Ficheros", "Error al leer fichero desde memoria interna");
-            ex.printStackTrace();
-        }
-        return null;
+
+    @Override
+    protected void rellenarCampos(){
+
     }
 
-    private void rellenarCampos(Formulario updateForm){
+    @Override
+    protected void inicializarGui(){}
 
+    @Override
+    protected boolean validate(Object obj){
+
+        return true;
     }
 }

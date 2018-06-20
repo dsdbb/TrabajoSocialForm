@@ -49,8 +49,8 @@ public class Salud implements Serializable {
         this.cobertura = cobertura;
         this.embarazo = embarazo;
         this.fecha_estimada_embarazo = fecha_estimada_embarazo;
-        this.discapacidades = new ArrayList<String>();
-        this.enfermedadesCronicas = new ArrayList<String>();
+        this.discapacidades = discapacidades;
+        this.enfermedadesCronicas = enfermedadesCronicas;
         this.independencia_funcional = independencia_funcional;
     }
 

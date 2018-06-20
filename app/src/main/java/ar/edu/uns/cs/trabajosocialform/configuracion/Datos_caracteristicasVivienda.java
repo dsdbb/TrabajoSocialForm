@@ -61,4 +61,8 @@ public class Datos_caracteristicasVivienda implements Serializable {
     public boolean isCocina() {return cocina;}
 
     public void setCocina(boolean cocina) {this.cocina = cocina; }
+
+    public boolean required(){
+        return isTecho() || isParedes() || isPisos() || isBanio() || isCocina() || isServicios();
+    }
 }

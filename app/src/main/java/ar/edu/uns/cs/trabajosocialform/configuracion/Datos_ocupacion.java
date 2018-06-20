@@ -65,4 +65,9 @@ public class Datos_ocupacion implements Serializable {
     public void setCalificacion(boolean calificacion) {
         this.calificacion = calificacion;
     }
+
+    public boolean required(){
+        return isCondicion_de_actividad() || isAporte_jubilatorio() || isPuesto_de_trabajo() || isTipo_de_actividad()
+                || isCalificacion() || isDuracion();
+    }
 }

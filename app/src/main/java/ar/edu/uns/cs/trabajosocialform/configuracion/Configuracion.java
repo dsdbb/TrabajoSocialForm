@@ -163,4 +163,6 @@ public class Configuracion implements Serializable {
     public void setReq_observaciones(boolean req_observaciones) {
         this.req_observaciones = req_observaciones;
     }
+
+
 }

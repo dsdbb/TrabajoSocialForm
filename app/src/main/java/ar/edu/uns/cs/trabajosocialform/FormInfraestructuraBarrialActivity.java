@@ -3,6 +3,7 @@ package ar.edu.uns.cs.trabajosocialform;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,36 +14,38 @@ import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
-public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
-
-    private Bundle bundle;
-    private Formulario form;
-    private boolean update;
-    private Formulario updateForm;
+public class FormInfraestructuraBarrialActivity extends GeneralActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_infraestructura_barrial);
 
-        inicializarValores();
-
         Intent intent = getIntent();
-        bundle = intent.getBundleExtra("CONFIG");
         form = (Formulario)intent.getSerializableExtra("FORM");
-        Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
+        config = (Configuracion)intent.getSerializableExtra("CONFIG");
 
-        /*Chequeo si es un update y en ese caso relleno los campos*/
-        update = getIntent().getBooleanExtra("UPDATE",false);
-        if(update){
-            updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
-            rellenarCampos();
+        if(!config.getDatos_infraestructura_barrial().required()){
+            continuar();
+        }
+        else{
+            inicializarGui();
+
+
+            /*Chequeo si es un update y en ese caso relleno los campos*/
+            update = getIntent().getBooleanExtra("UPDATE",false);
+            if(update){
+                updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+                rellenarCampos();
+            }
+
+            ViewAdapter va = new ViewAdapter(config,this);
+            va.adaptarInfraestructura_barrial();
         }
 
-        ViewAdapter va = new ViewAdapter(config,this);
-        va.adaptarInfraestructura_barrial();
     }
 
+    @Override
     public void continuar(){
         InfraestructuraBarrial infraestructura = tomarDatos();
         form.setInfraestructuraBarrial(infraestructura);
@@ -59,9 +62,14 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
 
+        if(config.getDatos_infraestructura_barrial().required()){
+            finish();
+        }
+
     }
 
-    private InfraestructuraBarrial tomarDatos(){
+    @Override
+    protected InfraestructuraBarrial tomarDatos(){
         Utils utils = new Utils(this);
         String calles = utils.getDataTvSpinner(R.id.panel_infraestructura_calles);
         String iluminacion = utils.getDataTvSpinner(R.id.panel_iluminacion);
@@ -77,12 +85,16 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
         return new InfraestructuraBarrial(calles,iluminacion,inundacion,recoleccion,distanciaEducacion,distanciaSalud,distanciaTransporte);
     }
 
-    private void inicializarValores(){
+    @Override
+    protected void inicializarGui(){
         Utils utils = new Utils(this);
 
         utils.addContentToTemplate(R.layout.form_infraestructura_barrial);
 
-        utils.setTitleValue(R.id.titulo_infraestructura_barrial,R.string.titulo_infraestructura_barrial);
+        /*Titulo toolbar*/
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.titulo_infraestructura_barrial);
+
         utils.setValuesTvSpinner(R.array.infraestructura_calles_opciones,R.string.titulo_infraestructura_calles,R.id.panel_infraestructura_calles);
         utils.setValuesTvSpinner(R.array.iluminacion_opciones,R.string.titulo_iluminacion,R.id.panel_iluminacion);
         utils.setValuesTvSpinner(R.array.inundacion_opciones,R.string.titulo_inundacion,R.id.panel_inundacion);
@@ -101,7 +113,8 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
         });
     }
 
-    private void rellenarCampos(){
+    @Override
+    protected void rellenarCampos(){
         Utils utils = new Utils(this);
 
         InfraestructuraBarrial infraestructura = updateForm.getInfraestructuraBarrial();
@@ -115,4 +128,10 @@ public class FormInfraestructuraBarrialActivity extends AppCompatActivity {
         utils.setValueToSpinner(R.id.panel_distancia_salud, R.array.distancia_opciones, infraestructura.getDistancia_salud());
         utils.setValueToSpinner(R.id.panel_distancia_transporte, R.array.distancia_opciones, infraestructura.getDistancia_transporte());
     }
+
+    @Override
+    protected boolean validate(Object obj){
+        return true;
+    }
+
 }

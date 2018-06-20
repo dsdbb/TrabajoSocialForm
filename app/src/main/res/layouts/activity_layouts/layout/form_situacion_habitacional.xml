@@ -21,13 +21,6 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/titulo_situacion_habitacional"
-                layout="@layout/titulo_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-
-            <include
                 android:id="@+id/panel_tipo_vivienda"
                 layout="@layout/tv_spinner"
                 app:layout_constraintEnd_toEndOf="parent"

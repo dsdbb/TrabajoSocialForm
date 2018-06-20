@@ -3,8 +3,12 @@ package ar.edu.uns.cs.trabajosocialform.Utils;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.arch.persistence.room.TypeConverter;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.constraint.ConstraintLayout;
+import android.util.Base64;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -24,12 +28,15 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
@@ -48,9 +55,9 @@ public class Utils {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            // +1 porque enero es 0
             String mes = String.format("%02d",month+1);
             String dia = String.format("%02d",day);
-            // +1 because january is zero
             final String selectedDate = dia + " / " + mes + " / " + year;
             ((EditText)panel.findViewById(R.id.editText)).setText(selectedDate);
         }
@@ -181,9 +188,11 @@ public class Utils {
     public Date getDateFromString(String fechaS){
         Date fecha=null;
         if(!fechaS.equals("")){
-            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
             try {
-                fecha = formatoDelTexto.parse(fechaS);
+                String date = fechaS.replaceAll(" ","");
+                Log.i("Date",date);
+                fecha = formatoDelTexto.parse(date);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -218,7 +227,7 @@ public class Utils {
     public void setDetailValues(View view, int tituloId, String dato){
         String titulo = act.getResources().getString(tituloId);
         ((TextView)view.findViewById(R.id.textViewTitulo)).setText(titulo);
-        ((TextView)view.findViewById(R.id.textViewTitulo)).setText(dato);
+        ((TextView)view.findViewById(R.id.textViewDato)).setText(dato);
     }
 
     public void setTitleValue(int panelId, int tituloId){
@@ -229,8 +238,9 @@ public class Utils {
 
     public String getStringFromDate(Date fecha){
         String fechaString = null;
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         if(fecha!=null){
-            fechaString = fecha.toString();
+            fechaString = df.format(fecha);
         }
 
         return fechaString;
@@ -401,5 +411,34 @@ public class Utils {
             return false;
         }
         return true;
+    }
+
+
+
+    public String bitmapToString(Bitmap bitmap){
+        if(bitmap!=null){
+            ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+            byte [] b=baos.toByteArray();
+            String temp= Base64.encodeToString(b, Base64.DEFAULT);
+            return temp;
+        }
+        return "";
+    }
+
+
+    public Bitmap stringToBitmap(String stringImg){
+
+        if(stringImg!=null){
+            try {
+                byte [] encodeByte=Base64.decode(stringImg,Base64.DEFAULT);
+                Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+                return bitmap;
+            } catch(Exception e) {
+                e.getMessage();
+                return null;
+            }
+        }
+        return null;
     }
 }

@@ -44,13 +44,14 @@ import static junit.framework.Assert.assertEquals;
 public class ServerAccess {
 
     private final Activity act;
+    private final String ip = "192.168.43.45:80";
 
     public ServerAccess(Activity act){
         this.act = act;
     }
 
     public void getConfigurationFileFromServer(){
-        String url = "http://192.168.43.45:80/example/getconfig.php";
+        String url = "http://"+ip+"/example/getconfig.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -112,7 +113,7 @@ public class ServerAccess {
     }
 
     public void uploadForm(final Formulario form, final Transaction transaction){
-        String server_url = "http://192.168.43.45:80/example/uploadform.php";
+        String server_url = "http://"+ip+"/example/uploadform.php";
 
 
         final AlertDialog.Builder builder =  new AlertDialog.Builder(act);
@@ -142,7 +143,7 @@ public class ServerAccess {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(act,"ERROR",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act,act.getResources().getString(R.string.error_servidor),Toast.LENGTH_SHORT).show();
                         error.printStackTrace();
 
                     }
@@ -169,6 +170,7 @@ public class ServerAccess {
         params.put("cuil_solicitante",solicitante.getCuil()+"");
         params.put("telefono_principal_solicitante",solicitante.getTelefono());
         params.put("otro_telefono",solicitante.getOtro_telefono());
+        params.put("foto",solicitante.getFoto());
 
         /*Datos del apoderado*/
         Apoderado apoderado = form.getApoderado();
@@ -253,7 +255,7 @@ public class ServerAccess {
     }
 
     public void deleteForm(final int formId,final Transaction transaction){
-        String server_url = "http://192.168.43.45:80/example/deleteform.php";
+        String server_url = "http://"+ip+"/example/deleteform.php";
 
         final AlertDialog.Builder builder =  new AlertDialog.Builder(act);
 
@@ -282,7 +284,7 @@ public class ServerAccess {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(act,"ERROR",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act,act.getResources().getString(R.string.error_servidor),Toast.LENGTH_SHORT).show();
                         error.printStackTrace();
                     }
                 }){

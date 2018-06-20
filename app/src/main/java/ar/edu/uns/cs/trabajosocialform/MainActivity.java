@@ -37,17 +37,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*Sets the toolbar*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        /*Gets the configuration file from server*/
         ServerAccess sa = new ServerAccess(this);
         sa.getConfigurationFileFromServer();
     }
 
 
+    /**
+     * Inits a new Activity that gets data to create a new entry of the form
+     * @param view
+     */
     public void nuevaEntrada(View view){
-        /*Compruebo si hay un archivo de configuracion para iniciar la actividads*/
+        /*First checks if exists a configuration file to start*/
         Utils utils = new Utils(this);
 
         if(utils.existsConfigurationFile()){
@@ -61,12 +66,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Create a new Activity to show the created forms
+     * @param view
+     */
     public void verEntradas(View view) {
         Intent intent = new Intent(this,EntradasActivity.class);
         startActivity(intent);
 
     }
-
 
 
 }

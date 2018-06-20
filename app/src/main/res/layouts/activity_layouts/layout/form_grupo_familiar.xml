@@ -6,39 +6,41 @@
     android:layout_height="match_parent">
 
 
-    <ImageButton
-        android:id="@+id/nuevo_familiar_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/rounded_button"
-        android:contentDescription="plus_button"
-        android:onClick="nuevoFamiliar"
-        android:src="@drawable/plus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:id="@+id/add_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/titulo_grupo_familiar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/titulo_grupo_familiar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="Agregar familiar" />
+
+        <ImageButton
+            android:id="@+id/nuevo_familiar_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:scaleType="fitCenter"
+            android:onClick="nuevoFamiliar"
+            android:src="@drawable/plus"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textView"/>
+
+    </RelativeLayout>
+
 
     <ListView
         android:id="@+id/list_view_familiares"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/nuevo_familiar_btn"/>
+        app:layout_constraintTop_toBottomOf="@id/add_panel"/>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -13,21 +13,13 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:fillViewport="true"
-        android:paddingBottom="50dp"
+        android:paddingBottom="10dp"
         android:scrollbarStyle="outsideInset">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <include
-                android:id="@+id/titulo_nuevo_familiar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                layout="@layout/titulo_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <include
                 android:id="@+id/panel_datos_generales_familiar"

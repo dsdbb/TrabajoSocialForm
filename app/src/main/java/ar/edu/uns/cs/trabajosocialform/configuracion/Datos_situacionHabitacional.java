@@ -57,4 +57,9 @@ public class Datos_situacionHabitacional implements Serializable {
     public void setCantidad_cuartos_ue(boolean cantidad_cuartos_ue) {
         this.cantidad_cuartos_ue = cantidad_cuartos_ue;
     }
+
+    public boolean required(){
+        return isCantidad_cuartos_ue() || isCantidad_hogares_vivienda() || isTenencia_vivienda_terreno() ||
+                isTiempo_ocupacion();
+    }
 }

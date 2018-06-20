@@ -5,10 +5,13 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+
+import ar.edu.uns.cs.trabajosocialform.Converters.Converters;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
@@ -44,6 +47,7 @@ public class Familiar  implements Serializable {
     @ColumnInfo(name = "cuil")
     private Long cuil;
     @ColumnInfo(name = "fecha_nacimiento")
+    @TypeConverters({Converters.class})
     private Date fecha_nacimiento;
     @ColumnInfo(name = "estado_civil")
     private String estado_civil;
@@ -165,10 +169,12 @@ public class Familiar  implements Serializable {
         this.cuil = cuil;
     }
 
+    @TypeConverters({Converters.class})
     public Date getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
+    @TypeConverters({Converters.class})
     public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }

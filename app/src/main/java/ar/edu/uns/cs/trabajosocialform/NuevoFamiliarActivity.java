@@ -2,22 +2,15 @@ package ar.edu.uns.cs.trabajosocialform;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,26 +22,30 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.IngresoNoLaboral;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Ocupacion;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Salud;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
+import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
+import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
-public class NuevoFamiliarActivity extends AppCompatActivity {
+public class NuevoFamiliarActivity extends GeneralActivity {
 
     private List<View> ingresosNoLaborales;
     private List<View> programasSocialesSti;
     private List<View> discapacidades;
     private List<View> enfermedadesCronicas;
-    private Formulario form;
-    private boolean update;
     private Familiar updateFamiliar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevo_familiar);
+
         ingresosNoLaborales = new ArrayList<View>();
         programasSocialesSti = new ArrayList<View>();
         discapacidades = new ArrayList<View>();
         enfermedadesCronicas = new ArrayList<View>();
         form = (Formulario)getIntent().getSerializableExtra("FORM");
+
+        Intent intent = getIntent();
+        Configuracion config = (Configuracion)intent.getSerializableExtra("CONFIG");
 
         inicializarGui();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -60,9 +57,13 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
             updateFamiliar = (Familiar)getIntent().getSerializableExtra("UPDATE_FAMILIAR");
             rellenarCampos();
         }
+
+        ViewAdapter va = new ViewAdapter(config,this);
+        va.adaptarNuevoFamiliar();
     }
 
-    public void guardar(){
+    @Override
+    public void continuar(){
         Familiar familiar = tomarDatos();
         form.getFamiliares().add(familiar);
         Intent resultIntent = new Intent();
@@ -75,7 +76,8 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         finish();
     }
 
-    private Familiar tomarDatos(){
+    @Override
+    protected Familiar tomarDatos(){
         Utils utils = new Utils(this);
 
         /*Tomo los datos generales del familiar*/
@@ -155,15 +157,22 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         /*Tenemos todos los datos necesario para crear al familiar por lo tanto pasamos a la instanciacion de la clase Familiar*/
         return new Familiar(nombre,apellido,sexo,nacion,tipoDoc,cuil,fechaNac,estadoCivil,vinculo,nucleo,
                 nivelEducativo,capacitacion,asistenciaCapacitacion,ocupacion,ingreso,salud);
+
+
     }
 
-    private void inicializarGui(){
+    @Override
+    protected void inicializarGui(){
         Utils utils = new Utils(this);
-        utils.setTitleValue(R.id.titulo_nuevo_familiar,R.string.titulo_nuevo_familiar);
+
+        /*Titulo toolbar*/
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.titulo_nuevo_familiar);
+
         utils.addNextButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                guardar();
+                continuar();
             }
         });
 
@@ -223,7 +232,8 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
 
     }
 
-    private void rellenarCampos(){
+    @Override
+    protected void rellenarCampos(){
         Utils utils = new Utils(this);
 
         /*Datos generales del familiar*/
@@ -307,6 +317,11 @@ public class NuevoFamiliarActivity extends AppCompatActivity {
         utils.setValueToSpinner(R.id.panel_independecia_funcional, R.array.independencia_funcional_opciones, salud.getIndependencia_funcional());
 
 
+    }
+
+    @Override
+    protected boolean validate(Object obj){
+        return true;
     }
 
 }

@@ -3,6 +3,7 @@ package ar.edu.uns.cs.trabajosocialform;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -12,51 +13,58 @@ import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
-public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
-
-    private Bundle bundle;
-    private Formulario form;
-    private boolean update;
-    private Formulario updateForm;
+public class FormCaracteristicasViviendaActivity extends GeneralActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_caracteristicas_vivienda);
-        inicializarValores();
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-
         Intent intent = getIntent();
-        bundle = intent.getBundleExtra("CONFIG");
         form = (Formulario)intent.getSerializableExtra("FORM");
-        Configuracion config = (Configuracion)bundle.getSerializable("CONFIG");
+        config = (Configuracion)intent.getSerializableExtra("CONFIG");
 
-        /*Chequeo si es un update y en ese caso relleno los campos*/
-        update = getIntent().getBooleanExtra("UPDATE",false);
-        if(update){
-            updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
-            rellenarCampos();
+        if(!config.getDatos_caracteristicas_vivienda().required()){
+            continuar();
+        }
+        else{
+            inicializarGui();
+
+
+            /*Chequeo si es un update y en ese caso relleno los campos*/
+            update = getIntent().getBooleanExtra("UPDATE",false);
+            if(update){
+                updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
+                rellenarCampos();
+            }
+
+            ViewAdapter va = new ViewAdapter(config,this);
+            va.adaptarCaracteristicas_vivienda();
         }
 
-          ViewAdapter va = new ViewAdapter(config,this);
-          va.adaptarCaracteristicas_vivienda();
     }
 
+    @Override
     public void continuar(){
         CaracteristicasVivienda caracteristicas = tomarDatos();
         form.setCaracteristicasVivienda(caracteristicas);
         Intent intent = new Intent(this,FormInfraestructuraBarrialActivity.class);
-        intent.putExtra("CONFIG",bundle);
+        intent.putExtra("CONFIG",config);
         intent.putExtra("FORM",form);
         intent.putExtra("UPDATE", update);
         if(update)
             intent.putExtra("UPDATE_FORM",updateForm);
         startActivity(intent);
+
+        if(!config.getDatos_caracteristicas_vivienda().required()){
+            finish();
+        }
     }
 
-    private CaracteristicasVivienda tomarDatos(){
+    @Override
+    protected CaracteristicasVivienda tomarDatos(){
         Utils utils = new Utils(this);
 
         String techo = utils.getDataTvSpinner(R.id.panel_techo);
@@ -81,12 +89,16 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
                 baño, bañoTiene, desague, cocina, electricidad, combustibleCocina);
     }
 
-    private void inicializarValores(){
+    @Override
+    protected void inicializarGui(){
         Utils utils = new Utils(this);
 
         utils.addContentToTemplate(R.layout.form_caracteristicas_vivienda);
 
-        utils.setTitleValue(R.id.titulo_caracteristicas_vivienda, R.string.titulo_caracteristicas_vivienda);
+        /*Titulo toolbar*/
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.titulo_caracteristicas_vivienda);
+
         utils.setValuesTvSpinner(R.array.techo_opciones,R.string.titulo_techo,R.id.panel_techo);
         utils.setValuesTvSpinner(R.array.revestimiento_techo_opciones,R.string.titulo_revestimiento_techo,R.id.panel_revestimiento_techo);
         utils.setValuesTvSpinner(R.array.paredes_opciones,R.string.titulo_paredes,R.id.panel_paredes);
@@ -110,8 +122,8 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
         });
     }
 
-
-    private void rellenarCampos(){
+    @Override
+    protected void rellenarCampos(){
         Utils utils = new Utils(this);
 
         CaracteristicasVivienda caracteristicas = updateForm.getCaracteristicasVivienda();
@@ -132,6 +144,11 @@ public class FormCaracteristicasViviendaActivity extends AppCompatActivity {
         utils.setValueToSpinner(R.id.panel_electricidad, R.array.electricidad_opciones, caracteristicas.getElectricidad());
         utils.setValueToSpinner(R.id.panel_combustible_cocina, R.array.combustible_cocina_opciones, caracteristicas.getCombustible_cocina());
 
+    }
+
+    @Override
+    protected boolean validate(Object obj){
+        return true;
     }
 
 

@@ -111,4 +111,9 @@ public class Datos_domicilio implements Serializable {
     public void setLocalidad(boolean localidad) {
         this.localidad = localidad;
     }
+
+    public boolean required(){
+        return isAcc_int() || isBarrio() || isCalle() || isCasa_dpto() || isDelegacion() || isEntre_calles() ||
+                isLocalidad() || isManzana() || isMonoblock_torre() || isNumero() || isPiso();
+    }
 }

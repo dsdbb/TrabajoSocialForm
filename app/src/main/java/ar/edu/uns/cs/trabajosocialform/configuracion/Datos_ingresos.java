@@ -40,4 +40,8 @@ public class Datos_ingresos implements Serializable {
     public void setPrograma_sociales_sti(boolean programa_sociales_sti) {
         this.programa_sociales_sti = programa_sociales_sti;
     }
+
+    public boolean required(){
+        return isIngresos_laborales() || isIngresos_no_laborales() || isPrograma_sociales_sti();
+    }
 }

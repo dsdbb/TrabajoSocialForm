@@ -15,14 +15,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <include
-                android:id="@+id/titulo_domicilio"
-                layout="@layout/titulo_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
             <include
                 android:id="@+id/panel_calle"
                 layout="@layout/tv_et"

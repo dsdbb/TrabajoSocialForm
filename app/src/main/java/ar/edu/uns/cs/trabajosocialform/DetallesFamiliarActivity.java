@@ -3,6 +3,7 @@ package ar.edu.uns.cs.trabajosocialform;
 import android.arch.persistence.room.Database;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,10 @@ public class DetallesFamiliarActivity extends AppCompatActivity {
     public void inicializarGui(){
         Utils utils = new Utils(this);
 
+        /*Titulo toolbar*/
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.titulo_detalles_familiar);
+
         /*DATOS GENERALES*/
         utils.setDetailValues(R.id.detalle_nombre_familiar, R.string.nombre_familiar, familiar.getNombres());
         utils.setDetailValues(R.id.detalle_apellido_familiar, R.string.apellido_familiar, familiar.getApellidos());
@@ -56,7 +61,7 @@ public class DetallesFamiliarActivity extends AppCompatActivity {
         Ocupacion ocupacion = db.getOcupacion(this, familiar.getOcupacionId());
         Ingreso ingreso = db.getIngreso(this, familiar.getIngresoId());
         Salud salud = db.getSalud(this, familiar.getSaludId());
-        
+
         /*OCUPACION*/
         utils.setDetailValues(R.id.detalle_condicion_actividad_familiar, R.string.condicion_actividad, ocupacion.getCondicion_actividad());
         utils.setDetailValues(R.id.detalle_puesto_trabajo_familiar, R.string.puesto_trabajo, ocupacion.getPuesto_trabajo());
@@ -98,7 +103,6 @@ public class DetallesFamiliarActivity extends AppCompatActivity {
 
 
        List<String> discapacidades = salud.getDiscapacidades();
-       Log.i("DISCAPACIDADES", discapacidades.size()+"");
        for(int i=0; i<discapacidades.size(); i++){
           View view = utils.inflarDetalles(R.id.detalles_discapacidad);
           String discapacidad = discapacidades.get(i);
@@ -106,7 +110,6 @@ public class DetallesFamiliarActivity extends AppCompatActivity {
        }
 
        List<String> enfermedadesCronicas = salud.getEnfermedadesCronicas();
-       Log.i("ENFERMEDADES CRONICAS",enfermedadesCronicas.size()+"");
        for(int i=0; i<enfermedadesCronicas.size();i++){
            View view = utils.inflarDetalles(R.id.detalles_enfermedad_cronica);
            String enfermedad = enfermedadesCronicas.get(i);

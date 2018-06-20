@@ -2,6 +2,7 @@ package ar.edu.uns.cs.trabajosocialform;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -52,7 +54,6 @@ public class DetallesFormActivity extends AppCompatActivity {
         /*Titulo detalles*/
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_detalles);
-        //utils.setTitleValue(R.id.titulo_detalles, R.string.titulo_detalles);
 
 
         /*Datos del solicitante*/
@@ -63,6 +64,8 @@ public class DetallesFormActivity extends AppCompatActivity {
         utils.setDetailValues(R.id.detalle_cuil_solicitante,R.string.cuil_solicitante, solicitante.getCuil()+"");
         utils.setDetailValues(R.id.detalle_telefono_principal_solicitante, R.string.telefono_principal_solicitante, solicitante.getTelefono());
         utils.setDetailValues(R.id.detalle_otro_telefono_solicitante, R.string.otro_telefono_solicitante, solicitante.getOtro_telefono());
+        Bitmap foto = utils.stringToBitmap(solicitante.getFoto());
+        ((ImageView)findViewById(R.id.imageView)).setImageBitmap(foto);
 
         /*Datos del apoderado*/
         Apoderado apoderado = db.getApoderado(this,form.getApoderadoId());
