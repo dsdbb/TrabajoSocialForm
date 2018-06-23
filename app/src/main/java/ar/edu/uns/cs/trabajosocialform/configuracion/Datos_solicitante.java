@@ -3,12 +3,11 @@ package ar.edu.uns.cs.trabajosocialform.configuracion;
 import java.io.Serializable;
 
 /**
- * Created by Kevin (User) on 5/4/2018.
+ * This Class specifies if fields belonging to Solicitante are needed in the form
  */
 
 public class Datos_solicitante implements Serializable {
 
-    /*Datos del solicitante*/
     private boolean apellidos_solicitante;
     private boolean nombres_solicitante;
     private boolean cuil_solicitante;

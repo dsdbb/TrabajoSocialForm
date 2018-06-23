@@ -12,7 +12,7 @@ import java.util.Date;
 import ar.edu.uns.cs.trabajosocialform.Converters.Converters;
 
 /**
- * Created by Kevin (User) on 17/4/2018.
+ * This Class represents the "Apoderado" section of the form
  */
 
 @Entity(tableName = "apoderado")

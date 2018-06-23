@@ -1,4 +1,4 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
 import android.arch.persistence.room.Database;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +20,7 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.IngresoNoLaboral;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Ocupacion;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Salud;
 import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
+import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 
 public class DetallesFamiliarActivity extends AppCompatActivity {

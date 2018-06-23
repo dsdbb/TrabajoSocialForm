@@ -12,9 +12,8 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Apoderado;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 
 /**
- * Created by Kevin (User) on 18/4/2018.
+ * Contains database methods related to Apoderado
  */
-
 @Dao
 @TypeConverters({Converters.class})
 public interface ApoderadoDao {

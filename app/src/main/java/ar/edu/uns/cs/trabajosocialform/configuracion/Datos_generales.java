@@ -2,13 +2,13 @@ package ar.edu.uns.cs.trabajosocialform.configuracion;
 
 import java.io.Serializable;
 
-/**
- * Created by Kevin (User) on 5/4/2018.
- */
+
+ /**
+  * This Class specifies if fields corresponding to general data of the form are needed
+  */
 
 public class Datos_generales implements Serializable {
 
-    /*Datos generales del formulario*/
     private boolean fecha_inscripcion;
     private boolean id_formulario;
     private boolean Fecha_ingreso_al_sistema;

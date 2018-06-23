@@ -3,6 +3,7 @@ package ar.edu.uns.cs.trabajosocialform.ServerConnection;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.InfraestructuraBarrial;
 import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
+import ar.edu.uns.cs.trabajosocialform.Database.StorageAccess;
 import ar.edu.uns.cs.trabajosocialform.MainActivity;
 import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Transactions.Transaction;
@@ -41,6 +43,9 @@ import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
 import static junit.framework.Assert.assertEquals;
 
+/**
+ * Class that provides methods to comunicate with web service
+ */
 public class ServerAccess {
 
     private final Activity act;
@@ -50,6 +55,10 @@ public class ServerAccess {
         this.act = act;
     }
 
+    /**
+     * Gets the configuration file from the server and update it if there is no Configuration file or
+     * it is out of date
+     */
     public void getConfigurationFileFromServer(){
         String url = "http://"+ip+"/example/getconfig.php";
 
@@ -57,16 +66,17 @@ public class ServerAccess {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.i("Response: ",response);
 
                         if(response.equals("false")){
                             Toast.makeText(act,act.getResources().getString(R.string.error_fichero), Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            /*Compruebo si el json recuperado del servidor es el mismo que el que ya tengo*/
-                            Utils utils = new Utils(act);
-                            Configuracion confActual = utils.getConfigurationFile();
-                            String jsonActual = (new Gson()).toJson(confActual);
+                            /*Checks if the json retrieved from server is the one I already have*/
+                            //Utils utils = new Utils(act);
+                            //Configuracion confActual = utils.getConfigurationFile();
+                            //String jsonActual = (new Gson()).toJson(confActual);
+                            StorageAccess sa = new StorageAccess();
+                            String jsonActual = sa.getConfigurationJson(act);
 
                             Configuracion configServer = (new Gson()).fromJson(response,Configuracion.class);
                             String jsonServer = (new Gson()).toJson(configServer);
@@ -75,11 +85,8 @@ public class ServerAccess {
                             JsonElement o1 = parser.parse(jsonActual);
                             JsonElement o2 = parser.parse(jsonServer);
 
-                            if(confActual==null || !o1.equals(o2)){
-                                /*Si son distintos o no existe ningun archivo local aun,
-                                guardo el string recuperado en el archivo local*/
-                                Log.i("Encontre: ", "un nuevo archivo o no habia ninguno");
-
+                            if(TextUtils.isEmpty(jsonActual)|| !o1.equals(o2)){
+                                /*If the configuration json are different or there is no local file I save it*/
                                 String filename = "config.txt";
                                 File file = new File(act.getFilesDir(), filename);
                                 FileOutputStream outputStream;
@@ -96,8 +103,6 @@ public class ServerAccess {
                             }
 
                         }
-
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -112,9 +117,13 @@ public class ServerAccess {
 
     }
 
+    /**
+     * Using a web service upload a form to an external database
+     * @param form Formulario wanted to upload
+     * @param transaction Transaction associated to the upload (to be deleted if upload is successful)
+     */
     public void uploadForm(final Formulario form, final Transaction transaction){
         String server_url = "http://"+ip+"/example/uploadform.php";
-
 
         final AlertDialog.Builder builder =  new AlertDialog.Builder(act);
 
@@ -133,7 +142,7 @@ public class ServerAccess {
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
 
-                        /*Si la respuesta es correcta elimino la transaccion de la lista de pendientes*/
+                        /*If the query is successful delete the transaction from the pending transactions*/
                         if(response.equals("true")){
                             DatabaseAcces db = new DatabaseAcces();
                             db.deleteTransaction(act,transaction);
@@ -154,10 +163,14 @@ public class ServerAccess {
                 return getParamsMap(form);
             }
         };
-
         ServerSingleton.getInstance(act).addToRequestQueue(stringRequest);
     }
 
+    /**
+     * Set the parameters needed by the web service to upload the form
+     * @param form Form to be uploaded
+     * @return Map containing the params (keys and values)
+     */
     private Map<String,String> getParamsMap(Formulario form){
         Utils utils = new Utils(act);
         Map<String,String> params = new HashMap<String, String>();
@@ -201,11 +214,10 @@ public class ServerAccess {
         params.put("delegacion",domicilio.getDelegacion());
 
         /*Familiares*/
-        /*Convierto la lista de familiares a Json y la envio para luego deserializarla en el servicio web*/
+        /*Convert the family list into json String*/
         Gson gson = new GsonBuilder().serializeNulls().create();
         String familiaresJson = gson.toJson(form.getFamiliares());
         params.put("familiares",familiaresJson);
-        Log.i("FAMILIARES",familiaresJson);
 
         /*Datos de la situacion habitacional*/
         SituacionHabitacional situacionHabitacional = form.getSituacionHabitacional();
@@ -254,6 +266,11 @@ public class ServerAccess {
         return params;
     }
 
+    /**
+     * Delete a form from the external database
+     * @param formId the id of the from to be deleted
+     * @param transaction transaction associated to the delete action (to be deleted if successful)
+     */
     public void deleteForm(final int formId,final Transaction transaction){
         String server_url = "http://"+ip+"/example/deleteform.php";
 
@@ -274,7 +291,7 @@ public class ServerAccess {
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
 
-                        /*Si se elimino correctamente en el servidor, elimino la transaccion de la lista de pendientes*/
+                        /*If the query is successful, delete transaction from pending transactions*/
                         if(response.equals("true")){
                             DatabaseAcces db = new DatabaseAcces();
                             db.deleteTransaction(act,transaction);

@@ -3,7 +3,8 @@ package ar.edu.uns.cs.trabajosocialform.configuracion;
 import java.io.Serializable;
 
 /**
- * Created by Kevin (User) on 5/4/2018.
+ * This class implements the structure of a configuration file specifying if fields of the different
+ * sections of the of a required or not
  */
 
 public class Configuracion implements Serializable {

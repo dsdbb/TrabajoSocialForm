@@ -11,7 +11,7 @@ import ar.edu.uns.cs.trabajosocialform.Converters.Converters;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Salud;
 
 /**
- * Created by Kevin (User) on 18/4/2018.
+ * Contains database methods related to Salud
  */
 @Dao
 @TypeConverters({Converters.class})

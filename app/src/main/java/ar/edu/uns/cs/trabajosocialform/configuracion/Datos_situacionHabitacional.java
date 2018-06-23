@@ -3,9 +3,8 @@ package ar.edu.uns.cs.trabajosocialform.configuracion;
 import java.io.Serializable;
 
 /**
- * Created by Kevin (User) on 5/4/2018.
+ * This Class specifies if fields belonging to SituacionHabitacional are needed in the form
  */
-
 public class Datos_situacionHabitacional implements Serializable {
 
     private boolean tipo_vivienda;

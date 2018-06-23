@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 import java.io.Serializable;
 
 /**
- * Created by Kevin (User) on 17/4/2018.
+ * This Class represents the "Caracteristicas de la vivienda" section of the form
  */
 
 @Entity(tableName = "caracteristicas_vivienda")

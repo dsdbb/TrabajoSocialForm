@@ -16,7 +16,7 @@ import ar.edu.uns.cs.trabajosocialform.Converters.Converters;
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 /**
- * Created by Kevin (User) on 17/4/2018.
+ * This Class represents a Family member from the "Grupo Familiar" section of the form
  */
 @Entity(tableName = "familiar",foreignKeys = {@ForeignKey(entity = Ocupacion.class,
                                                         parentColumns = "id",

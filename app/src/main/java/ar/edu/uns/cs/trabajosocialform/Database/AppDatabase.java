@@ -35,7 +35,7 @@ import ar.edu.uns.cs.trabajosocialform.Transactions.Transaction;
 import ar.edu.uns.cs.trabajosocialform.Transactions.TransactionDao;
 
 /**
- * Created by Kevin (User) on 18/4/2018.
+ * Setup of ROOM implementation for database access
  */
 @Database(entities={Formulario.class,Solicitante.class,Apoderado.class, SituacionHabitacional.class, Domicilio.class,
 Familiar.class, InfraestructuraBarrial.class, CaracteristicasVivienda.class, Ocupacion.class,Ingreso.class,

@@ -6,6 +6,10 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
 
+/**
+ * Represent a transaction to do in the external database. When a form is inserted, updated or deleted
+ * locally, the external database must update as well so the transactions are save to make it later
+ */
 @Entity(tableName = "transactions", primaryKeys={"transaction_id","formulario_id"})
 public class Transaction implements Serializable {
 

@@ -2,6 +2,9 @@ package ar.edu.uns.cs.trabajosocialform.Utils;
 
 import java.util.Date;
 
+/**
+ * Provides methods to validate the different fields used in the Form
+ */
 public class FieldsValidator {
 
     private Validator validator;
@@ -25,7 +28,7 @@ public class FieldsValidator {
     }
 
     public boolean validateCuil(Long number){
-        if(!validator.validateCuil(number) || !validator.validateNotNullNumber(number)){
+        if(!validator.validateCuilFormat(number) || !validator.validateNotNullNumber(number)){
             return false;
         }
 

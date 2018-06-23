@@ -1,7 +1,6 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -10,9 +9,13 @@ import android.widget.Button;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.InfraestructuraBarrial;
 import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
+import ar.edu.uns.cs.trabajosocialform.MainActivity;
+import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FormInfraestructuraBarrialActivity extends GeneralActivity {
 
@@ -26,11 +29,12 @@ public class FormInfraestructuraBarrialActivity extends GeneralActivity {
         config = (Configuracion)intent.getSerializableExtra("CONFIG");
 
         if(!config.getDatos_infraestructura_barrial().required()){
-            continuar();
+            continuar(null);
         }
         else{
             inicializarGui();
-
+            /*Bind Activity to use ButterKnife facilities*/
+            ButterKnife.bind(this);
 
             /*Chequeo si es un update y en ese caso relleno los campos*/
             update = getIntent().getBooleanExtra("UPDATE",false);
@@ -46,7 +50,8 @@ public class FormInfraestructuraBarrialActivity extends GeneralActivity {
     }
 
     @Override
-    public void continuar(){
+    @OnClick(R.id.siguiente_button)
+    public void continuar(View view){
         InfraestructuraBarrial infraestructura = tomarDatos();
         form.setInfraestructuraBarrial(infraestructura);
         DatabaseAcces db = new DatabaseAcces();
@@ -104,13 +109,13 @@ public class FormInfraestructuraBarrialActivity extends GeneralActivity {
         utils.setValuesTvSpinner(R.array.distancia_opciones,R.string.titulo_distancia_transporte,R.id.panel_distancia_transporte);
 
         /*Boton*/
-        ((Button)findViewById(R.id.siguiente_button)).setText("Guardar");
+        /*((Button)findViewById(R.id.siguiente_button)).setText("Guardar");
         utils.addNextButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 continuar();
             }
-        });
+        });*/
     }
 
     @Override

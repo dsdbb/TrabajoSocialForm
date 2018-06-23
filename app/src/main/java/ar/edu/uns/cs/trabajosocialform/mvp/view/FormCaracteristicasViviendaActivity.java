@@ -1,7 +1,6 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -9,9 +8,12 @@ import android.view.WindowManager;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.CaracteristicasVivienda;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FormCaracteristicasViviendaActivity extends GeneralActivity {
 
@@ -27,11 +29,12 @@ public class FormCaracteristicasViviendaActivity extends GeneralActivity {
         config = (Configuracion)intent.getSerializableExtra("CONFIG");
 
         if(!config.getDatos_caracteristicas_vivienda().required()){
-            continuar();
+            continuar(null);
         }
         else{
             inicializarGui();
-
+            /*Bind Activity to use ButterKnife facilities*/
+            ButterKnife.bind(this);
 
             /*Chequeo si es un update y en ese caso relleno los campos*/
             update = getIntent().getBooleanExtra("UPDATE",false);
@@ -47,7 +50,8 @@ public class FormCaracteristicasViviendaActivity extends GeneralActivity {
     }
 
     @Override
-    public void continuar(){
+    @OnClick(R.id.siguiente_button)
+    public void continuar(View view){
         CaracteristicasVivienda caracteristicas = tomarDatos();
         form.setCaracteristicasVivienda(caracteristicas);
         Intent intent = new Intent(this,FormInfraestructuraBarrialActivity.class);
@@ -114,12 +118,12 @@ public class FormCaracteristicasViviendaActivity extends GeneralActivity {
         utils.setValuesTvSpinner(R.array.combustible_cocina_opciones,R.string.titulo_combustible_cocina,R.id.panel_combustible_cocina);
 
 
-        utils.addNextButtonListener(new View.OnClickListener() {
+        /*utils.addNextButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 continuar();
             }
-        });
+        });*/
     }
 
     @Override

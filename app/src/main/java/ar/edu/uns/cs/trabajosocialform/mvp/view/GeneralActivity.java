@@ -1,8 +1,9 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
@@ -20,8 +21,7 @@ public abstract class GeneralActivity extends AppCompatActivity {
      * fields to get information. This method prepare all the data that the next activity
      * needs to work properly and inits the Activity.
      */
-    protected abstract void continuar();
-
+    protected void continuar(View view){}
     /**
      * Once the user finishes this method take the data that is in the fields and save it in a Solicitante object
      * @return the correspondent Object with the information completed by the user

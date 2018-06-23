@@ -39,16 +39,25 @@ import ar.edu.uns.cs.trabajosocialform.Transactions.Transaction;
 import ar.edu.uns.cs.trabajosocialform.Transactions.TransactionDao;
 import ar.edu.uns.cs.trabajosocialform.Transactions.TransactionOptions;
 
+/**
+ * Class that provides the methods to access the local Database
+ */
 public class DatabaseAcces {
 
+    /**
+     * Save a form in the local database
+     * @param act Activity where the method is called
+     * @param form Formulario object to be saved
+     * @param showMessage when true a message (success o fail) will be shown
+     */
     public void saveInDatabase(Activity act, final Formulario form, boolean showMessage){
         final Context context = act;
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 AppDatabase mDb = AppDatabase.getAppDatabase(context); // Get an Instance of Database class
-                /*Guardo cada seccion del formulario en su correspondiente tabla para luego guardar el formuarlio con todos
-                * los respectivos ID*/
+
+                /*Save the different sections of the form and then the Formulario object referencing to re correspondent id's*/
 
                 /*Solicitante*/
                 SolicitanteDao solDao = mDb.solicitanteDao();
@@ -69,7 +78,7 @@ public class DatabaseAcces {
                 InfraestructuraBarrialDao infraestructuraBarrialDao = mDb.infraestructuraBarrialDao();
                 long infraestructuraBarrialId = infraestructuraBarrialDao.insert(form.getInfraestructuraBarrial());
 
-                /*Agrego al objeto Formulario todos los id de las secciones guardardas en la base de datos recientemente*/
+                /*Add to the form the id's of the objects saved recently*/
                 form.setSolicitanteId((int)solicitanteId);
                 form.setApoderadoId((int)apoderadoId);
                 form.setDomicilioId((int)domicilioId);
@@ -77,11 +86,11 @@ public class DatabaseAcces {
                 form.setCaracteristicasViviendaId((int)caracteristicasViviendaId);
                 form.setInfraestructuraBarrialId((int)infraestructuraBarrialId);
 
-                /*Ahora que el objeto formulario está completo puedo agregarlo a la base de datos (Familiares va despues)*/
+                /*Now that the form is completed it can be saved*/
                 FormularioDao formularioDao = mDb.formularioDao();
                 long formularioId = formularioDao.insert(form);
 
-                /*Ahora debo guardar todos los familiares con sus respectivos ingresos, ocupaciones y salud*/
+                /*Once the form is saved is time to family because each new family member will be related with form id*/
                 List<Familiar> familiares = form.getFamiliares();
                 for(int i=0; i<familiares.size(); i++){
                     Familiar familiar = familiares.get(i);
@@ -96,17 +105,16 @@ public class DatabaseAcces {
                     SaludDao saludDao = mDb.saludDao();
                     long saludId = saludDao.insert(familiar.getSalud());
 
-                    /*Ahora completo el familiar con los id de las entidades creadas recientemente*/
+                    /*Complete Familiar object with corresponding Ocupacion, Ingresos and Salud id*/
                     familiar.setOcupacionId((int)ocupacionId);
                     familiar.setIngresoId((int)ingresoId);
                     familiar.setSaludId((int)saludId);
 
-                    /*Una vez completo el familiar lo inserto en la BD y luego hago la inserción de la tabla que une el
-                    * formulario con el familiar*/
+                    /*Once the Familiar object is completed it can be saved*/
                     FamiliarDao familiarDao = mDb.familiarDao();
                     long familiarId = familiarDao.insert(familiar);
 
-                    /*Creo la tabla Join con los id y la inserto*/
+                    /*Having the form and the family member we have to relate it by id using a join table*/
                     FormularioFamiliarJoin ffj = new FormularioFamiliarJoin((int)formularioId,(int)familiarId);
                     FormularioFamiliarDao formularioFamiliarDao = mDb.formularioFamiliarDao();
                     formularioFamiliarDao.insert(ffj);
@@ -131,8 +139,15 @@ public class DatabaseAcces {
         }
     }
 
+    /**
+     * Update the form that has been modified
+     * @param act Activity where the method was called
+     * @param newForm Form with the modifications
+     * @param oldForm Old Form that has no modifications
+     * @param showMessage if true a message of success or fail will be shown
+     */
     public void updateDatabase(final Activity act, Formulario newForm,Formulario oldForm, boolean showMessage){
-        /*Update se toma como eliminar lo viejo y agregar un nuevo formulario*/
+        /*Delete the old form and add the modificated form*/
         delete(act,oldForm,false);
         saveInDatabase(act,newForm,false);
 
@@ -142,7 +157,13 @@ public class DatabaseAcces {
         }
     }
 
-
+    /**
+     * Having a form only with references to IDs, this method complete the form with the different objects related
+     * to that IDs
+     * @param act Activity where the method was called
+     * @param form Formulario with the ids
+     * @return Formulario with objects related to the IDs
+     */
     public Formulario getCompleteForm(final Activity act, Formulario form){
         form.setSolicitante(getSolicitante(act,form.getSolicitanteId()));
         form.setApoderado(getApoderado(act,form.getApoderadoId()));
@@ -152,11 +173,9 @@ public class DatabaseAcces {
         form.setInfraestructuraBarrial(getInfraestructuraBarrial(act,form.getInfraestructuraBarrialId()));
 
         List<Familiar> familiares = getFamiliares(act, form.getId());
-        Log.i("FAMILIARES ANTES :",familiares.size() +"");
         for(int i=0; i<familiares.size();i++){
             Familiar familiar = familiares.get(i);
             familiar.setOcupacion(getOcupacion(act,familiar.getOcupacionId()));
-            Log.i("INGRESO ID: ",familiar.getIngresoId()+"");
             familiar.setIngreso(getIngreso(act,familiar.getIngresoId()));
             familiar.setSalud(getSalud(act,familiar.getSaludId()));
         }
@@ -166,36 +185,11 @@ public class DatabaseAcces {
         return form;
     }
 
-    public List<String> getNombresSolicitantes(final Activity act){
-
-        final List<String> nombres = new ArrayList<String>();
-
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
-                SolicitanteDao solDao = mDb.solicitanteDao();
-                List<Solicitante> lista = solDao.getAllSolicitantes();
-
-                Log.i("SIZE: ",""+lista.size());
-                for(int i =0; i<lista.size();i++){
-                    Log.i("Nombre "+i,lista.get(i).getNombres());
-                    Log.i("ID SOLICITANTE: ",lista.get(i).getId()+"");
-                    nombres.add(lista.get(i).getNombres());
-                }
-            }
-        });
-
-        t.start();
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return nombres;
-    }
-
+    /**
+     * Get all forms (Formulario) of the database
+     * @param act Activity where the method is called
+     * @return List with all the Formulario objects in the database
+     */
     public List<Formulario> getFormularios(final Activity act){
         final List<Formulario> forms = new ArrayList<Formulario>();
 
@@ -219,6 +213,12 @@ public class DatabaseAcces {
         return forms;
     }
 
+    /**
+     * Get a Solicitante from the ID
+     * @param act Activity where the method was called
+     * @param solicitanteId ID of the wanted Solicitante
+     * @return Solicitante
+     */
     public Solicitante getSolicitante(final Activity act, final int solicitanteId){
         final List<Solicitante> solicitante = new ArrayList<Solicitante>();
         Thread t = new Thread(new Runnable() {
@@ -240,6 +240,12 @@ public class DatabaseAcces {
         return solicitante.get(0);
     }
 
+    /**
+     * Get an Apoderado from the ID
+     * @param act Activity where the method was called
+     * @param apoderadoId ID of the wanted Apoderado
+     * @return Apoderado
+     */
     public Apoderado getApoderado(final Activity act, final int apoderadoId){
         final List<Apoderado> apoderadoList = new ArrayList<Apoderado>();
         Thread t = new Thread(new Runnable() {
@@ -261,6 +267,12 @@ public class DatabaseAcces {
         return apoderadoList.get(0);
     }
 
+    /**
+     * Get a Domicilio from the ID
+     * @param act Activity where the method was called
+     * @param domicilioId ID of the wanted Domicilio
+     * @return Domicilio
+     */
     public Domicilio getDomicilio(final Activity act, final int domicilioId){
         final List<Domicilio> domicilioList = new ArrayList<Domicilio>();
         Thread t = new Thread(new Runnable() {
@@ -282,6 +294,12 @@ public class DatabaseAcces {
         return domicilioList.get(0);
     }
 
+    /**
+     * Get a List of Familiar objects related to a form
+     * @param act the Activity where the method was called
+     * @param formId the ID of the form
+     * @return a List with family members related to the form
+     */
     public List<Familiar> getFamiliares(final Activity act, final int formId){
         final List<Familiar> familiares = new ArrayList<Familiar>();
 
@@ -292,7 +310,6 @@ public class DatabaseAcces {
                 FormularioFamiliarDao formDao = mDb.formularioFamiliarDao();
                 FamiliarDao familiarDao = mDb.familiarDao();
                 List<Integer> listaId = formDao.getFamiliaresIdJoin(formId);
-                Log.i("CANTIADAD DE IDS: ",listaId.size()+"");
                 for(int i =0; i<listaId.size();i++){
                     Familiar familiar = familiarDao.getFamiliar(listaId.get(i));
                     familiares.add(familiar);
@@ -306,10 +323,15 @@ public class DatabaseAcces {
             e.printStackTrace();
         }
 
-        Log.i("SIZE DENTRO: ",familiares.size()+"");
         return familiares;
     }
 
+    /**
+     * Get a SituacionHabitacional object from the ID
+     * @param act Activity where the method was called
+     * @param situacionHabitacionalId ID of the wanted SituacionHabitacional object
+     * @return SituacionHabitacional
+     */
     public SituacionHabitacional getSituacionHabitacional(final Activity act, final int situacionHabitacionalId){
         final List<SituacionHabitacional> situacionList = new ArrayList<SituacionHabitacional>();
         Thread t = new Thread(new Runnable() {
@@ -331,6 +353,12 @@ public class DatabaseAcces {
         return situacionList.get(0);
     }
 
+    /**
+     * Get a CaracteristicasVivienda object from the ID
+     * @param act Activity where the method was called
+     * @param caracteristicasViviendaId ID of the wanted CaracteristicasVivienda object
+     * @return CaracteristicasVivienda
+     */
     public CaracteristicasVivienda getCaracteristicasVivienda(final Activity act, final int caracteristicasViviendaId){
         final List<CaracteristicasVivienda> caracteristicasList = new ArrayList<CaracteristicasVivienda>();
         Thread t = new Thread(new Runnable() {
@@ -352,6 +380,12 @@ public class DatabaseAcces {
         return caracteristicasList.get(0);
     }
 
+    /**
+     * Get an InfraestructuraBarrial object from the ID
+     * @param act Activity where the method was called
+     * @param infraestructuraBarrialId ID of the wanted InfraestructuraBarrial object
+     * @return InfraestructuraBarrial
+     */
     public InfraestructuraBarrial getInfraestructuraBarrial(final Activity act, final int infraestructuraBarrialId){
         final List<InfraestructuraBarrial> infraestructuraList = new ArrayList<InfraestructuraBarrial>();
         Thread t = new Thread(new Runnable() {
@@ -373,19 +407,25 @@ public class DatabaseAcces {
         return infraestructuraList.get(0);
     }
 
+    /**
+     * Delete a form from database
+     * @param act Activity where the method was called
+     * @param form Formulario object containing the ids to delete all the references
+     * @param showMessage
+     */
     public void delete(final Activity act, final Formulario form, boolean showMessage){
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
-                /*Elimino joins*/
 
+                /*Delete joins between Fomulario and Familiar*/
                 FormularioFamiliarDao formularioFamiliarDao = mDb.formularioFamiliarDao();
                 List<Integer> familiaresId = formularioFamiliarDao.getFamiliares(form.getId());
                 formularioFamiliarDao.deleteJoinsWithForm(form.getId());
 
                 FamiliarDao familiarDao = mDb.familiarDao();
-                /*Elimino los familiares*/
+                /*Delete Familiar objects*/
                 for(int i=0;i<familiaresId.size();i++){
                     Familiar familiar = familiarDao.getFamiliar(familiaresId.get(i));
 
@@ -423,7 +463,8 @@ public class DatabaseAcces {
                 FormularioDao formularioDao = mDb.formularioDao();
                 formularioDao.delete(form.getId());
 
-                /*Busco si hay un insert en el log y si existe lo elimino y no agrego el delete*/
+                /*If the insert of the form exist in the transaction Log it is deleted to avoid inserting and deleting from
+                * server needlessly*/
                 TransactionDao transactionDao = mDb.transactionDao();
                 Transaction transaction = transactionDao.findTransaction(TransactionOptions.INSERT.getValue(), form.getId());
 
@@ -431,8 +472,8 @@ public class DatabaseAcces {
                     transactionDao.delete(transaction);
                 }
                 else{
-                    /*Si no existia un insert en el log quiere decir que ya esta subido a internet el form asi
-                    * que debo agregar el delete*/
+                    /*If there is no insert for the form in the transaction log, it means that the form is already uploaded
+                    * so the delete must be inserted in the log to delete from server later*/
                     transactionDao.insert(new Transaction(TransactionOptions.DELETE.getValue(),form.getId()));
                 }
 
@@ -454,46 +495,12 @@ public class DatabaseAcces {
         }
     }
 
-    public void deleteFormulario(final Activity act ,final int formId) {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
-                FormularioDao formularioDao = mDb.formularioDao();
-                formularioDao.deleteForm(formId);
-            }
-        });
-
-        t.start();
-
-    }
-    public void deleteSolicitante(final Activity act ,final int solId) {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
-                SolicitanteDao solicitanteDao = mDb.solicitanteDao();
-                solicitanteDao.deleteSolicitante(solId);
-            }
-        });
-
-        t.start();
-
-    }
-
-    public void deleteJoins(final Activity act, final int formId){
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
-                FormularioFamiliarDao formularioFamiliarDao = mDb.formularioFamiliarDao();
-                formularioFamiliarDao.deleteJoinsWithForm(formId);
-            }
-        });
-
-        t.start();
-    }
-
+    /**
+     * Retrieve an Ocupacion object from database
+     * @param act Activity where the method was called
+     * @param ocupacionId The id of the wanted Ocupacion
+     * @return Ocupacion
+     */
     public Ocupacion getOcupacion(final Activity act, final int ocupacionId){
         final List<Ocupacion> ocupaciones = new ArrayList<Ocupacion>();
         Thread t = new Thread(new Runnable() {
@@ -516,6 +523,13 @@ public class DatabaseAcces {
         return ocupaciones.get(0);
     }
 
+
+    /**
+     * Retrieve an Ingreso object from database
+     * @param act Activity where the method was called
+     * @param ingresoId The id of the wanted Ingreso
+     * @return Ingreso
+     */
     public Ingreso getIngreso(final Activity act, final int ingresoId){
         final List<Ingreso> ingresos = new ArrayList<Ingreso>();
         Thread t = new Thread(new Runnable() {
@@ -538,6 +552,12 @@ public class DatabaseAcces {
         return ingresos.get(0);
     }
 
+    /**
+     * Retrieve a Salud object from database
+     * @param act Activity where the method was called
+     * @param saludId The id of the wanted Salud
+     * @return Salud
+     */
     public Salud getSalud(final Activity act, final int saludId){
         final List<Salud> salud = new ArrayList<Salud>();
         Thread t = new Thread(new Runnable() {
@@ -560,6 +580,11 @@ public class DatabaseAcces {
         return salud.get(0);
     }
 
+    /**
+     * Get all the Transactions in the database
+     * @param act Activity where the method was called
+     * @return a List with all the Transaction objects
+     */
     public List<Transaction> getTransactions(final Activity act){
         final List<Transaction> transactions = new ArrayList<Transaction>();
 
@@ -584,6 +609,12 @@ public class DatabaseAcces {
         return transactions;
     }
 
+    /**
+     * Retrieve from database the form with the solicitated id
+     * @param act Activity where the method was called
+     * @param id Id of the wanted Form
+     * @return The Formulario object associated to the received id
+     */
     public Formulario getFormulario(final Activity act, final int id){
         final List<Formulario> form = new ArrayList<Formulario>();
         Thread t = new Thread(new Runnable() {
@@ -607,24 +638,11 @@ public class DatabaseAcces {
         return formulario;
     }
 
-    public void deleteAllTransactions(final Activity act, final List<Transaction> transactions){
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
-                TransactionDao transactionDao = mDb.transactionDao();
-                transactionDao.delete(transactions.toArray(new Transaction[transactions.size()]));
-            }
-        });
-
-        t.start();
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Delete a Transaction from database
+     * @param act Activity where the method was called
+     * @param transaction Transaction object wanted to be deleted from database
+     */
     public void deleteTransaction(final Activity act, final Transaction transaction){
         Thread t = new Thread(new Runnable() {
             @Override
