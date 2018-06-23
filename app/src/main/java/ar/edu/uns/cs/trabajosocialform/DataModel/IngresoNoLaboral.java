@@ -3,9 +3,8 @@ package ar.edu.uns.cs.trabajosocialform.DataModel;
 import java.io.Serializable;
 
 /**
- * Created by Kevin (User) on 17/4/2018.
+ * This Class represents the "Ingreso no laboral" fields of the form related to a family member
  */
-
 
 public class IngresoNoLaboral implements Serializable {
 

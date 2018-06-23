@@ -8,6 +8,9 @@ import android.support.annotation.NonNull;
 
 import java.util.Calendar;
 
+/**
+ * Fragments that represents the Datepicker UI
+ */
 public class DatePickerFragment extends DialogFragment {
 
     private DatePickerDialog.OnDateSetListener listener;

@@ -15,6 +15,7 @@
         android:layout_marginTop="8dp"
         android:paddingLeft="10dp"
         android:inputType="textPersonName"
+        android:backgroundTint="@color/colorMain"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/textView"
         app:layout_constraintEnd_toEndOf="parent" />

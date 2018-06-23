@@ -1,5 +1,8 @@
 package ar.edu.uns.cs.trabajosocialform.Transactions;
 
+/**
+ * Different options of the transactions
+ */
 public enum TransactionOptions {
 
     INSERT(1),

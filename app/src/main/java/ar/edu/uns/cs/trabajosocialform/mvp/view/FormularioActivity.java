@@ -1,24 +1,15 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
-import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
-import ar.edu.uns.cs.trabajosocialform.presenter.initFormPresenter;
+import ar.edu.uns.cs.trabajosocialform.R;
+import ar.edu.uns.cs.trabajosocialform.mvp.presenter.initFormPresenter;
+import butterknife.OnClick;
 
 public class FormularioActivity extends GeneralActivity {
 
@@ -36,6 +27,8 @@ public class FormularioActivity extends GeneralActivity {
         /*I need to get the configuration file to show the corresponding fields*/
         config = presenter.getConfigurationFile();
 
+        inicializarGui();
+
         /*If the action is an update the fields must be filled with corresponding information*/
         update = getIntent().getBooleanExtra("UPDATE",false);
         if(update){
@@ -43,30 +36,15 @@ public class FormularioActivity extends GeneralActivity {
             rellenarCampos();
         }
 
-        findViewById(R.id.siguiente_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                continuar();
-            }
-        });
     }
 
-
     @Override
-    public void continuar(){
+    @OnClick(R.id.siguiente_button)
+    public void continuar(View view){
         form = tomarDatos();
         Intent intent = new Intent(this,FormSolicitanteActivity.class);
-
         putExtras(intent);
-       /* intent.putExtra("CONFIG",config);
-        intent.putExtra("FORM",form);
-        intent.putExtra("UPDATE",update);
-        if(update){
-            intent.putExtra("UPDATE_FORM", updateForm);
-        }*/
-
         startActivity(intent);
-
     }
 
     @Override
@@ -81,15 +59,17 @@ public class FormularioActivity extends GeneralActivity {
         return form;
     }
 
-
-
     @Override
     protected void rellenarCampos(){
 
     }
 
     @Override
-    protected void inicializarGui(){}
+    protected void inicializarGui(){
+        /*Toolbar title*/
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.titulo_formulario);
+    }
 
     @Override
     protected boolean validate(Object obj){

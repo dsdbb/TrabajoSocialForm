@@ -1,49 +1,28 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Camera;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.PathShape;
-import android.graphics.drawable.shapes.RectShape;
-import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
+import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.FieldsValidator;
-import ar.edu.uns.cs.trabajosocialform.Utils.TextValidator;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
-import ar.edu.uns.cs.trabajosocialform.Utils.Validator;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
-import ar.edu.uns.cs.trabajosocialform.configuracion.Datos_solicitante;
-import ar.edu.uns.cs.trabajosocialform.presenter.solicitantePresenter;
+import ar.edu.uns.cs.trabajosocialform.mvp.presenter.solicitantePresenter;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * This class is responsible of managing the UI of the Solicitante data and get the user data insertion
@@ -68,7 +47,6 @@ public class FormSolicitanteActivity extends GeneralActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_solicitante);
-
         presenter = new solicitantePresenter();
 
         /*Avoid showing the keyboard automatically*/
@@ -78,19 +56,19 @@ public class FormSolicitanteActivity extends GeneralActivity {
         Intent intent = getIntent();
         form = (Formulario)intent.getSerializableExtra("FORM");
         config = (Configuracion)intent.getSerializableExtra("CONFIG");
+        update = getIntent().getBooleanExtra("UPDATE", false);
 
-
-
-        /*If the data of the Solicitante is not needed, we continuo with the next activity. Otherwise we init this GUI
-        * and adapt it correspondingly*/
+        /*If the data of the Solicitante is not needed, we continuo with the next activity.
+        Otherwise we init this GUI and adapt it correspondingly*/
         if(!config.getDatos_solicitante().required()){
-            continuar();
+            continuar(null);
         }
         else {
-
             inicializarGui();
+            /*Bind Activity to use ButterKnife facilities*/
+            ButterKnife.bind(this);
 
-            /*Get all editText*/
+            /*Get all the editTexts*/
             nombreEt = findViewById(R.id.panel_nombres_solicitante).findViewById(R.id.editText);
             apellidoEt = findViewById(R.id.panel_apellidos_solicitante).findViewById(R.id.editText);
             cuilEt = findViewById(R.id.panel_cuil_solicitante).findViewById(R.id.editText);
@@ -98,31 +76,25 @@ public class FormSolicitanteActivity extends GeneralActivity {
             otroTelefonoEt = findViewById(R.id.panel_otro_telefono_solicitante).findViewById(R.id.editText);
 
             /*If the action is an update, complete the fields with data correponding to the edited form*/
-            /*update = getIntent().getBooleanExtra("UPDATE", false);*/
             if (update) {
-                //updateForm = (Formulario) getIntent().getSerializableExtra("UPDATE_FORM");
+                updateForm = (Formulario) getIntent().getSerializableExtra("UPDATE_FORM");
                 rellenarCampos();
             }
 
-            ViewAdapter va = new ViewAdapter(config, this);
-            va.adaptarSolicitante();
-
-
-
+            /*Adapt the view according to the configuration file (show only relevant fields)*/
+            presenter.adaptView(config,this);
         }
     }
 
-
     @Override
-    protected void continuar(){
+    @OnClick(R.id.siguiente_button)
+    protected void continuar(View view){
         Solicitante solicitante = tomarDatos();
 
         if(validate(solicitante)){
             form.setSolicitante(solicitante);
             Intent intent = new Intent(this,FormApoderadoActivity.class);
-
             putExtras(intent);
-
             startActivity(intent);
 
             /*If the data of the Solicitante is not required, when the user came back from the next activity
@@ -134,19 +106,17 @@ public class FormSolicitanteActivity extends GeneralActivity {
         else{
             Toast.makeText( this,R.string.datos_invalidos, Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     /**
      * Inits an Activity to use the camera to take a photo.
      */
-    public void tomarFoto() {
+    @OnClick(R.id.plus_button)
+    public void tomarFoto(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, CAMERA_PHOTO);
         }
-
     }
 
     /**
@@ -164,7 +134,6 @@ public class FormSolicitanteActivity extends GeneralActivity {
             img.setImageBitmap(foto);
         }
     }
-
 
     @Override
     protected void inicializarGui(){
@@ -187,21 +156,6 @@ public class FormSolicitanteActivity extends GeneralActivity {
         EditText cuil = findViewById(R.id.panel_cuil_solicitante).findViewById(R.id.editText);
         cuil.setInputType(InputType.TYPE_CLASS_NUMBER);
 
-        /*Add the listener to the button to take the photo*/
-        findViewById(R.id.plus_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tomarFoto();
-            }
-        });
-
-        /*Add the listener to the button responsible for initiating the next activity*/
-        utils.addNextButtonListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                continuar();
-            }
-        });
     }
 
 
@@ -243,21 +197,21 @@ public class FormSolicitanteActivity extends GeneralActivity {
         Solicitante solicitante = (Solicitante) obj;
         FieldsValidator validator = new FieldsValidator();
 
-        if(!validator.validateShortString(solicitante.getNombres())){
+        if(!validator.validateShortString(solicitante.getNombres()) && config.getDatos_solicitante().isNombres_solicitante()){
             nombreEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
             result = false;
         }
         else{
             nombreEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
         }
-        if(!validator.validateShortString(solicitante.getApellidos())){
+        if(!validator.validateShortString(solicitante.getApellidos()) && config.getDatos_solicitante().isApellidos_solicitante()){
             apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
             result = false;
         }
         else{
             apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
         }
-        if(!validator   .validateCuil(solicitante.getCuil())){
+        if(!validator.validateCuil(solicitante.getCuil()) && config.getDatos_solicitante().isCuil_solicitante()){
             cuilEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
             result = false;
         }

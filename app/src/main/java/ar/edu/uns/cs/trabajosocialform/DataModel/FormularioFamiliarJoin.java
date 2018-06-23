@@ -6,6 +6,10 @@ import android.arch.persistence.room.ForeignKey;
 
 import java.io.Serializable;
 
+/**
+ * This Class represents the join between a form and a family member
+ */
+
 @Entity(tableName = "formulario_familiar_join",
         primaryKeys = { "formulario_id", "familiar_id" },
         foreignKeys = {

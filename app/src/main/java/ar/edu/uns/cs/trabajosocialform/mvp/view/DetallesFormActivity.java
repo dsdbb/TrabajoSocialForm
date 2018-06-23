@@ -1,4 +1,4 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,7 +29,11 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.InfraestructuraBarrial;
 import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 import ar.edu.uns.cs.trabajosocialform.Database.DatabaseAcces;
+import ar.edu.uns.cs.trabajosocialform.Database.StorageAccess;
+import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
+import ar.edu.uns.cs.trabajosocialform.ViewAdapter.DetailsViewAdapter;
+import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
 public class DetallesFormActivity extends AppCompatActivity {
 
@@ -45,6 +48,10 @@ public class DetallesFormActivity extends AppCompatActivity {
 
         inicializarGui();
 
+        String jsonConfig = (new StorageAccess()).getConfigurationJson(this);
+        Configuracion config = (new Gson()).fromJson(jsonConfig,Configuracion.class);
+        DetailsViewAdapter adapter = new DetailsViewAdapter(config,this);
+        adapter.adaptDetails();
     }
 
     private void inicializarGui(){
@@ -54,7 +61,6 @@ public class DetallesFormActivity extends AppCompatActivity {
         /*Titulo detalles*/
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_detalles);
-
 
         /*Datos del solicitante*/
         Solicitante solicitante = db.getSolicitante(this,form.getSolicitanteId());

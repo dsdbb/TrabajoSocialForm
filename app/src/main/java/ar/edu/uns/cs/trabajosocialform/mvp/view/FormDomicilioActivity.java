@@ -1,24 +1,22 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Domicilio;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.FieldsValidator;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
-import ar.edu.uns.cs.trabajosocialform.configuracion.Datos_domicilio;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FormDomicilioActivity extends GeneralActivity {
 
@@ -40,10 +38,12 @@ public class FormDomicilioActivity extends GeneralActivity {
         config = (Configuracion)intent.getSerializableExtra("CONFIG");
 
         if(!config.getDatos_domicilio().required()){
-            continuar();
+            continuar(null);
         }
         else{
             inicializarGui();
+            /*Bind Activity to use ButterKnife facilities*/
+            ButterKnife.bind(this);
 
             calleEt = findViewById(R.id.panel_calle).findViewById(R.id.editText);
             numeroEt = findViewById(R.id.panel_numero).findViewById(R.id.editText);
@@ -64,7 +64,8 @@ public class FormDomicilioActivity extends GeneralActivity {
     }
 
     @Override
-    public void continuar(){
+    @OnClick(R.id.siguiente_button)
+    public void continuar(View view){
         Domicilio domicilio = tomarDatos();
 
         if(validate(domicilio)){
@@ -114,12 +115,12 @@ public class FormDomicilioActivity extends GeneralActivity {
         utils.setValuesTvEt(R.string.delegacion, R.id.panel_delegacion);
 
         /*Boton*/
-        utils.addNextButtonListener(new View.OnClickListener() {
+        /*utils.addNextButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 continuar();
             }
-        });
+        });*/
 
     }
 
@@ -177,28 +178,28 @@ public class FormDomicilioActivity extends GeneralActivity {
         FieldsValidator validator = new FieldsValidator();
         Domicilio domicilio = (Domicilio)obj;
 
-        if(!validator.validateLongString(domicilio.getCalle())){
+        if(!validator.validateLongString(domicilio.getCalle()) && config.getDatos_domicilio().isCalle()){
             calleEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
             result = false;
         }
         else{
             calleEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
         }
-        if(!validator.validateNumber(domicilio.getNumero())){
+        if(!validator.validateNumber(domicilio.getNumero()) && config.getDatos_domicilio().isNumero()){
             numeroEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
             result = false;
         }
         else{
             numeroEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
         }
-        if(!validator.validateShortString(domicilio.getLocalidad())){
+        if(!validator.validateShortString(domicilio.getLocalidad()) && config.getDatos_domicilio().isLocalidad()){
             localidadEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
             result = false;
         }
         else{
             localidadEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
         }
-        if(!validator.validateShortString(domicilio.getDelegacion())){
+        if(!validator.validateShortString(domicilio.getDelegacion()) && config.getDatos_domicilio().isDelegacion()){
             delegacionEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
             result = false;
         }

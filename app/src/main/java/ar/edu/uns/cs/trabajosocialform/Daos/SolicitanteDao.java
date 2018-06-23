@@ -12,7 +12,7 @@ import java.util.List;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 
 /**
- * Created by Kevin (User) on 18/4/2018.
+ * Contains database methods related to Solicitante
  */
 @Dao
 public interface SolicitanteDao {

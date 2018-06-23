@@ -14,7 +14,7 @@ import java.util.List;
 import ar.edu.uns.cs.trabajosocialform.Converters.Converters;
 
 /**
- * Created by Kevin (User) on 17/4/2018.
+ * This Class represents the "Salud" fields of the form related to a family member
  */
 
 @Entity(tableName = "salud")

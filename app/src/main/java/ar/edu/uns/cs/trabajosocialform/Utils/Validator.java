@@ -1,8 +1,11 @@
 package ar.edu.uns.cs.trabajosocialform.Utils;
 
+/**
+ * Provides methods to validate different conditions of the data
+ */
 public class Validator {
 
-    public boolean validateCuil(Long text){
+    public boolean validateCuilFormat(Long text){
         if(text!=null){
             return text.toString().matches("^\\d{10,11}$");
         }

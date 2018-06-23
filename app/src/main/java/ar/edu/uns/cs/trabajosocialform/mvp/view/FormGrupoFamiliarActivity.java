@@ -1,4 +1,4 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,8 +18,11 @@ import java.util.List;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FormGrupoFamiliarActivity extends GeneralActivity {
 
@@ -34,10 +37,11 @@ public class FormGrupoFamiliarActivity extends GeneralActivity {
         config = (Configuracion) intent.getSerializableExtra("CONFIG");
 
         if (!config.getDatos_grupo_familiar().required()) {
-            continuar();
+            continuar(null);
         } else {
-
             inicializarGui();
+            /*Bind Activity to use ButterKnife facilities*/
+            ButterKnife.bind(this);
 
             /*Chequeo si es un update y en ese caso relleno los campos*/
             update = getIntent().getBooleanExtra("UPDATE", false);
@@ -49,6 +53,7 @@ public class FormGrupoFamiliarActivity extends GeneralActivity {
 
     }
 
+    @OnClick(R.id.nuevo_familiar_btn)
     public void nuevoFamiliar(View view) {
         Intent intent = new Intent(this, NuevoFamiliarActivity.class);
         intent.putExtra("CONFIG", config);
@@ -91,16 +96,17 @@ public class FormGrupoFamiliarActivity extends GeneralActivity {
         toolbar.setTitle(R.string.titulo_grupo_familiar);
 
         utils.addContentToTemplate(R.layout.form_grupo_familiar);
-        utils.addNextButtonListener(new View.OnClickListener() {
+        /*utils.addNextButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 continuar();
             }
-        });
+        });*/
     }
 
     @Override
-    public void continuar() {
+    @OnClick(R.id.siguiente_button)
+    public void continuar(View view) {
         Intent intent = new Intent(this, FormSituacionHabitacionalActivity.class);
         intent.putExtra("CONFIG", config);
         intent.putExtra("FORM", form);

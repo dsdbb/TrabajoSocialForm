@@ -9,7 +9,7 @@ import android.arch.persistence.room.Update;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Ocupacion;
 
 /**
- * Created by Kevin (User) on 18/4/2018.
+ * Contains database methods related to Ocupacion
  */
 @Dao
 public interface OcupacionDao {

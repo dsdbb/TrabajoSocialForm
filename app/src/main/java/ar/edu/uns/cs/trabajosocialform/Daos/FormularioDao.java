@@ -11,7 +11,7 @@ import java.util.List;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 
 /**
- * Created by Kevin (User) on 18/4/2018.
+ * Contains database methods related to the froms
  */
 
 @Dao

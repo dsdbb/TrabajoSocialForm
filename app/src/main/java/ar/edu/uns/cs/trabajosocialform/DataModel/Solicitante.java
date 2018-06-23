@@ -9,7 +9,7 @@ import android.graphics.Bitmap;
 import java.io.Serializable;
 
 /**
- * Created by Kevin (User) on 17/4/2018.
+ * This Class represents the "Solicitante" section of the form
  */
 
 @Entity(tableName = "solicitante")

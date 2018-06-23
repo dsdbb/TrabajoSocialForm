@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button"
             android:scaleType="fitCenter"
-            android:onClick="nuevoFamiliar"
             android:src="@drawable/plus"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/textView"/>

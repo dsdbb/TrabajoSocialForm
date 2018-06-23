@@ -6,6 +6,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+/**
+ * Class that manage the requests to database using Volley library
+ */
 public class ServerSingleton {
 
     private static ServerSingleton instance;

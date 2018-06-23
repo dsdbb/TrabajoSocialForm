@@ -1,4 +1,4 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,9 +21,12 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Ingreso;
 import ar.edu.uns.cs.trabajosocialform.DataModel.IngresoNoLaboral;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Ocupacion;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Salud;
+import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class NuevoFamiliarActivity extends GeneralActivity {
 
@@ -48,6 +51,9 @@ public class NuevoFamiliarActivity extends GeneralActivity {
         Configuracion config = (Configuracion)intent.getSerializableExtra("CONFIG");
 
         inicializarGui();
+        /*Bind Activity to use ButterKnife facilities*/
+        ButterKnife.bind(this);
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 
@@ -63,7 +69,8 @@ public class NuevoFamiliarActivity extends GeneralActivity {
     }
 
     @Override
-    public void continuar(){
+    @OnClick(R.id.siguiente_button)
+    public void continuar(View view){
         Familiar familiar = tomarDatos();
         form.getFamiliares().add(familiar);
         Intent resultIntent = new Intent();
@@ -169,12 +176,12 @@ public class NuevoFamiliarActivity extends GeneralActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_nuevo_familiar);
 
-        utils.addNextButtonListener(new View.OnClickListener() {
+        /*utils.addNextButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 continuar();
             }
-        });
+        });*/
 
         inicializarDatosGenerales(utils);
         inicializarOcupacion(utils);

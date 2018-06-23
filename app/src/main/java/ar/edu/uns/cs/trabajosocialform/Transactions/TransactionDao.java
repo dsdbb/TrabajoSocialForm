@@ -10,6 +10,9 @@ import java.util.List;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Apoderado;
 
+/**
+ * Contains database methods related to Transaction
+ */
 @Dao
 public interface TransactionDao {
 

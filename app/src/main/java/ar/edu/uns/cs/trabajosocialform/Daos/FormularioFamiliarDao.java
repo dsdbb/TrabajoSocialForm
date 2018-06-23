@@ -10,6 +10,9 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.FormularioFamiliarJoin;
 
+/**
+ * Contains database methods related to the relation between a form and a family member
+ */
 @Dao
 public interface FormularioFamiliarDao {
 

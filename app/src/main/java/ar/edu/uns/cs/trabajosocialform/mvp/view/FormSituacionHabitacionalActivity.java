@@ -1,23 +1,22 @@
-package ar.edu.uns.cs.trabajosocialform;
+package ar.edu.uns.cs.trabajosocialform.mvp.view;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import com.google.gson.Gson;
 
 import ar.edu.uns.cs.trabajosocialform.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.DataModel.SituacionHabitacional;
+import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FormSituacionHabitacionalActivity extends GeneralActivity {
 
@@ -35,10 +34,12 @@ public class FormSituacionHabitacionalActivity extends GeneralActivity {
         config = (Configuracion)intent.getSerializableExtra("CONFIG");
 
         if(!config.getDatos_situacion_habitacional().required()){
-            continuar();
+            continuar(null);
         }
         else{
             inicializarGui();
+            /*Bind Activity to use ButterKnife facilities*/
+            ButterKnife.bind(this);
 
             /*Chequeo si es un update y en ese caso relleno los campos*/
             update = getIntent().getBooleanExtra("UPDATE",false);
@@ -57,7 +58,8 @@ public class FormSituacionHabitacionalActivity extends GeneralActivity {
     }
 
     @Override
-    public void continuar(){
+    @OnClick(R.id.siguiente_button)
+    public void continuar(View view){
         SituacionHabitacional situacion = tomarDatos();
         form.setSituacionHabitacional(situacion);
         Intent intent = new Intent(this,FormCaracteristicasViviendaActivity.class);
@@ -113,12 +115,12 @@ public class FormSituacionHabitacionalActivity extends GeneralActivity {
         utils.setValuesTvEt(R.string.titulo_cantidad_hogares_vivienda,R.id.panel_cantidad_hogares_vivienda);
         utils.setValuesTvEt(R.string.titulo_cantidad_cuartos_UE,R.id.panel_cantidad_cuartos_ue);
 
-        utils.addNextButtonListener(new View.OnClickListener() {
+       /* utils.addNextButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 continuar();
             }
-        });
+        });*/
     }
 
     @Override

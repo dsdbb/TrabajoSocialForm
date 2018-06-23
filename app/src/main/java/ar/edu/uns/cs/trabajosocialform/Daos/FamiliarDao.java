@@ -10,7 +10,7 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.Familiar;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Solicitante;
 
 /**
- * Created by Kevin (User) on 18/4/2018.
+ * Contains database methods related to Familiar
  */
 
 @Dao

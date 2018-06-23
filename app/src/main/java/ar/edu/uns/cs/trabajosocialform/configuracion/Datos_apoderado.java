@@ -3,12 +3,11 @@ package ar.edu.uns.cs.trabajosocialform.configuracion;
 import java.io.Serializable;
 
 /**
- * Created by Kevin (User) on 5/4/2018.
+ * This Class specifies if fields belonging to Apoderado are needed in the form
  */
 
 public class Datos_apoderado  implements Serializable {
 
-    /*Datos para el apoderado*/
     private boolean apellidos_apoderado;
     private boolean nombres_apoderado;
     private boolean cuil_apoderado;

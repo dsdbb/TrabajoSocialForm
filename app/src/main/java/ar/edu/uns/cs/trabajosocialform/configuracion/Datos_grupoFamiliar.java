@@ -3,12 +3,12 @@ package ar.edu.uns.cs.trabajosocialform.configuracion;
 import java.io.Serializable;
 
 /**
- * Created by Kevin (User) on 5/4/2018.
+ * This Class specifies if fields belonging to a family member are needed in the form
  */
 
 public class Datos_grupoFamiliar implements Serializable {
 
-    /*Datos para el grupo familiar (cada uno)*/
+    /*For each of the family members*/
     private boolean apellidos;
     private boolean nombres;
     private boolean sexo;

@@ -14,7 +14,7 @@ import java.util.List;
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 /**
- * Created by Kevin (User) on 17/4/2018.
+ * This Class represents the complete form, having the reference to id of the other sections
  */
 @Entity(tableName = "formularios",foreignKeys = {@ForeignKey(entity = Solicitante.class,
                                                                         parentColumns = "id",

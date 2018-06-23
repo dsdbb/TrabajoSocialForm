@@ -14,6 +14,7 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -42,6 +43,9 @@ import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.fragments.DatePickerFragment;
 
+/**
+ * Util methods
+ */
 public class Utils {
 
     private Activity act;
@@ -50,12 +54,16 @@ public class Utils {
         this.act = act;
     }
 
+    /**
+     * Get the date from the datePicker and set it in the corresponding editText
+     * @param panel Panel with layout tv_et_fecha
+     */
     public void getFecha(final ConstraintLayout panel ){
 
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            // +1 porque enero es 0
+            // +1 because January is 0
             String mes = String.format("%02d",month+1);
             String dia = String.format("%02d",day);
             final String selectedDate = dia + " / " + mes + " / " + year;
@@ -65,38 +73,71 @@ public class Utils {
         newFragment.show(act.getFragmentManager(), "datePicker");
     }
 
+    /**
+     * Set values of title and options to the spinner belonging to a corresponding panel
+     * @param opcionesSpinnerId Spinner options id
+     * @param tituloId Title string id
+     * @param panelId Panel id with layout tv_spinner
+     */
     public void setValuesTvSpinner(int opcionesSpinnerId, int tituloId, int panelId){
         String[] opciones = act.getResources().getStringArray(opcionesSpinnerId);
         String titulo = act.getResources().getString(tituloId);
         ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
         ((TextView)panel.findViewById(R.id.textView)).setText(titulo);
-        ((Spinner)panel.findViewById(R.id.spinner)).setAdapter(new ArrayAdapter<String>(
-                act,R.layout.spinner_row2,opciones));
+
+        ArrayAdapter adapter = new ArrayAdapter<String>(act,R.layout.spinner_row2,opciones);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        ((Spinner)panel.findViewById(R.id.spinner)).setAdapter(adapter);
     }
 
+    /**
+     * Set values of title and options to both spinners belonging to a corresponding panel
+     * @param opcionesSpinner1Id First spinner options id
+     * @param opcionesSpinner2Id Second spinner options id
+     * @param tituloId Title String id
+     * @param panelId Panel id with layout tv_spinner2
+     */
     public void setValuesTvSpinner2(int opcionesSpinner1Id,int opcionesSpinner2Id, int tituloId, int panelId){
         String[] opciones1 = act.getResources().getStringArray(opcionesSpinner1Id);
         String[] opciones2 = act.getResources().getStringArray(opcionesSpinner2Id);
         String titulo = act.getResources().getString(tituloId);
         ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
         ((TextView)panel.findViewById(R.id.textView)).setText(titulo);
-        ((Spinner)panel.findViewById(R.id.spinner1)).setAdapter(new ArrayAdapter<String>(
-                act,R.layout.spinner_row2,opciones1));
-        ((Spinner)panel.findViewById(R.id.spinner2)).setAdapter(new ArrayAdapter<String>(
-                act,R.layout.spinner_row2,opciones2));
+        ArrayAdapter adapter1 = new ArrayAdapter<String>(act,R.layout.spinner_row2,opciones1);
+        adapter1.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        ((Spinner)panel.findViewById(R.id.spinner1)).setAdapter(adapter1);
+        ArrayAdapter adapter2 = new ArrayAdapter<String>(act,R.layout.spinner_row2,opciones2);
+        adapter2.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        ((Spinner)panel.findViewById(R.id.spinner2)).setAdapter(adapter2);
     }
 
+
+    /**
+     * Set title to a field panel
+     * @param tituloId title string id
+     * @param panelId panel id with tv_et layout
+     */
     public void setValuesTvEt(int tituloId, int panelId){
         String titulo = act.getResources().getString(tituloId);
         ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
         ((TextView)panel.findViewById(R.id.textView)).setText(titulo);
     }
 
+    /**
+     * Get selected option from spinner
+     * @param panelId panel id with layout tv_spinner
+     * @return selected option
+     */
     public String getDataTvSpinner(int panelId){
         ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
         return ((Spinner)panel.findViewById(R.id.spinner)).getSelectedItem().toString();
     }
 
+    /**
+     * get seleced options from spinner
+     * @param panelId panel with layout tv_spinner2
+     * @return List with first element as first spinner option and second element as second spinner option
+     */
     public List<String> getDataTvSpinner2(int panelId){
         List<String> lista = new ArrayList<String>();
         ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
@@ -107,11 +148,21 @@ public class Utils {
         return lista;
     }
 
+    /**
+     * Get data inserted in an editText
+     * @param panelId panel id with layout tv_et
+     * @return Inserted String
+     */
     public String getDataTvEt(int panelId){
         ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
         return ((EditText)panel.findViewById(R.id.editText)).getText().toString();
     }
 
+    /**
+     * Get boolean from String (Si,si,SI)
+     * @param s String to be associated with boolean value
+     * @return boolean value
+     */
     public Boolean getBoolean(String s){
         if(s.equals("SI") || s.equals("Si") || s.equals("si")){
             return true;
@@ -121,6 +172,11 @@ public class Utils {
         }
     }
 
+    /**
+     * Get String from boolean value
+     * @param b boolean value to be converted in String
+     * @return corresponding String
+     */
     public String getStringFromBoolean(Boolean b){
         if(b){
             return "Si";
@@ -130,6 +186,10 @@ public class Utils {
         }
     }
 
+    /**
+     * Add Listener to a panel responsible of getting a date
+     * @param panelId panel id with layout tv_et_fecha
+     */
     public void addDateListener(int panelId){
         final ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
         ((EditText)panel.findViewById(R.id.editText)).setOnClickListener(new View.OnClickListener() {
@@ -140,6 +200,12 @@ public class Utils {
         });
     }
 
+    /**
+     * Add listener to the add button of a tv_button panel
+     * @param panelId panel id with tv_button layout
+     * @param newLayoutId layout wanted to be inflated by the add button
+     * @param list List of inflated views by the button to add the new added view
+     */
     public void addAddingButtonListener(int panelId, final int newLayoutId, final List<View> list){
         final ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
         ((ImageButton)panel.findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
@@ -156,6 +222,11 @@ public class Utils {
 
     }
 
+    /**
+     * Add listener to the remove button of a tv_button panel
+     * @param panelId panel id with tv_button layout
+     * @param list List of inflated view by the panel to remove the last inflated view
+     */
     public void addRemovingButtonListener(int panelId, final List<View> list){
         final ConstraintLayout panel = (ConstraintLayout)act.findViewById(panelId);
         ((ImageButton)panel.findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
@@ -172,10 +243,10 @@ public class Utils {
         });
     }
 
-    public void addNextButtonListener(View.OnClickListener listener){
-        ((Button)act.findViewById(R.id.siguiente_button)).setOnClickListener(listener);
-    }
-
+    /**
+     * Add the fields of a section to the main template
+     * @param layoutId layout containing the corresponding fields of the section
+     */
     public void addContentToTemplate(int layoutId){
         LinearLayout contenedor = (LinearLayout) act.findViewById(R.id.contenedor);
         LayoutInflater inflater = LayoutInflater.from(act);
@@ -185,6 +256,11 @@ public class Utils {
 
     }
 
+    /**
+     * Get a java Date from a String if format "dd/MM/yyyy"
+     * @param fechaS String date in "dd/MM/yyyy" format
+     * @return java Date according to received String
+     */
     public Date getDateFromString(String fechaS){
         Date fecha=null;
         if(!fechaS.equals("")){
@@ -201,6 +277,11 @@ public class Utils {
         return fecha;
     }
 
+    /**
+     * Convert a String in an Integer
+     * @param intS String to be converted
+     * @return converted Integer
+     */
     public Integer getIntegerFromString(String intS){
         Integer num = null;
         if(!intS.equals(""))
@@ -209,6 +290,11 @@ public class Utils {
         return num;
     }
 
+    /**
+     * Convert String in a Long value
+     * @param s String to be converted
+     * @return converted Long
+     */
     public Long getLongFromString(String s){
         Long num = null;
         if(!s.equals(""))
@@ -217,6 +303,12 @@ public class Utils {
         return num;
     }
 
+    /**
+     * Set values to a detail layout
+     * @param panelId panel id with detalles_item layout
+     * @param tituloId id of the detail title
+     * @param dato value associated with the title
+     */
     public void setDetailValues(int panelId, int tituloId, String dato){
         ConstraintLayout panel = act.findViewById(panelId);
         String titulo = act.getResources().getString(tituloId);
@@ -224,18 +316,34 @@ public class Utils {
         ((TextView)panel.findViewById(R.id.textViewDato)).setText(dato);
     }
 
+    /**
+     * Set values to a detail layout
+     * @param view View with detalles_item layout
+     * @param tituloId id of the detail title
+     * @param dato value associated with the title
+     */
     public void setDetailValues(View view, int tituloId, String dato){
         String titulo = act.getResources().getString(tituloId);
         ((TextView)view.findViewById(R.id.textViewTitulo)).setText(titulo);
         ((TextView)view.findViewById(R.id.textViewDato)).setText(dato);
     }
 
+    /**
+     * Set title to Title field of the panel
+     * @param panelId details panel id
+     * @param tituloId String Title id
+     */
     public void setTitleValue(int panelId, int tituloId){
         ConstraintLayout panel = act.findViewById(panelId);
         String titulo = act.getResources().getString(tituloId);
         ((TextView)panel.findViewById(R.id.titulo)).setText(titulo);
     }
 
+    /**
+     * Get String from java Date with format "dd/MM/yyyy"
+     * @param fecha java Date to be converted
+     * @return String date with format "dd/MM/yyyy"
+     */
     public String getStringFromDate(Date fecha){
         String fechaString = null;
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -246,6 +354,12 @@ public class Utils {
         return fechaString;
     }
 
+    /**
+     * Show an alert dialog and makes an action according to the response
+     * @param titulo Title id of the alert dialog
+     * @param mensaje Message id to show in the dialog
+     * @param runnable Action to perform if the confirmation button is pressed
+     */
     public void showAlertDialog(int titulo, int mensaje, final Runnable runnable){
         final List<Boolean> result = new ArrayList<Boolean>();
         new AlertDialog.Builder(act)
@@ -265,6 +379,11 @@ public class Utils {
 
     }
 
+    /**
+     * Inflate a detalles_item layout to given panel
+     * @param panelId panel id to add the detail layout
+     * @return inflated View
+     */
     public View inflarDetalles(int panelId){
         LinearLayout contenedor = act.findViewById(panelId);
         LayoutInflater inflater = LayoutInflater.from(act);
@@ -274,11 +393,21 @@ public class Utils {
         return inflatedView;
     }
 
+    /**
+     * Set a String value to a field of the form
+     * @param panelId panel id with layout tv_et
+     * @param valor String value to be inserted in the EditText
+     */
     public void setValueToEditText(int panelId, String valor){
         ConstraintLayout panel = act.findViewById(panelId);
         ((EditText)panel.findViewById(R.id.editText)).setText(valor);
     }
 
+    /**
+     * Set a Long value to a field of the form
+     * @param panelId panel id with layout tv_et
+     * @param valor Long value to be inserted in the EditText
+     */
     public void setValueToEditText(int panelId, Long valor){
         ConstraintLayout panel = act.findViewById(panelId);
         if(valor!=null)
@@ -287,6 +416,11 @@ public class Utils {
             ((EditText)panel.findViewById(R.id.editText)).setText("");
     }
 
+    /**
+     * Set Integer value to a field of the form
+     * @param panelId panel id with layout tv_et
+     * @param valor Integer value to be inserted in the EditText
+     */
     public void setValueToEditText(int panelId, Integer valor){
         ConstraintLayout panel = act.findViewById(panelId);
         if(valor!=null)
@@ -295,10 +429,15 @@ public class Utils {
             ((EditText)panel.findViewById(R.id.editText)).setText("");
     }
 
+    /**
+     * Set spinner a value if existing in the options
+     * @param panelId panel id with layout tv_spinner
+     * @param opcionesId id of the spinner optiones
+     * @param compareValue value to be set if existing in spinner options
+     */
     public void setValueToSpinner(int panelId,int opcionesId,String compareValue){
         Spinner spinner = (Spinner)act.findViewById(panelId).findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(act, opcionesId, android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         if (compareValue != null) {
             int spinnerPosition = adapter.getPosition(compareValue);
@@ -306,9 +445,14 @@ public class Utils {
         }
     }
 
+    /**
+     * Set spinner a value if existing in the optiones
+     * @param spinner Spinner where to set the value
+     * @param opcionesId id of the spinner optiones
+     * @param compareValue value to be set if existing in spinner options
+     */
     public void setValueToSpinner(Spinner spinner, int opcionesId, String compareValue){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(act, opcionesId, android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         if (compareValue != null) {
             int spinnerPosition = adapter.getPosition(compareValue);
@@ -316,11 +460,18 @@ public class Utils {
         }
     }
 
+    /**
+     * Set two spinners the corresponding values if existing in the options
+     * @param panelId panel id with tv_spinner2 layout
+     * @param opcionesId first spinner options
+     * @param compareValue value to be set in the first spinner
+     * @param opcionesId2 second spinner options
+     * @param compareValue2 value to be set in the second spinner
+     */
     public void setValueToSpinner2(int panelId,int opcionesId,String compareValue, int opcionesId2, String compareValue2){
         Spinner spinner1 = (Spinner)act.findViewById(panelId).findViewById(R.id.spinner1);
         Spinner spinner2 = (Spinner)act.findViewById(panelId).findViewById(R.id.spinner2);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(act, opcionesId, android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter);
         if (compareValue != null) {
             int spinnerPosition = adapter.getPosition(compareValue);
@@ -358,6 +509,12 @@ public class Utils {
         listView.setLayoutParams(params);
     }
 
+    /**
+     * Inflate a layout into a panel with tv_button layout
+     * @param panelId panel id with tv_button layout
+     * @param newLayoutId layout id to be inflated
+     * @return inflated View
+     */
     public View inflarEnUpdate(int panelId, int newLayoutId ){
         ConstraintLayout panel = act.findViewById(panelId);
         LinearLayout contenedor = (LinearLayout)panel.findViewById(R.id.contenedor);
@@ -369,52 +526,11 @@ public class Utils {
         return inflatedView;
     }
 
-    public Configuracion getConfigurationFile(){
-        try
-        {
-            BufferedReader fin =
-                    new BufferedReader(
-                            new InputStreamReader(
-                                    act.openFileInput("config.txt")));
-
-            /*Leo el String json del archivo de configuracion y hago la deserializacion en la clase configuracion con la
-             librería GSON*/
-            String json = fin.readLine();
-            if(json !=null){
-                Configuracion config = (new Gson()).fromJson(json, Configuracion.class);
-                return config;
-            }
-            else{
-                return null;
-            }
-        }
-        catch (Exception ex)
-        {
-            Log.e("Ficheros", "Error al leer fichero desde memoria interna");
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
-    public boolean existsConfigurationFile(){
-        try
-        {
-            BufferedReader fin =
-                    new BufferedReader(
-                            new InputStreamReader(
-                                    act.openFileInput("config.txt")));
-        }
-        catch (Exception ex)
-        {
-            Log.e("Ficheros", "Error al leer fichero desde memoria interna");
-            ex.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-
-
+    /**
+     * Converts a bitmap into string to save it
+     * @param bitmap Bitmap to be converted
+     * @return converted bitmap String
+     */
     public String bitmapToString(Bitmap bitmap){
         if(bitmap!=null){
             ByteArrayOutputStream baos=new  ByteArrayOutputStream();
@@ -425,8 +541,12 @@ public class Utils {
         }
         return "";
     }
-
-
+    
+    /**
+     * Converts a String into a bitmap
+     * @param stringImg String to be converted
+     * @return converted String Bitmap
+     */
     public Bitmap stringToBitmap(String stringImg){
 
         if(stringImg!=null){
