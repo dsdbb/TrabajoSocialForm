@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +23,7 @@ import ar.edu.uns.cs.trabajosocialform.DataModel.IngresoNoLaboral;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Ocupacion;
 import ar.edu.uns.cs.trabajosocialform.DataModel.Salud;
 import ar.edu.uns.cs.trabajosocialform.R;
+import ar.edu.uns.cs.trabajosocialform.Utils.FieldsValidator;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
@@ -35,6 +37,11 @@ public class NuevoFamiliarActivity extends GeneralActivity {
     private List<View> discapacidades;
     private List<View> enfermedadesCronicas;
     private Familiar updateFamiliar;
+
+    private EditText nombreEt;
+    private EditText apellidoEt;
+    private EditText cuilEt;
+    private EditText fechaNacimientoEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,11 @@ public class NuevoFamiliarActivity extends GeneralActivity {
         /*Bind Activity to use ButterKnife facilities*/
         ButterKnife.bind(this);
 
+        nombreEt = findViewById(R.id.panel_nombres_familiar).findViewById(R.id.editText);
+        apellidoEt = findViewById(R.id.panel_apellidos_familiar).findViewById(R.id.editText);
+        cuilEt = findViewById(R.id.panel_cuil_familiar).findViewById(R.id.editText);
+        fechaNacimientoEt = findViewById(R.id.panel_fecha_nac_familiar).findViewById(R.id.editText);
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 
@@ -72,15 +84,21 @@ public class NuevoFamiliarActivity extends GeneralActivity {
     @OnClick(R.id.siguiente_button)
     public void continuar(View view){
         Familiar familiar = tomarDatos();
-        form.getFamiliares().add(familiar);
-        Intent resultIntent = new Intent();
-        if(update){
-            resultIntent.putExtra("UPDATED_FAMILIAR",true);
-            resultIntent.putExtra("OLD_FAMILIAR",updateFamiliar);
+        if(validate(familiar)){
+            form.getFamiliares().add(familiar);
+            Intent resultIntent = new Intent();
+            if(update){
+                resultIntent.putExtra("UPDATED_FAMILIAR",true);
+                resultIntent.putExtra("OLD_FAMILIAR",updateFamiliar);
+            }
+            resultIntent.putExtra("RETURN_FORM",form);
+            setResult(Activity.RESULT_OK,resultIntent);
+            finish();
         }
-        resultIntent.putExtra("RETURN_FORM",form);
-        setResult(Activity.RESULT_OK,resultIntent);
-        finish();
+        else{
+            Toast.makeText(this,R.string.datos_invalidos,Toast.LENGTH_SHORT);
+        }
+
     }
 
     @Override
@@ -176,17 +194,14 @@ public class NuevoFamiliarActivity extends GeneralActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_nuevo_familiar);
 
-        /*utils.addNextButtonListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                continuar();
-            }
-        });*/
 
         inicializarDatosGenerales(utils);
         inicializarOcupacion(utils);
         inicializarIngresos(utils);
         inicializarSalud(utils);
+
+        /*Get most important EditText*/
+
     }
 
     private void inicializarDatosGenerales(Utils utils){
@@ -328,7 +343,41 @@ public class NuevoFamiliarActivity extends GeneralActivity {
 
     @Override
     protected boolean validate(Object obj){
-        return true;
+        boolean result = true;
+        Familiar familiar = (Familiar)obj;
+
+        FieldsValidator validator = new FieldsValidator();
+
+        if(!validator.validateName(familiar.getNombres()) && config.getDatos_grupo_familiar().isNombres()){
+            nombreEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            result = false;
+        }
+        else{
+            nombreEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+        }
+        if(!validator.validateSurname(familiar.getApellidos()) && config.getDatos_grupo_familiar().isApellidos()){
+            apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            result = false;
+        }
+        else{
+            apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+        }
+        if(!validator.validateCuil(familiar.getCuil()) && config.getDatos_grupo_familiar().isCuil()){
+            cuilEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            result = false;
+        }
+        else{
+            cuilEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+        }
+        if(!validator.validateDate(familiar.getFecha_nacimiento()) && config.getDatos_grupo_familiar().isFecha_nac()){
+            fechaNacimientoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            result = false;
+        }
+        else{
+            fechaNacimientoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+        }
+
+        return result;
     }
 
 }

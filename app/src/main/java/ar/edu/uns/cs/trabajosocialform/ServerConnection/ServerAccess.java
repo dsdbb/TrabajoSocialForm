@@ -175,6 +175,12 @@ public class ServerAccess {
         Utils utils = new Utils(act);
         Map<String,String> params = new HashMap<String, String>();
 
+        /*Datos generales*/
+        params.put("nombre_entrevistador",form.getNombreEntrevistador());
+        params.put("apellido_entrevistador",form.getApellidoEntrevistador());
+        params.put("planes_sociales_requeridos",(new Gson()).toJson(form.getProgramasSocialesSolicitados()));
+        Log.i("JSON",(new Gson()).toJson(form.getProgramasSocialesSolicitados()));
+
         /*Datos del solitante*/
         Solicitante solicitante = form.getSolicitante();
         params.put("id_solicitante",solicitante.getId()+"");

@@ -6,6 +6,10 @@ import android.view.View;
 import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
+
+/**
+ * Class to adapt the different detail fields according to the configuration files (Hide not corresponding views)
+ */
 public class DetailsViewAdapter {
 
     private Configuracion config;

@@ -106,4 +106,5 @@
 
     <!-- Strings para los detalles -->
     <string name="titulo_detalles">Detalles del formulario</string>
+    <string name="titulo_datos_generales">Datos generales</string>
 </resources>

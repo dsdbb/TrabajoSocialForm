@@ -541,7 +541,7 @@ public class Utils {
         }
         return "";
     }
-    
+
     /**
      * Converts a String into a bitmap
      * @param stringImg String to be converted

@@ -7,11 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -61,6 +63,20 @@ public class DetallesFormActivity extends AppCompatActivity {
         /*Titulo detalles*/
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_detalles);
+
+        /*Datos generales*/
+        utils.setTitleValue(R.id.titulo_detalles_general,R.string.titulo_datos_generales);
+        utils.setDetailValues(R.id.detalle_nombre_entrevistador,R.string.nombre_entrevistador,form.getNombreEntrevistador());
+        utils.setDetailValues(R.id.detalle_apellido_entrevistador, R.string.apellido_entrevistador, form.getApellidoEntrevistador());
+        for (String plan:form.getProgramasSocialesSolicitados()) {
+            LinearLayout contenedor = findViewById(R.id.detalles_planes_sociales_requeridos);
+            LayoutInflater inflater = LayoutInflater.from(this);
+
+            View inflatedView = inflater.inflate(R.layout.detalles_item, contenedor, false);
+            utils.inflarDetalles(R.id.detalles_planes_sociales_requeridos);
+            contenedor.addView(inflatedView);
+            utils.setDetailValues(inflatedView, R.string.titulo_planes_sociales,plan);
+        }
 
         /*Datos del solicitante*/
         Solicitante solicitante = db.getSolicitante(this,form.getSolicitanteId());
