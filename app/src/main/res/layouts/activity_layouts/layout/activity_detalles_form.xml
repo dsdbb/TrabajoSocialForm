@@ -41,6 +41,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <!-- GENERALES -->
+                    <include
+                        android:id="@+id/detalles_generales"
+                        layout="@layout/detalles_general"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
                     <!-- SOLICITANTE -->
                     <include
                         android:id="@+id/detalles_solicitante"

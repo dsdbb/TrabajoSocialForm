@@ -13,6 +13,14 @@ public class FieldsValidator {
         validator = new Validator();
     }
 
+    public boolean validateName(String text){
+        return validator.validateNotNull(text) && validateShortString(text);
+    }
+
+    public boolean validateSurname(String text){
+        return validator.validateNotNull(text) && validateShortString(text);
+    }
+
     public boolean validateShortString(String text){
         if(!validator.validateNotNull(text) || !validator.validateMaxLength(text,45)){
             return false;

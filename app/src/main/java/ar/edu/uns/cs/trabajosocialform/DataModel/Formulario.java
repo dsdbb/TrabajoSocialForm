@@ -90,6 +90,7 @@ public class Formulario implements Serializable{
     @Ignore
     public Formulario(){
         familiares = new ArrayList<Familiar>();
+        programasSocialesSolicitados = new ArrayList<String>();
     }
 
 
@@ -107,6 +108,7 @@ public class Formulario implements Serializable{
         this.caracteristicasViviendaId = caracteristicasViviendaId;
         this.situacionHabitacionalId = situacionHabitacionalId;
         familiares = new ArrayList<Familiar>();
+        programasSocialesSolicitados = new ArrayList<String>();
 
     }
 
@@ -268,5 +270,9 @@ public class Formulario implements Serializable{
 
     public void setCaracteristicasVivienda(CaracteristicasVivienda caracteristicasVivienda) {
         this.caracteristicasVivienda = caracteristicasVivienda;
+    }
+
+    public void addPlanSocialSolicitado(String plan){
+        programasSocialesSolicitados.add(plan);
     }
 }

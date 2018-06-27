@@ -7,7 +7,7 @@ import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.configuracion.Configuracion;
 
 /**
- * Created by Kevin (User) on 10/4/2018.
+ * Class to adapt the different inserting fields according to the configuration files (Hide not corresponding views)
  */
 
 public class ViewAdapter {
