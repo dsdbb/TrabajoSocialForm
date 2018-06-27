@@ -55,7 +55,7 @@ public class NuevoFamiliarActivity extends GeneralActivity {
         form = (Formulario)getIntent().getSerializableExtra("FORM");
 
         Intent intent = getIntent();
-        Configuracion config = (Configuracion)intent.getSerializableExtra("CONFIG");
+        config = (Configuracion)intent.getSerializableExtra("CONFIG");
 
         inicializarGui();
         /*Bind Activity to use ButterKnife facilities*/
