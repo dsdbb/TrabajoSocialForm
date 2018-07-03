@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/portada"
-    tools:context="ar.edu.uns.cs.trabajosocialform.MainActivity">
+    tools:context="ar.edu.uns.cs.trabajosocialform.Presentation.activities.MainActivity">
 
 
         <include
@@ -28,24 +28,22 @@
         tools:layout_editor_absoluteX="0dp">
 
         <Button
-            android:id="@+id/nuevaEntrada"
+            android:id="@+id/nueva_entrada"
             android:layout_width="160sp"
             android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="8dp"
-            android:onClick="nuevaEntrada"
             android:text="@string/nueva_entrada"
             android:theme="@style/AppTheme.Button"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <Button
-            android:id="@+id/verEntradas"
+            android:id="@+id/ver_entradas"
             android:layout_width="160sp"
             android:layout_height="60dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:onClick="verEntradas"
             android:text="@string/ver_formularios"
             android:theme="@style/AppTheme.Button"
             app:layout_constraintEnd_toEndOf="parent"/>

@@ -28,25 +28,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:windowSoftInputMode="adjustPan">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Presentation.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.view.FormSolicitanteActivity" />
-        <activity android:name=".mvp.view.FormApoderadoActivity" />
-        <activity android:name=".mvp.view.FormDomicilioActivity" />
-        <activity android:name=".mvp.view.FormSituacionHabitacionalActivity" />
-        <activity android:name=".mvp.view.FormCaracteristicasViviendaActivity" />
-        <activity android:name=".mvp.view.FormInfraestructuraBarrialActivity" />
-        <activity android:name=".mvp.view.FormGrupoFamiliarActivity" />
-        <activity android:name=".mvp.view.NuevoFamiliarActivity" />
-        <activity android:name=".mvp.view.FormularioActivity" />
-        <activity android:name=".mvp.view.EntradasActivity" />
-        <activity android:name=".mvp.view.DetallesFormActivity" />
-        <activity android:name=".mvp.view.DetallesFamiliarActivity" />
+        <activity android:name=".Presentation.mvp.view.FormSolicitanteView" />
+        <activity android:name=".Presentation.mvp.view.FormApoderadoView" />
+        <activity android:name=".Presentation.mvp.view.FormDomicilioView" />
+        <activity android:name=".Presentation.mvp.view.FormSituacionHabitacionalView" />
+        <activity android:name=".Presentation.mvp.view.FormCaracteristicasViviendaActivity" />
+        <activity android:name=".Presentation.mvp.view.FormInfraestructuraBarrialView" />
+        <activity android:name=".Presentation.mvp.view.FormGrupoFamiliarView" />
+        <activity android:name=".Presentation.mvp.view.NuevoFamiliarView" />
+        <activity android:name=".Presentation.mvp.view.FormularioView" />
+        <activity android:name=".Presentation.activities.EntradasActivity" />
+        <activity android:name=".Presentation.activities.DetallesFormActivity" />
+        <activity android:name=".Presentation.mvp.view.DetallesFamiliarView" />
 
     </application>
 
