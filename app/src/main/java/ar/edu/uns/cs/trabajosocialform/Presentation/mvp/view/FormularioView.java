@@ -2,6 +2,7 @@ package ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Spinner;
@@ -10,54 +11,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NextButtonClickedObserver;
 import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
-import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.presenter.FormPresenter;
+import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.presenter.FormularioPresenter;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FormularioView extends GeneralActivity {
+public class FormularioView extends ActivityView implements FormActions {
 
 
-    private FormPresenter presenter;
+    private AppCompatActivity activity;
+    @BindView(R.id.toolbar)Toolbar toolbar;
+
     private List<View> planesSocialesRequeridos;
 
-    @Override
+    public FormularioView(AppCompatActivity activity){
+        super(activity);
+        ButterKnife.bind(this,activity);
+        planesSocialesRequeridos = new ArrayList<View>();
+    }
+
+
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
 
         planesSocialesRequeridos = new ArrayList<View>();
-        /*Set the presenter*/
-        presenter = new FormPresenter(this);
 
-        /*I need to get the configuration file to show the corresponding fields*/
+        //I need to get the configuration file to show the corresponding fields
         config = presenter.getConfigurationFile();
 
         inicializarGui();
         ButterKnife.bind(this);
 
-        /*If the action is an update the fields must be filled with corresponding information*/
+        //If the action is an update the fields must be filled with corresponding information
         update = getIntent().getBooleanExtra("UPDATE",false);
         if(update){
             updateForm =(Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
             rellenarCampos();
         }
 
-    }
+    }*/
 
     @Override
     @OnClick(R.id.siguiente_button)
     public void continuar(View view){
-        form = tomarDatos();
-        Intent intent = new Intent(this,FormSolicitanteView.class);
-        putExtras(intent);
-        startActivity(intent);
+        RxBus.post(new NextButtonClickedObserver.NextButtonClicked());
     }
 
-    @Override
-    protected Formulario tomarDatos(){
-        Utils utils = new Utils(this);
+
+    public Formulario tomarDatos(){
+        Utils utils = new Utils(getActivity());
 
         String nombre = utils.getDataTvEt(R.id.panel_nombre_entrevistador);
         String apellido = utils.getDataTvEt(R.id.panel_apellido_entrevistador);
@@ -71,19 +80,17 @@ public class FormularioView extends GeneralActivity {
         return form;
     }
 
-    @Override
-    protected void rellenarCampos(){
+
+    public void rellenarCampos(Formulario form){
 
     }
 
-    @Override
-    protected void inicializarGui(){
+    public void inicializarGui(Configuracion config){
         /*Toolbar title*/
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_formulario);
 
         /*Add the fields associated to the gerneral data of the form to the template*/
-        Utils utils = new Utils(this);
+        Utils utils = new Utils(getActivity());
         utils.addContentToTemplate(R.layout.form_general);
 
         utils.setValuesTvEt(R.string.nombre_entrevistador,R.id.panel_nombre_entrevistador);
@@ -95,7 +102,7 @@ public class FormularioView extends GeneralActivity {
     }
 
     @Override
-    protected boolean validate(Object obj){
+    public boolean validate(Object obj){
 
         return true;
     }

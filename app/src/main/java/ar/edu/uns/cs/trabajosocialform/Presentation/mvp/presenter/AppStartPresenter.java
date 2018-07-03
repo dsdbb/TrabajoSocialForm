@@ -6,6 +6,7 @@ import android.content.Intent;
 import ar.edu.uns.cs.trabajosocialform.Data.Database.StorageAccess;
 import ar.edu.uns.cs.trabajosocialform.Data.ServerConnection.ServerAccess;
 import ar.edu.uns.cs.trabajosocialform.Presentation.activities.EntradasActivity;
+import ar.edu.uns.cs.trabajosocialform.Presentation.activities.FormularioActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NuevaEntradaObserver;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.VerEntradasObserver;
@@ -62,14 +63,13 @@ public class AppStartPresenter {
         /*First checks if exists a configuration file to start*/
         StorageAccess sa = new StorageAccess();
         if(sa.existsConfigurationFile(view.getActivity())){
-            Intent intent = new Intent(view.getContext(),FormularioView.class);
+            Intent intent = new Intent(view.getContext(), FormularioActivity.class);
             view.getActivity().startActivity(intent);
         }
         else{
             view.showMessage(R.string.error_fichero);
         }
     }
-
 
     public void register() {
         Activity activity = view.getActivity();
