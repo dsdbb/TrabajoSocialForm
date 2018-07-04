@@ -10,6 +10,10 @@ import ar.edu.uns.cs.trabajosocialform.R;
 public class MainActivity extends AppCompatActivity {
 
     private AppStartPresenter presenter;
+    public static final String KEY_ACTUAL_FORM = "FORM";
+    public static final String KEY_CONFIGURATION_FILE = "CONFIG";
+    public static final String KEY_UPDATE = "UPDATE";
+    public static final String KEY_UPDATE_FORM = "UPDATE_FORM";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

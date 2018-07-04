@@ -27,7 +27,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:windowSoftInputMode="adjustPan">
+        android:windowSoftInputMode="stateAlwaysHidden">
         <activity android:name=".Presentation.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,9 +35,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Presentation.mvp.view.FormSolicitanteView" />
-        <activity android:name=".Presentation.mvp.view.FormApoderadoView" />
-        <activity android:name=".Presentation.mvp.view.FormDomicilioView" />
+        <activity android:name=".Presentation.activities.FormSolicitanteActivity"/>
+        <activity android:name=".Presentation.activities.FormApoderadoAcitivity" />
+        <activity android:name=".Presentation.activities.FormDomicilioActivity" />
         <activity android:name=".Presentation.mvp.view.FormSituacionHabitacionalView" />
         <activity android:name=".Presentation.mvp.view.FormCaracteristicasViviendaActivity" />
         <activity android:name=".Presentation.mvp.view.FormInfraestructuraBarrialView" />

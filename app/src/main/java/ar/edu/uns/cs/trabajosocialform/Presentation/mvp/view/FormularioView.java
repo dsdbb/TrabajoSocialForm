@@ -85,7 +85,7 @@ public class FormularioView extends ActivityView implements FormActions {
 
     }
 
-    public void inicializarGui(Configuracion config){
+    public void inicializarGui(){
         /*Toolbar title*/
         toolbar.setTitle(R.string.titulo_formulario);
 
@@ -98,11 +98,10 @@ public class FormularioView extends ActivityView implements FormActions {
         utils.setValuesTvEt(R.string.titulo_planes_sociales, R.id.panel_planes_sociales);
         utils.addAddingButtonListener(R.id.panel_planes_sociales,R.layout.panel_planes_sociales,planesSocialesRequeridos);
         utils.addRemovingButtonListener(R.id.panel_planes_sociales,planesSocialesRequeridos);
-        //utils.setValuesTvSpinner(R.array.planes_sociales_opciones,R.string.titulo_planes_sociales,R.id.panel_planes_sociales);
     }
 
     @Override
-    public boolean validate(Object obj){
+    public boolean validate(Object obj,Configuracion config){
 
         return true;
     }

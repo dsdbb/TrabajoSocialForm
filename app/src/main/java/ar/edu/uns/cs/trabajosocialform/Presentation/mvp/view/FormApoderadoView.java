@@ -2,7 +2,9 @@ package ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -12,91 +14,43 @@ import java.util.Date;
 
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Apoderado;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NextButtonClickedObserver;
 import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.FieldsValidator;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.Presentation.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Datos_apoderado;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FormApoderadoView extends GeneralActivity {
+public class FormApoderadoView extends ActivityView implements FormActions{
 
 
     private EditText nombreEt;
     private EditText apellidoEt;
     private EditText cuilEt;
     private EditText fechaNacimientoEt;
+    @BindView(R.id.toolbar)Toolbar toolbar;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_apoderado);
-
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
-
-        Intent intent = getIntent();
-        form = (Formulario) intent.getSerializableExtra("FORM");
-        config = (Configuracion) intent.getSerializableExtra("CONFIG");
-
-        if (!config.getDatos_apoderado().required()) {
-            continuar(null);
-        } else {
-            inicializarGui();
-
-            /*Bind Activity to use ButterKnife facilities*/
-            ButterKnife.bind(this);
-
-            nombreEt = findViewById(R.id.panel_nombres_apoderado).findViewById(R.id.editText);
-            apellidoEt = findViewById(R.id.panel_apellidos_apoderado).findViewById(R.id.editText);
-            cuilEt = findViewById(R.id.panel_cuil_apoderado).findViewById(R.id.editText);
-            fechaNacimientoEt = findViewById(R.id.panel_fecha_nacimiento_apoderado).findViewById(R.id.editText);
-
-            /*Chequeo si es un update y en ese caso relleno los campos*/
-            update = getIntent().getBooleanExtra("UPDATE", false);
-            if (update) {
-                updateForm = (Formulario) getIntent().getSerializableExtra("UPDATE_FORM");
-                rellenarCampos();
-            }
-
-            ViewAdapter va = new ViewAdapter(config, this);
-            va.adaptarApoderado();
-        }
-
-
+    public FormApoderadoView(AppCompatActivity activity){
+        super(activity);
+        ButterKnife.bind(this,getActivity());
     }
+
 
     @Override
     @OnClick(R.id.siguiente_button)
-    public void continuar(View view){
-        Intent intent = new Intent(this,FormDomicilioView.class);
-        Apoderado apoderado = tomarDatos();
-
-        if(validate(apoderado)){
-            form.setApoderado(apoderado);
-            intent.putExtra("CONFIG",config);
-            intent.putExtra("FORM",form);
-            intent.putExtra("UPDATE",update);
-            if(update)
-                intent.putExtra("UPDATE_FORM", updateForm);
-            startActivity(intent);
-
-            if(!config.getDatos_apoderado().required()){
-                finish();
-            }
-        }
-        else{
-            Toast.makeText( this,R.string.datos_invalidos, Toast.LENGTH_SHORT).show();
-        }
-
+    public void continuar(View view) {
+        RxBus.post(new NextButtonClickedObserver.NextButtonClicked());
     }
 
+
     @Override
-    protected Apoderado tomarDatos(){
-        Datos_apoderado datos = config.getDatos_apoderado();
-        Utils utils = new Utils(this);
+    public Apoderado tomarDatos(){
+        Utils utils = new Utils(getActivity());
 
         String nombre = utils.getDataTvEt(R.id.panel_nombres_apoderado);
         String apellido = utils.getDataTvEt(R.id.panel_apellidos_apoderado);
@@ -116,13 +70,12 @@ public class FormApoderadoView extends GeneralActivity {
     }
 
 
-    protected void inicializarGui(){
-        Utils utils = new Utils(this);
+    public void inicializarGui(){
+        Utils utils = new Utils(getActivity());
         /*Agrego formulario al template*/
         utils.addContentToTemplate(R.layout.form_apoderado);
 
         /*Titulo toolbar*/
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_apoderado);
 
         /*Datos*/
@@ -135,18 +88,17 @@ public class FormApoderadoView extends GeneralActivity {
 
         utils.addDateListener(R.id.panel_fecha_nacimiento_apoderado);
 
-       /* utils.addNextButtonListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                continuar();
-            }
-        });*/
-
+        nombreEt = getActivity().findViewById(R.id.panel_nombres_apoderado).findViewById(R.id.editText);
+        apellidoEt = getActivity().findViewById(R.id.panel_apellidos_apoderado).findViewById(R.id.editText);
+        cuilEt = getActivity().findViewById(R.id.panel_cuil_apoderado).findViewById(R.id.editText);
+        fechaNacimientoEt = getActivity().findViewById(R.id.panel_fecha_nacimiento_apoderado).findViewById(R.id.editText);
+        //Allow only numbers
+        cuilEt.setInputType(InputType.TYPE_CLASS_NUMBER);
     }
 
 
-    protected void rellenarCampos(){
-        Utils utils = new Utils(this);
+    public void rellenarCampos(Formulario updateForm){
+        Utils utils = new Utils(getActivity());
 
         Apoderado apoderado = updateForm.getApoderado();
         utils.setValueToEditText(R.id.panel_nombres_apoderado, apoderado.getNombres() );
@@ -159,43 +111,46 @@ public class FormApoderadoView extends GeneralActivity {
     }
 
     @Override
-    protected boolean validate(Object obj){
+    public boolean validate(Object obj,Configuracion config){
 
         boolean result = true;
         Apoderado apoderado = (Apoderado)obj;
         FieldsValidator validator = new FieldsValidator();
 
         if(!validator.validateShortString(apoderado.getNombres()) && config.getDatos_apoderado().isNombres_apoderado()){
-            nombreEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            nombreEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             result = false;
         }
         else{
-            nombreEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            nombreEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
         }
         if(!validator.validateShortString(apoderado.getApellidos()) && config.getDatos_apoderado().isApellidos_apoderado()){
-            apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            apellidoEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             result = false;
         }
         else{
-            apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            apellidoEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
 
         }
         if(!validator.validateCuil(apoderado.getCuil()) && config.getDatos_apoderado().isCuil_apoderado()){
-            cuilEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            cuilEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             result = false;
         }
         else{
-            cuilEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            cuilEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
         }
         if(!validator.validateDate(apoderado.getFecha_nacimiento()) && config.getDatos_apoderado().isFecha_nac_apoderado()){
-            fechaNacimientoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            fechaNacimientoEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             result = false;
         }
         else{
-            fechaNacimientoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            fechaNacimientoEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
         }
 
         return result;
     }
 
+    public void finish() {
+        getActivity().finish();
+    }
 }

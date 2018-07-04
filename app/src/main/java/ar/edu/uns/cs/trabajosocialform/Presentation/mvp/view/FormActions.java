@@ -28,12 +28,12 @@ public interface FormActions {
     /**
      * Complete the generic fields with corresponding information
      */
-      void inicializarGui(Configuracion configuracion);
+      void inicializarGui();
 
     /**
      * Validate fields of the form section
      * @param object Object related to section with completed fields
      * @return boolean representing success or fail of validation
      */
-      boolean validate(Object object);
+      boolean validate(Object object, Configuracion config);
 }

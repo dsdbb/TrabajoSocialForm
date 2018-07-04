@@ -18,14 +18,11 @@ public class FormularioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
         boolean update = getIntent().getBooleanExtra("UPDATE",false);
+        Formulario updateForm = null;
         if(update){
-            Formulario updateForm =(Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
-            presenter = new FormularioPresenter(new FormularioView(this),updateForm);
+             updateForm =(Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
         }
-        else{
-            presenter = new FormularioPresenter(new FormularioView(this),null);
-        }
-
+        presenter = new FormularioPresenter(new FormularioView(this),updateForm);
     }
 
     @Override
