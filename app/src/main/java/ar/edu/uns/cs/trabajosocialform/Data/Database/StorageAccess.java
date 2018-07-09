@@ -30,8 +30,10 @@ public class StorageAccess {
 
             /*Read the json string from file*/
             String json = fin.readLine();
+            Configuracion config = (new Gson()).fromJson(json,Configuracion.class);
 
-            return json;
+            String jsonResponse = (config!=null)?(new Gson()).toJson(config):"{}";
+            return jsonResponse;
         }
         catch (Exception ex)
         {

@@ -12,6 +12,7 @@ import ar.edu.uns.cs.trabajosocialform.Data.Database.DatabaseAcces;
 import ar.edu.uns.cs.trabajosocialform.Data.Database.StorageAccess;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.Presentation.ViewAdapter.DetailsViewAdapter;
+import ar.edu.uns.cs.trabajosocialform.Presentation.activities.DetallesFamiliarActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.activities.DetallesFormActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.activities.MainActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
@@ -40,9 +41,9 @@ public class DetallesFormPresenter {
     }
 
     public void onFamiliarDetallesItemClicked(int position){
-        Intent intent = new Intent(view.getActivity(),DetallesFamiliarView.class);
+        Intent intent = new Intent(view.getActivity(),DetallesFamiliarActivity.class);
         Familiar familiar = form.getFamiliares().get(position);
-        intent.putExtra("FAMILIAR",familiar);
+        intent.putExtra(MainActivity.KEY_FAMILIAR,familiar);
         view.getActivity().startActivity(intent);
     }
 

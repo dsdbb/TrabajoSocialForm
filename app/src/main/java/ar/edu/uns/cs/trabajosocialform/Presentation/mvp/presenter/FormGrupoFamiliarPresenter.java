@@ -14,6 +14,7 @@ import java.util.List;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Familiar;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
+import ar.edu.uns.cs.trabajosocialform.Presentation.activities.FormSituacionHabitacionalActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.activities.MainActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.ContextItemSelectedObserver;
@@ -38,37 +39,42 @@ public class FormGrupoFamiliarPresenter extends GeneralSectionPresenter {
         this.updateForm = updateForm;
 
         //Compruebo si se requiere la vista de solicitante
-        if(!configuration.getDatos_solicitante().required()){
+        if(!configuration.getDatos_grupo_familiar().required()){
             //continue
-            onNextButtonClicked();
+            skipSection();
             view.finish();
         }
         else{
             view.inicializarGui();
-        }
-        //If there is a form to update, fill fields
-        if(updateForm!=null){
-            this.update = true;
-            view.rellenarCampos(updateForm);
-            //add familiares to the form that is been created
-            List<Familiar> familiares = updateForm.getFamiliares();
-            for (int i = 0; i < familiares.size(); i++) {
-                form.getFamiliares().add(familiares.get(i));
+            //If there is a form to update, fill fields
+            if(updateForm!=null){
+                this.update = true;
+                view.rellenarCampos(updateForm);
+                //add familiares to the form that is been created
+                List<Familiar> familiares = updateForm.getFamiliares();
+                for (int i = 0; i < familiares.size(); i++) {
+                    form.getFamiliares().add(familiares.get(i));
+                }
             }
         }
+
+    }
+
+    public void skipSection(){
+        Intent intent = new Intent(view.getActivity(), FormSituacionHabitacionalActivity.class);
+        putExtras(intent);
+        view.getActivity().startActivity(intent);
     }
 
     public void onNextButtonClicked(){
-        Intent intent = new Intent(view.getActivity(), FormSituacionHabitacionalView.class);
-        intent.putExtra("CONFIG", configuration);
+        Intent intent = new Intent(view.getActivity(), FormSituacionHabitacionalActivity.class);
+        putExtras(intent);
+       /* intent.putExtra("CONFIG", configuration);
         intent.putExtra("FORM", form);
         intent.putExtra("UPDATE", update);
         if (update)
-            intent.putExtra("UPDATE_FORM", updateForm);
+            intent.putExtra("UPDATE_FORM", updateForm);*/
         view.getActivity().startActivity(intent);
-        if (!configuration.getDatos_grupo_familiar().required()) {
-            view.finish();
-        }
     }
 
     public void onNuevoFamiliarClicked(){

@@ -3,51 +3,57 @@ package ar.edu.uns.cs.trabajosocialform.Presentation.mvp.presenter;
 import android.app.Activity;
 import android.content.Intent;
 
-import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Apoderado;
+import ar.edu.uns.cs.trabajosocialform.Data.DataModel.CaracteristicasVivienda;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.Presentation.ViewAdapter.ViewAdapter;
-import ar.edu.uns.cs.trabajosocialform.Presentation.activities.FormDomicilioActivity;
+import ar.edu.uns.cs.trabajosocialform.Presentation.activities.FormInfraestructuraBarrialActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NextButtonClickedObserver;
-import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormApoderadoView;
+import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormCaracteristicasViviendaView;
+import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormInfraestructuraBarrialView;
 import ar.edu.uns.cs.trabajosocialform.R;
 
-public class FormApoderadoPresenter extends GeneralSectionPresenter{
+public class FormCaracteristicasViviendaPresenter extends GeneralSectionPresenter{
 
-    private FormApoderadoView view;
+    private FormCaracteristicasViviendaView view;
 
-    public FormApoderadoPresenter(FormApoderadoView view, Formulario form, Configuracion configuration, Formulario updateForm){
+    public FormCaracteristicasViviendaPresenter(FormCaracteristicasViviendaView view, Formulario form, Configuracion configuration, Formulario updateForm){
         this.view = view;
         this.form = form;
         this.configuration = configuration;
         this.updateForm = updateForm;
 
-        if (!configuration.getDatos_apoderado().required()) {
+        //Compruebo si se requiere la vista de solicitante
+        if (!configuration.getDatos_caracteristicas_vivienda().required()) {
+            //continue
             skipSection();
             view.finish();
         } else {
             view.inicializarGui();
             adaptView();
-            if(updateForm!=null){
-                this.update=true;
+            //If there is a form to update, fill fields
+            if (updateForm != null) {
+                this.update = true;
                 view.rellenarCampos(updateForm);
             }
         }
 
+
     }
 
-    public void skipSection() {
-        Intent intent = new Intent(view.getActivity(),FormDomicilioActivity.class);
+    public void skipSection(){
+        Intent intent = new Intent(view.getActivity(),FormInfraestructuraBarrialActivity.class);
         putExtras(intent);
         view.getActivity().startActivity(intent);
     }
 
+
     public void onNextButtonClicked(){
-        Apoderado apoderado = view.tomarDatos();
-        if(view.validate(apoderado,configuration)){
-            form.setApoderado(apoderado);
-            Intent intent = new Intent(view.getActivity(),FormDomicilioActivity.class);
+        CaracteristicasVivienda caracteristicas = view.tomarDatos();
+        if(view.validate(caracteristicas,configuration)){
+            form.setCaracteristicasVivienda(caracteristicas);
+            Intent intent = new Intent(view.getActivity(),FormInfraestructuraBarrialActivity.class);
             putExtras(intent);
             view.getActivity().startActivity(intent);
         }
@@ -59,7 +65,7 @@ public class FormApoderadoPresenter extends GeneralSectionPresenter{
 
     public void adaptView(){
         ViewAdapter va = new ViewAdapter(configuration, view.getActivity());
-        va.adaptarApoderado();
+        va.adaptarCaracteristicas_vivienda();
     }
 
     public void register() {

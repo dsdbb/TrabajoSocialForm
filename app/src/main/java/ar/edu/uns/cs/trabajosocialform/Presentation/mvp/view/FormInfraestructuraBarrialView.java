@@ -2,6 +2,8 @@ package ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -9,16 +11,27 @@ import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.InfraestructuraBarrial;
 import ar.edu.uns.cs.trabajosocialform.Data.Database.DatabaseAcces;
 import ar.edu.uns.cs.trabajosocialform.Presentation.activities.MainActivity;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NextButtonClickedObserver;
 import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.Presentation.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FormInfraestructuraBarrialView extends GeneralActivity {
+public class FormInfraestructuraBarrialView extends ActivityView implements FormActions{
 
-    @Override
+    @BindView(R.id.toolbar)Toolbar toolbar;
+
+    public FormInfraestructuraBarrialView(AppCompatActivity activity){
+        super(activity);
+    }
+
+
+
+  /*  @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_infraestructura_barrial);
@@ -32,10 +45,10 @@ public class FormInfraestructuraBarrialView extends GeneralActivity {
         }
         else{
             inicializarGui();
-            /*Bind Activity to use ButterKnife facilities*/
+            Bind Activity to use ButterKnife facilities
             ButterKnife.bind(this);
 
-            /*Chequeo si es un update y en ese caso relleno los campos*/
+            Chequeo si es un update y en ese caso relleno los campos
             update = getIntent().getBooleanExtra("UPDATE",false);
             if(update){
                 updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
@@ -46,12 +59,14 @@ public class FormInfraestructuraBarrialView extends GeneralActivity {
             va.adaptarInfraestructura_barrial();
         }
 
-    }
+    }*/
 
     @Override
     @OnClick(R.id.siguiente_button)
-    public void continuar(View view){
-        InfraestructuraBarrial infraestructura = tomarDatos();
+    public void continuar(View view) {
+        RxBus.post(new NextButtonClickedObserver.NextButtonClicked());
+    }
+     /*   InfraestructuraBarrial infraestructura = tomarDatos();
         form.setInfraestructuraBarrial(infraestructura);
         DatabaseAcces db = new DatabaseAcces();
         if(update){
@@ -70,11 +85,11 @@ public class FormInfraestructuraBarrialView extends GeneralActivity {
             finish();
         }
 
-    }
+    }*/
 
     @Override
-    protected InfraestructuraBarrial tomarDatos(){
-        Utils utils = new Utils(this);
+    public InfraestructuraBarrial tomarDatos(){
+        Utils utils = new Utils(getActivity());
         String calles = utils.getDataTvSpinner(R.id.panel_infraestructura_calles);
         String iluminacion = utils.getDataTvSpinner(R.id.panel_iluminacion);
         String inundacionS = utils.getDataTvSpinner(R.id.panel_inundacion);
@@ -90,13 +105,14 @@ public class FormInfraestructuraBarrialView extends GeneralActivity {
     }
 
     @Override
-    protected void inicializarGui(){
-        Utils utils = new Utils(this);
+    public void inicializarGui(){
+        Utils utils = new Utils(getActivity());
 
         utils.addContentToTemplate(R.layout.form_infraestructura_barrial);
 
+        ButterKnife.bind(this,getActivity());
+
         /*Titulo toolbar*/
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_infraestructura_barrial);
 
         utils.setValuesTvSpinner(R.array.infraestructura_calles_opciones,R.string.titulo_infraestructura_calles,R.id.panel_infraestructura_calles);
@@ -118,8 +134,8 @@ public class FormInfraestructuraBarrialView extends GeneralActivity {
     }
 
     @Override
-    protected void rellenarCampos(){
-        Utils utils = new Utils(this);
+    public void rellenarCampos(Formulario updateForm){
+        Utils utils = new Utils(getActivity());
 
         InfraestructuraBarrial infraestructura = updateForm.getInfraestructuraBarrial();
         utils.setValueToSpinner(R.id.panel_infraestructura_calles, R.array.infraestructura_calles_opciones, infraestructura.getInfraestructura_calles());
@@ -134,7 +150,7 @@ public class FormInfraestructuraBarrialView extends GeneralActivity {
     }
 
     @Override
-    protected boolean validate(Object obj){
+    public boolean validate(Object obj, Configuracion configuracion){
         return true;
     }
 

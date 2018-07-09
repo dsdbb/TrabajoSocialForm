@@ -2,22 +2,36 @@ package ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
 
+import java.text.Normalizer;
+
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.CaracteristicasVivienda;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NextButtonClickedObserver;
 import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
 import ar.edu.uns.cs.trabajosocialform.Presentation.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FormCaracteristicasViviendaActivity extends GeneralActivity {
+public class FormCaracteristicasViviendaView extends ActivityView implements FormActions{
 
-    @Override
+    @BindView(R.id.toolbar)Toolbar toolbar;
+
+    public FormCaracteristicasViviendaView(AppCompatActivity activity){
+        super(activity);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+    }
+
+   /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_caracteristicas_vivienda);
@@ -33,10 +47,10 @@ public class FormCaracteristicasViviendaActivity extends GeneralActivity {
         }
         else{
             inicializarGui();
-            /*Bind Activity to use ButterKnife facilities*/
+            Bind Activity to use ButterKnife facilities
             ButterKnife.bind(this);
 
-            /*Chequeo si es un update y en ese caso relleno los campos*/
+           *Chequeo si es un update y en ese caso relleno los campos
             update = getIntent().getBooleanExtra("UPDATE",false);
             if(update){
                 updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
@@ -47,12 +61,14 @@ public class FormCaracteristicasViviendaActivity extends GeneralActivity {
             va.adaptarCaracteristicas_vivienda();
         }
 
-    }
+    }*/
 
     @Override
     @OnClick(R.id.siguiente_button)
-    public void continuar(View view){
-        CaracteristicasVivienda caracteristicas = tomarDatos();
+    public void continuar(View view) {
+        RxBus.post(new NextButtonClickedObserver.NextButtonClicked());
+    }
+    /*    CaracteristicasVivienda caracteristicas = tomarDatos();
         form.setCaracteristicasVivienda(caracteristicas);
         Intent intent = new Intent(this,FormInfraestructuraBarrialView.class);
         intent.putExtra("CONFIG",config);
@@ -65,11 +81,11 @@ public class FormCaracteristicasViviendaActivity extends GeneralActivity {
         if(!config.getDatos_caracteristicas_vivienda().required()){
             finish();
         }
-    }
+    }*/
 
     @Override
-    protected CaracteristicasVivienda tomarDatos(){
-        Utils utils = new Utils(this);
+    public CaracteristicasVivienda tomarDatos(){
+        Utils utils = new Utils(getActivity());
 
         String techo = utils.getDataTvSpinner(R.id.panel_techo);
         String revestimientoTechoS = utils.getDataTvSpinner(R.id.panel_revestimiento_techo);
@@ -94,13 +110,14 @@ public class FormCaracteristicasViviendaActivity extends GeneralActivity {
     }
 
     @Override
-    protected void inicializarGui(){
-        Utils utils = new Utils(this);
+    public void inicializarGui(){
+        Utils utils = new Utils(getActivity());
 
         utils.addContentToTemplate(R.layout.form_caracteristicas_vivienda);
 
+        ButterKnife.bind(this,getActivity());
+
         /*Titulo toolbar*/
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_caracteristicas_vivienda);
 
         utils.setValuesTvSpinner(R.array.techo_opciones,R.string.titulo_techo,R.id.panel_techo);
@@ -127,8 +144,8 @@ public class FormCaracteristicasViviendaActivity extends GeneralActivity {
     }
 
     @Override
-    protected void rellenarCampos(){
-        Utils utils = new Utils(this);
+    public void rellenarCampos(Formulario updateForm){
+        Utils utils = new Utils(getActivity());
 
         CaracteristicasVivienda caracteristicas = updateForm.getCaracteristicasVivienda();
         utils.setValueToSpinner(R.id.panel_techo, R.array.techo_opciones, caracteristicas.getMaterial_techo());
@@ -151,7 +168,7 @@ public class FormCaracteristicasViviendaActivity extends GeneralActivity {
     }
 
     @Override
-    protected boolean validate(Object obj){
+    public boolean validate(Object obj, Configuracion config){
         return true;
     }
 

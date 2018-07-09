@@ -1,27 +1,32 @@
 package ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.google.gson.Gson;
-
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.SituacionHabitacional;
+import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NextButtonClickedObserver;
 import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
-import ar.edu.uns.cs.trabajosocialform.Presentation.ViewAdapter.ViewAdapter;
-import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FormSituacionHabitacionalView extends GeneralActivity {
+public class FormSituacionHabitacionalView extends ActivityView implements FormActions{
 
+    @BindView(R.id.toolbar)Toolbar toolbar;
 
-    @Override
+    public FormSituacionHabitacionalView(AppCompatActivity activity){
+        super(activity);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
+
+   /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_situacion_habitacional);
@@ -38,15 +43,13 @@ public class FormSituacionHabitacionalView extends GeneralActivity {
         }
         else{
             inicializarGui();
-            /*Bind Activity to use ButterKnife facilities*/
+            //Bind Activity to use ButterKnife facilities
             ButterKnife.bind(this);
 
-            /*Chequeo si es un update y en ese caso relleno los campos*/
+            //Chequeo si es un update y en ese caso relleno los campos
             update = getIntent().getBooleanExtra("UPDATE",false);
             if(update){
                 updateForm = (Formulario)getIntent().getSerializableExtra("UPDATE_FORM");
-                Log.i("JSON uForm EN SITHAB: ", (new Gson()).toJson(updateForm));
-                Log.i("JSON form EN SITHAB: ", (new Gson()).toJson(form));
                 rellenarCampos();
             }
 
@@ -55,29 +58,18 @@ public class FormSituacionHabitacionalView extends GeneralActivity {
         }
 
 
-    }
+    }*/
 
     @Override
     @OnClick(R.id.siguiente_button)
-    public void continuar(View view){
-        SituacionHabitacional situacion = tomarDatos();
-        form.setSituacionHabitacional(situacion);
-        Intent intent = new Intent(this,FormCaracteristicasViviendaActivity.class);
-        intent.putExtra("CONFIG",config);
-        intent.putExtra("FORM",form);
-        intent.putExtra("UPDATE",update);
-        if(update)
-            intent.putExtra("UPDATE_FORM",updateForm);
-        startActivity(intent);
-
-        if(!config.getDatos_situacion_habitacional().required()){
-              finish();
-        }
+    public void continuar(View view) {
+        RxBus.post(new NextButtonClickedObserver.NextButtonClicked());
     }
 
+
     @Override
-    protected SituacionHabitacional tomarDatos(){
-        Utils utils = new Utils(this);
+    public SituacionHabitacional tomarDatos(){
+        Utils utils = new Utils(getActivity());
         String tipoVivienda = utils.getDataTvSpinner(R.id.panel_tipo_vivienda);
         String tenencia = utils.getDataTvSpinner(R.id.panel_tenencia_vivienda_terreno);
         String tiempoOcupacionS = utils.getDataTvEt(R.id.panel_tiempo_ocupacion);
@@ -100,13 +92,14 @@ public class FormSituacionHabitacionalView extends GeneralActivity {
     }
 
     @Override
-    protected void inicializarGui(){
-        Utils utils = new Utils(this);
+    public void inicializarGui(){
+        Utils utils = new Utils(getActivity());
 
         utils.addContentToTemplate(R.layout.form_situacion_habitacional);
 
+        ButterKnife.bind(this,getActivity());
+
         /*Titulo toolbar*/
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_situacion_habitacional);
 
         utils.setValuesTvSpinner(R.array.tipo_vivienda_opciones,R.string.titulo_tipo_vivienda,R.id.panel_tipo_vivienda);
@@ -124,8 +117,8 @@ public class FormSituacionHabitacionalView extends GeneralActivity {
     }
 
     @Override
-    protected void rellenarCampos(){
-        Utils utils = new Utils(this);
+    public void rellenarCampos(Formulario updateForm){
+        Utils utils = new Utils(getActivity());
 
         SituacionHabitacional situacionHabitacional = updateForm.getSituacionHabitacional();
         utils.setValueToSpinner(R.id.panel_tipo_vivienda, R.array.tipo_vivienda_opciones, situacionHabitacional.getTipo_vivienda());
@@ -137,7 +130,9 @@ public class FormSituacionHabitacionalView extends GeneralActivity {
     }
 
     @Override
-    protected boolean validate(Object obj){
+    public boolean validate(Object obj, Configuracion configuracion){
         return true;
     }
+
+
 }

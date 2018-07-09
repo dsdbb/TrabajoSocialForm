@@ -17,6 +17,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +92,22 @@ public class EntradasPresenter {
                     public void run() {
                         //int pos = item.getOrder();
                         int formId = forms.get(pos).getId();
-                        db.delete(view.getActivity(),forms.get(pos));
+                        db.delete(view.getActivity(), forms.get(pos), new DisposableObserver<Boolean>() {
+                            @Override
+                            public void onNext(Boolean aBoolean) {
+                                if(aBoolean) view.showMessage(R.string.delete_correcto);
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                view.showMessage(R.string.error_delete);
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
                         forms.remove(pos);
                         solicitantes.remove(pos);
                         view.refreshList(solicitantes);
@@ -124,6 +141,7 @@ public class EntradasPresenter {
         List<Transaction> transactions = db.getTransactions(view.getActivity());
         ServerAccess sa = new ServerAccess(view.getActivity());
 
+        Log.i("Tamaño Transacciones",transactions.size()+"");
         if(transactions.size()==0){
             view.showMessage(R.string.sin_actualizaciones);
         }
@@ -163,6 +181,7 @@ public class EntradasPresenter {
                 }
 
             }
+            view.showMessage(R.string.actualizado_correctamente);
         }
     }
 

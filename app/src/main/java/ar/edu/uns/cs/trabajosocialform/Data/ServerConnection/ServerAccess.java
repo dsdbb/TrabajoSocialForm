@@ -45,6 +45,7 @@ public class ServerAccess {
 
     private final Activity act;
     private final String ip = "192.168.43.45:80";
+    private final String folder = "trabajo-social";
 
     public ServerAccess(Activity act){
         this.act = act;
@@ -55,7 +56,7 @@ public class ServerAccess {
      * it is out of date
      */
     public void getConfigurationFileFromServer(final Observer<Boolean> observer){
-        String url = "http://"+ip+"/example/getconfig.php";
+        String url = "http://"+ip+"/"+folder+"/getconfig.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -67,12 +68,13 @@ public class ServerAccess {
                         }
                         else{
                             /*Checks if the json retrieved from server is the one I already have*/
-                            //Utils utils = new Utils(act);
-                            //Configuracion confActual = utils.getConfigurationFile();
-                            //String jsonActual = (new Gson()).toJson(confActual);
                             StorageAccess sa = new StorageAccess();
                             String jsonActual = sa.getConfigurationJson(act);
 
+                            if(jsonActual==null){
+                                jsonActual="{}";
+                            }
+                            /*Convert to get the same json format*/
                             Configuracion configServer = (new Gson()).fromJson(response,Configuracion.class);
                             String jsonServer = (new Gson()).toJson(configServer);
 
@@ -118,7 +120,7 @@ public class ServerAccess {
      * @param transaction Transaction associated to the upload (to be deleted if upload is successful)
      */
     public void uploadForm(final Formulario form, final Transaction transaction, final Observer<Boolean> observer){
-        String server_url = "http://"+ip+"/example/uploadform.php";
+        String server_url = "http://"+ip+"/"+folder+"/uploadform.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
                 new Response.Listener<String>() {
@@ -259,7 +261,7 @@ public class ServerAccess {
      * @param transaction transaction associated to the delete action (to be deleted if successful)
      */
     public void deleteForm(final int formId, final Transaction transaction, final Observer<Boolean> observer){
-        String server_url = "http://"+ip+"/example/deleteform.php";
+        String server_url = "http://"+ip+"/"+folder+"/deleteform.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
                 new Response.Listener<String>() {

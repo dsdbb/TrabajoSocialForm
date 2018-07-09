@@ -53,4 +53,8 @@ public class ActivityView {
         @BindView(R.id.textView) TextView textView;
     }
 
+    public void finish() {
+        getActivity().finish();
+    }
+
 }

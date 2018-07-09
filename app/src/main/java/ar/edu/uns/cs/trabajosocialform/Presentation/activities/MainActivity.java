@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String KEY_CONFIGURATION_FILE = "CONFIG";
     public static final String KEY_UPDATE = "UPDATE";
     public static final String KEY_UPDATE_FORM = "UPDATE_FORM";
+    public static final String KEY_FAMILIAR = "FAMILIAR";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

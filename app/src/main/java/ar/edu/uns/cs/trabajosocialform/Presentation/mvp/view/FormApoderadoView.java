@@ -151,7 +151,4 @@ public class FormApoderadoView extends ActivityView implements FormActions{
         return result;
     }
 
-    public void finish() {
-        getActivity().finish();
-    }
 }

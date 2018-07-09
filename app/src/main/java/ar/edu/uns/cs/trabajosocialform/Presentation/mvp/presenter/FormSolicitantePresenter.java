@@ -33,19 +33,19 @@ public class FormSolicitantePresenter extends GeneralSectionPresenter {
         //Compruebo si se requiere la vista de solicitante
         if(!configuration.getDatos_solicitante().required()){
             //continue
-            onNextButtonClicked();
+            skipSection();
             view.finish();
         }
         else{
             view.inicializarGui();
             adaptView();
+            //If there is a form to update, fill fields
+            if(updateForm!=null){
+                this.update=true;
+                view.rellenarCampos(updateForm);
+            }
         }
-        //If there is a form to update, fill fields
-        if(updateForm!=null){
-            Log.i("updateForm:", " No es nulo en solicitante");
-            this.update=true;
-            view.rellenarCampos(updateForm);
-        }
+
     }
 
     public void adaptView(){
@@ -64,6 +64,12 @@ public class FormSolicitantePresenter extends GeneralSectionPresenter {
         else{
             view.showMessage(R.string.datos_invalidos);
         }
+    }
+
+    public void skipSection(){
+        Intent intent = new Intent(view.getActivity(),FormApoderadoAcitivity.class);
+        putExtras(intent);
+        view.getActivity().startActivity(intent);
     }
 
     private void onPhotoButtonClicked(){

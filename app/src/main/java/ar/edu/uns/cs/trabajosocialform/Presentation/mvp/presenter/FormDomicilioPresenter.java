@@ -25,20 +25,27 @@ public class FormDomicilioPresenter extends GeneralSectionPresenter {
         this.updateForm = updateForm;
 
         //Compruebo si se requiere la vista de solicitante
-        if (!configuration.getDatos_solicitante().required()) {
+        if (!configuration.getDatos_domicilio().required()) {
             //continue
-            onNextButtonClicked();
+            skipSection();
             view.finish();
         } else {
             view.inicializarGui();
             adaptView();
-        }
-        //If there is a form to update, fill fields
-        if (updateForm != null) {
-            this.update = true;
-            view.rellenarCampos(updateForm);
+            //If there is a form to update, fill fields
+            if (updateForm != null) {
+                this.update = true;
+                view.rellenarCampos(updateForm);
+            }
         }
 
+
+    }
+
+    public void skipSection(){
+        Intent intent = new Intent(view.getActivity(),FormGrupoFamiliarActivity.class);
+        putExtras(intent);
+        view.getActivity().startActivity(intent);
     }
 
     public void onNextButtonClicked(){

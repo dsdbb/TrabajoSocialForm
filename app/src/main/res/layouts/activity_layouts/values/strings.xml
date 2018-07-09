@@ -27,9 +27,12 @@
     <string name="delete_correcto">Se ha eliminado correctamente</string>
     <string name="error_servidor">Ha ocurrido un error conectadose al servidor</string>
     <string name="error_fichero">No se ha encontrado el archivo de configuracion</string>
+    <string name="error_update">Ha ocurrido un error durante la actualización</string>
+    <string name="error_delete">No se ha podido eliminar correctamente</string>
+    <string name="error_insert">Error al crear la entrada</string>
     <string name="nueva_configuracion">Se ha encontrado una nueva configuracion</string>
     <string name="sin_actualizaciones">No hay actualizaciones pendientes</string>
-
+    <string name="actualizado_correctamente">Se ha actualizado la base de datos externa</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>

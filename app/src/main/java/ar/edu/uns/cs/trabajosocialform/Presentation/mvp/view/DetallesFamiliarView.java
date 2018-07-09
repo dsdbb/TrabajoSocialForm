@@ -17,25 +17,24 @@ import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Salud;
 import ar.edu.uns.cs.trabajosocialform.Data.Database.DatabaseAcces;
 import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Utils.Utils;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class DetallesFamiliarView extends AppCompatActivity {
+public class DetallesFamiliarView extends ActivityView {
 
-    private Familiar familiar;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalles_familiar);
+    @BindView(R.id.toolbar)Toolbar toolbar;
 
-        familiar = (Familiar)getIntent().getSerializableExtra("FAMILIAR");
-        inicializarGui();
+    public DetallesFamiliarView(AppCompatActivity activity){
+        super(activity);
     }
 
-    public void inicializarGui(){
-        Utils utils = new Utils(this);
+    public void inicializarGui(Familiar familiar){
+        Utils utils = new Utils(getActivity());
+
+        ButterKnife.bind(this,getActivity());
 
         /*Titulo toolbar*/
-        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.titulo_detalles_familiar);
 
         /*DATOS GENERALES*/
@@ -54,9 +53,9 @@ public class DetallesFamiliarView extends AppCompatActivity {
         utils.setDetailValues(R.id.detalle_capacitacion_familiar, R.string.capacitacion, familiar.getCapacitacion()+" ("+familiar.getAsistenciaCapacitacion()+")");
 
         DatabaseAcces db = new DatabaseAcces();
-        Ocupacion ocupacion = db.getOcupacion(this, familiar.getOcupacionId());
-        Ingreso ingreso = db.getIngreso(this, familiar.getIngresoId());
-        Salud salud = db.getSalud(this, familiar.getSaludId());
+        Ocupacion ocupacion = db.getOcupacion(getActivity(), familiar.getOcupacionId());
+        Ingreso ingreso = db.getIngreso(getActivity(), familiar.getIngresoId());
+        Salud salud = db.getSalud(getActivity(), familiar.getSaludId());
 
         /*OCUPACION*/
         utils.setDetailValues(R.id.detalle_condicion_actividad_familiar, R.string.condicion_actividad, ocupacion.getCondicion_actividad());
@@ -71,8 +70,8 @@ public class DetallesFamiliarView extends AppCompatActivity {
 
         List<IngresoNoLaboral> noLaborales = ingreso.getIngresosNoLaborales();
         for(int i=0; i<noLaborales.size(); i++){
-            LinearLayout contenedor = findViewById(R.id.detalles_ingresos_no_laborales);
-            LayoutInflater inflater = LayoutInflater.from(this);
+            LinearLayout contenedor = getActivity().findViewById(R.id.detalles_ingresos_no_laborales);
+            LayoutInflater inflater = LayoutInflater.from(getActivity());
 
             View inflatedView = inflater.inflate(R.layout.detalles_item, contenedor, false);
             contenedor.addView(inflatedView);
@@ -83,8 +82,8 @@ public class DetallesFamiliarView extends AppCompatActivity {
 
         List<String> programasSocialesSTI = ingreso.getProgramas_sociales_sti();
         for(int i=0; i<programasSocialesSTI.size();i++){
-            LinearLayout contenedor = findViewById(R.id.detalles_programas_sociales_sti);
-            LayoutInflater inflater = LayoutInflater.from(this);
+            LinearLayout contenedor = getActivity().findViewById(R.id.detalles_programas_sociales_sti);
+            LayoutInflater inflater = LayoutInflater.from(getActivity());
 
             View inflatedView = inflater.inflate(R.layout.detalles_item, contenedor, false);
             contenedor.addView(inflatedView);

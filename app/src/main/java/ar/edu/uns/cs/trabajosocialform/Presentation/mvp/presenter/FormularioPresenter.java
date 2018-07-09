@@ -28,6 +28,7 @@ public class FormularioPresenter extends GeneralSectionPresenter{
 
         storageAccess = new StorageAccess();
         configuration = getConfigurationFileFromStorage();
+        Log.i("Configuration File",(new Gson()).toJson(configuration));
 
         view.inicializarGui();
 

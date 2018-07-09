@@ -31,10 +31,13 @@ import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Ocupacion;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Salud;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.SituacionHabitacional;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Solicitante;
+import ar.edu.uns.cs.trabajosocialform.Data.asyncTasks.DeleteAsyncTask;
+import ar.edu.uns.cs.trabajosocialform.Data.asyncTasks.InsertAsyncTask;
 import ar.edu.uns.cs.trabajosocialform.R;
 import ar.edu.uns.cs.trabajosocialform.Data.Transactions.Transaction;
 import ar.edu.uns.cs.trabajosocialform.Data.Transactions.TransactionDao;
 import ar.edu.uns.cs.trabajosocialform.Data.Transactions.TransactionOptions;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * Class that provides the methods to access the local Database
@@ -46,89 +49,8 @@ public class DatabaseAcces {
      * @param act Activity where the method is called
      * @param form Formulario object to be saved
      */
-    public void saveInDatabase(Activity act, final Formulario form){
-        final Context context = act;
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AppDatabase mDb = AppDatabase.getAppDatabase(context); // Get an Instance of Database class
-
-                /*Save the different sections of the form and then the Formulario object referencing to re correspondent id's*/
-
-                /*Solicitante*/
-                SolicitanteDao solDao = mDb.solicitanteDao();
-                long solicitanteId = solDao.insert(form.getSolicitante());
-                /*Apoderado*/
-                ApoderadoDao apoderadoDao = mDb.apoderadoDao();
-                long apoderadoId = apoderadoDao.insert(form.getApoderado());
-                /*Domicilio*/
-                DomicilioDao domicilioDao = mDb.domicilioDao();
-                long domicilioId = domicilioDao.insert(form.getDomicilio());
-                /*Situacion habitacional*/
-                SituacionHabitacionalDao situacionHabitacionalDao = mDb.situacionHabitacionalDao();
-                long situacionHabitacionalId = situacionHabitacionalDao.insert(form.getSituacionHabitacional());
-                /*Características vivienda*/
-                CaracteristicasViviendaDao caracteristicasViviendaDao = mDb.caracteristicasViviendaDao();
-                long caracteristicasViviendaId = caracteristicasViviendaDao.insert(form.getCaracteristicasVivienda());
-                /*Infraestructura barrial*/
-                InfraestructuraBarrialDao infraestructuraBarrialDao = mDb.infraestructuraBarrialDao();
-                long infraestructuraBarrialId = infraestructuraBarrialDao.insert(form.getInfraestructuraBarrial());
-
-                /*Add to the form the id's of the objects saved recently*/
-                form.setSolicitanteId((int)solicitanteId);
-                form.setApoderadoId((int)apoderadoId);
-                form.setDomicilioId((int)domicilioId);
-                form.setSituacionHabitacionalId((int)situacionHabitacionalId);
-                form.setCaracteristicasViviendaId((int)caracteristicasViviendaId);
-                form.setInfraestructuraBarrialId((int)infraestructuraBarrialId);
-
-                /*Now that the form is completed it can be saved*/
-                FormularioDao formularioDao = mDb.formularioDao();
-                long formularioId = formularioDao.insert(form);
-
-                /*Once the form is saved is time to family because each new family member will be related with form id*/
-                List<Familiar> familiares = form.getFamiliares();
-                for(int i=0; i<familiares.size(); i++){
-                    Familiar familiar = familiares.get(i);
-
-                    /*Ocupacion*/
-                    OcupacionDao ocupacionDao = mDb.ocupacionDao();
-                    long ocupacionId = ocupacionDao.insert(familiar.getOcupacion());
-                    /*Ingresos*/
-                    IngresoDao ingresoDao = mDb.ingresoDao();
-                    long ingresoId = ingresoDao.insert(familiar.getIngreso());
-                    /*Salud*/
-                    SaludDao saludDao = mDb.saludDao();
-                    long saludId = saludDao.insert(familiar.getSalud());
-
-                    /*Complete Familiar object with corresponding Ocupacion, Ingresos and Salud id*/
-                    familiar.setOcupacionId((int)ocupacionId);
-                    familiar.setIngresoId((int)ingresoId);
-                    familiar.setSaludId((int)saludId);
-
-                    /*Once the Familiar object is completed it can be saved*/
-                    FamiliarDao familiarDao = mDb.familiarDao();
-                    long familiarId = familiarDao.insert(familiar);
-
-                    /*Having the form and the family member we have to relate it by id using a join table*/
-                    FormularioFamiliarJoin ffj = new FormularioFamiliarJoin((int)formularioId,(int)familiarId);
-                    FormularioFamiliarDao formularioFamiliarDao = mDb.formularioFamiliarDao();
-                    formularioFamiliarDao.insert(ffj);
-                }
-
-                Transaction transaction = new Transaction(TransactionOptions.INSERT.getValue(),(int)formularioId);
-                mDb.transactionDao().insert(transaction);
-
-            }
-        });
-        t.start();
-
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+    public void saveInDatabase(Activity act, final Formulario form, final DisposableObserver<Boolean> observer){
+        new InsertAsyncTask().execute(act,form,observer);
     }
 
     /**
@@ -137,10 +59,38 @@ public class DatabaseAcces {
      * @param newForm Form with the modifications
      * @param oldForm Old Form that has no modifications
      */
-    public void updateDatabase(final Activity act, Formulario newForm,Formulario oldForm){
+    public void updateDatabase(final Activity act,final Formulario newForm, Formulario oldForm, final DisposableObserver<Boolean> observer){
         /*Delete the old form and add the modificated form*/
-        delete(act,oldForm);
-        saveInDatabase(act,newForm);
+        delete(act, oldForm, new DisposableObserver<Boolean>() {
+            @Override
+            public void onNext(Boolean aBoolean) {
+                if(aBoolean) saveInDatabase(act, newForm, new DisposableObserver<Boolean>() {
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        observer.onNext(true);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        observer.onError(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                observer.onError(e);
+            }
+
+            @Override
+            public void onComplete() {}
+        });
+
     }
 
     /**
@@ -398,81 +348,8 @@ public class DatabaseAcces {
      * @param act Activity where the method was called
      * @param form Formulario object containing the ids to delete all the references
      */
-    public void delete(final Activity act, final Formulario form){
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AppDatabase mDb = AppDatabase.getAppDatabase(act);// Get an Instance of Database class
-
-                /*Delete joins between Fomulario and Familiar*/
-                FormularioFamiliarDao formularioFamiliarDao = mDb.formularioFamiliarDao();
-                List<Integer> familiaresId = formularioFamiliarDao.getFamiliares(form.getId());
-                formularioFamiliarDao.deleteJoinsWithForm(form.getId());
-
-                FamiliarDao familiarDao = mDb.familiarDao();
-                /*Delete Familiar objects*/
-                for(int i=0;i<familiaresId.size();i++){
-                    Familiar familiar = familiarDao.getFamiliar(familiaresId.get(i));
-
-                    OcupacionDao ocupacionDao = mDb.ocupacionDao();
-                    ocupacionDao.delete(familiar.getOcupacionId());
-
-                    IngresoDao ingresoDao = mDb.ingresoDao();
-                    ingresoDao.delete(familiar.getIngresoId());
-
-                    SaludDao saludDao = mDb.saludDao();
-                    saludDao.delete(familiar.getSaludId());
-
-                    familiarDao.delete(familiar.getId());
-                }
-
-                /*Solicitante*/
-                SolicitanteDao solDao = mDb.solicitanteDao();
-                solDao.delete(form.getSolicitanteId());
-                /*Apoderado*/
-                ApoderadoDao apoderadoDao = mDb.apoderadoDao();
-                apoderadoDao.delete(form.getApoderadoId());
-                /*Domicilio*/
-                DomicilioDao domicilioDao = mDb.domicilioDao();
-                domicilioDao.delete(form.getDomicilioId());
-                /*Situacion habitacional*/
-                SituacionHabitacionalDao situacionHabitacionalDao = mDb.situacionHabitacionalDao();
-                situacionHabitacionalDao.delete(form.getSituacionHabitacionalId());
-                /*Características vivienda*/
-                CaracteristicasViviendaDao caracteristicasViviendaDao = mDb.caracteristicasViviendaDao();
-                caracteristicasViviendaDao.delete(form.getCaracteristicasViviendaId());
-                /*Infraestructura barrial*/
-                InfraestructuraBarrialDao infraestructuraBarrialDao = mDb.infraestructuraBarrialDao();
-                infraestructuraBarrialDao.delete(form.getInfraestructuraBarrialId());
-
-                FormularioDao formularioDao = mDb.formularioDao();
-                formularioDao.delete(form.getId());
-
-                /*If the insert of the form exist in the transaction Log it is deleted to avoid inserting and deleting from
-                * server needlessly*/
-                TransactionDao transactionDao = mDb.transactionDao();
-                Transaction transaction = transactionDao.findTransaction(TransactionOptions.INSERT.getValue(), form.getId());
-
-                if(transaction!=null){
-                    transactionDao.delete(transaction);
-                }
-                else{
-                    /*If there is no insert for the form in the transaction log, it means that the form is already uploaded
-                    * so the delete must be inserted in the log to delete from server later*/
-                    transactionDao.insert(new Transaction(TransactionOptions.DELETE.getValue(),form.getId()));
-                }
-
-
-            }
-        });
-
-        t.start();
-
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void delete(final Activity act, final Formulario form,final DisposableObserver<Boolean> observer){
+       new DeleteAsyncTask().execute(act,form,observer);
 
     }
 
