@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Data.Database.DatabaseAcces;
+import ar.edu.uns.cs.trabajosocialform.Presentation.adapters.EntradasRecyclerViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.ContextItemSelectedObserver;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.ContextMenuObserver;
@@ -64,7 +65,6 @@ public class EntradasActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        Log.i("Item order",item.getOrder()+"");
         RxBus.post(new ContextItemSelectedObserver.ContextItemSelected(item));
         return true;
     }

@@ -9,9 +9,13 @@ import android.widget.TextView;
 import java.util.List;
 
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Familiar;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.EntradasItemClickedObserver;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.FamiliarDetallesItemClickedObserver;
 import ar.edu.uns.cs.trabajosocialform.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FamiliaresDetallesRecyclerViewAdapter extends RecyclerView.Adapter<FamiliaresDetallesRecyclerViewAdapter.ViewHolder> {
 
@@ -31,6 +35,7 @@ public class FamiliaresDetallesRecyclerViewAdapter extends RecyclerView.Adapter<
     public void onBindViewHolder(FamiliaresDetallesRecyclerViewAdapter.ViewHolder holder, int position) {
         Familiar familiar = familiares.get(position);
         holder.setText(familiar.getNombres() + " " + familiar.getApellidos());
+        holder.setPosition(position);
     }
 
     @Override
@@ -41,10 +46,15 @@ public class FamiliaresDetallesRecyclerViewAdapter extends RecyclerView.Adapter<
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.label)TextView textView;
+        private int position;
 
         public ViewHolder(ViewGroup parent, View v) {
             super(v);
             ButterKnife.bind(this,v);
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
         }
 
         public TextView getTextView(){
@@ -53,6 +63,11 @@ public class FamiliaresDetallesRecyclerViewAdapter extends RecyclerView.Adapter<
 
         public void setText(String text){
             textView.setText(text);
+        }
+
+        @OnClick
+        public void clicked(){
+            RxBus.post(new FamiliarDetallesItemClickedObserver.FamiliarDetallesItemClicked(position));
         }
     }
 }

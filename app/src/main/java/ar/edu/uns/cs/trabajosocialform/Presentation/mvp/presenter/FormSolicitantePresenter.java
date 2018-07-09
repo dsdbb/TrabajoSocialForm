@@ -12,12 +12,10 @@ import ar.edu.uns.cs.trabajosocialform.Presentation.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.Presentation.activities.FormApoderadoAcitivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.activities.FormSolicitanteActivity;
-import ar.edu.uns.cs.trabajosocialform.Presentation.activities.MainActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NextButtonClickedObserver;
-import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.OnActivityResultObserver;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.OnActivityResultPhotoObserver;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.PhotoButtonClickedObserver;
-import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormApoderadoView;
 import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormSolicitanteView;
 import ar.edu.uns.cs.trabajosocialform.R;
 
@@ -44,6 +42,8 @@ public class FormSolicitantePresenter extends GeneralSectionPresenter {
         }
         //If there is a form to update, fill fields
         if(updateForm!=null){
+            Log.i("updateForm:", " No es nulo en solicitante");
+            this.update=true;
             view.rellenarCampos(updateForm);
         }
     }
@@ -97,7 +97,7 @@ public class FormSolicitantePresenter extends GeneralSectionPresenter {
             }
         });
 
-        RxBus.subscribe(activity, new OnActivityResultObserver() {
+        RxBus.subscribe(activity, new OnActivityResultPhotoObserver() {
             @Override
             public void onEvent(OnActivityResult value) {
                 onPhotoActivityResult(value.getPhoto());

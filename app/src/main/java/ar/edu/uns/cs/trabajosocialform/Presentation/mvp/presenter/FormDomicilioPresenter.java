@@ -7,6 +7,7 @@ import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Domicilio;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.Presentation.ViewAdapter.ViewAdapter;
+import ar.edu.uns.cs.trabajosocialform.Presentation.activities.FormGrupoFamiliarActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NextButtonClickedObserver;
 import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormDomicilioView;
@@ -34,6 +35,7 @@ public class FormDomicilioPresenter extends GeneralSectionPresenter {
         }
         //If there is a form to update, fill fields
         if (updateForm != null) {
+            this.update = true;
             view.rellenarCampos(updateForm);
         }
 
@@ -43,7 +45,7 @@ public class FormDomicilioPresenter extends GeneralSectionPresenter {
         Domicilio domicilio = view.tomarDatos();
         if(view.validate(domicilio,configuration)){
             form.setDomicilio(domicilio);
-            Intent intent = new Intent(view.getActivity(),FormGrupoFamiliarView.class);
+            Intent intent = new Intent(view.getActivity(),FormGrupoFamiliarActivity.class);
             putExtras(intent);
             view.getActivity().startActivity(intent);
         }

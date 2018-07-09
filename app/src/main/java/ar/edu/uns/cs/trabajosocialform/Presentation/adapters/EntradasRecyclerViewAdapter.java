@@ -80,8 +80,9 @@ public class EntradasRecyclerViewAdapter extends RecyclerView.Adapter<EntradasRe
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-            Log.i("View id",view.getId()+"");
-            RxBus.post(new ContextMenuObserver.ContextMenu(contextMenu));
+            //RxBus.post(new ContextMenuObserver.ContextMenu(contextMenu));
+            contextMenu.add(getAdapterPosition(), R.id.edit, 0, "Editar");//groupId, itemId, order, title
+            contextMenu.add(getAdapterPosition(), R.id.delete, 0, "Eliminar");
         }
 
         @OnClick

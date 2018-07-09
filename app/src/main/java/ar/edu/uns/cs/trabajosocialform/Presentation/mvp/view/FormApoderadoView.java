@@ -94,6 +94,7 @@ public class FormApoderadoView extends ActivityView implements FormActions{
         fechaNacimientoEt = getActivity().findViewById(R.id.panel_fecha_nacimiento_apoderado).findViewById(R.id.editText);
         //Allow only numbers
         cuilEt.setInputType(InputType.TYPE_CLASS_NUMBER);
+
     }
 
 

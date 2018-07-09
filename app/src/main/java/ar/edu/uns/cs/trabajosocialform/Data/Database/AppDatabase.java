@@ -41,7 +41,7 @@ import ar.edu.uns.cs.trabajosocialform.Data.Transactions.TransactionDao;
  */
 @Database(entities={Formulario.class,Solicitante.class,Apoderado.class, SituacionHabitacional.class, Domicilio.class,
 Familiar.class, InfraestructuraBarrial.class, CaracteristicasVivienda.class, Ocupacion.class,Ingreso.class,
-        Salud.class, FormularioFamiliarJoin.class, Transaction.class},version=2)
+        Salud.class, FormularioFamiliarJoin.class, Transaction.class},version=1)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase{
 
@@ -81,7 +81,6 @@ public abstract class AppDatabase extends RoomDatabase{
                             .build();
         }
         return INSTANCE;
-
     }
 
     public static void destroyInstance(){

@@ -36,7 +36,7 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         super(activity);
         ButterKnife.bind(this,activity);
     }
-    
+
 
     @Override
     @OnClick(R.id.siguiente_button)
@@ -72,6 +72,7 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         numeroEt = getActivity().findViewById(R.id.panel_numero).findViewById(R.id.editText);
         localidadEt = getActivity().findViewById(R.id.panel_localidad).findViewById(R.id.editText);
         delegacionEt = getActivity().findViewById(R.id.panel_delegacion).findViewById(R.id.editText);
+
 
     }
 

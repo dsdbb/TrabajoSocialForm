@@ -41,7 +41,7 @@
         <activity android:name=".Presentation.mvp.view.FormSituacionHabitacionalView" />
         <activity android:name=".Presentation.mvp.view.FormCaracteristicasViviendaActivity" />
         <activity android:name=".Presentation.mvp.view.FormInfraestructuraBarrialView" />
-        <activity android:name=".Presentation.mvp.view.FormGrupoFamiliarView" />
+        <activity android:name=".Presentation.activities.FormGrupoFamiliarActivity" />
         <activity android:name=".Presentation.mvp.view.NuevoFamiliarView" />
         <activity android:name=".Presentation.activities.FormularioActivity" />
         <activity android:name=".Presentation.activities.EntradasActivity" />

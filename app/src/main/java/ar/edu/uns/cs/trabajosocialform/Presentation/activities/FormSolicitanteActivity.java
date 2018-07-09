@@ -5,12 +5,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
-import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.OnActivityResultObserver;
+import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.OnActivityResultPhotoObserver;
 import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.presenter.FormSolicitantePresenter;
 import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormSolicitanteView;
 import ar.edu.uns.cs.trabajosocialform.R;
@@ -47,7 +46,7 @@ public class FormSolicitanteActivity extends AppCompatActivity {
        if (requestCode == CAMERA_PHOTO && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap photo = (Bitmap) extras.get("data");
-            RxBus.post(new OnActivityResultObserver.OnActivityResult(photo));
+            RxBus.post(new OnActivityResultPhotoObserver.OnActivityResult(photo));
         }
     }
 

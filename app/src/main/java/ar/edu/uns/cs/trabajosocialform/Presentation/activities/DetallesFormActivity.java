@@ -20,4 +20,17 @@ public class DetallesFormActivity extends AppCompatActivity {
         Formulario form = (Formulario)getIntent().getSerializableExtra("FORM");
         presenter = new DetallesFormPresenter(new DetallesFormView(this),form);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.register();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        presenter.unregister();
+    }
+
 }

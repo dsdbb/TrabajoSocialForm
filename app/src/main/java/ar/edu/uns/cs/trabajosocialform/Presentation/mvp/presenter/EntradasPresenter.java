@@ -27,6 +27,8 @@ import ar.edu.uns.cs.trabajosocialform.Data.ServerConnection.ServerAccess;
 import ar.edu.uns.cs.trabajosocialform.Data.Transactions.Transaction;
 import ar.edu.uns.cs.trabajosocialform.Data.Transactions.TransactionOptions;
 import ar.edu.uns.cs.trabajosocialform.Presentation.activities.DetallesFormActivity;
+import ar.edu.uns.cs.trabajosocialform.Presentation.activities.FormularioActivity;
+import ar.edu.uns.cs.trabajosocialform.Presentation.activities.MainActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.ContextItemSelectedObserver;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.ContextMenuObserver;
@@ -68,22 +70,25 @@ public class EntradasPresenter {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final ContextMenu.ContextMenuInfo menuInfo = item.getMenuInfo();
+        final int pos = item.getGroupId();
+        Log.i("Position",pos+"");
+
         switch(item.getItemId()) {
             case R.id.edit:
                 //Inicio la misma actividad de alta pero con un parámetro que especifique que se refiere a una modificación
-                /*Intent intent = new Intent(EntradasView.this,FormularioView.class);
-                intent.putExtra("UPDATE",true);
-                int pos = ((AdapterView.AdapterContextMenuInfo)menuInfo).position;
+                Intent intent = new Intent(view.getActivity(),FormularioActivity.class);
+                intent.putExtra(MainActivity.KEY_UPDATE,true);
+                //int pos = item.getOrder();
                 Formulario form = forms.get(pos);
-                db.getCompleteForm(this,form);
-                intent.putExtra("UPDATE_FORM",form);
-                startActivityForResult(intent,1);
-                return true;*/
+                db.getCompleteForm(view.getActivity(),form);
+                intent.putExtra(MainActivity.KEY_UPDATE_FORM,form);
+                view.getActivity().startActivityForResult(intent,1);
+                break;
             case R.id.delete:
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
-                        int pos = item.getOrder();
+                        //int pos = item.getOrder();
                         int formId = forms.get(pos).getId();
                         db.delete(view.getActivity(),forms.get(pos));
                         forms.remove(pos);
@@ -110,7 +115,7 @@ public class EntradasPresenter {
     public void onEntradaItemClicked(int position){
         Intent intent = new Intent(view.getContext(),DetallesFormActivity.class);
         Formulario form = forms.get(position);
-        intent.putExtra("FORM",form);
+        intent.putExtra(MainActivity.KEY_ACTUAL_FORM,form);
         view.getActivity().startActivity(intent);
     }
 

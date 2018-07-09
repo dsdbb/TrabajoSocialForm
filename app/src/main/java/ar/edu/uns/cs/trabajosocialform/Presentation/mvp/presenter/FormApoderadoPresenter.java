@@ -10,11 +10,7 @@ import ar.edu.uns.cs.trabajosocialform.Presentation.ViewAdapter.ViewAdapter;
 import ar.edu.uns.cs.trabajosocialform.Presentation.activities.FormDomicilioActivity;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NextButtonClickedObserver;
-import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.OnActivityResultObserver;
-import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.PhotoButtonClickedObserver;
-import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormActions;
 import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormApoderadoView;
-import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormDomicilioView;
 import ar.edu.uns.cs.trabajosocialform.R;
 
 public class FormApoderadoPresenter extends GeneralSectionPresenter{
@@ -35,6 +31,7 @@ public class FormApoderadoPresenter extends GeneralSectionPresenter{
             adaptView();
         }
         if(updateForm!=null){
+            this.update=true;
             view.rellenarCampos(updateForm);
         }
     }

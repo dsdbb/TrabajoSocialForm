@@ -53,12 +53,12 @@ public class EntradasView extends ActivityView {
         super(activity);
         ButterKnife.bind(this, activity);
         getActivity().setSupportActionBar(toolbar);
+        getActivity().registerForContextMenu(recyclerView);
     }
 
     public void refreshList(List<Solicitante> solicitantes){
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-
         // specify an adapter (see also next example)
         EntradasRecyclerViewAdapter adapter = new EntradasRecyclerViewAdapter(solicitantes);
         recyclerView.setAdapter(adapter);

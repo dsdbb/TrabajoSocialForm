@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -23,6 +24,7 @@ public class FormularioPresenter extends GeneralSectionPresenter{
 
     public FormularioPresenter(FormularioView view, Formulario updateForm){
         this.view = view;
+        this.updateForm = updateForm;
 
         storageAccess = new StorageAccess();
         configuration = getConfigurationFileFromStorage();
@@ -31,6 +33,7 @@ public class FormularioPresenter extends GeneralSectionPresenter{
 
         /*If the action is an update the fields must be filled with corresponding information*/
         if(updateForm != null){
+            this.update=true;
             view.rellenarCampos(updateForm);
         }
     }
