@@ -1,6 +1,7 @@
 package ar.edu.uns.cs.trabajosocialform.Presentation.ViewAdapter;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 
 import ar.edu.uns.cs.trabajosocialform.R;
@@ -243,6 +244,8 @@ public class ViewAdapter {
         boolean ingresosLaborales = config.getDatos_grupo_familiar().getDatos_ingresos().isIngresos_laborales();
         boolean programasSocialesSti = config.getDatos_grupo_familiar().getDatos_ingresos().isPrograma_sociales_sti();
         boolean ingresosNoLaborales = config.getDatos_grupo_familiar().getDatos_ingresos().isIngresos_no_laborales();
+
+        Log.i("Programas sociales sti",programasSocialesSti+"");
 
         /*Datos de la salud*/
         boolean cobertura = config.getDatos_grupo_familiar().getDatos_salud().isCobertura();

@@ -11,7 +11,7 @@ public class Datos_ingresos implements Serializable {
     /*ingresos no laborales o programas sociales con transferencia de ingresos*/
     private boolean ingresos_no_laborales;
     /*programas sociales sin transferencia de ingresos*/
-    private boolean programa_sociales_sti;
+    private boolean programas_sociales_sti;
 
     public Datos_ingresos() {
     }
@@ -33,11 +33,11 @@ public class Datos_ingresos implements Serializable {
     }
 
     public boolean isPrograma_sociales_sti() {
-        return programa_sociales_sti;
+        return programas_sociales_sti;
     }
 
-    public void setPrograma_sociales_sti(boolean programa_sociales_sti) {
-        this.programa_sociales_sti = programa_sociales_sti;
+    public void setPrograma_sociales_sti(boolean programas_sociales_sti) {
+        this.programas_sociales_sti = programas_sociales_sti;
     }
 
     public boolean required(){

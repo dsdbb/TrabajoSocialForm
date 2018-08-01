@@ -17,7 +17,7 @@
 
     <!-- ALERT DIALOG -->
     <string name="titulo_confirmacion_eliminar">Eliminar</string>
-    <string name="texto_confirmacion_eliminar">¿Está seguro que desea eliminar?</string>
+    <string name="texto_confirmacion_eliminar">¿Está seguro que desea eliminar a</string>
     <string name="boton_si">Si</string>
     <string name="boton_no">No</string>
 

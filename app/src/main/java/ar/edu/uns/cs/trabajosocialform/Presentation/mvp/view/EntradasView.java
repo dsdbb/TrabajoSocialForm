@@ -82,12 +82,13 @@ public class EntradasView extends ActivityView {
      * @param mensaje Message id to show in the dialog
      * @param runnable Action to perform if the confirmation button is pressed
      */
-    public void showAlertDialog(int titulo, int mensaje, final Runnable runnable){
+    public void showAlertDialog(int titulo, int mensaje, String nombre,final Runnable runnable){
         final List<Boolean> result = new ArrayList<Boolean>();
+        String mensajeString = getActivity().getResources().getString(mensaje);
         new AlertDialog.Builder(getActivity())
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(titulo)
-                .setMessage(mensaje)
+                .setMessage(mensajeString +" "+ nombre +"?")
                 .setPositiveButton(R.string.boton_si, new DialogInterface.OnClickListener() {
 
                     @Override

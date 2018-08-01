@@ -76,7 +76,7 @@ public class Utils {
         ((TextView)panel.findViewById(R.id.textView)).setText(titulo);
 
         ArrayAdapter adapter = new ArrayAdapter<String>(act,R.layout.spinner_row2,opciones);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        //adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         ((Spinner)panel.findViewById(R.id.spinner)).setAdapter(adapter);
     }
 
@@ -303,7 +303,7 @@ public class Utils {
         ConstraintLayout panel = act.findViewById(panelId);
         String titulo = act.getResources().getString(tituloId);
         ((TextView)panel.findViewById(R.id.textViewTitulo)).setText(titulo);
-        ((TextView)panel.findViewById(R.id.textViewDato)).setText(dato);
+        if(dato!=null && !dato.equals("null"))((TextView)panel.findViewById(R.id.textViewDato)).setText(dato);
     }
 
     /**

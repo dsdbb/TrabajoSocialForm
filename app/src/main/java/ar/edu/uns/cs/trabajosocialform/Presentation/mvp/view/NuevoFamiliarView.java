@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -65,6 +66,7 @@ public class NuevoFamiliarView extends GeneralActivity {
         apellidoEt = findViewById(R.id.panel_apellidos_familiar).findViewById(R.id.editText);
         cuilEt = findViewById(R.id.panel_cuil_familiar).findViewById(R.id.editText);
         fechaNacimientoEt = findViewById(R.id.panel_fecha_nac_familiar).findViewById(R.id.editText);
+        cuilEt.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -96,7 +98,7 @@ public class NuevoFamiliarView extends GeneralActivity {
             finish();
         }
         else{
-            Toast.makeText(this,R.string.datos_invalidos,Toast.LENGTH_SHORT);
+            Toast.makeText(this,R.string.datos_invalidos,Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Data.configuracion.Configuracion;
@@ -23,6 +24,7 @@ public class FormSolicitanteActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_solicitante);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         Intent intent = getIntent();
         Formulario form = (Formulario)intent.getSerializableExtra(MainActivity.KEY_ACTUAL_FORM);
         Configuracion config = (Configuracion)intent.getSerializableExtra(MainActivity.KEY_CONFIGURATION_FILE);
@@ -46,8 +48,10 @@ public class FormSolicitanteActivity extends AppCompatActivity {
        if (requestCode == CAMERA_PHOTO && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap photo = (Bitmap) extras.get("data");
+            presenter.register();
             RxBus.post(new OnActivityResultPhotoObserver.OnActivityResult(photo));
-        }
+            presenter.unregister();
+       }
     }
 
     @Override

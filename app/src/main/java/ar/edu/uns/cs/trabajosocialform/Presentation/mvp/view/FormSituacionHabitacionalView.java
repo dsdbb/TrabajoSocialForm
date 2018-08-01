@@ -3,8 +3,10 @@ package ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.SituacionHabitacional;
@@ -19,6 +21,9 @@ import butterknife.OnClick;
 
 public class FormSituacionHabitacionalView extends ActivityView implements FormActions{
 
+    private EditText tiempoOcupacionEt;
+    private EditText cantHogaresViviendaEt;
+    private EditText cantCuartosUeEt;
     @BindView(R.id.toolbar)Toolbar toolbar;
 
     public FormSituacionHabitacionalView(AppCompatActivity activity){
@@ -108,12 +113,13 @@ public class FormSituacionHabitacionalView extends ActivityView implements FormA
         utils.setValuesTvEt(R.string.titulo_cantidad_hogares_vivienda,R.id.panel_cantidad_hogares_vivienda);
         utils.setValuesTvEt(R.string.titulo_cantidad_cuartos_UE,R.id.panel_cantidad_cuartos_ue);
 
-       /* utils.addNextButtonListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                continuar();
-            }
-        });*/
+       tiempoOcupacionEt = getActivity().findViewById(R.id.panel_tiempo_ocupacion).findViewById(R.id.editText);
+       cantHogaresViviendaEt = getActivity().findViewById(R.id.panel_cantidad_hogares_vivienda).findViewById(R.id.editText);
+       cantCuartosUeEt = getActivity().findViewById(R.id.panel_cantidad_cuartos_ue).findViewById(R.id.editText);
+
+       tiempoOcupacionEt.setInputType(InputType.TYPE_CLASS_NUMBER);
+       cantHogaresViviendaEt.setInputType(InputType.TYPE_CLASS_NUMBER);
+       cantCuartosUeEt.setInputType(InputType.TYPE_CLASS_NUMBER);
     }
 
     @Override

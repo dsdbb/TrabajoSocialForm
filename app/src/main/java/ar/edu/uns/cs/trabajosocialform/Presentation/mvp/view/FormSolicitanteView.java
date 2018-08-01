@@ -169,6 +169,7 @@ public class FormSolicitanteView extends ActivityView implements FormActions{
     public void setPhoto(Bitmap photo) {
         foto = photo;
         Log.i("ImageBitmap",photo.toString());
+        imageView = getActivity().findViewById(R.id.imageView);
         imageView.setImageBitmap(foto);
     }
 }

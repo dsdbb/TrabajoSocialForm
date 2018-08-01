@@ -87,6 +87,7 @@ public class EntradasPresenter {
                 view.getActivity().startActivityForResult(intent,1);
                 break;
             case R.id.delete:
+                String name= solicitantes.get(pos).getNombres() + " " + solicitantes.get(pos).getApellidos();
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
@@ -113,7 +114,7 @@ public class EntradasPresenter {
                         view.refreshList(solicitantes);
                     }
                 };
-                view.showAlertDialog(R.string.titulo_confirmacion_eliminar, R.string.texto_confirmacion_eliminar,runnable);
+                view.showAlertDialog(R.string.titulo_confirmacion_eliminar, R.string.texto_confirmacion_eliminar,name,runnable);
 
                 break;
         }

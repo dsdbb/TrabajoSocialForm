@@ -44,7 +44,7 @@ import static junit.framework.Assert.assertEquals;
 public class ServerAccess {
 
     private final Activity act;
-    private final String ip = "192.168.43.45:80";
+    private final String ip = "192.168.0.70:80";
     private final String folder = "trabajo-social";
 
     public ServerAccess(Activity act){

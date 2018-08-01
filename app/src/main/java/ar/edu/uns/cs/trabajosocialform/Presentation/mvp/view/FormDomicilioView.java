@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -29,6 +30,11 @@ public class FormDomicilioView extends ActivityView implements FormActions {
     private EditText numeroEt;
     private EditText localidadEt;
     private EditText delegacionEt;
+    private EditText manzanaEt;
+    private EditText monoblockTorreEt;
+    private EditText pisoEt;
+    private EditText accIntEt;
+    private EditText casaDptoEt;
     @BindView(R.id.toolbar)Toolbar toolbar;
 
 
@@ -72,7 +78,18 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         numeroEt = getActivity().findViewById(R.id.panel_numero).findViewById(R.id.editText);
         localidadEt = getActivity().findViewById(R.id.panel_localidad).findViewById(R.id.editText);
         delegacionEt = getActivity().findViewById(R.id.panel_delegacion).findViewById(R.id.editText);
+        manzanaEt = getActivity().findViewById(R.id.panel_manzana).findViewById(R.id.editText);
+        monoblockTorreEt = getActivity().findViewById(R.id.panel_monoblock_torre).findViewById(R.id.editText);
+        pisoEt = getActivity().findViewById(R.id.panel_piso).findViewById(R.id.editText);
+        accIntEt = getActivity().findViewById(R.id.panel_acc_int).findViewById(R.id.editText);
+        casaDptoEt = getActivity().findViewById(R.id.panel_casa_depto).findViewById(R.id.editText);
 
+        numeroEt.setInputType(InputType.TYPE_CLASS_NUMBER);
+        manzanaEt.setInputType(InputType.TYPE_CLASS_NUMBER);
+        monoblockTorreEt.setInputType(InputType.TYPE_CLASS_NUMBER);
+        pisoEt.setInputType(InputType.TYPE_CLASS_NUMBER);
+        accIntEt.setInputType(InputType.TYPE_CLASS_NUMBER);
+        casaDptoEt.setInputType(InputType.TYPE_CLASS_NUMBER);
 
     }
 

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.InfraestructuraBarrial;
@@ -24,6 +25,7 @@ import butterknife.OnClick;
 public class FormInfraestructuraBarrialView extends ActivityView implements FormActions{
 
     @BindView(R.id.toolbar)Toolbar toolbar;
+    @BindView(R.id.siguiente_button) Button nextButton;
 
     public FormInfraestructuraBarrialView(AppCompatActivity activity){
         super(activity);
@@ -114,6 +116,8 @@ public class FormInfraestructuraBarrialView extends ActivityView implements Form
 
         /*Titulo toolbar*/
         toolbar.setTitle(R.string.titulo_infraestructura_barrial);
+
+        nextButton.setText(R.string.boton_guardar);
 
         utils.setValuesTvSpinner(R.array.infraestructura_calles_opciones,R.string.titulo_infraestructura_calles,R.id.panel_infraestructura_calles);
         utils.setValuesTvSpinner(R.array.iluminacion_opciones,R.string.titulo_iluminacion,R.id.panel_iluminacion);

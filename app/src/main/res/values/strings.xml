@@ -94,6 +94,7 @@
     <string name="iluminacion">Iluminacion</string>
     <string name="inundaciones">Inundaciones</string>
     <string name="recoleccion_residuos">Recoleccion de residuos</string>
+    <string name="boton_guardar">Guardar</string>
 
     <!-- Strings datos de situacion habitacional -->
     <string name="titulo_situacion_habitacional">Datos de la situacion habitacional</string>
