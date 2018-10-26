@@ -120,41 +120,33 @@ public class FormApoderadoView extends ActivityView implements FormActions{
         FieldsValidator validator = new FieldsValidator();
 
         if(!validator.validateShortString(apoderado.getNombres()) && config.getDatos_apoderado().isNombres_apoderado()){
-            //nombreEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             nombreEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            //nombreEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
             nombreEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
 
         }
         if(!validator.validateShortString(apoderado.getApellidos()) && config.getDatos_apoderado().isApellidos_apoderado()){
-            //apellidoEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             apellidoEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-           // apellidoEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
             apellidoEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
 
         }
         if(!validator.validateCuil(apoderado.getCuil()) && config.getDatos_apoderado().isCuil_apoderado()){
-            //cuilEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             cuilEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            //cuilEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
             cuilEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
         if(!validator.validateDate(apoderado.getFecha_nacimiento()) && config.getDatos_apoderado().isFecha_nac_apoderado()){
-            //fechaNacimientoEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             fechaNacimientoEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            //fechaNacimientoEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
             fechaNacimientoEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
 

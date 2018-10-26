@@ -155,33 +155,26 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         }
         else{
             calleEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
-            //calleEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
         }
         if(!validator.validateNumber(domicilio.getNumero()) && config.getDatos_domicilio().isNumero()){
-            //numeroEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             numeroEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            //numeroEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
             numeroEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
         if(!validator.validateShortString(domicilio.getLocalidad()) && config.getDatos_domicilio().isLocalidad()){
-            //localidadEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             localidadEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            //localidadEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
             localidadEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
         if(!validator.validateShortString(domicilio.getDelegacion()) && config.getDatos_domicilio().isDelegacion()){
-            //delegacionEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             delegacionEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            //delegacionEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
             delegacionEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
 
