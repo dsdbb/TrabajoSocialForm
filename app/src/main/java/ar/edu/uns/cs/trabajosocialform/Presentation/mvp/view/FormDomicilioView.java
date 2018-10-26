@@ -1,6 +1,7 @@
 package ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -148,32 +149,40 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         Domicilio domicilio = (Domicilio)obj;
 
         if(!validator.validateLongString(domicilio.getCalle()) && config.getDatos_domicilio().isCalle()){
-            calleEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
+            //calleEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
+            calleEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            calleEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
+            calleEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
+            //calleEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
         }
         if(!validator.validateNumber(domicilio.getNumero()) && config.getDatos_domicilio().isNumero()){
-            numeroEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
+            //numeroEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
+            numeroEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            numeroEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
+            //numeroEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
+            numeroEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
         if(!validator.validateShortString(domicilio.getLocalidad()) && config.getDatos_domicilio().isLocalidad()){
-            localidadEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
+            //localidadEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
+            localidadEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            localidadEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
+            //localidadEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
+            localidadEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
         if(!validator.validateShortString(domicilio.getDelegacion()) && config.getDatos_domicilio().isDelegacion()){
-            delegacionEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
+            //delegacionEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
+            delegacionEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            delegacionEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
+            //delegacionEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
+            delegacionEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
 
 

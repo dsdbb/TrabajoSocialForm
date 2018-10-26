@@ -44,7 +44,7 @@ import static junit.framework.Assert.assertEquals;
 public class ServerAccess {
 
     private final Activity act;
-    private final String ip = "192.168.0.70:80";
+    private final String ip = "128.0.201.28:8012";
     private final String folder = "trabajo-social";
 
     public ServerAccess(Activity act){
@@ -136,6 +136,7 @@ public class ServerAccess {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.i("Error", error.toString());
                         observer.onError(error);
                         error.printStackTrace();
                     }
