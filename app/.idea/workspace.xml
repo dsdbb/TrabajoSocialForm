@@ -15,24 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e11e2632-b0b4-456b-9844-ed56ef6433c9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/caches/build_file_checksums.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Data/ServerConnection/ServerAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Data/ServerConnection/ServerAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormApoderadoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormApoderadoView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormDomicilioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormDomicilioView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormSolicitanteView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormSolicitanteView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layouts/activity_layouts/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layouts/activity_layouts/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/AppDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/AppDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/DatabaseClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/DatabaseClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/GPSTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/GPSTracker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/MyLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/MyLocation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/TaskDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../marceloGPS/app/src/main/java/com/example/a14791/marcelogps/TaskDao.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -102,20 +87,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FormApoderadoView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FormApoderadoView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormApoderadoView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="523">
-              <caret line="157" column="125" selection-start-line="157" selection-start-column="125" selection-end-line="157" selection-end-column="125" />
+            <state relative-caret-position="97">
+              <caret line="108" column="99" lean-forward="true" selection-start-line="108" selection-start-column="99" selection-end-line="108" selection-end-column="99" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FormDomicilioView.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FormDomicilioView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormDomicilioView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="184" column="120" selection-start-line="184" selection-start-column="120" selection-end-line="184" selection-end-column="120" />
+            <state relative-caret-position="410">
+              <caret line="177" selection-start-line="177" selection-end-line="177" />
               <folding>
                 <element signature="e#2075#2106#0" expanded="true" />
                 <element signature="e#2170#2184#0" expanded="true" />
@@ -147,8 +132,8 @@
       <file leaf-file-name="FormSolicitanteView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormSolicitanteView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="156" column="28" selection-start-line="156" selection-end-line="157" />
+            <state relative-caret-position="-90">
+              <caret line="145" selection-start-line="145" selection-end-line="145" />
             </state>
           </provider>
         </entry>
@@ -2197,8 +2182,8 @@
         <option value="$PROJECT_DIR$/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Data/ServerConnection/ServerAccess.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormSolicitanteView.java" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormApoderadoView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormSolicitanteView.java" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormDomicilioView.java" />
       </list>
     </option>
@@ -2496,14 +2481,14 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Preview" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26368716" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.70502794" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.47039106" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32513967" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32960895" />
       <window_info anchor="bottom" id="Logcat" order="7" weight="0.32960895" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.27039105" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -2838,13 +2823,6 @@
         <state relative-caret-position="-153" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormSolicitanteView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="156" column="28" selection-start-line="156" selection-end-line="157" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -2852,10 +2830,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Data/ServerConnection/ServerAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormApoderadoView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="108" column="99" lean-forward="true" selection-start-line="108" selection-start-column="99" selection-end-line="108" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormSolicitanteView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-90">
+          <caret line="145" selection-start-line="145" selection-end-line="145" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormDomicilioView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="184" column="120" selection-start-line="184" selection-start-column="120" selection-end-line="184" selection-end-column="120" />
+        <state relative-caret-position="410">
+          <caret line="177" selection-start-line="177" selection-end-line="177" />
           <folding>
             <element signature="e#2075#2106#0" expanded="true" />
             <element signature="e#2170#2184#0" expanded="true" />
@@ -2871,20 +2870,6 @@
             <element signature="e#2866#2884#0" expanded="true" />
             <element signature="e#2937#2956#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Data/ServerConnection/ServerAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/uns/cs/trabajosocialform/Presentation/mvp/view/FormApoderadoView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="157" column="125" selection-start-line="157" selection-start-column="125" selection-end-line="157" selection-end-column="125" />
         </state>
       </provider>
     </entry>

@@ -143,31 +143,25 @@ public class FormSolicitanteView extends ActivityView implements FormActions{
         FieldsValidator validator = new FieldsValidator();
 
         if(!validator.validateShortString(solicitante.getNombres()) && config.getDatos_solicitante().isNombres_solicitante()){
-            //nombreEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             nombreEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            //nombreEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
             nombreEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
 
         }
         if(!validator.validateShortString(solicitante.getApellidos()) && config.getDatos_solicitante().isApellidos_solicitante()){
-            //apellidoEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             apellidoEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            //apellidoEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
             apellidoEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
         if(!validator.validateCuil(solicitante.getCuil()) && config.getDatos_solicitante().isCuil_solicitante()){
-            //cuilEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             cuilEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            //cuilEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorMain));
             cuilEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
 
