@@ -28,14 +28,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:windowSoftInputMode="stateAlwaysHidden">
-        <activity android:name=".Presentation.activities.MainActivity">
+        <activity android:name=".Presentation.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Presentation.activities.FormSolicitanteActivity"/>
+        <activity android:name=".Presentation.activities.FormSolicitanteActivity" />
         <activity android:name=".Presentation.activities.FormApoderadoAcitivity" />
         <activity android:name=".Presentation.activities.FormDomicilioActivity" />
         <activity android:name=".Presentation.activities.FormSituacionHabitacionalActivity" />
@@ -47,7 +47,7 @@
         <activity android:name=".Presentation.activities.EntradasActivity" />
         <activity android:name=".Presentation.activities.DetallesFormActivity" />
         <activity android:name=".Presentation.activities.DetallesFamiliarActivity" />
-
+        <activity android:name=".Presentation.activities.MainActivity" />
     </application>
 
 </manifest>

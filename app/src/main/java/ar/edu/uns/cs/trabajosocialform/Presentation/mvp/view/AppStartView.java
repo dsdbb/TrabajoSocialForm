@@ -16,11 +16,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AppStartActivity extends ActivityView{
+public class AppStartView extends ActivityView{
 
     @BindView(R.id.toolbar) Toolbar toolbar;
 
-    public AppStartActivity(AppCompatActivity activity){
+    public AppStartView(AppCompatActivity activity){
         super(activity);
         ButterKnife.bind(this, activity);
         getActivity().setSupportActionBar(toolbar);
