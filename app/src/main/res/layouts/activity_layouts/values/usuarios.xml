@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="usuarios">
+        <item>user1</item>
+        <item>password1</item>
+        <item>user2</item>
+        <item>password2</item>
+        <item>user3</item>
+        <item>password3</item>
+    </string-array>
+
+</resources>

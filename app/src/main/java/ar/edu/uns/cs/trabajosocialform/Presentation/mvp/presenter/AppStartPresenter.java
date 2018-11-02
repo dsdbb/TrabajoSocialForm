@@ -10,17 +10,15 @@ import ar.edu.uns.cs.trabajosocialform.Presentation.activities.FormularioActivit
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.RxBus;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.NuevaEntradaObserver;
 import ar.edu.uns.cs.trabajosocialform.Presentation.bus.observers.VerEntradasObserver;
-import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.AppStartActivity;
-import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.EntradasView;
-import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormularioView;
+import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.AppStartView;
 import ar.edu.uns.cs.trabajosocialform.R;
 import io.reactivex.observers.DisposableObserver;
 
 public class AppStartPresenter {
 
-    private AppStartActivity view;
+    private AppStartView view;
 
-    public AppStartPresenter(AppStartActivity view){
+    public AppStartPresenter(AppStartView view){
         this.view = view;
         //Set the toolbar to the view
 

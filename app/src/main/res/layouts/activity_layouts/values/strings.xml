@@ -37,4 +37,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
 
+    <!-- Log In -->
+    <string name="user_title">Usuario</string>
+    <string name="password_title">Contraseña</string>
+    <string name="login_button_text">Iniciar Sesión</string>
+
 </resources>
