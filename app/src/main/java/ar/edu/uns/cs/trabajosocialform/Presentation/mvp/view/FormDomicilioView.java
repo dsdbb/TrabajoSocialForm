@@ -27,7 +27,6 @@ import butterknife.OnClick;
 public class FormDomicilioView extends ActivityView implements FormActions {
 
 
-    private EditText calleEt;
     private EditText numeroEt;
     private EditText localidadEt;
     private EditText delegacionEt;
@@ -36,6 +35,7 @@ public class FormDomicilioView extends ActivityView implements FormActions {
     private EditText pisoEt;
     private EditText accIntEt;
     private EditText casaDptoEt;
+    private EditText calleEt;
     @BindView(R.id.toolbar)Toolbar toolbar;
 
 
@@ -62,7 +62,7 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         toolbar.setTitle(R.string.titulo_datos_domicilio);
 
         /*Datos de los campos*/
-        utils.setValuesTvEt(R.string.calle,R.id.panel_calle);
+        utils.setValuesTvSpinner(R.array.calles,R.string.calle,R.id.panel_calle);
         utils.setValuesTvEt(R.string.numero, R.id.panel_numero);
         utils.setValuesTvEt(R.string.manzana, R.id.panel_manzana);
         utils.setValuesTvEt(R.string.monoblock_torre, R.id.panel_monoblock_torre);
@@ -75,7 +75,7 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         utils.setValuesTvEt(R.string.localidad, R.id.panel_localidad);
         utils.setValuesTvEt(R.string.delegacion, R.id.panel_delegacion);
 
-        calleEt = getActivity().findViewById(R.id.panel_calle).findViewById(R.id.editText);
+        //calleEt = getActivity().findViewById(R.id.panel_calle).findViewById(R.id.spinner);
         numeroEt = getActivity().findViewById(R.id.panel_numero).findViewById(R.id.editText);
         localidadEt = getActivity().findViewById(R.id.panel_localidad).findViewById(R.id.editText);
         delegacionEt = getActivity().findViewById(R.id.panel_delegacion).findViewById(R.id.editText);
@@ -97,7 +97,7 @@ public class FormDomicilioView extends ActivityView implements FormActions {
     @Override
     public Domicilio tomarDatos(){
         Utils utils = new Utils(getActivity());
-        String calle = utils.getDataTvEt(R.id.panel_calle);
+        String calle = utils.getDataTvSpinner(R.id.panel_calle);
         String numeroS = utils.getDataTvEt(R.id.panel_numero);
         String manzanaS = utils.getDataTvEt(R.id.panel_manzana);
         String monoblockTorreS = utils.getDataTvEt(R.id.panel_monoblock_torre);
@@ -126,7 +126,7 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         Utils utils = new Utils(getActivity());
 
         Domicilio domicilio = updateForm.getDomicilio();
-        utils.setValueToEditText(R.id.panel_calle, domicilio.getCalle());
+        utils.setValueToSpinner(R.id.panel_calle,R.array.calles,domicilio.getCalle());
         utils.setValueToEditText(R.id.panel_numero, domicilio.getNumero());
         utils.setValueToEditText(R.id.panel_manzana, domicilio.getManzana());
         utils.setValueToEditText(R.id.panel_monoblock_torre, domicilio.getMonoblock_torre());
@@ -148,14 +148,14 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         FieldsValidator validator = new FieldsValidator();
         Domicilio domicilio = (Domicilio)obj;
 
-        if(!validator.validateLongString(domicilio.getCalle()) && config.getDatos_domicilio().isCalle()){
+        /*if(!validator.validateLongString(domicilio.getCalle()) && config.getDatos_domicilio().isCalle()){
             //calleEt.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorError));
             calleEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
             calleEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
-        }
+        }*/
         if(!validator.validateNumber(domicilio.getNumero()) && config.getDatos_domicilio().isNumero()){
             numeroEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
@@ -163,7 +163,7 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         else{
             numeroEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
-        if(!validator.validateShortString(domicilio.getLocalidad()) && config.getDatos_domicilio().isLocalidad()){
+        /*if(!validator.validateShortString(domicilio.getLocalidad()) && config.getDatos_domicilio().isLocalidad()){
             localidadEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
@@ -176,7 +176,7 @@ public class FormDomicilioView extends ActivityView implements FormActions {
         }
         else{
             delegacionEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
-        }
+        }*/
 
 
 

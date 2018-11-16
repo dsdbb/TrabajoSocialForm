@@ -44,7 +44,8 @@ import static junit.framework.Assert.assertEquals;
 public class ServerAccess {
 
     private final Activity act;
-    private final String ip = "128.0.201.28:8012";
+    //private final String ip = "128.0.201.28:8012";
+    private final String ip = "ayudas.bahia.gob.ar";
     private final String folder = "trabajo-social";
 
     public ServerAccess(Activity act){
@@ -130,13 +131,16 @@ public class ServerAccess {
                         if(response.equals("true")){
                             DatabaseAcces db = new DatabaseAcces();
                             db.deleteTransaction(act,transaction);
+                            observer.onNext(true);
+                        } else {
+                            observer.onNext(false);
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.i("Error", error.toString());
+                        Log.i("Error Upload", error.toString());
                         observer.onError(error);
                         error.printStackTrace();
                     }

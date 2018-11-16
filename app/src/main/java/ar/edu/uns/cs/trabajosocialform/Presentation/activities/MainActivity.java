@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.presenter.AppStartPresenter;
+import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.presenter.LoginPresenter;
 import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.AppStartView;
 import ar.edu.uns.cs.trabajosocialform.R;
 
@@ -21,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        presenter = new AppStartPresenter(new AppStartView(this));
+        String user = getIntent().getStringExtra(LoginPresenter.KEY_USER);
+        presenter = new AppStartPresenter(new AppStartView(this), user);
 
     }
 

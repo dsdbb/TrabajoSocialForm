@@ -15,7 +15,7 @@
     <string name="titulo_solicitante">Datos del solicitante</string>
     <string name="nombres_solicitante">Nombres</string>
     <string name="apellidos_solicitante">Apellidos</string>
-    <string name="cuil_solicitante">Cuil</string>
+    <string name="cuil_solicitante">Cuil/Doc</string>
     <string name="telefono_principal_solicitante">Telefono principal</string>
     <string name="otro_telefono_solicitante">Otro telefono</string>
 
@@ -24,7 +24,7 @@
     <string name="nombres_apoderado">Nombres</string>
     <string name="apellidos_apoderado">Apellidos</string>
     <string name="fecha_nac_apoderado">Fecha de nacimiento</string>
-    <string name="cuil_apoderado">Cuil</string>
+    <string name="cuil_apoderado">Cuil/Doc</string>
     <string name="telefono_apoderado">Teléfono</string>
     <string name="motivos_de_poder">Motivos de poder</string>
 

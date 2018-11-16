@@ -17,9 +17,11 @@ import io.reactivex.observers.DisposableObserver;
 public class AppStartPresenter {
 
     private AppStartView view;
+    private String user;
 
-    public AppStartPresenter(AppStartView view){
+    public AppStartPresenter(AppStartView view, String user){
         this.view = view;
+        this.user = user;
         //Set the toolbar to the view
 
         //App is starting, check and get the configuration file
@@ -62,6 +64,7 @@ public class AppStartPresenter {
         StorageAccess sa = new StorageAccess();
         if(sa.existsConfigurationFile(view.getActivity())){
             Intent intent = new Intent(view.getContext(), FormularioActivity.class);
+            intent.putExtra(LoginPresenter.KEY_USER, user);
             view.getActivity().startActivity(intent);
         }
         else{

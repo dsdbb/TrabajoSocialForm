@@ -70,6 +70,7 @@ public class FormularioView extends ActivityView implements FormActions {
 
         String nombre = utils.getDataTvEt(R.id.panel_nombre_entrevistador);
         String apellido = utils.getDataTvEt(R.id.panel_apellido_entrevistador);
+
         Formulario form = new Formulario();
         for (View view:planesSocialesRequeridos) {
             String plan = ((Spinner)view.findViewById(R.id.spinner_plan_social)).getSelectedItem().toString();

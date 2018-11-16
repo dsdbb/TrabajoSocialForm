@@ -16,10 +16,10 @@
 
     <TextView
         android:id="@+id/tv_user"
-        android:layout_width="wrap_content"
+        android:layout_width="79dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:text="@string/user_title"
         app:layout_constraintBaseline_toBaselineOf="@+id/et_user"
         app:layout_constraintEnd_toStartOf="@+id/et_user"
@@ -27,22 +27,23 @@
 
     <EditText
         android:id="@+id/et_user"
-        android:layout_width="wrap_content"
+        android:layout_width="158dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="@string/user_title"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_user"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintVertical_bias="0.076" />
 
     <TextView
         android:id="@+id/tv_password"
-        android:layout_width="wrap_content"
+        android:layout_width="86dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:text="@string/password_title"
         app:layout_constraintBaseline_toBaselineOf="@+id/et_password"
         app:layout_constraintEnd_toStartOf="@+id/et_password"
@@ -50,10 +51,9 @@
 
     <EditText
         android:id="@+id/et_password"
-        android:layout_width="wrap_content"
+        android:layout_width="159dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/password_title"
         android:inputType="textPassword"
@@ -64,9 +64,9 @@
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/login_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

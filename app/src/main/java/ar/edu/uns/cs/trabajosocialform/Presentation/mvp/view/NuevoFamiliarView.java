@@ -2,6 +2,7 @@ package ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -351,32 +352,45 @@ public class NuevoFamiliarView extends GeneralActivity {
         FieldsValidator validator = new FieldsValidator();
 
         if(!validator.validateName(familiar.getNombres()) && config.getDatos_grupo_familiar().isNombres()){
-            nombreEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            //nombreEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            //nombreEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            nombreEt.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            nombreEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            nombreEt.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
+
         }
         if(!validator.validateSurname(familiar.getApellidos()) && config.getDatos_grupo_familiar().isApellidos()){
-            apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+
+            //apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            apellidoEt.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
+            //apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            //
+
             result = false;
         }
         else{
-            apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            //apellidoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            apellidoEt.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
         if(!validator.validateCuil(familiar.getCuil()) && config.getDatos_grupo_familiar().isCuil()){
-            cuilEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            //cuilEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            cuilEt.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            cuilEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            //cuilEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            cuilEt.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
         if(!validator.validateDate(familiar.getFecha_nacimiento()) && config.getDatos_grupo_familiar().isFecha_nac()){
-            fechaNacimientoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            //fechaNacimientoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorError));
+            fechaNacimientoEt.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
-            fechaNacimientoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            //fechaNacimientoEt.setBackgroundTintList(getResources().getColorStateList(R.color.colorMain));
+            fechaNacimientoEt.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
 
         return result;

@@ -13,6 +13,7 @@ import ar.edu.uns.cs.trabajosocialform.R;
 public class LoginPresenter {
 
     private LoginView view;
+    public static final String KEY_USER = "key_user";
 
     public LoginPresenter(LoginView view) {
         this.view = view;
@@ -23,6 +24,7 @@ public class LoginPresenter {
         for(int i=0; i<usuarios.length; i++){
             if(usuarios[i].equals(user) && usuarios[i+1].equals(password)){
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
+                intent.putExtra(KEY_USER, user);
                 view.getActivity().startActivity(intent);
                 break;
             }
