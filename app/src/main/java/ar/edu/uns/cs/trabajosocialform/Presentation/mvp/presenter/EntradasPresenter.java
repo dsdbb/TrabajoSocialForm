@@ -115,9 +115,29 @@ public class EntradasPresenter {
                     }
                 };
                 view.showAlertDialog(R.string.titulo_confirmacion_eliminar, R.string.texto_confirmacion_eliminar,name,runnable);
-
-                break;
+               break;
         }
+    }
+
+    public void eliminarDeBaseDeDatosLocal(Formulario form){
+        db.delete(view.getActivity(), form, new DisposableObserver<Boolean>() {
+            @Override
+            public void onNext(Boolean aBoolean) {
+                if(aBoolean) view.showMessage(R.string.delete_correcto);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                view.showMessage(R.string.error_delete);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+        //view.refreshList(solicitantes);
+        view.cleanList();
     }
 
     public void onOptionsItemSelected(MenuItem item){
@@ -150,16 +170,26 @@ public class EntradasPresenter {
             for (int i = 0; i < transactions.size(); i++) {
                 Transaction transaction = transactions.get(i);
                 if (transaction.getTransactionId() == TransactionOptions.INSERT.getValue()) {
-                    Formulario form = db.getFormulario(view.getActivity(), transaction.getFormId());
+
+                    final Formulario form = db.getFormulario(view.getActivity(), transaction.getFormId());
                     sa.uploadForm(form, transaction, new DisposableObserver<Boolean>() {
                         @Override
-                        public void onNext(Boolean aBoolean) {}
+                        public void onNext(Boolean aBoolean) {
+                            if(aBoolean){
+                                eliminarDeBaseDeDatosLocal(form);
+                                view.showMessage(R.string.actualizado_correctamente);
+                            } else {
+                                view.showMessage(R.string.error_servidor);
+                            }
+                        }
                         @Override
                         public void onError(Throwable e) {
                             view.showMessage(R.string.error_servidor);
                         }
                         @Override
-                        public void onComplete() {}
+                        public void onComplete() {
+                            Log.i("Transacciones Completas","onComplete");
+                        }
                     });
                 }
                 if (transaction.getTransactionId() == TransactionOptions.DELETE.getValue()) {
@@ -182,8 +212,14 @@ public class EntradasPresenter {
                 }
 
             }
-            view.showMessage(R.string.actualizado_correctamente);
         }
+    }
+
+    private void deleteAllTransactions(AppCompatActivity activity, List<Transaction> transactions) {
+        for (Transaction transaction: transactions) {
+            db.deleteTransaction(view.getActivity(), transaction);
+        }
+        transactions.clear();
     }
 
     public void register() {

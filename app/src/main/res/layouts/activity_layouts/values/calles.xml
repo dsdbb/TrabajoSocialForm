@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="calles">
+        <item>-</item>
+        <item>1 DE MARZO</item>
+        <item>1 DE MAYO</item>
+        <item>11 DE ABRIL</item>
+        <item>12 DE OCTUBRE</item>
+        <item>14 DE JULIO</item>
+        <item>17 DE MAYO</item>
+        <item>18 DE JULIO</item>
+        <item>1810</item>
+        <item>19 DE MAYO</item>
+        <item>2 DE ABRIL</item>
+        <item>20 DE SETIEMBRE</item>
+        <item>25 DE MAYO</item>
+        <item>28 DE SETIEMBRE</item>
+        <item>3 DE FEBRERO</item>
+        <item>9 DE JULIO</item>
+        <item>ABAD</item>
+        <item>ABAT</item>
+        <item>ACOSTA</item>
+        <item>ACUÑA</item>
+        <item>ADRIAN VERES</item>
+        <item>AGOTE</item>
+        <item>AGUADO</item>
+        <item>AGUARA</item>
+        <item>AGUSTIN ALVAREZ</item>
+        <item>AGUSTIN DE ARRIETA</item>
+        <item>ALBA LUTECIA</item>
+        <item>ALBARRACIN</item>
+        <item>ALBATROS 24</item>
+        <item>ALBERDI</item>
+        <item>ALBERTI</item>
+        <item>ALBERTO PEDRO CABRERA</item>
+        <item>ALCOLEA</item>
+        <item>ALCORTA</item>
+        <item>ALEM</item>
+        <item>ALEMANES DEL VOLGA</item>
+        <item>ALFEREZ DE SAN MARTIN</item>
+        <item>ALICE</item>
+        <item>ALMAFUERTE</item>
+        <item>ALSINA</item>
+        <item>ALUCH</item>
+        <item>ALUMINE</item>
+        <item>ALVARADO</item>
+        <item>ALVAREZ</item>
+        <item>ALVAREZ JONTE</item>
+        <item>ALVEAR</item>
+        <item>AMAJA</item>
+        <item>AMANCAY</item>
+        <item>AMAYA</item>
+        <item>AMBROSETTI</item>
+        <item>AMBRUSI</item>
+        <item>AMEGHINO</item>
+        <item>AMUNDSEN</item>
+        <item>ANCHORENA</item>
+        <item>ANDRADE</item>
+        <item>ANDRADE PJE</item>
+        <item>ANGEL ALUCH</item>
+        <item>ANGEL BRUNEL</item>
+        <item>ANGELINI</item>
+        <item>APIUJUK</item>
+        <item>ARANGO</item>
+        <item>ARAUCANOS</item>
+        <item>ARAUJO</item>
+        <item>ARAUJO JULIANA</item>
+        <item>ARDOHAIN</item>
+        <item>ARGENTINA</item>
+        <item>ARGENTINA DEL SUR</item>
+        <item>ARGERICH</item>
+        <item>ARIAS</item>
+        <item>ARLT</item>
+        <item>ARRIBEÑOS</item>
+        <item>ARRIETA</item>
+        <item>ARTIGAS</item>
+        <item>ASCASUBI</item>
+        <item>ASCENCIO</item>
+        <item>ASTOLFI</item>
+        <item>ATAHUALPA</item>
+        <item>AVANZA</item>
+        <item>AVELLANEDA</item>
+        <item>AVENENTE</item>
+        <item>AVILA</item>
+        <item>AYACUCHO</item>
+        <item>AYOLAS</item>
+        <item>AZARA</item>
+        <item>AZCUENAGA</item>
+        <item>AZOPARDO</item>
+        <item>AZURDUY</item>
+        <item>BAHIA BLANCA</item>
+        <item>BAIGORRIA</item>
+        <item>BALBIN</item>
+        <item>BALBOA</item>
+        <item>BALCARCE</item>
+        <item>BALCARCE RAMON</item>
+        <item>BAMBILL</item>
+        <item>BAÑUELOS</item>
+        <item>BARGHINO</item>
+        <item>BELGICA</item>
+        <item>BELGRANO</item>
+        <item>BELGRANO GRAL</item>
+        <item>BELTRAN</item>
+        <item>BENIELLI</item>
+        <item>BERGE VILA</item>
+        <item>BERMUDEZ</item>
+        <item>BERUTI</item>
+        <item>BICENTENARIO</item>
+        <item>BIGGIO</item>
+        <item>BILDER</item>
+        <item>BILOTTI</item>
+        <item>BLANDENGUES</item>
+        <item>BOEDO</item>
+        <item>BOLIVAR</item>
+        <item>BOLIVIA</item>
+        <item>BOMPLAND</item>
+        <item>BONNAT</item>
+        <item>BORGHINO</item>
+        <item>BORLENGHI</item>
+        <item>BOUCHARD</item>
+        <item>BOULOGNE SUR MER</item>
+        <item>BOZZANO</item>
+        <item>BRANDSEN</item>
+        <item>BRASIL</item>
+        <item>BRAVARD</item>
+        <item>BRICKMAN</item>
+        <item>BRIHUEGA</item>
+        <item>BROWN</item>
+        <item>BROWN ALTE</item>
+        <item>BUENOS AIRES</item>
+        <item>BULLRICH</item>
+        <item>C DE MONTEVIDEO</item>
+        <item>CABALLADA</item>
+        <item>CABILDO</item>
+        <item>CABO FARINA</item>
+        <item>CABRAL</item>
+        <item>CABRAL SGTO</item>
+        <item>CALEU-CALEU</item>
+        <item>CALFUCURA</item>
+        <item>CALQUIN</item>
+        <item>CALVENTO</item>
+        <item>CALVO</item>
+        <item>CAMBACERES</item>
+        <item>CAMINO DE ACCESO A GRAL DANIEL CERRI</item>
+        <item>CAMINO DE CINTURA</item>
+        <item>CANADA</item>
+        <item>CANE</item>
+        <item>CANNING</item>
+        <item>CANONI</item>
+        <item>CANTILLO</item>
+        <item>CANTILO</item>
+        <item>CARONTI</item>
+        <item>CARREGA</item>
+        <item>CARRIEGO</item>
+        <item>CARRILLO</item>
+        <item>CASAL</item>
+        <item>CASANOVA</item>
+        <item>CASANOVA INT</item>
+        <item>CASEROS</item>
+        <item>CASTELAR</item>
+        <item>CASTELLI</item>
+        <item>CASTRO</item>
+        <item>CASTRO BARROS</item>
+        <item>CATAMARCA</item>
+        <item>CATANLIL</item>
+        <item>CATRIEL</item>
+        <item>CAUQUE</item>
+        <item>CEJO</item>
+        <item>CERRI</item>
+        <item>CERRITO</item>
+        <item>CERVANTES</item>
+        <item>CESPEDES</item>
+        <item>CHACABUCO</item>
+        <item>CHACO</item>
+        <item>CHADICHE</item>
+        <item>CHANCAY</item>
+        <item>CHANEL</item>
+        <item>CHARCAS</item>
+        <item>CHARLONE</item>
+        <item>CHAVES</item>
+        <item>CHEQUEN</item>
+        <item>CHICLANA</item>
+        <item>CHILE</item>
+        <item>CHOIQUE</item>
+        <item>CHUBUT</item>
+        <item>CICCHINNI</item>
+        <item>CIPOLLETTI</item>
+        <item>CIRCUNVALACION</item>
+        <item>CISNEROS</item>
+        <item>CITTA</item>
+        <item>CIUDAD DE CALI</item>
+        <item>CLARET</item>
+        <item>CLEGG</item>
+        <item>CLERICE</item>
+        <item>COBIAN</item>
+        <item>COLIQUEO</item>
+        <item>COLOMBIA</item>
+        <item>COLON</item>
+        <item>CONDARCO</item>
+        <item>COPAHUE</item>
+        <item>CORBETA URUGUAY</item>
+        <item>CORDOBA</item>
+        <item>CORENFELD</item>
+        <item>CORONADO</item>
+        <item>CORRIENTES</item>
+        <item>CORTALEZZI</item>
+        <item>COSTA RECONDO</item>
+        <item>COULIN</item>
+        <item>CRAMER</item>
+        <item>CRESPI VALLS</item>
+        <item>CRISTO REDENTOR</item>
+        <item>CRUZ</item>
+        <item>CRUZ DEL SUR</item>
+        <item>CUBA</item>
+        <item>CUMERUCA</item>
+        <item>CURAMALAL</item>
+        <item>CUYO</item>
+        <item>D AMICO</item>
+        <item>D ORBIGNY</item>
+        <item>DAMAS MENDOCINA</item>
+        <item>DAMASA BOEDO</item>
+        <item>DARRAGUEIRA</item>
+        <item>DARWIN</item>
+        <item>DASSO</item>
+        <item>DE ANDREA</item>
+        <item>DE ANGELIS</item>
+        <item>DE IRAETA</item>
+        <item>DE LA CRUZ</item>
+        <item>DE LA CUESTA</item>
+        <item>DE LA SOBERANIA</item>
+        <item>DE LA TORRE</item>
+        <item>DE ROSAS</item>
+        <item>DEAN FUNES</item>
+        <item>DEL VALLE</item>
+        <item>DELFINO</item>
+        <item>DELLA VALLE</item>
+        <item>DERQUI</item>
+        <item>DESCONOCIDA</item>
+        <item>DI SARLI</item>
+        <item>DIAGONAL SPURR</item>
+        <item>DIRENZO</item>
+        <item>DON BOSCO</item>
+        <item>DONADO</item>
+        <item>DONNARI</item>
+        <item>DORREGO</item>
+        <item>DR LAZARO MABE</item>
+        <item>DRAGO</item>
+        <item>DURAN</item>
+        <item>ECUADOR</item>
+        <item>EDISON</item>
+        <item>EL BENTEVEO</item>
+        <item>EL BOYERO</item>
+        <item>EL CALDEN</item>
+        <item>EL CEIBO</item>
+        <item>EL DIVISADERO</item>
+        <item>EL GALLEGO MORA</item>
+        <item>EL GUALEGUAY</item>
+        <item>EL JACARANDA</item>
+        <item>EL RESERO</item>
+        <item>ELCANO</item>
+        <item>ELIAS</item>
+        <item>ELSEGOOD</item>
+        <item>ENRIQUE JULIO</item>
+        <item>ENTRE RIOS</item>
+        <item>ERIZE</item>
+        <item>ESCALADA</item>
+        <item>ESMERALDA</item>
+        <item>ESNAOLA</item>
+        <item>ESPAÑA</item>
+        <item>ESPECHE</item>
+        <item>ESPORA</item>
+        <item>ESQUIU</item>
+        <item>ESTACION ALGARROBO</item>
+        <item>ESTACION ALGARROBO</item>
+        <item>ESTADOS UNIDOS</item>
+        <item>ESTIVARIZ</item>
+        <item>ESTOMBA</item>
+        <item>ESTRADA</item>
+        <item>ESTRADA BOU</item>
+        <item>EUSKADI</item>
+        <item>FADER</item>
+        <item>FALCON</item>
+        <item>FALUCHO</item>
+        <item>FARIAS</item>
+        <item>FARINA</item>
+        <item>FATONE</item>
+        <item>FEDERICO BAEZA</item>
+        <item>FICHTER</item>
+        <item>FILIBERTO</item>
+        <item>FIRPO</item>
+        <item>FITZ ROY</item>
+        <item>FLORIDA</item>
+        <item>FORMOSA</item>
+        <item>FORTALEZA</item>
+        <item>FORTIN CARHUE</item>
+        <item>FORTIN CUATRERO</item>
+        <item>FORTIN VANGUARDIA</item>
+        <item>FORTINERO</item>
+        <item>FOURNIER</item>
+        <item>FRAGATA SARMIENTO</item>
+        <item>FRANCIA</item>
+        <item>FRENCH</item>
+        <item>FRIAS</item>
+        <item>FROLLA</item>
+        <item>FUERTE ARGENTINO</item>
+        <item>GALLARDO</item>
+        <item>GALVEZ</item>
+        <item>GAMBARETES</item>
+        <item>GARAY</item>
+        <item>GARCIA HUGONY</item>
+        <item>GARDEL</item>
+        <item>GARDEZ JULIO S</item>
+        <item>GARIBALDI</item>
+        <item>GARMENDIA</item>
+        <item>GASTAÑAGA</item>
+        <item>GIAGANTE</item>
+        <item>GIL</item>
+        <item>GIRONDO</item>
+        <item>GODOY CRUZ</item>
+        <item>GODOY PALMA</item>
+        <item>GOLETA LA LUISA</item>
+        <item>GONZALEZ</item>
+        <item>GONZALEZ CIPRIANO</item>
+        <item>GONZALEZ EDUARDO</item>
+        <item>GONZALEZ ESTEBAN</item>
+        <item>GONZALEZ FABIAN</item>
+        <item>GONZALEZ JOAQUIN</item>
+        <item>GORRIONES</item>
+        <item>GORRITI</item>
+        <item>GRANADA</item>
+        <item>GRANADEROS</item>
+        <item>GUARDIA VIEJA</item>
+        <item>GUATEMALA</item>
+        <item>GUAYAQUIL</item>
+        <item>GUEMES</item>
+        <item>GUIDO</item>
+        <item>GUIDO GRAL</item>
+        <item>GUIDO SPANO</item>
+        <item>GUILLERMO TORRES</item>
+        <item>GUIRALDES</item>
+        <item>GURRUCHAGA</item>
+        <item>GUTIERREZ</item>
+        <item>HAITI</item>
+        <item>HARDING GREEN</item>
+        <item>HARRINGTON</item>
+        <item>HARRIS CURA</item>
+        <item>HARRIS H</item>
+        <item>HARRIS JAMES</item>
+        <item>HARRIS M</item>
+        <item>HARRIS PAUL</item>
+        <item>HARRIS RAUL</item>
+        <item>HEINRICH</item>
+        <item>HERNANDARIAS</item>
+        <item>HERNANDEZ FRANCISCA</item>
+        <item>HERNANDEZ JOSE</item>
+        <item>HEROES DE MALVINAS</item>
+        <item>HIDALGO</item>
+        <item>HIROSHIMA</item>
+        <item>HOLDICH</item>
+        <item>HONDURAS</item>
+        <item>HORNEROS</item>
+        <item>HORNO MUSSI</item>
+        <item>HOURS</item>
+        <item>HUANGUELEN</item>
+        <item>HUAURA</item>
+        <item>HUEICHA</item>
+        <item>HUEMUL</item>
+        <item>HUEQUE</item>
+        <item>HUGONY</item>
+        <item>HUMBERTO LUCANERA</item>
+        <item>HUMBERTO PRIMERO</item>
+        <item>HUMBOLDT</item>
+        <item>HUSARES</item>
+        <item>I LA CATOLICA</item>
+        <item>IGARZABAL</item>
+        <item>INDEPENDENCIA</item>
+        <item>INDIADA</item>
+        <item>INDIO</item>
+        <item>INGLATERRA</item>
+        <item>INMIGRANTES</item>
+        <item>INOS</item>
+        <item>INTERNA I</item>
+        <item>INTERNA II</item>
+        <item>INTERNA III</item>
+        <item>INTERNA IV</item>
+        <item>INTERNA V</item>
+        <item>INTERNA VI</item>
+        <item>IRALDI</item>
+        <item>IRIGOIN</item>
+        <item>ISLAS MALVINAS</item>
+        <item>ISLAS ORCADAS</item>
+        <item>ISRAEL</item>
+        <item>ITALIA</item>
+        <item>ITURRA</item>
+        <item>JACKSONVILLE</item>
+        <item>JAURETCHE</item>
+        <item>JIMENEZ</item>
+        <item>JJVALLE</item>
+        <item>JONTE</item>
+        <item>JOSE INGENIEROS</item>
+        <item>JUAN DEL FRESNO</item>
+        <item>JUJUY</item>
+        <item>JUNCAL</item>
+        <item>JUNIN</item>
+        <item>JUSTO</item>
+        <item>KENNEDY</item>
+        <item>KLOOSTERMAN</item>
+        <item>KNOUT</item>
+        <item>LA ARCADA</item>
+        <item>LA FALDA</item>
+        <item>LA MADRID</item>
+        <item>LA NIÑA</item>
+        <item>LA PAMPA</item>
+        <item>LA PAZ</item>
+        <item>LA PINTA</item>
+        <item>LA PLATA</item>
+        <item>LA RECONQUISTA</item>
+        <item>LA RIOJA</item>
+        <item>LABARDEN</item>
+        <item>LAFERRERE</item>
+        <item>LAGUNA BLANCA</item>
+        <item>LAHUAL</item>
+        <item>LAINEZ</item>
+        <item>LANHUAL</item>
+        <item>LAPLACE</item>
+        <item>LAPRIDA</item>
+        <item>LARRALDE</item>
+        <item>LARRAÑAGA</item>
+        <item>LARREA</item>
+        <item>LAS ACACIAS</item>
+        <item>LAS CALANDRIAS</item>
+        <item>LAS GLICINAS</item>
+        <item>LAS GOLONDRINAS</item>
+        <item>LAS HERAS</item>
+        <item>LAS HUERTAS</item>
+        <item>LAS LOMAS</item>
+        <item>LAS PALMERAS</item>
+        <item>LAS PATAS</item>
+        <item>LAS RETAMAS</item>
+        <item>LAS SOPHORAS</item>
+        <item>LAS TORCAZAS</item>
+        <item>LAS TOSCAS</item>
+        <item>LAS TUYAS</item>
+        <item>LASPIUR</item>
+        <item>LATTANZIO</item>
+        <item>LAUQUEN</item>
+        <item>LAUTARO</item>
+        <item>LAVALLE</item>
+        <item>LAZZARI</item>
+        <item>LEDESMA</item>
+        <item>LEGION ITALIANA</item>
+        <item>LEJARRAGA</item>
+        <item>LELOIR FEDERICO</item>
+        <item>LEONIDAS LUCERO</item>
+        <item>LESTANI</item>
+        <item>LEUMANN</item>
+        <item>LEVALLE</item>
+        <item>LIBANO</item>
+        <item>LIBERTAD</item>
+        <item>LINIERS</item>
+        <item>LITRE</item>
+        <item>LLANKETRUZ</item>
+        <item>LLAU LLAU</item>
+        <item>LOLA MORA</item>
+        <item>LOPEZ</item>
+        <item>LOPEZ FRANCES</item>
+        <item>LOS ADOBES</item>
+        <item>LOS AILANTUS</item>
+        <item>LOS ALAMOS</item>
+        <item>LOS ALGARROBOS</item>
+        <item>LOS ANDES</item>
+        <item>LOS AROMOS</item>
+        <item>LOS ARROYOS</item>
+        <item>LOS CEDROS</item>
+        <item>LOS CEREZOS</item>
+        <item>LOS CHAÑARES</item>
+        <item>LOS CIPRECES</item>
+        <item>LOS CONSTITUYENTES</item>
+        <item>LOS FLAMENCOS</item>
+        <item>LOS FRESNOS</item>
+        <item>LOS FRESNOS BLANCOS</item>
+        <item>LOS HORNEROS</item>
+        <item>LOS JAZMINES</item>
+        <item>LOS JILGUEROS</item>
+        <item>LOS MIRASOLES</item>
+        <item>LOS NARANJOS</item>
+        <item>LOS NOGALES</item>
+        <item>LOS NOGALES (CALLE)</item>
+        <item>LOS OLIVOS</item>
+        <item>LOS OLMOS</item>
+        <item>LOS PARAISOS</item>
+        <item>LOS PATOS</item>
+        <item>LOS PINOS</item>
+        <item>LOS SAUCES</item>
+        <item>LOS TAMARISCOS</item>
+        <item>LOS TILOS</item>
+        <item>LOS ZORZALES</item>
+        <item>LOYOLA</item>
+        <item>LUCIANI</item>
+        <item>LUGONES</item>
+        <item>LUIGGI</item>
+        <item>LUNA</item>
+        <item>LUNA ING</item>
+        <item>MACHADO</item>
+        <item>MACIEL</item>
+        <item>MADARIAGA</item>
+        <item>MAESTRO PICCIOLI</item>
+        <item>MAGALLANES</item>
+        <item>MAIPU</item>
+        <item>MAITEN</item>
+        <item>MALDONADO</item>
+        <item>MALHARRO</item>
+        <item>MALLEA</item>
+        <item>MAÑQUE</item>
+        <item>MANSILLA</item>
+        <item>MANUEL UGARTE</item>
+        <item>MANZANA DE LAS LUCES</item>
+        <item>MARCOS</item>
+        <item>MARCUCCI</item>
+        <item>MARECHAL</item>
+        <item>MARTELLA</item>
+        <item>MARTIN</item>
+        <item>MARTIN FIERRO</item>
+        <item>MARTINEZ</item>
+        <item>MASCARELLO</item>
+        <item>MATHEU</item>
+        <item>MAYO</item>
+        <item>MAZZARELLO</item>
+        <item>MEDRANO</item>
+        <item>MEJICO</item>
+        <item>MELIPAL</item>
+        <item>MENDOZA</item>
+        <item>MENESES</item>
+        <item>MICHAI</item>
+        <item>MIGUELETES</item>
+        <item>MILIA MIGUEL ANGEL</item>
+        <item>MILLAMAPU</item>
+        <item>MILLAN</item>
+        <item>MILUN</item>
+        <item>MIÑONES</item>
+        <item>MIRANDA</item>
+        <item>MISIONEROS</item>
+        <item>MISIONES</item>
+        <item>MISTRAL</item>
+        <item>MITRE</item>
+        <item>MOLINA CAMPOS</item>
+        <item>MOLINA JUAN</item>
+        <item>MOLINA MANUEL</item>
+        <item>MONTEAGUDO</item>
+        <item>MONTEIRO</item>
+        <item>MONTERO</item>
+        <item>MONTEVIDEO</item>
+        <item>MOORE</item>
+        <item>MORA</item>
+        <item>MOREL</item>
+        <item>MORENO</item>
+        <item>MOSCONI</item>
+        <item>MUNILLA</item>
+        <item>MUÑOZ</item>
+        <item>NAMUNCURA</item>
+        <item>ÑANCU</item>
+        <item>NANCUÑAN</item>
+        <item>NAPOSTA</item>
+        <item>NECOCHEA</item>
+        <item>NEGRI</item>
+        <item>NEUMAYER</item>
+        <item>NEUQUEN</item>
+        <item>NEVARES</item>
+        <item>NEWBERY</item>
+        <item>NEWTON</item>
+        <item>NIAVELETTES</item>
+        <item>NICARAGUA</item>
+        <item>NICOLAS PEREZ</item>
+        <item>NICOLAS PIREZ</item>
+        <item>ÑORQUINCO</item>
+        <item>NUEVA PROVINCIA</item>
+        <item>O HIGGINS</item>
+        <item>OBLIGADO</item>
+        <item>OCHOA</item>
+        <item>OLIVIERI</item>
+        <item>OMBU</item>
+        <item>PACIFICO</item>
+        <item>PAGO CHICO</item>
+        <item>PALACIOS</item>
+        <item>PALAO</item>
+        <item>PALERMO</item>
+        <item>PAMPA CENTRAL</item>
+        <item>PANAMA</item>
+        <item>PANGUI</item>
+        <item>PARAGUAY</item>
+        <item>PARANA</item>
+        <item>PARCHAPPE</item>
+        <item>PARERA</item>
+        <item>PAROISSIEN</item>
+        <item>PASAJE MIRADOR</item>
+        <item>PASO DE LAS PIEDRAS</item>
+        <item>PASO MAYOR</item>
+        <item>PASSO</item>
+        <item>PASTEUR</item>
+        <item>PASTOR OBLIGADO</item>
+        <item>PATAGONES</item>
+        <item>PATRICIOS</item>
+        <item>PAUNERO</item>
+        <item>PAVON</item>
+        <item>PAYNE</item>
+        <item>PAYRO</item>
+        <item>PAZ</item>
+        <item>PEDRAZA</item>
+        <item>PEDRO E SAINT PAUL</item>
+        <item>PEDRO GALLO</item>
+        <item>PEDRO PICO</item>
+        <item>PEHUEN</item>
+        <item>PELLEGRINI</item>
+        <item>PEÑALOZA</item>
+        <item>PENKEN</item>
+        <item>PENNA</item>
+        <item>PERATA</item>
+        <item>PERITO MORENO</item>
+        <item>PERNICI</item>
+        <item>PERON</item>
+        <item>PERU</item>
+        <item>PESQUERO NARWAL</item>
+        <item>PESQUERO USURBIL</item>
+        <item>PICCIOLI</item>
+        <item>PICO</item>
+        <item>PIEDRA BUENA</item>
+        <item>PIGUE</item>
+        <item>PILCANIYEN</item>
+        <item>PILCOMAYO</item>
+        <item>PILLING</item>
+        <item>PILMAIQUEN</item>
+        <item>PINCEN</item>
+        <item>PIROVANO</item>
+        <item>PLATERO</item>
+        <item>PLUMERILLO</item>
+        <item>PLUNKETT</item>
+        <item>PODESTA</item>
+        <item>POLETTI</item>
+        <item>PORTAL DEL ESTE</item>
+        <item>PORTE</item>
+        <item>PORTUGAL</item>
+        <item>POSTA ROLANDO</item>
+        <item>POZOS</item>
+        <item>PRIMERA JUNTA</item>
+        <item>PRIMO</item>
+        <item>PRINGLES</item>
+        <item>PRONSATO</item>
+        <item>PROVINCIAS UNIDAS</item>
+        <item>PUENTE PICHEUTA</item>
+        <item>PUEYRREDON</item>
+        <item>PUNTA ALTA</item>
+        <item>QUERANDIES</item>
+        <item>QUILLEN</item>
+        <item>QUINQUELA MARTIN</item>
+        <item>QUINTANA</item>
+        <item>QUIROGA FACUNDO</item>
+        <item>QUIROGA HORACIO</item>
+        <item>R DE ESCALADA</item>
+        <item>R DE MAYO</item>
+        <item>R DEL FRESNO</item>
+        <item>RAMIREZ FRANCISCO</item>
+        <item>RAMIREZ URTASUN</item>
+        <item>RAMON Y CAJAL</item>
+        <item>RAMOS MEJIA</item>
+        <item>RANQUELES</item>
+        <item>RAWSON</item>
+        <item>RAYEN</item>
+        <item>REALICO</item>
+        <item>RECONQUISTA</item>
+        <item>REGA MOLINA</item>
+        <item>REHUE</item>
+        <item>REP DE CROACIA</item>
+        <item>REP SIRIA</item>
+        <item>REYNAL</item>
+        <item>RICCHIERI</item>
+        <item>RIGAMONTI</item>
+        <item>RINCON</item>
+        <item>RIO ATUEL</item>
+        <item>RIO BERMEJO</item>
+        <item>RIO COLORADO</item>
+        <item>RIO NEGRO</item>
+        <item>RIVADAVIA</item>
+        <item>RIZZO</item>
+        <item>ROBERTO HART</item>
+        <item>ROCA JULIO</item>
+        <item>ROCCA LUIS</item>
+        <item>RODO</item>
+        <item>RODRIGUEZ</item>
+        <item>RODRIGUEZ DE SAGARI RITA</item>
+        <item>RODRIGUEZ MARTIN</item>
+        <item>RODRIGUEZ PEÑA</item>
+        <item>RODRIGUEZ RITA</item>
+        <item>RODRIGUEZ SUBOF</item>
+        <item>RODRIGUEZ SUBOF J I</item>
+        <item>ROGATIS</item>
+        <item>ROJAS</item>
+        <item>ROJO</item>
+        <item>ROLDAN</item>
+        <item>ROMERO</item>
+        <item>RONDEAU</item>
+        <item>ROSA MARIA JOSE</item>
+        <item>ROSALES</item>
+        <item>ROSARIO</item>
+        <item>ROSAS EMILIO</item>
+        <item>ROZAS GREGORIO</item>
+        <item>RUBADO</item>
+        <item>RUBEN DARIO</item>
+        <item>RUCAHUE</item>
+        <item>RUTA 229</item>
+        <item>RUTA 3 SUR</item>
+        <item>SAAVEDRA</item>
+        <item>SAAVEDRA LAMAS</item>
+        <item>SAENZ PEÑA</item>
+        <item>SAIA</item>
+        <item>SALINAS CHICAS</item>
+        <item>SALLIQUELO</item>
+        <item>SALTA</item>
+        <item>SALUSTIO</item>
+        <item>SALVADOR MAZZA</item>
+        <item>SAMPAY</item>
+        <item>SAN ANDRES</item>
+        <item>SAN FRANCISCO</item>
+        <item>SAN JOSE</item>
+        <item>SAN JUAN</item>
+        <item>SAN LORENZO</item>
+        <item>SAN LUCAS</item>
+        <item>SAN LUIS</item>
+        <item>SAN MARTIN</item>
+        <item>SAN MARTIN</item>
+        <item>SAN SALVADOR</item>
+        <item>SANCHEZ DE BUSTAMANTE</item>
+        <item>SANCHEZ FLORENCIO</item>
+        <item>SANCHEZ GARDEL</item>
+        <item>SANDRINI</item>
+        <item>SANTA CRUZ</item>
+        <item>SANTA FE</item>
+        <item>SANTA MARIA</item>
+        <item>SANTA MARIA DE ORO</item>
+        <item>SANTA ROSA</item>
+        <item>SANTIAGO DEL ESTERO</item>
+        <item>SANTO DOMINGO</item>
+        <item>SARGENTO CABRAL</item>
+        <item>SARMIENTO</item>
+        <item>SARRATEA</item>
+        <item>SAUCE CHICO</item>
+        <item>SAYHUEQUE</item>
+        <item>SCALABRINI ORTIZ</item>
+        <item>SCHIAFFINO</item>
+        <item>SEBASTIAN MAROTTA</item>
+        <item>SECCION CAMPOS</item>
+        <item>SECCION CHACRAS</item>
+        <item>SECCION QUINTAS</item>
+        <item>SEGUNDA BERUTI</item>
+        <item>SEGUNDA BRASIL</item>
+        <item>SEGUNDA DARRAGUEIRA</item>
+        <item>SEGUNDA LATTANZIO</item>
+        <item>SEGUNDA MALDONADO</item>
+        <item>SEGUNDA MITRE</item>
+        <item>SEGUNDA PARANA</item>
+        <item>SEGUNDA PBRO JUAN BAUTISTA BIGIO</item>
+        <item>SEGUNDA PEDRO PICO</item>
+        <item>SEGUNDA SANTA CRUZ</item>
+        <item>SEGUNDA SANTA FE</item>
+        <item>SEGUNDA SARGENTO CABRAL</item>
+        <item>SEGUNDA TERRADA</item>
+        <item>SEGUNDA TUCUMAN</item>
+        <item>SEGUNDA VIAMONTE</item>
+        <item>SERGIO KARAKACHOFF</item>
+        <item>SERRANO</item>
+        <item>SESQUICENTENARIO</item>
+        <item>SEVILLA</item>
+        <item>SICHES</item>
+        <item>SIEMPRE VERDE</item>
+        <item>SILVA</item>
+        <item>SILVANI</item>
+        <item>SIN NOMBRE</item>
+        <item>SISCO</item>
+        <item>SIVORI</item>
+        <item>SOCRATES</item>
+        <item>SOLER</item>
+        <item>SOLIER</item>
+        <item>SOLIS</item>
+        <item>SORIANO</item>
+        <item>SOSA</item>
+        <item>SPILINBERGO</item>
+        <item>STELLA MARIS</item>
+        <item>STORNI</item>
+        <item>SUAREZ</item>
+        <item>SUIZA</item>
+        <item>SUSINI</item>
+        <item>TALAMONTI</item>
+        <item>TANDIL</item>
+        <item>TARAPACA</item>
+        <item>TARIJA</item>
+        <item>TAURO</item>
+        <item>TEHUELCHES</item>
+        <item>TEJADA</item>
+        <item>TERESA ASCENCIO</item>
+        <item>TERRADA</item>
+        <item>THOMPSON</item>
+        <item>TIERRA DEL FUEGO</item>
+        <item>TOMBESSI</item>
+        <item>TORRES</item>
+        <item>TREBOLARES</item>
+        <item>TRELEW</item>
+        <item>TRES ARROYOS</item>
+        <item>TRES LOMAS</item>
+        <item>TRES SARGENTOS</item>
+        <item>TUCUMAN</item>
+        <item>TUPAC AMARU</item>
+        <item>UNDIANO</item>
+        <item>URQUIZA</item>
+        <item>URUGUAY</item>
+        <item>USPALLATA</item>
+        <item>VALLE</item>
+        <item>VAN HEES</item>
+        <item>VANDOR</item>
+        <item>VARELA FELIPE</item>
+        <item>VARELA FLORENCIO</item>
+        <item>VELEZ SARSFIELD</item>
+        <item>VENANCIO</item>
+        <item>VENEZUELA</item>
+        <item>VERA</item>
+        <item>VERGARA</item>
+        <item>VERGARA PJE</item>
+        <item>VESPUCIO</item>
+        <item>VIAMONTE</item>
+        <item>VICENTE LOPEZ</item>
+        <item>VICTORICA</item>
+        <item>VIDAL</item>
+        <item>VIEDMA</item>
+        <item>VIEYTES</item>
+        <item>VIGIL</item>
+        <item>VILLARINO</item>
+        <item>WAIKA</item>
+        <item>WALSH</item>
+        <item>WASHINGTON</item>
+        <item>WERNICKE</item>
+        <item>WITCOMB</item>
+        <item>YAPEYU</item>
+        <item>YEPUN</item>
+        <item>YRIGOYEN</item>
+        <item>ZAPALA</item>
+        <item>ZAPIOLA</item>
+        <item>ZEBALLOS</item>
+        <item>ZELARRAYAN</item>
+        <item>ZUBIRIA</item>
+    </string-array>
+
+</resources>

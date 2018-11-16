@@ -142,13 +142,13 @@ public class FormApoderadoView extends ActivityView implements FormActions{
         else{
             cuilEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
         }
-        if(!validator.validateDate(apoderado.getFecha_nacimiento()) && config.getDatos_apoderado().isFecha_nac_apoderado()){
+       /* if(!validator.validateDate(apoderado.getFecha_nacimiento()) && config.getDatos_apoderado().isFecha_nac_apoderado()){
             fechaNacimientoEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorError), PorterDuff.Mode.SRC_ATOP);
             result = false;
         }
         else{
             fechaNacimientoEt.getBackground().mutate().setColorFilter(getActivity().getResources().getColor(R.color.colorMain), PorterDuff.Mode.SRC_ATOP);
-        }
+        }*/
 
         return result;
     }

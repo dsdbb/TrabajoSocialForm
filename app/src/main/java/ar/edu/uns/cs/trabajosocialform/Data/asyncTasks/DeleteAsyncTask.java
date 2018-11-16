@@ -87,11 +87,8 @@ public class DeleteAsyncTask extends AsyncTask<Object,Void,DisposableObserver<Bo
 
         if (transaction != null) {
             transactionDao.delete(transaction);
-        } else {
-            /*If there is no insert for the form in the transaction log, it means that the form is already uploaded
-             * so the delete must be inserted in the log to delete from server later*/
-            transactionDao.insert(new Transaction(TransactionOptions.DELETE.getValue(), form.getId()));
         }
+
         return observer;
     }
 

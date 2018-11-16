@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import ar.edu.uns.cs.trabajosocialform.Data.DataModel.Formulario;
 import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.presenter.FormularioPresenter;
+import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.presenter.LoginPresenter;
 import ar.edu.uns.cs.trabajosocialform.Presentation.mvp.view.FormularioView;
 import ar.edu.uns.cs.trabajosocialform.R;
 
@@ -22,7 +23,8 @@ public class FormularioActivity extends AppCompatActivity {
         if(update){
              updateForm =(Formulario)getIntent().getSerializableExtra(MainActivity.KEY_UPDATE_FORM);
         }
-        presenter = new FormularioPresenter(new FormularioView(this),updateForm);
+        String user = getIntent().getStringExtra(LoginPresenter.KEY_USER);
+        presenter = new FormularioPresenter(new FormularioView(this),updateForm, user);
     }
 
     @Override

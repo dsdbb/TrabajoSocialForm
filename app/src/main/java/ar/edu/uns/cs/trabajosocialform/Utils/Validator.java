@@ -7,7 +7,9 @@ public class Validator {
 
     public boolean validateCuilFormat(Long text){
         if(text!=null){
-            return text.toString().matches("^\\d{10,11}$");
+            //return text.toString().matches("^\\d{10,11}$");
+            return text.toString().matches("^\\d{7,11}$");
+
         }
         return false;
     }

@@ -102,6 +102,11 @@ public class EntradasView extends ActivityView {
 
     }
 
+    public void cleanList() {
+        EntradasRecyclerViewAdapter adapter = new EntradasRecyclerViewAdapter(new ArrayList<Solicitante>());
+        recyclerView.setAdapter(adapter);
+    }
+
    /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

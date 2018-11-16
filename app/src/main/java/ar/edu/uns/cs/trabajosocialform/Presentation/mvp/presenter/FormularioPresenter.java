@@ -21,9 +21,11 @@ public class FormularioPresenter extends GeneralSectionPresenter{
 
     private FormularioView view;
     private StorageAccess storageAccess;
+    private String user;
 
-    public FormularioPresenter(FormularioView view, Formulario updateForm){
+    public FormularioPresenter(FormularioView view, Formulario updateForm, String user){
         this.view = view;
+        this.user = user;
         this.updateForm = updateForm;
 
         storageAccess = new StorageAccess();
@@ -41,6 +43,7 @@ public class FormularioPresenter extends GeneralSectionPresenter{
 
     public void onNextButtonClicked(){
         form = view.tomarDatos();
+        form.setNombreEntrevistador(user);
         Intent intent = new Intent(view.getContext(),FormSolicitanteActivity.class);
         putExtras(intent);
         view.getActivity().startActivity(intent);
